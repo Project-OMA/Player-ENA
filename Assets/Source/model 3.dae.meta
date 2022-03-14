@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 12aa1dfb0df69f64abbce1059f92a6f5
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Button
+    100002: Button 1
+    100004: Button 10
+    100006: Button 11
+    100008: Button 2
+    100010: Button 3
+    100012: Button 4
+    100014: Button 5
+    100016: Button 6
+    100018: Button 7
+    100020: Button 8
+    100022: Button 9
+    100024: Button_2
+    100026: Button_2 1
+    100028: Button_2 10
+    100030: Button_2 11
+    100032: Button_2 12
+    100034: Button_2 2
+    100036: Button_2 3
+    100038: Button_2 4
+    100040: Button_2 5
+    100042: Button_2 6
+    100044: Button_2 7
+    100046: Button_2 8
+    100048: Button_2 9
+    100050: group_0
+    100052: Handset
+    100054: ID104
+    100056: ID110
+    100058: ID118
+    100060: ID124
+    100062: ID68
+    100064: ID74
+    100066: ID80
+    100068: ID86
+    100070: ID92
+    100072: ID98
+    100074: instance_0
+    100076: instance_1
+    100078: instance_10
+    100080: instance_11
+    100082: instance_12
+    100084: instance_13
+    100086: instance_14
+    100088: instance_15
+    100090: instance_16
+    100092: instance_17
+    100094: instance_18
+    100096: instance_19
+    100098: instance_2
+    100100: instance_20
+    100102: instance_21
+    100104: instance_22
+    100106: instance_23
+    100108: instance_24
+    100110: instance_25
+    100112: instance_3
+    100114: instance_4
+    100116: instance_5
+    100118: instance_6
+    100120: instance_7
+    100122: instance_8
+    100124: instance_9
+    100126: //RootNode
+    100128: skp_camera_Last_Saved_SketchUp_View
+    400000: Button
+    400002: Button 1
+    400004: Button 10
+    400006: Button 11
+    400008: Button 2
+    400010: Button 3
+    400012: Button 4
+    400014: Button 5
+    400016: Button 6
+    400018: Button 7
+    400020: Button 8
+    400022: Button 9
+    400024: Button_2
+    400026: Button_2 1
+    400028: Button_2 10
+    400030: Button_2 11
+    400032: Button_2 12
+    400034: Button_2 2
+    400036: Button_2 3
+    400038: Button_2 4
+    400040: Button_2 5
+    400042: Button_2 6
+    400044: Button_2 7
+    400046: Button_2 8
+    400048: Button_2 9
+    400050: group_0
+    400052: Handset
+    400054: ID104
+    400056: ID110
+    400058: ID118
+    400060: ID124
+    400062: ID68
+    400064: ID74
+    400066: ID80
+    400068: ID86
+    400070: ID92
+    400072: ID98
+    400074: instance_0
+    400076: instance_1
+    400078: instance_10
+    400080: instance_11
+    400082: instance_12
+    400084: instance_13
+    400086: instance_14
+    400088: instance_15
+    400090: instance_16
+    400092: instance_17
+    400094: instance_18
+    400096: instance_19
+    400098: instance_2
+    400100: instance_20
+    400102: instance_21
+    400104: instance_22
+    400106: instance_23
+    400108: instance_24
+    400110: instance_25
+    400112: instance_3
+    400114: instance_4
+    400116: instance_5
+    400118: instance_6
+    400120: instance_7
+    400122: instance_8
+    400124: instance_9
+    400126: //RootNode
+    400128: skp_camera_Last_Saved_SketchUp_View
+    2000000: skp_camera_Last_Saved_SketchUp_View
+    2100000: material
+    2100002: Wood_Floor_Parquet
+    2100004: _0133_Gray
+    2100006: _0137_Black
+    2300000: Button
+    2300002: Button 1
+    2300004: Button 10
+    2300006: Button 11
+    2300008: Button 2
+    2300010: Button 3
+    2300012: Button 4
+    2300014: Button 5
+    2300016: Button 6
+    2300018: Button 7
+    2300020: Button 8
+    2300022: Button 9
+    2300024: Button_2
+    2300026: Button_2 1
+    2300028: Button_2 10
+    2300030: Button_2 11
+    2300032: Button_2 12
+    2300034: Button_2 2
+    2300036: Button_2 3
+    2300038: Button_2 4
+    2300040: Button_2 5
+    2300042: Button_2 6
+    2300044: Button_2 7
+    2300046: Button_2 8
+    2300048: Button_2 9
+    2300050: group_0
+    2300052: Handset
+    2300054: ID104
+    2300056: ID110
+    2300058: ID68
+    2300060: ID74
+    2300062: ID80
+    2300064: ID86
+    2300066: ID92
+    2300068: ID98
+    3300000: Button
+    3300002: Button 1
+    3300004: Button 10
+    3300006: Button 11
+    3300008: Button 2
+    3300010: Button 3
+    3300012: Button 4
+    3300014: Button 5
+    3300016: Button 6
+    3300018: Button 7
+    3300020: Button 8
+    3300022: Button 9
+    3300024: Button_2
+    3300026: Button_2 1
+    3300028: Button_2 10
+    3300030: Button_2 11
+    3300032: Button_2 12
+    3300034: Button_2 2
+    3300036: Button_2 3
+    3300038: Button_2 4
+    3300040: Button_2 5
+    3300042: Button_2 6
+    3300044: Button_2 7
+    3300046: Button_2 8
+    3300048: Button_2 9
+    3300050: group_0
+    3300052: Handset
+    3300054: ID104
+    3300056: ID110
+    3300058: ID68
+    3300060: ID74
+    3300062: ID80
+    3300064: ID86
+    3300066: ID92
+    3300068: ID98
+    4300000: group_0
+    4300002: ID68
+    4300004: ID74
+    4300006: ID80
+    4300008: ID86
+    4300010: ID92
+    4300012: ID98
+    4300014: ID104
+    4300016: ID110
+    4300018: Button
+    4300020: Button_2
+    4300022: Handset
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

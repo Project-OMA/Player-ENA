@@ -1,0 +1,87 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl 13110_fireplace_base
+Ns 9.803922
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd 13110_fireplace_base_diffuse.jpg
+map_Ka 13110_fireplace_base_diffuse.jpg
+
+newmtl 13110_fireplace_fire
+Ns 9.803922
+Ka 0.611800 0.611800 0.611800
+Kd 0.937300 0.702000 0.196100
+Ks 0.000000 0.000000 0.000000
+Ke 0.937300 0.702000 0.196100
+Ni 1.500000
+d 0.600000
+illum 2
+map_Kd 13110_fireplace_fire_diffuse.jpg
+map_Ka 13110_fireplace_fire_diffuse.jpg
+map_Ke 13110_fireplace_fire_selfillum.jpg
+
+newmtl 13110_fireplace_marblegreen
+Ns 37.254902
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.378000 0.378000 0.378000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd 13110_fireplace_marbleg_diffuse.jpg
+map_Ka 13110_fireplace_marbleg_diffuse.jpg
+
+newmtl 13110_fireplace_marblewhite
+Ns 37.254902
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.378000 0.378000 0.378000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd 13110_fireplace_marblew_diffuse.jpg
+map_Ka 13110_fireplace_marblew_diffuse.jpg
+
+newmtl 13110_fireplace_metal
+Ns 19.607843
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.396000 0.396000 0.396000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd 13110_fireplace_metals_diffuse.jpg
+map_Ka 13110_fireplace_metals_diffuse.jpg
+
+newmtl 13110_fireplace_woods
+Ns 9.803922
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd 13110_fireplace_woods_diffuse.jpg
+map_Ka 13110_fireplace_woods_diffuse.jpg
+
+newmtl 13110_fireplace_woodsburn
+Ns 9.803922
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd 13110_fireplace_woodsburne_diffuse.jpg
+map_Ka 13110_fireplace_woodsburne_diffuse.jpg
