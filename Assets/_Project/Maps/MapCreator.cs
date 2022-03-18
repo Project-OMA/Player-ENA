@@ -317,7 +317,7 @@ public class MapCreator : MonoBehaviour
 
         }
 
-
+        Debug.Log($"List Index: {listIndex} | Code: {code}");
         if (prefab == null)
         {
             //Caso o prebab seja o player, seta a posicao do player
