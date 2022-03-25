@@ -11,6 +11,7 @@ Some of the above dependencies contain their own Third-Party notices, so check t
 - Nameless: the Hackers Title Screen by BoxCat Games, licensed under CC-BY-3.0: http://creativecommons.org/licenses/by/3.0/
 - Quick Outline by Chris Nolet
 - Unity Accessibility Plugin by MetalPop Games
+- UAP by MetalPop Games
 
 # WIP
 - Basic Texture Set
