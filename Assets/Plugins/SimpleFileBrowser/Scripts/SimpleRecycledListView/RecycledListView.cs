@@ -61,8 +61,10 @@ namespace SimpleFileBrowser
             {
                 float contentPos = contentTransform.anchoredPosition.y - 1f;
                 
-                int newTopIndex = (int) ( contentPos * _1OverItemHeight );
-                int newBottomIndex = (int) ( ( contentPos + viewportHeight + 2f ) * _1OverItemHeight );
+                // int newTopIndex = (int) ( contentPos * _1OverItemHeight );
+                // int newBottomIndex = (int) ( ( contentPos + viewportHeight + 2f ) * _1OverItemHeight );
+                int newTopIndex = 0;
+                int newBottomIndex = adapter.Count - 1;
 
                 if( newTopIndex < 0 )
                     newTopIndex = 0;
