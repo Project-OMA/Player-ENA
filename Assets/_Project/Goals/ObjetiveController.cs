@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class ObjetiveController : MonoBehaviour
+public class ObjetiveController: MonoBehaviour
 {
     public static ObjetiveController instance;
     //Lista de objetivos do mapa

@@ -35,6 +35,30 @@ MonoBehaviour:
     m_Key: Key_Vibration
     m_Metadata:
       m_Items: []
+  - m_Id: 47543672102912
+    m_Key: Key_FindXML
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48811320795136
+    m_Key: Key_InformName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 737207437484032
+    m_Key: Key_ExitMessage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739165586055168
+    m_Key: Key_Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739204345618432
+    m_Key: Key_No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778169282977792
+    m_Key: Key_FileBrowser
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

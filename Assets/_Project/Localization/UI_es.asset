@@ -38,5 +38,29 @@ MonoBehaviour:
     m_Localized: "Vibraci\xF3n"
     m_Metadata:
       m_Items: []
+  - m_Id: 47543672102912
+    m_Localized: Encuentra el XML
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48811320795136
+    m_Localized: Introduzca su nombre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 737207437484032
+    m_Localized: "\xBFDe verdad quieres salir?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739165586055168
+    m_Localized: "S\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739204345618432
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 778169282977792
+    m_Localized: Explorador de archivos
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
