@@ -51,6 +51,10 @@ public class OptionsPlayer : MonoBehaviour {
 			cameraVR.GetComponent<ControleGiroscopio>().enabled = false;
 			cameraNormal.GetComponent<ControleGiroscopio>().enabled = false;
 		}
+
+		UAP_AccessibilityManager.RegisterOnPauseToggledCallback(ToggleExitMenu);
+		UAP_AccessibilityManager.RegisterOnBackCallback(FecharMenu);
+		UAP_AccessibilityManager.PauseAccessibility(true);
 	}
 	
 	void DefinirInicio(){
@@ -61,6 +65,22 @@ public class OptionsPlayer : MonoBehaviour {
 			cameraMaster.transform.localPosition = gameObject.transform.localPosition;
 		}
 	}
+
+	void OnDestroy() {
+        UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(ToggleExitMenu);
+		UAP_AccessibilityManager.UnregisterOnBackCallback(FecharMenu);
+		UAP_AccessibilityManager.PauseAccessibility(false);
+    }
+
+	public void ToggleExitMenu()
+	{
+		if (menu.activeInHierarchy) {
+			AbrirMenuSair();
+		} else {
+			FecharMenu();
+		}
+	}
+
 	public void InstanceTracer(){
 		if(qualTracer != null){
 			qualTracer.transform.parent = null;
@@ -178,9 +198,13 @@ public class OptionsPlayer : MonoBehaviour {
 	}
 	public void AbrirMenuSair(){
 		menu.SetActive(true);
+		playerControl.enabled = false;
+		UAP_AccessibilityManager.PauseAccessibility(false);
 	}
 	public void FecharMenu(){
 		menu.SetActive(false);
+		playerControl.enabled = true;
+		UAP_AccessibilityManager.PauseAccessibility(true);
 	}
 	public void VoltarParaOMenu(){
 		StartCoroutine(SalvarTracer());

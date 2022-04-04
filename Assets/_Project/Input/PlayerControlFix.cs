@@ -413,4 +413,8 @@ public class PlayerControlFix : MonoBehaviour
         }
         pontosCardPassados = pontosCardeais;
     }
+
+    public void ToggleControls() {
+        this.enabled = !this.enabled;
+    }
 }
