@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 222000013410998874}
   - component: {fileID: 114000012602770182}
   - component: {fileID: 114000012265032802}
-  - component: {fileID: 6963240890509709053}
+  - component: {fileID: 7241961982174524468}
   m_Layer: 5
   m_Name: SimpleFileBrowserItem
   m_TagString: Untagged
@@ -173,7 +173,7 @@ MonoBehaviour:
   background: {fileID: 114000012602770182}
   icon: {fileID: 114000013208375990}
   nameText: {fileID: 114000013995033306}
---- !u!114 &6963240890509709053
+--- !u!114 &7241961982174524468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011646011302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d52c398d6e508e428bb1c7d8f0083e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7099475fd843649ddab25be0390592a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_OnInteractionStart:
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_PrefixIsLocalizationKey: 0
   m_PrefixIsPostFix: 0
   m_FilterText: 1
-  m_Text: 
+  m_Text: Filename
   m_NameLabel: {fileID: 1000010981689570}
   m_AdditionalNameLabels: []
   m_TestList: []
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_AllowVoiceOver: 1
   m_ReadType: 1
   m_WasJustAdded: 1
-  m_Type: 2
+  m_Type: 1
   m_CustomHint: 0
   m_HintAsAudio: {fileID: 0}
   m_Hint: 
