@@ -62,5 +62,9 @@ MonoBehaviour:
     m_Localized: Navegador de Arquivos
     m_Metadata:
       m_Items: []
+  - m_Id: 6087802545496064
+    m_Localized: "Espa\xE7o Naveg\xE1vel - ENA"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

@@ -80,7 +80,11 @@ public class MapCreator : MonoBehaviour
         string data = "";
         if (!testando)
         {
-            data = System.IO.File.ReadAllText(PlayerPrefs.GetString("MapPath"));
+            var mapPath = PlayerPrefs.GetString("MapPath");
+            if (File.Exists(mapPath))
+                data = File.ReadAllText(mapPath);
+            else
+                return; 
         }
         else
         {

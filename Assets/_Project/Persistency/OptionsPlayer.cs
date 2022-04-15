@@ -4,13 +4,20 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using JurassicEngine.Persistency;
+using System.Threading.Tasks;
+using System.Text;
+
 public class OptionsPlayer : MonoBehaviour {
+	#region Constants
     private const string relativePath = "/sdcard/LogsE3/";
+	#endregion
+	#region Variables
     public Text path;
 	string folderPath = relativePath;
 	public static string nomeFase;
-	
-	public GameObject menu,telaPreta;
+	public GameObject menu, telaPreta;
 	public new RectTransform camera, print;
 	public Text textoData;
 	public bool finalizar, finalizou;
@@ -20,56 +27,99 @@ public class OptionsPlayer : MonoBehaviour {
 	public TrailRenderer[] cores;
 	public int contador;
 	public TrailRenderer qualTracer;
-	PlayerControlFix playerControl;
-	void Start () {
-		#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
-		folderPath = Application.persistentDataPath+relativePath;
-		#endif
-		playerControl = GetComponent<PlayerControlFix>();
-		path.text = folderPath;
-		instance = this;
-		Invoke("DefinirInicio",0.5f);
-		InstanceTracer();
-		if(ControleMenuPrincipal.oculosValue){
-			GetComponent<PlayerControlFix>().target = cameraVR.transform;
-			cameraNormal.SetActive(false);
-			cameraVR.SetActive(true);
-		}
-		else{
-			GetComponent<PlayerControlFix>().target = cameraNormal.transform;
-			cameraVR.SetActive(false);
-			cameraNormal.SetActive(true);
-		}
+	[SerializeField] PlayerControlFix playerControl;
+	#endregion
+	private void Start()
+    {
+        instance = this;
 
-		if(ControleMenuPrincipal.giroscopioValue){
-			cameraMaster.transform.localEulerAngles =  new Vector3(90,0,0);
-			cameraVR.GetComponent<ControleGiroscopio>().enabled = true;
-			cameraNormal.GetComponent<ControleGiroscopio>().enabled = true;
-			cameraMaster.transform.SetParent(playerPai.transform);
-		}else{
-			cameraMaster.transform.localEulerAngles =  new Vector3(0,0,0);
-			cameraVR.GetComponent<ControleGiroscopio>().enabled = false;
-			cameraNormal.GetComponent<ControleGiroscopio>().enabled = false;
-		}
+        ConfigureSaveFolder();
+        //Invoke("DefinirInicio", 0.5f);
+        InstanceTracer();
+        ConfigureVRGoggles();
+        ConfigureGyroscope();
+        ConfigureAccessibility();
 
-		UAP_AccessibilityManager.RegisterOnPauseToggledCallback(ToggleExitMenu);
-		UAP_AccessibilityManager.RegisterOnBackCallback(FecharMenu);
-		UAP_AccessibilityManager.PauseAccessibility(true);
+		Invoke(nameof(DefinirInicio), 0.5f);
+    }
+
+    private void ConfigureAccessibility()
+    {
+        UAP_AccessibilityManager.RegisterOnPauseToggledCallback(ToggleExitMenu);
+        UAP_AccessibilityManager.RegisterOnBackCallback(FecharMenu);
+        if (UAP_AccessibilityManager.IsActive())
+            UAP_AccessibilityManager.PauseAccessibility(true);
+    }
+
+    private void ConfigureVRGoggles()
+    {
+		var isVREnabled = ControleMenuPrincipal.oculosValue;
+
+        if (isVREnabled) {
+            playerControl.target = cameraVR.transform;
+        } else {
+            playerControl.target = cameraNormal.transform;
+        }
+
+		cameraNormal.SetActive(!isVREnabled);
+		cameraVR.SetActive(isVREnabled);
+    }
+
+    private void ConfigureGyroscope()
+	{
+		var isGyroEnabled = ControleMenuPrincipal.giroscopioValue;
+
+		var cameraVRGyro = cameraVR.GetComponent<ControleGiroscopio>();
+		var cameraNormalGyro = cameraNormal.GetComponent<ControleGiroscopio>();
+
+		cameraVRGyro.enabled = isGyroEnabled;
+        cameraNormalGyro.enabled = isGyroEnabled;
+
+		if (isGyroEnabled) {
+            cameraMaster.transform.localEulerAngles = new Vector3(90, 0, 0);
+            cameraMaster.transform.SetParent(playerPai.transform);
+        } else {
+            cameraMaster.transform.localEulerAngles = new Vector3(0, 0, 0);
+        }
 	}
-	
-	void DefinirInicio(){
+
+    private void ConfigureSaveFolder()
+    {
+		#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
+        folderPath = Application.persistentDataPath + relativePath;
+		#endif
+
+        if (!System.IO.Directory.Exists(folderPath)) {
+            try {
+                System.IO.Directory.CreateDirectory(folderPath);
+            } catch (UnauthorizedAccessException uae) {
+                Debug.LogWarning(uae);
+				Debug.Log("Using Default Persistent Path");
+				folderPath = Application.persistentDataPath;
+            }
+        }
+
+		path.text = folderPath;
+    }
+
+    private void DefinirInicio()
+	{
 		inicialPosition.parent = null;
 	}
-	void Update () {
-		if(ControleMenuPrincipal.giroscopioValue){
+
+	private void Update()
+	{
+		if(ControleMenuPrincipal.giroscopioValue) {
 			cameraMaster.transform.localPosition = gameObject.transform.localPosition;
 		}
 	}
 
-	void OnDestroy() {
+	private void OnDestroy()
+	{
         UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(ToggleExitMenu);
 		UAP_AccessibilityManager.UnregisterOnBackCallback(FecharMenu);
-		UAP_AccessibilityManager.PauseAccessibility(false);
+		if (UAP_AccessibilityManager.IsEnabled())
+			UAP_AccessibilityManager.PauseAccessibility(false);
     }
 
 	public void ToggleExitMenu()
@@ -81,132 +131,178 @@ public class OptionsPlayer : MonoBehaviour {
 		}
 	}
 
-	public void InstanceTracer(){
-		if(qualTracer != null){
+	public void InstanceTracer()
+	{
+		if(qualTracer != null) {
 			qualTracer.transform.parent = null;
 		}
-		qualTracer = Instantiate(cores[contador], new Vector3(0, 0, 0), Quaternion.identity);
+
+		qualTracer = Instantiate(cores[contador], Vector3.zero, Quaternion.identity);
 		qualTracer.transform.parent = gameObject.transform;
 		qualTracer.transform.localPosition = Vector3.zero;
 		qualTracer.GetComponent<TrailRenderer>().Clear();
 		qualTracer.gameObject.SetActive(true);
+
 		contador++;
-		if(contador > 11){
+		if(contador > 11)  {
 			contador = 0;
 		}
 	}
+
 	private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "final" && finalizar)
-        {
-			finalizou = true;
-			StartCoroutine(SalvarTracer());
+        if (other.tag == "final" && finalizar) {
+            EndGame();
         }
     }
-	public void saveUserStatus()
+
+    private async void EndGame()
     {
-		System.DateTime currentTime = System.DateTime.Now;
-		string day = System.DateTime.Now.Date.ToString().Split(' ')[0];
-        day = day.Replace("/", "-");
-        string hour = System.DateTime.Now.TimeOfDay.ToString().Split('.')[0];
-		string time = currentTime.Hour + "_" + currentTime.Minute;
-        string path = folderPath + ControleMenuPrincipal.NomeDoUsuario +"_" + day +"_"+ time +"_Log.txt";
+        finalizou = true;
+		await SalvarTracer();
+    }
+
+    public async Task SaveUserStatus()
+    {
+        System.DateTime currentTime = System.DateTime.Now;
+        string time = currentTime.Hour + "_" + currentTime.Minute;
+        string path = folderPath + GetSessionName() + "_Log.txt";
+
         //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine(" ");
-        writer.WriteLine("Usuario: " + ControleMenuPrincipal.NomeDoUsuario + "-" + time);
-        writer.WriteLine(" ");
-		string s = PlayerPrefs.GetString("Fase");
-		s = s.Substring(0, s.Length - 4);
-		writer.WriteLine("Mapa: " + s);
-		writer.WriteLine(" ");
-        writer.WriteLine("Tempo Total: " + UserModel.time);
-
-        for (int i =0; i < UserModel.parcialTime.Count; i++)
-        {
-            writer.WriteLine("T" + i + ": " + UserModel.parcialTime[i]);
-        }
-
-      
-        writer.WriteLine(" ");
-
-        writer.WriteLine("Numero de colisoes :" + UserModel.colisions);
-		writer.WriteLine("Numero de rotações :" + playerControl.contRotacao);
-		writer.WriteLine("Numero de passos :" + playerControl.contPassos);
-		writer.WriteLine("Ajudas Tipo1(objetivo): " + InitAudios.ajudaObjetivo.ToString());
-		writer.WriteLine("Ajuda Tipo2(ponto inicial): " + DirecaoInicial.ajudaInicial.ToString());
-        //writer.WriteLine("Ajudas: " + UserModel.helps);
-
+        string contents = BuildLog(time);
+        await writer.WriteAsync(contents);
         writer.Close();
     }
-	public IEnumerator SalvarTracer(){
-		menu.SetActive(false);
-		camera.gameObject.SetActive(true);
-		camera.position = print.position;
-		camera.localScale = print.localScale;
-		
-		string day = System.DateTime.Now.Date.ToString().Split(' ')[0];
-        day = day.Replace("/", "-");
-        string hour = System.DateTime.Now.TimeOfDay.ToString().Split('.')[0];
-        string date = day + "_" + hour;
-		textoData.text = date;
-		textoData.gameObject.SetActive(true);
-		System.DateTime currentTime = System.DateTime.Now;
-        string time = currentTime.Hour + "_" + currentTime.Minute;
-		yield return new WaitForSeconds(1);
-		string sreenshotname = ControleMenuPrincipal.NomeDoUsuario +"_" + day + "_" + time + "_Tracker" + ".png";
-		#if UNITY_EDITOR
-		string dataPath = Application.dataPath;
-		string myDefaultLocation = dataPath.Substring(0, dataPath.Length - 7) + "/" +sreenshotname;
-		#elif UNITY_STANDALONE_OSX
-		string myDefaultLocation = Application.dataPath + "/Resources/Data/" +sreenshotname;
-		#else
-		string myDefaultLocation = Application.dataPath + "/" +sreenshotname;
-		#endif
-		string myScreenshotLocation = folderPath + sreenshotname;
-		// Create the folder beforehand if not exists
-		if(!System.IO.Directory.Exists(folderPath))
-			System.IO.Directory.CreateDirectory(folderPath);
 
-		// Capture and store the screenshot]
-		print ("o datapath é" + Application.persistentDataPath);
-		UnityEngine.ScreenCapture.CaptureScreenshot(sreenshotname);
-		saveUserStatus();
-		yield return new WaitForSeconds(2);
-		File.Move(myDefaultLocation, myScreenshotLocation);
-		// System.IO.Directory.(myScreenshotLocation);
-		if(finalizou){
-			if(Tradutor2.portugues){
-				EasyTTSUtil.SpeechAdd("Parabéns, você concluiu sua missão");
-			}else if(Tradutor2.ingles){
-				EasyTTSUtil.SpeechAdd("Congratulations, you have completed your mission.");
-			}else if(Tradutor2.espanhol){
-				EasyTTSUtil.SpeechAdd("Enhorabuena, usted ha terminado su misión");
-			}
-		}else{
-			if(Tradutor2.portugues){
-				EasyTTSUtil.SpeechAdd("Desistiu... Tente novamente mais tarde!");
-			}else if(Tradutor2.ingles){
-				EasyTTSUtil.SpeechAdd("Gave up ... Try again later!");
-			}else if(Tradutor2.espanhol){
-				EasyTTSUtil.SpeechAdd("Desistió ... ¡Inténtelo de nuevo más tarde!");
-			}
-		}
-		
-		
-		SceneManager.LoadScene(1);
+    private string BuildLog(string time)
+    {
+        var userName = ControleMenuPrincipal.NomeDoUsuario + "-" + time;
+		var stageFileName = PlayerPrefs.GetString("Fase");
+        var stageName = stageFileName.Substring(0, Mathf.Max(stageFileName.Length - 4, 0));
+
+        var sb = new StringBuilder();
+        sb.AppendLine("\nUsuario: " + userName);
+        sb.AppendLine("\nMapa: " + stageName);
+        sb.AppendLine("\nTempo Total: " + UserModel.time);
+        for (int i = 0; i < UserModel.parcialTime.Count; i++) {
+            var partialTimeLog = "T" + i + ": " + UserModel.parcialTime[i];
+            sb.AppendLine(partialTimeLog);
+        }
+        sb.AppendLine("\nNumero de colisoes :" + UserModel.colisions);
+        sb.AppendLine("Numero de rotações :" + playerControl.contRotacao);
+        sb.AppendLine("Numero de passos :" + playerControl.contPassos);
+        sb.AppendLine("Ajudas Tipo1(objetivo): " + InitAudios.ajudaObjetivo.ToString());
+        sb.AppendLine("Ajuda Tipo2(ponto inicial): " + DirecaoInicial.ajudaInicial.ToString());
+
+        var contents = sb.ToString();
+        return contents;
+    }
+
+    public async Task SalvarTracer()
+    {
+        menu.SetActive(false);
+        PlaceCameraOnRenderSpot();
+        Debug.Log($"Started Saving");
+        Task.Delay(1000).Wait();
+
+        //yield return new WaitForSeconds(1);
+
+        SaveScreenshot();
+        Debug.Log($"Saving Screenshot");
+        await SaveUserStatus();
+        //yield return new WaitForSeconds(2);
+
+        Debug.Log($"Finished Saving");
+        DeliverEndingMessage();
+
+        SceneManager.LoadScene(1);
+    }
+
+    private async void SaveScreenshot()
+    {
+        string screenshotName = GetSessionName() + "_Tracker.png";
+        string myDefaultLocation = DataPath.Default + screenshotName;
+        string myScreenshotLocation = folderPath + screenshotName;
+
+        //print("o datapath é" + Application.persistentDataPath);
+        // Capture and store the screenshot
+        UnityEngine.ScreenCapture.CaptureScreenshot(screenshotName);
+        await Task.Delay(2000);
+        File.Move(myDefaultLocation, myScreenshotLocation);
+    }
+
+    private string GetSessionName()
+    {
+		string dateTime = FetchCurrentDateTime();
+        return ControleMenuPrincipal.NomeDoUsuario + "_" + dateTime;
+    }
+
+    private string FetchCurrentDateTime()
+    {
+        System.DateTime currentTime = System.DateTime.Now;
+
+        string day = currentTime.Date.ToString().Split(' ')[0];
+        day = day.Replace("/", "-");
+
+        string time = currentTime.Hour + "_" + currentTime.Minute;
+        DisplayDateTime(currentTime, day);
+
+        return day + "_" + time;
+    }
+
+	[Obsolete]
+    private void DisplayDateTime(DateTime currentTime, string day)
+    {
+        string hour = currentTime.TimeOfDay.ToString().Split('.')[0];
+        string date = day + "_" + hour;
+        textoData.text = date;
+        textoData.gameObject.SetActive(true);
+    }
+
+    private void DeliverEndingMessage()
+	{
+		if (finalizou) {
+            if (Tradutor2.portugues) {
+                EasyTTSUtil.SpeechAdd("Parabéns, você concluiu sua missão");
+            } else if (Tradutor2.ingles) {
+                EasyTTSUtil.SpeechAdd("Congratulations, you have completed your mission.");
+            } else if (Tradutor2.espanhol) {
+                EasyTTSUtil.SpeechAdd("Enhorabuena, usted ha terminado su misión");
+            }
+        } else {
+            if (Tradutor2.portugues) {
+                EasyTTSUtil.SpeechAdd("Desistiu... Tente novamente mais tarde!");
+            } else if (Tradutor2.ingles) {
+                EasyTTSUtil.SpeechAdd("Gave up ... Try again later!");
+            } else if (Tradutor2.espanhol) {
+                EasyTTSUtil.SpeechAdd("Desistió ... ¡Inténtelo de nuevo más tarde!");
+            }
+        }
 	}
-	public void AbrirMenuSair(){
+
+    private void PlaceCameraOnRenderSpot()
+    {
+        camera.gameObject.SetActive(true);
+        camera.anchoredPosition = print.anchoredPosition;
+        camera.sizeDelta = print.sizeDelta;
+    }
+
+    public void AbrirMenuSair()
+	{
 		menu.SetActive(true);
 		playerControl.enabled = false;
 		UAP_AccessibilityManager.PauseAccessibility(false);
 	}
-	public void FecharMenu(){
+
+	public void FecharMenu()
+	{
 		menu.SetActive(false);
 		playerControl.enabled = true;
 		UAP_AccessibilityManager.PauseAccessibility(true);
 	}
-	public void VoltarParaOMenu(){
-		StartCoroutine(SalvarTracer());
+
+	public async void VoltarParaOMenu() {
+		await SalvarTracer();
 	}
 }

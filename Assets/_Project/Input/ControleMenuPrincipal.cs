@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class ControleMenuPrincipal : MonoBehaviour {
 
-    public Toggle giroscopio, oculos, elementos,mapa,vibracao;
+    public Toggle giroscopio, oculos, elementos, mapa, vibracao;
     public static bool oculosValue, elementosValue;
     public static bool giroscopioValue, mapaValue,vibrationValue;
     public GameObject buscaXML;
-    public InputField nome;
+    public TMP_InputField nome;
     public static string NomeDoUsuario;
     void Start()
     {

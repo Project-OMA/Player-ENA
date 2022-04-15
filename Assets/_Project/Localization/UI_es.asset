@@ -62,5 +62,9 @@ MonoBehaviour:
     m_Localized: Explorador de archivos
     m_Metadata:
       m_Items: []
+  - m_Id: 6087802545496064
+    m_Localized: Espacio Navegable - ENA
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

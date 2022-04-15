@@ -913,6 +913,7 @@ MonoBehaviour:
   - {fileID: 96256982652205058, guid: e55d0731496fc4a4e8732dfb348fa727, type: 3}
   contador: 0
   qualTracer: {fileID: 0}
+  playerControl: {fileID: 114210643828000828}
 --- !u!114 &114007720927469800
 MonoBehaviour:
   m_ObjectHideFlags: 0
