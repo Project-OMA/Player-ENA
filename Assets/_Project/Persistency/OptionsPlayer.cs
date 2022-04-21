@@ -173,6 +173,8 @@ public class OptionsPlayer : MonoBehaviour {
         string contents = BuildLog(time);
         await writer.WriteAsync(contents);
         writer.Close();
+
+        Debug.Log($"Saved Log to Path: {path}");
     }
 
     private string BuildLog(string time)
@@ -217,6 +219,7 @@ public class OptionsPlayer : MonoBehaviour {
         DeliverEndingMessage();
 
         SceneManager.LoadScene(1);
+        Debug.Log($"Loading Main Menu...");
     }
 
     private async void SaveScreenshot()
@@ -230,6 +233,9 @@ public class OptionsPlayer : MonoBehaviour {
         UnityEngine.ScreenCapture.CaptureScreenshot(screenshotName);
         await Task.Delay(2000);
         File.Move(myDefaultLocation, myScreenshotLocation);
+
+        Debug.Log($"Captured Screenshot at Path: {myDefaultLocation}");
+        Debug.Log($"Moved file to Path: {myScreenshotLocation}");
     }
 
     private string GetSessionName()

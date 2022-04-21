@@ -39,7 +39,7 @@ namespace JurassicEngine.Services
             return await WebService.RequestAudio(path, type);
         }
 
-        public async Task<Texture2D> MakeRequestTexture(string subpath, RequestType requestType = RequestType.GET, string requestData = null)
+        public async Task<Texture2D> MakeRequestTexture(string subpath)
         {
             return await WebService.RequestTexture(apiRoot+subpath);
         }
