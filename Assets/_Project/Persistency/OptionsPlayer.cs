@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using JurassicEngine;
 using JurassicEngine.Persistency;
 using System.Threading.Tasks;
 using System.Text;
@@ -28,6 +29,7 @@ public class OptionsPlayer : MonoBehaviour {
 	public int contador;
 	public TrailRenderer qualTracer;
 	[SerializeField] PlayerControlFix playerControl;
+    [SerializeField] RenderTexture texture;
 	#endregion
 	private void Start()
     {
@@ -222,19 +224,21 @@ public class OptionsPlayer : MonoBehaviour {
         Debug.Log($"Loading Main Menu...");
     }
 
-    private async void SaveScreenshot()
+    private void SaveScreenshot()
     {
         string screenshotName = GetSessionName() + "_Tracker.png";
-        string myDefaultLocation = DataPath.Default + screenshotName;
+        //string myDefaultLocation = DataPath.Default + screenshotName;
         string myScreenshotLocation = folderPath + screenshotName;
 
-        //print("o datapath é" + Application.persistentDataPath);
-        // Capture and store the screenshot
-        UnityEngine.ScreenCapture.CaptureScreenshot(screenshotName);
-        await Task.Delay(2000);
-        File.Move(myDefaultLocation, myScreenshotLocation);
+        // UnityEngine.ScreenCapture.CaptureScreenshot(screenshotName);
+        // await Task.Delay(2000);
+        // File.Move(myDefaultLocation, myScreenshotLocation);
 
-        Debug.Log($"Captured Screenshot at Path: {myDefaultLocation}");
+        var image = texture.ToTexture2D();
+        File.WriteAllBytes(myScreenshotLocation, image.EncodeToPNG());
+        Destroy(image);
+
+        //Debug.Log($"Captured Screenshot at Path: {myDefaultLocation}");
         Debug.Log($"Moved file to Path: {myScreenshotLocation}");
     }
 

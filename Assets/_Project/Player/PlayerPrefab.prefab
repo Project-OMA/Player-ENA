@@ -914,6 +914,7 @@ MonoBehaviour:
   contador: 0
   qualTracer: {fileID: 0}
   playerControl: {fileID: 114210643828000828}
+  texture: {fileID: 8400000, guid: 4ba9f8aa5bb577e4bbfe287c99696c33, type: 2}
 --- !u!114 &114007720927469800
 MonoBehaviour:
   m_ObjectHideFlags: 0
