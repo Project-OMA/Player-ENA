@@ -10,7 +10,7 @@ using ENA.Maps;
 
 public class MapCreator : MonoBehaviour
 {
-    public static bool recomecar;
+    //public static bool recomecar;
     public GameObject playerFilho, telaPreta;
     public ObjetiveController objectiveController;
     //Prefabs necessarios, coloqueis eles separados assim pra não precisar mexer no dicionario 
@@ -63,24 +63,13 @@ public class MapCreator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (recomecar == false)
-        {
-            recomecar = true;
-            Debug.Log("recomeçar ficou falso, e agora é pro jogo iniciar");
-            PlayerPrefs.SetString("MapPath", "");
-            SceneManager.LoadScene(1);
-            return;
-        }
-        else
-        {
-            telaPreta.SetActive(false);
-        }
+        telaPreta.SetActive(false);
+
         //Aqui trato o xml para retirar esse bloco que texto que atrapalha na leitura e gero uma copia sem ele.
         TextAsset mapxml = new TextAsset();
         //mapxml = (TextAsset)Resources.Load(), typeof(TextAsset));
         string data = "";
-        if (!testando)
-        {
+        if (!testando) {
             var mapPath = PlayerPrefs.GetString("MapPath");
             if (File.Exists(mapPath))
                 data = File.ReadAllText(mapPath);
@@ -99,16 +88,13 @@ public class MapCreator : MonoBehaviour
         //Inicializar o parse
         objectiveController.objetives = new List<GameObject>();
         parseXmlFile(newData);
-        print("recomeçar: " + recomecar);
-
     }
 
     void Update()
     {
         //Reorganiza a lista se a lista de objetivos for maior que 1 e se a matrix inteira já foi construida
         //Como a matriz tem sempre o mesmo tamanho, o valor final do dontador vai ser sempre o mesmo
-        if (counter >= 375 && objectiveController.objetives.Count >=1)
-        {
+        if (counter >= 375 && objectiveController.objetives.Count >=1) {
             ReorganizaLista();
         }
     }
@@ -335,5 +321,4 @@ public class MapCreator : MonoBehaviour
             Debug.Log("A distancia do " + objectiveController.objetives[i].name + " para o player é " + distancia);
         }
     }
-
 }
