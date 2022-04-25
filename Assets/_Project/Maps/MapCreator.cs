@@ -6,6 +6,7 @@ using System.Linq;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ENA.Maps;
 
 public class MapCreator : MonoBehaviour
 {
@@ -222,154 +223,84 @@ public class MapCreator : MonoBehaviour
     //Funcao que instancia o mapa
     public IEnumerator InstantiateMap()
     {
-        for (int c = 0; c < matrixSize.y; c++)
-        {
-            for (int l = 0; l < matrixSize.x; l++)
-            {
-                InstantiateTileAt(1, floorMatrix[c, l], c, l);
-                // Debug.Log("Linha 1: "+c+"/"+l);
-                InstantiateTileAt(2, wallMatrix[c, l], c, l);
-                // Debug.Log("Linha 2: "+c+"/"+l);
-                InstantiateTileAt(3, doorWindowMatrix[c, l], c, l);
-                // Debug.Log("Linha 3: "+c+"/"+l);
-                InstantiateTileAt(4, furnitureMatrix[c, l], c, l);
-                // Debug.Log("Linha 4: "+c+"/"+l);
-                InstantiateTileAt(5, eletronicsMatrix[c, l], c, l);
-                // Debug.Log("Linha 5: "+c+"/"+l);
-                InstantiateTileAt(6, utensilsMatrix[c, l], c, l);
-                // Debug.Log("Linha 6: "+c+"/"+l);
-                InstantiateTileAt(7, interactiveElementsMatrix[c, l], c, l);
-                // Debug.Log("Linha 7: "+c+"/"+l);
-                InstantiateTileAt(8, characterElementsMatrix[c, l], c, l);
-                // Debug.Log("Linha 8: "+c+"/"+l);
-                // yield return new WaitForSeconds(0.1f);
-                // yield return new WaitForEndOfFrame();
-                // Debug.Log("pausou");
-                // Debug.Break();
+        for (int c = 0; c < matrixSize.y; c++) {
+            for (int l = 0; l < matrixSize.x; l++) {
+                InstantiateTileAt(MapCategory.Floor, floorMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.Wall, wallMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.DoorWindow, doorWindowMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.Furniture, furnitureMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.Eletronics, eletronicsMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.Utensils, utensilsMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.Interactive, interactiveElementsMatrix[c, l], c, l);
+                InstantiateTileAt(MapCategory.CharacterElements, characterElementsMatrix[c, l], c, l);
+                //InstantiateTileAt(MapCategory.Ceiling, "-1", c, l);
             }
-            yield return new WaitForSeconds(0.01f);
         }
         objectiveController.StartAudios();
         yield return new WaitForSeconds(2f);
         telaPreta.SetActive(false);
     }
-    // public void InstantiateMap()
-    // {
-    //     for (int c = 0; c < matrixSize.y; c++)
-    //     {
-    //         for (int l = 0; l < matrixSize.x; l++)
-    //         {
-    //             InstantiateTileAt(1, floorMatrix[c, l], c, l);
-    //             Debug.Log("Linha 1: "+c+"/"+l);
-    //             InstantiateTileAt(2, wallMatrix[c, l], c, l);
-    //             Debug.Log("Linha 2: "+c+"/"+l);
-    //             InstantiateTileAt(3, doorWindowMatrix[c, l], c, l);
-    //             Debug.Log("Linha 3: "+c+"/"+l);
-    //             InstantiateTileAt(4, furnitureMatrix[c, l], c, l);
-    //             Debug.Log("Linha 4: "+c+"/"+l);
-    //             InstantiateTileAt(5, eletronicsMatrix[c, l], c, l);
-    //             Debug.Log("Linha 5: "+c+"/"+l);
-    //             InstantiateTileAt(6, utensilsMatrix[c, l], c, l);
-    //             Debug.Log("Linha 6: "+c+"/"+l);
-    //             InstantiateTileAt(7, interactiveElementsMatrix[c, l], c, l);
-    //             Debug.Log("Linha 7: "+c+"/"+l);
-    //             InstantiateTileAt(8, characterElementsMatrix[c, l], c, l);
-    //             Debug.Log("Linha 8: "+c+"/"+l);
-    //             // yield return new WaitForSeconds(0.1f);
-    //             // yield return new WaitForEndOfFrame();
-    //             // Debug.Log("pausou");
-    //             // Debug.Break();
-    //         }
-    //     }
-
-    //     objectiveController.StartAudios();
-    // }
 
     //Funcao que instancia o objeto referente ao codigo no lugar certo    
-    public void InstantiateTileAt(int listIndex, string code, int c, int l)
+    public void InstantiateTileAt(MapCategory category, string code, int c, int l)
     {
         //Checa se é o objeto nulo
         //Condicional para pular a lista de chão, para que caso o usuario tenha esquecido de adicionar chão entre o prefab padrão
-        if ((listIndex != 1) && (spawnObjList.isNull(code)))
-        {
-            return;
-        }
-
-        // precisei posicionar fora dos ifs para que todos os processos tenham acesso.
         GameObject prefab;
-        Vector3 spawnPosition;
+        Vector3 tileDestination;
 
-        // resolve o problema de o usuario nao colocar chão
-        if ((listIndex == 1) && (spawnObjList.isNull(code)))
-        {
-            // adiciona o prefab do piso fake, sem modificar o dicionario     
-            prefab = noFloor;
-            //Calculo de posicao de spawn
-            spawnPosition = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
-        }
-        else
-        {
-            //Olhar no dicionario e ver qual prefab é referente ao code     
-            prefab = spawnObjList.getPrefab(listIndex, code);
-            //Calculo de posicao de spawn
-            spawnPosition = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
-            //200% Gambiarra, calcula o ponto de Spawn do player forçando a corrigir erros de local
-            //Os números foram puro teste
+        if (spawnObjList.isNull(code)) {
+            if (category == MapCategory.Floor || category == MapCategory.Ceiling) {
+                prefab = noFloor;
+                tileDestination = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
+            } else {
+                return;
+            }
+        } else {
+            prefab = spawnObjList.getPrefab(((int)category), code);
+            tileDestination = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
             spawnPositionPlus = new Vector3((spawnObjList.distance * l), 0, (spawnObjList.distance * c * -1) - .29f);
-
-
-
         }
 
-        Debug.Log($"List Index: {listIndex} | Code: {code}");
-        if (prefab == null)
-        {
+        if (category == MapCategory.Ceiling) {
+            tileDestination.y += 4;
+        }
+
+        Debug.Log($"List Index: {category} | Code: {code}");
+        if (prefab == null) {
             //Caso o prebab seja o player, seta a posicao do player
-            if (listIndex == 8)
-            {
+            if (category == MapCategory.CharacterElements) {
+                if (string.IsNullOrEmpty(code)) return;
                 print("O code é: " + code);
-                if (code == "0.0")
-                {
-                    playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 0, playerFilho.transform.localEulerAngles.z);
-                    playerFilho.GetComponent<PlayerControlFix>()._rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 0, playerFilho.transform.localEulerAngles.z);
-                }
-                else if (code == "1.0")
-                {
-                    playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 90, playerFilho.transform.localEulerAngles.z);
-                    playerFilho.GetComponent<PlayerControlFix>()._rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 90, playerFilho.transform.localEulerAngles.z);
-                }
-                else if (code == "2.0")
-                {
-                    playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 180, playerFilho.transform.localEulerAngles.z);
-                    playerFilho.GetComponent<PlayerControlFix>()._rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 180, playerFilho.transform.localEulerAngles.z);
-                }
-                else if (code == "3.0")
-                {
-                    playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 270, playerFilho.transform.localEulerAngles.z);
-                    playerFilho.GetComponent<PlayerControlFix>()._rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, 270, playerFilho.transform.localEulerAngles.z);
+                if (code == "0.0") {
+                    SetPlayerDirection(0);
+                } else if (code == "1.0") {
+                    SetPlayerDirection(90);
+                } else if (code == "2.0") {
+                    SetPlayerDirection(180);
+                } else if (code == "3.0") {
+                    SetPlayerDirection(270);
                 }
 
                 player.transform.position = spawnPositionPlus;
-                //print(spawnPosition);
                 print("spawnPosition: " + spawnPositionPlus);
 
-            }
-            else
-            {
+            } else {
                 Debug.LogError("Problemas ao pegar o prefab");
                 return;
             }
+        } else {
+            var newInstance = Instantiate(prefab, tileDestination, prefab.transform.rotation);
+            if (category == MapCategory.Interactive) {
+                objectiveController.objetives.Add(newInstance);
+            }
         }
-        //Instanciando prefab
+    }
 
-        else if (listIndex == 7)
-        {
-            objectiveController.objetives.Add(Instantiate(prefab, spawnPosition, prefab.transform.rotation));
-        }
-        else
-            Instantiate(prefab, spawnPosition, prefab.transform.rotation);
-
-
+    private void SetPlayerDirection(float angleDegrees)
+    {
+        playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, angleDegrees, playerFilho.transform.localEulerAngles.z);
+        playerFilho.GetComponent<PlayerControlFix>()._rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, angleDegrees, playerFilho.transform.localEulerAngles.z);
     }
 
 
