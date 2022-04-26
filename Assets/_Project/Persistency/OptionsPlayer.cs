@@ -9,6 +9,7 @@ using JurassicEngine.Persistency;
 using System.Threading.Tasks;
 using System.Text;
 using ENA;
+using ENA.Input;
 
 public class OptionsPlayer : MonoBehaviour {
 	#region Constants
