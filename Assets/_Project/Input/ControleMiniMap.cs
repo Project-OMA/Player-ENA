@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControleMiniMap : MonoBehaviour {
-
-	void Start () {
-		if(!ControleMenuPrincipal.mapaValue){
-			gameObject.SetActive(false);
+namespace ENA.Input
+{
+	public class ControleMiniMap : MonoBehaviour
+	{
+		private void Start()
+		{
+			if(!ControleMenuPrincipal.mapaValue) {
+				gameObject.SetActive(false);
+			}
 		}
 	}
 }

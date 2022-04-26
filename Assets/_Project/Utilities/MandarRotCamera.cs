@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ENA.Input;
 using UnityEngine;
 
 public class MandarRotCamera : MonoBehaviour {
