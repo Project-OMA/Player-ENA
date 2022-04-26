@@ -12,26 +12,26 @@ using ENA;
 using ENA.Input;
 
 public class OptionsPlayer : MonoBehaviour {
-	#region Constants
+    #region Constants
     private const string relativePath = "/sdcard/LogsE3/";
-	#endregion
-	#region Variables
+    #endregion
+    #region Variables
     public Text path;
-	string folderPath = relativePath;
-	public static string nomeFase;
-	public GameObject menu, telaPreta;
-	public new RectTransform camera, print;
-	public Text textoData;
-	public bool finalizar, finalizou;
-	public Transform inicialPosition;
-	public static OptionsPlayer instance;
-	public GameObject cameraVR,cameraNormal,cameraMaster,playerPai;
-	public TrailRenderer[] cores;
-	public int contador;
-	public TrailRenderer qualTracer;
-	[SerializeField] PlayerControlFix playerControl;
-	#endregion
-	private void Start()
+    string folderPath = relativePath;
+    public static string nomeFase;
+    public GameObject menu, telaPreta;
+    public new RectTransform camera, print;
+    public Text textoData;
+    public bool finalizar, finalizou;
+    public Transform inicialPosition;
+    public static OptionsPlayer instance;
+    public GameObject cameraVR,cameraNormal,cameraMaster,playerPai;
+    public TrailRenderer[] cores;
+    public int contador;
+    public TrailRenderer qualTracer;
+    [SerializeField] PlayerControlFix playerControl;
+    #endregion
+    private void Start()
     {
         instance = this;
 
@@ -42,7 +42,7 @@ public class OptionsPlayer : MonoBehaviour {
         ConfigureGyroscope();
         ConfigureAccessibility();
 
-		Invoke(nameof(DefinirInicio), 0.5f);
+        Invoke(nameof(DefinirInicio), 0.5f);
     }
 
     private void ConfigureAccessibility()
@@ -55,7 +55,7 @@ public class OptionsPlayer : MonoBehaviour {
 
     private void ConfigureVRGoggles()
     {
-		var isVREnabled = ControleMenuPrincipal.oculosValue;
+        var isVREnabled = ControleMenuPrincipal.oculosValue;
 
         if (isVREnabled) {
             playerControl.target = cameraVR.transform;
@@ -63,95 +63,95 @@ public class OptionsPlayer : MonoBehaviour {
             playerControl.target = cameraNormal.transform;
         }
 
-		cameraNormal.SetActive(!isVREnabled);
-		cameraVR.SetActive(isVREnabled);
+        cameraNormal.SetActive(!isVREnabled);
+        cameraVR.SetActive(isVREnabled);
     }
 
     private void ConfigureGyroscope()
-	{
-		var isGyroEnabled = ControleMenuPrincipal.giroscopioValue;
+    {
+        var isGyroEnabled = ControleMenuPrincipal.giroscopioValue;
 
-		var cameraVRGyro = cameraVR.GetComponent<ControleGiroscopio>();
-		var cameraNormalGyro = cameraNormal.GetComponent<ControleGiroscopio>();
+        var cameraVRGyro = cameraVR.GetComponent<ControleGiroscopio>();
+        var cameraNormalGyro = cameraNormal.GetComponent<ControleGiroscopio>();
 
-		cameraVRGyro.enabled = isGyroEnabled;
+        cameraVRGyro.enabled = isGyroEnabled;
         cameraNormalGyro.enabled = isGyroEnabled;
 
-		if (isGyroEnabled) {
+        if (isGyroEnabled) {
             cameraMaster.transform.localEulerAngles = new Vector3(90, 0, 0);
             cameraMaster.transform.SetParent(playerPai.transform);
         } else {
             cameraMaster.transform.localEulerAngles = new Vector3(0, 0, 0);
         }
-	}
+    }
 
     private void ConfigureSaveFolder()
     {
-		#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
+#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
         folderPath = Application.persistentDataPath + relativePath;
-		#endif
+#endif
 
         if (!System.IO.Directory.Exists(folderPath)) {
             try {
                 System.IO.Directory.CreateDirectory(folderPath);
             } catch (UnauthorizedAccessException uae) {
                 Debug.LogWarning(uae);
-				Debug.Log("Using Default Persistent Path");
-				folderPath = Application.persistentDataPath;
+                Debug.Log("Using Default Persistent Path");
+                folderPath = Application.persistentDataPath;
             }
         }
 
-		path.text = folderPath;
+        path.text = folderPath;
     }
 
     private void DefinirInicio()
-	{
-		inicialPosition.parent = null;
-	}
-
-	private void Update()
-	{
-		if(ControleMenuPrincipal.giroscopioValue) {
-			cameraMaster.transform.localPosition = gameObject.transform.localPosition;
-		}
-	}
-
-	private void OnDestroy()
-	{
-        UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(ToggleExitMenu);
-		UAP_AccessibilityManager.UnregisterOnBackCallback(FecharMenu);
-		if (UAP_AccessibilityManager.IsEnabled())
-			UAP_AccessibilityManager.PauseAccessibility(false);
+    {
+        inicialPosition.parent = null;
     }
 
-	public void ToggleExitMenu()
-	{
-		if (menu.activeInHierarchy) {
-			AbrirMenuSair();
-		} else {
-			FecharMenu();
-		}
-	}
+    private void Update()
+    {
+        if(ControleMenuPrincipal.giroscopioValue) {
+            cameraMaster.transform.localPosition = gameObject.transform.localPosition;
+        }
+    }
 
-	public void InstanceTracer()
-	{
-		if(qualTracer != null) {
-			qualTracer.transform.parent = null;
-		}
+    private void OnDestroy()
+    {
+        UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(ToggleExitMenu);
+        UAP_AccessibilityManager.UnregisterOnBackCallback(FecharMenu);
+        if (UAP_AccessibilityManager.IsEnabled())
+            UAP_AccessibilityManager.PauseAccessibility(false);
+    }
 
-		qualTracer = Instantiate(cores[contador], Vector3.zero, Quaternion.identity);
-		qualTracer.transform.parent = gameObject.transform;
-		qualTracer.transform.localPosition = Vector3.zero;
-		qualTracer.GetComponent<TrailRenderer>().Clear();
-		qualTracer.gameObject.SetActive(true);
+    public void ToggleExitMenu()
+    {
+        if (menu.activeInHierarchy) {
+            AbrirMenuSair();
+        } else {
+            FecharMenu();
+        }
+    }
 
-		contador++;
-		if(contador > 11)  {
-			contador = 0;
-		}
-	}
+    public void InstanceTracer()
+    {
+        if(qualTracer != null) {
+            qualTracer.transform.parent = null;
+        }
 
-	private void OnTriggerEnter(Collider other)
+        qualTracer = Instantiate(cores[contador], Vector3.zero, Quaternion.identity);
+        qualTracer.transform.parent = gameObject.transform;
+        qualTracer.transform.localPosition = Vector3.zero;
+        qualTracer.GetComponent<TrailRenderer>().Clear();
+        qualTracer.gameObject.SetActive(true);
+
+        contador++;
+        if(contador > 11)  {
+            contador = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "final" && finalizar) {
             EndGame();
@@ -161,7 +161,7 @@ public class OptionsPlayer : MonoBehaviour {
     private async void EndGame()
     {
         finalizou = true;
-		await SalvarTracer();
+        await SalvarTracer();
     }
 
     public async Task SaveUserStatus()
@@ -182,7 +182,7 @@ public class OptionsPlayer : MonoBehaviour {
     private string BuildLog(string time)
     {
         var userName = ControleMenuPrincipal.NomeDoUsuario + "-" + time;
-		var stageFileName = PlayerPrefs.GetString("Fase");
+        var stageFileName = PlayerPrefs.GetString("Fase");
         var stageName = stageFileName.Substring(0, Mathf.Max(stageFileName.Length - 4, 0));
 
         var sb = new StringBuilder();
@@ -242,7 +242,7 @@ public class OptionsPlayer : MonoBehaviour {
 
     private string GetSessionName()
     {
-		string dateTime = FetchCurrentDateTime();
+        string dateTime = FetchCurrentDateTime();
         return ControleMenuPrincipal.NomeDoUsuario + "_" + dateTime;
     }
 
@@ -259,7 +259,7 @@ public class OptionsPlayer : MonoBehaviour {
         return day + "_" + time;
     }
 
-	[Obsolete]
+    [Obsolete]
     private void DisplayDateTime(DateTime currentTime, string day)
     {
         string hour = currentTime.TimeOfDay.ToString().Split('.')[0];
@@ -269,8 +269,8 @@ public class OptionsPlayer : MonoBehaviour {
     }
 
     private void DeliverEndingMessage()
-	{
-		if (finalizou) {
+    {
+        if (finalizou) {
             if (Tradutor2.portugues) {
                 EasyTTSUtil.SpeechAdd("Parabéns, você concluiu sua missão");
             } else if (Tradutor2.ingles) {
@@ -287,7 +287,7 @@ public class OptionsPlayer : MonoBehaviour {
                 EasyTTSUtil.SpeechAdd("Desistió ... ¡Inténtelo de nuevo más tarde!");
             }
         }
-	}
+    }
 
     private void PlaceCameraOnRenderSpot()
     {
@@ -297,20 +297,20 @@ public class OptionsPlayer : MonoBehaviour {
     }
 
     public void AbrirMenuSair()
-	{
-		menu.SetActive(true);
-		playerControl.enabled = false;
-		UAP_AccessibilityManager.PauseAccessibility(false);
-	}
+    {
+        menu.SetActive(true);
+        playerControl.enabled = false;
+        UAP_AccessibilityManager.PauseAccessibility(false);
+    }
 
-	public void FecharMenu()
-	{
-		menu.SetActive(false);
-		playerControl.enabled = true;
-		UAP_AccessibilityManager.PauseAccessibility(true);
-	}
+    public void FecharMenu()
+    {
+        menu.SetActive(false);
+        playerControl.enabled = true;
+        UAP_AccessibilityManager.PauseAccessibility(true);
+    }
 
-	public async void VoltarParaOMenu() {
-		await SalvarTracer();
-	}
+    public async void VoltarParaOMenu() {
+        await SalvarTracer();
+    }
 }

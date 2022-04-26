@@ -12,7 +12,7 @@ public class ObjectivesController : MonoBehaviour {
     public Vector3 camPosition;
 
 
-    
+
     public AudioSource bird;
     public AudioSource dog;
     public AudioSource piano;
@@ -23,7 +23,7 @@ public class ObjectivesController : MonoBehaviour {
     List<LineRenderer> tracks = new List<LineRenderer>();
     public GameObject door;
     List<Vector3[]> positions = new List<Vector3[]>();
-   
+
     AudioSource audioRescue;
 
     public ArrayList allObjectives = new ArrayList();
@@ -81,7 +81,7 @@ public class ObjectivesController : MonoBehaviour {
         objetivoatual = ((Objective)allObjectives[stageCount]).nameTTS;
 
         //if (!enableAllObjectives)
-            StartCoroutine(StartSoundObjective(0, 20));
+        StartCoroutine(StartSoundObjective(0, 20));
 
 
     }
@@ -92,7 +92,7 @@ public class ObjectivesController : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
-           
+
             if(stageCount < 3)
             {
                 EasyTTSUtil.SpeechAdd("Seu objetivo é encontrar " + ((Objective)allObjectives[stageCount]).nameTTS);
@@ -104,23 +104,23 @@ public class ObjectivesController : MonoBehaviour {
         }
 
 
-            //stopAllAudios();
-            //ObjectivesController scrip = (ObjectivesController)GetComponentInParent(typeof(ObjectivesController));
-            //objectiveAudio = scrip.getAudioRescue();
-            //objectiveAudio.Play();
-            //scrip.playAudioRescue();
+        //stopAllAudios();
+        //ObjectivesController scrip = (ObjectivesController)GetComponentInParent(typeof(ObjectivesController));
+        //objectiveAudio = scrip.getAudioRescue();
+        //objectiveAudio.Play();
+        //scrip.playAudioRescue();
 
         /*currentAudio();
 
         if (stageCount == 4 && ((Objective)allObjectives[3]).hitSound.isPlaying == false)
         {
-            
+
             for(int i = 0; i < tracks.ToArray().Length; i++)
             {
                 tracks.ToArray()[i].positionCount = positions.ToArray()[i].Length;
                 tracks.ToArray()[i].SetPositions(positions.ToArray()[i]);
-                 
-               
+
+
             }
 
 
@@ -138,10 +138,10 @@ public class ObjectivesController : MonoBehaviour {
 
         if(col.gameObject.tag !="carpet")
         {
-           
+
             if (col.gameObject.name == "Doors" && stageCount == 3)
             {
-                
+
                 LineRenderer track = col.gameObject.GetComponent<LineRenderer>();
                 List<Vector3> pos = gameObject.GetComponent<MoveTeste>().positions;
 
@@ -179,7 +179,7 @@ public class ObjectivesController : MonoBehaviour {
 
                 pos.Add(col.transform.position);
 
-                //UserModel.parcialTime[stageCount] = 
+                //UserModel.parcialTime[stageCount] =
 
                 print("Count: " + stageCount);
                 positions.Add(pos.ToArray());
@@ -191,7 +191,7 @@ public class ObjectivesController : MonoBehaviour {
                 EasyTTSUtil.SpeechAdd("Você encontrou " + ((Objective)allObjectives[stageCount]).nameTTS);
                 if(!enableAllObjectives)
                     ((Objective)allObjectives[stageCount]).sound.Stop();
-               
+
                 stageCount++;
 
                 if(stageCount < 3)
@@ -225,16 +225,16 @@ public class ObjectivesController : MonoBehaviour {
                     SceneManager.LoadSceneAsync(BuildIndex.GameplayScene);
                 }
 
-                
+
 
                 //pos.Add(col.transform.position);
                 //Fazer Track do Objetivo
             }
 
         }
-       
 
-        
+
+
     }
 
     public void startGame()
@@ -259,7 +259,7 @@ public class ObjectivesController : MonoBehaviour {
 
     public void selectObjectives()
     {
-  
+
         if (randomObjectives)
             allObjectives = shuffle(allObjectives);
 
@@ -275,22 +275,22 @@ public class ObjectivesController : MonoBehaviour {
     public string GetObjectivesNames()
     {
         string names = ((Objective)allObjectives[0]).nameTTS + ", "
-            + ((Objective)allObjectives[1]).nameTTS + " e " + ((Objective)allObjectives[2]).nameTTS;
+                       + ((Objective)allObjectives[1]).nameTTS + " e " + ((Objective)allObjectives[2]).nameTTS;
 
         return names;
     }
 
     public void currentAudio()
     {
-        
+
     }
 
     public void resetAudios()
     {
-         audio1Played = false;
-         audio2Played = false; ;
-         audio3Played = false; ;
-         audio4Played = false; ;
+        audio1Played = false;
+        audio2Played = false; ;
+        audio3Played = false; ;
+        audio4Played = false; ;
 
         audiosStarted = false;
         audioFinished = false;
@@ -307,7 +307,7 @@ public class ObjectivesController : MonoBehaviour {
             Objective temp = (Objective) old[i];
             old[i] = old[index];
             old[index] = temp;
-          
+
         }
 
 
@@ -390,7 +390,7 @@ public class ObjectivesController : MonoBehaviour {
 
         if (stageCount == 0)
         {
-            
+
             UserModel.parcialTime[0] = Time.time - UserModel.time;
             print("Parcial: " + UserModel.parcialTime[0]);
         }
@@ -401,7 +401,7 @@ public class ObjectivesController : MonoBehaviour {
                 UserModel.parcialTime[stageCount] = Time.time - timeAux;
                 print("Parcial: " + UserModel.parcialTime[stageCount]);
             }
-           
+
         }
 
         timeAux = Time.time;
@@ -456,7 +456,7 @@ public class ObjectivesController : MonoBehaviour {
         tracks.Add(exitTrack);
         pos.Clear();
 
-    
+
         for (int i = 0; i < tracks.ToArray().Length; i++)
         {
             tracks.ToArray()[i].positionCount = positions.ToArray()[i].Length;
@@ -491,7 +491,7 @@ public class Objective
         this.nameTTS = nameTTS;
         this.sound = sound;
         this.name = name;
-       //this.audioRescueSound = audioRescueSound;
+        //this.audioRescueSound = audioRescueSound;
     }
 }
 
