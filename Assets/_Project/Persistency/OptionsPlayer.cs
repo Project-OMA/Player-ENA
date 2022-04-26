@@ -8,6 +8,7 @@ using System;
 using JurassicEngine.Persistency;
 using System.Threading.Tasks;
 using System.Text;
+using ENA;
 
 public class OptionsPlayer : MonoBehaviour {
 	#region Constants
@@ -218,7 +219,7 @@ public class OptionsPlayer : MonoBehaviour {
         Debug.Log($"Finished Saving");
         DeliverEndingMessage();
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(BuildIndex.MainMenu);
         Debug.Log($"Loading Main Menu...");
     }
 
