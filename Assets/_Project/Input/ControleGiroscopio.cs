@@ -21,14 +21,14 @@ namespace ENA.Input
 		
 		private void Update()
 		{
-			player.rotacaoCamera = (int)transform.localEulerAngles.y;
+			player.CameraRotation = (int)transform.localEulerAngles.y;
 			currentRotation = transform.localEulerAngles.y;
 
 			if(currentRotation >= fixedRotation + 90) {
-				player.contRotacao++;
+				player.RotationCount++;
 				currentRotation += 90;
 			} else if(currentRotation <= fixedRotation - 90) {
-				player.contRotacao++;
+				player.RotationCount++;
 				currentRotation -= 90;
 			}
 		}

@@ -858,13 +858,14 @@ MonoBehaviour:
   speed: 1
   target: {fileID: 4598130206794710}
   rotacaoCamera: 0
-  _atualRotation: 0
   _characterController: {fileID: 143955142695123202}
   _moveSpeed: 10
   _distStep: 0.5
   _gravity: 20
+  _pertoDaPorta: 0
   _stickPressed: 0
   _andando: 1
+  stepSound: {fileID: 0}
   _beepLeft: {fileID: 82520010382770758}
   _beepRight: {fileID: 82043053822442332}
   _rotate: {x: 0, y: 0, z: 0, w: 1}
@@ -914,6 +915,7 @@ MonoBehaviour:
   contador: 0
   qualTracer: {fileID: 0}
   playerControl: {fileID: 114210643828000828}
+  minimap: {fileID: 8400000, guid: 4ba9f8aa5bb577e4bbfe287c99696c33, type: 2}
 --- !u!114 &114007720927469800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,8 +1421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114210643828000828}
-  rotFixa: 0
-  rotAtual: 0
+  fixedRotation: 0
+  currentRotation: 0
 --- !u!81 &81823680701127492
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1802,8 +1804,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 114210643828000828}
-  rotFixa: 0
-  rotAtual: 0
+  fixedRotation: 0
+  currentRotation: 0
 --- !u!81 &81620548418371212
 AudioListener:
   m_ObjectHideFlags: 0

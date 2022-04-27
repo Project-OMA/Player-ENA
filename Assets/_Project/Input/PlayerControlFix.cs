@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,37 @@ namespace ENA.Input
         [SerializeField] List<Vector3> vectorPositions;
         List<LineRenderer> tracks = new List<LineRenderer>();
         List<Vector3[]> positions = new List<Vector3[]>();
+        #endregion
+        #region Properties (Temp.)
+        [Obsolete]
+        public int RotationCount {
+            get => contRotacao;
+            set => contRotacao = value;
+        }
+
+        [Obsolete]
+        public int StepCount {
+            get => contPassos;
+            set => contPassos = value;
+        }
+
+        [Obsolete]
+        public Transform Target {
+            get => target;
+            set => target = value;
+        }
+
+        [Obsolete]
+        public int CameraRotation {
+            get => rotacaoCamera;
+            set => rotacaoCamera = value;
+        }
+
+        [Obsolete]
+        public Quaternion Rotate {
+            get => _rotate;
+            set => _rotate = value;
+        }
         #endregion
         #region Methods
         private void Start()

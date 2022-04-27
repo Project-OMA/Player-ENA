@@ -30,13 +30,13 @@ public class OptionsPlayer : MonoBehaviour {
 	public int contador;
 	public TrailRenderer qualTracer;
 	[SerializeField] PlayerControlFix playerControl;
+    [SerializeField] RenderTexture minimap;
 	#endregion
 	private void Start()
     {
         instance = this;
 
         ConfigureSaveFolder();
-        //Invoke("DefinirInicio", 0.5f);
         InstanceTracer();
         ConfigureVRGoggles();
         ConfigureGyroscope();
@@ -58,9 +58,9 @@ public class OptionsPlayer : MonoBehaviour {
 		var isVREnabled = ControleMenuPrincipal.oculosValue;
 
         if (isVREnabled) {
-            playerControl.target = cameraVR.transform;
+            playerControl.Target = cameraVR.transform;
         } else {
-            playerControl.target = cameraNormal.transform;
+            playerControl.Target = cameraNormal.transform;
         }
 
 		cameraNormal.SetActive(!isVREnabled);
@@ -194,8 +194,8 @@ public class OptionsPlayer : MonoBehaviour {
             sb.AppendLine(partialTimeLog);
         }
         sb.AppendLine("\nNumero de colisoes :" + UserModel.colisions);
-        sb.AppendLine("Numero de rotações :" + playerControl.contRotacao);
-        sb.AppendLine("Numero de passos :" + playerControl.contPassos);
+        sb.AppendLine("Numero de rotações :" + playerControl.RotationCount);
+        sb.AppendLine("Numero de passos :" + playerControl.StepCount);
         sb.AppendLine("Ajudas Tipo1(objetivo): " + InitAudios.ajudaObjetivo.ToString());
         sb.AppendLine("Ajuda Tipo2(ponto inicial): " + DirecaoInicial.ajudaInicial.ToString());
 
@@ -224,19 +224,15 @@ public class OptionsPlayer : MonoBehaviour {
         Debug.Log($"Loading Main Menu...");
     }
 
-    private async void SaveScreenshot()
+    private void SaveScreenshot()
     {
         string screenshotName = GetSessionName() + "_Tracker.png";
-        string myDefaultLocation = DataPath.Default + screenshotName;
         string myScreenshotLocation = folderPath + screenshotName;
 
-        //print("o datapath é" + Application.persistentDataPath);
-        // Capture and store the screenshot
-        UnityEngine.ScreenCapture.CaptureScreenshot(screenshotName);
-        await Task.Delay(2000);
-        File.Move(myDefaultLocation, myScreenshotLocation);
+        Texture2D texture = minimap.ToTexture2D();
+        File.WriteAllBytes(myScreenshotLocation, texture.EncodeToPNG());
+        Destroy(texture);
 
-        Debug.Log($"Captured Screenshot at Path: {myDefaultLocation}");
         Debug.Log($"Moved file to Path: {myScreenshotLocation}");
     }
 

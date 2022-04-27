@@ -12,6 +12,6 @@ public class MandarRotCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		player.rotacaoCamera = (int)transform.eulerAngles.y;
+		player.CameraRotation = (int)transform.eulerAngles.y;
 	}
 }

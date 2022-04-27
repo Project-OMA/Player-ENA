@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using ENA.Input;
 
 public class ObjetiveController: MonoBehaviour
 {
