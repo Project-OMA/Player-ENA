@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ENA
+namespace JurassicEngine
 {
     public static partial class RenderTextureExtensions
     {

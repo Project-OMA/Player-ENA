@@ -37,28 +37,33 @@ namespace ENA.Input
             buscaXML.SetActive(false);
         }
 
-        public void AssumirOculus(bool value)
+        public void ToggleVRGlasses(bool value)
         {
+            Debug.Log($"VR Glasses? {value}");
             oculosValue = value;
         }
 
-        public void AssumirGiro(bool value)
+        public void ToggleGyroscope(bool value)
         {
+            Debug.Log($"Gyroscope? {value}");
             giroscopioValue = value;
         }
 
-        public void AssumirElementos(bool value)
+        public void ToggleDisappearingElements(bool value)
         {
+            Debug.Log($"Disappearing Elements? {value}");
             elementosValue = value;
         }
 
-        public void AssumirMapa(bool value)
+        public void ToggleMinimap(bool value)
         {
+            Debug.Log($"Mini Map? {value}");
             mapaValue = value;
         }
 
-        public void AssumirVibracao(bool value)
+        public void ToggleVibration(bool value)
         {
+            Debug.Log($"Vibration? {value}");
             vibrationValue = value;
         }
 

@@ -243,7 +243,7 @@ PrefabInstance:
         type: 3}
       propertyPath: textoData
       value: 
-      objectReference: {fileID: 844302332}
+      objectReference: {fileID: 1284717349}
     - target: {fileID: 114803333751847614, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
       propertyPath: minimapa
@@ -538,18 +538,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 714213482}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &844302332 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114255051961331830, guid: 7a62c3ed0dd892e43b1d94526911d1cb,
-    type: 3}
-  m_PrefabInstance: {fileID: 714213482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!850595691 &896582652
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -683,6 +671,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976086691}
   m_CullTransparentMesh: 1
+--- !u!114 &1284717349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1812876502664967308, guid: 7a62c3ed0dd892e43b1d94526911d1cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 714213482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1428692516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1471705373027132, guid: 7a62c3ed0dd892e43b1d94526911d1cb,

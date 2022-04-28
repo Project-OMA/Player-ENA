@@ -427,8 +427,6 @@ public class ObjectivesController : MonoBehaviour {
         {
             tracks.ToArray()[i].positionCount = positions.ToArray()[i].Length;
             tracks.ToArray()[i].SetPositions(positions.ToArray()[i]);
-
-
         }
 
 
