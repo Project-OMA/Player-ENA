@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using JurassicEngine;
 
 namespace ENA.Input
 {
@@ -21,6 +22,10 @@ namespace ENA.Input
 		
 		private void Update()
 		{
+			if (gyro != null) {
+				transform.localRotation = gyro.AttitudeToUnity();
+			}
+
 			player.CameraRotation = (int)transform.localEulerAngles.y;
 			currentRotation = transform.localEulerAngles.y;
 
