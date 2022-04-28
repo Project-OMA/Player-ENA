@@ -8,6 +8,8 @@ using System;
 using JurassicEngine.Persistency;
 using System.Threading.Tasks;
 using System.Text;
+using TMPro;
+using JurassicEngine;
 using ENA;
 using ENA.Input;
 
@@ -21,7 +23,7 @@ public class OptionsPlayer : MonoBehaviour {
 	public static string nomeFase;
 	public GameObject menu, telaPreta;
 	public new RectTransform camera, print;
-	public Text textoData;
+	[SerializeField] TextMeshProUGUI textoData;
 	public bool finalizar, finalizou;
 	public Transform inicialPosition;
 	public static OptionsPlayer instance;
@@ -219,6 +221,7 @@ public class OptionsPlayer : MonoBehaviour {
 
         Debug.Log($"Finished Saving");
         DeliverEndingMessage();
+        Task.Delay(1000).Wait();
 
         SceneManager.LoadScene(BuildIndex.MainMenu);
         Debug.Log($"Loading Main Menu...");
@@ -255,7 +258,6 @@ public class OptionsPlayer : MonoBehaviour {
         return day + "_" + time;
     }
 
-	[Obsolete]
     private void DisplayDateTime(DateTime currentTime, string day)
     {
         string hour = currentTime.TimeOfDay.ToString().Split('.')[0];
