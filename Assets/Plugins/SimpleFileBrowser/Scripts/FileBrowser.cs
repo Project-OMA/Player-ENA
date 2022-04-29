@@ -672,7 +672,7 @@ namespace SimpleFileBrowser
 
             PlayerPrefs.SetString("MapPath", path);
 			PlayerPrefs.SetString("Fase", filenameInputField.text);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
 		public void OnCancelButtonClicked()

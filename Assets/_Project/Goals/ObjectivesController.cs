@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Globalization;
+using ENA;
 
 public class ObjectivesController : MonoBehaviour {
 
@@ -221,7 +222,7 @@ public class ObjectivesController : MonoBehaviour {
                     //VRSettings.enabled = false;
 
                     saveInfos();
-                    SceneManager.LoadSceneAsync(0);
+                    SceneManager.LoadSceneAsync(BuildIndex.GameplayScene);
                 }
 
                 
@@ -435,7 +436,7 @@ public class ObjectivesController : MonoBehaviour {
         //VRSettings.enabled = false;
 
         saveInfos();
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(BuildIndex.GameplayScene);
 
 
     }
