@@ -105,12 +105,12 @@ public class DirecaoInicial : MonoBehaviour {
 
 	void Falar(int direcao){
 		if(Tradutor2.portugues){
-			EasyTTSUtil.SpeechAdd("O ponto inicial está " + portugues[direcao]);
+			UAP_AccessibilityManager.Say("O ponto inicial está " + portugues[direcao], false);
 			print("O ponto inicial está " + portugues[direcao]);
 		}else if(Tradutor2.ingles){
-			EasyTTSUtil.SpeechAdd("The starting point is "+ingles[direcao]);
+			UAP_AccessibilityManager.Say("The starting point is "+ingles[direcao], false);
 		}else if(Tradutor2.espanhol){
-			EasyTTSUtil.SpeechAdd("El punto inicial está "+espanhol[direcao]);
+			UAP_AccessibilityManager.Say("El punto inicial está "+espanhol[direcao], false);
 		}
 	}
 }

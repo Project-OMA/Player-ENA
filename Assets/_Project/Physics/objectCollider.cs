@@ -78,7 +78,7 @@ public class objectCollider : MonoBehaviour
 
             if (soundTTS)
             {
-                EasyTTSUtil.SpeechAdd(colliderAlert[language] + names[language]);
+                UAP_AccessibilityManager.Say(colliderAlert[language] + names[language], false);
                 soundTTS = false;
                 StartCoroutine(disableSoundTTS(3));
             }

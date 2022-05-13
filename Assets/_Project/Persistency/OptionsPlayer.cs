@@ -51,8 +51,8 @@ public class OptionsPlayer : MonoBehaviour {
     {
         UAP_AccessibilityManager.RegisterOnPauseToggledCallback(ToggleExitMenu);
         UAP_AccessibilityManager.RegisterOnBackCallback(FecharMenu);
-        if (UAP_AccessibilityManager.IsActive())
-            UAP_AccessibilityManager.PauseAccessibility(true);
+        // if (UAP_AccessibilityManager.IsActive())
+        //     UAP_AccessibilityManager.PauseAccessibility(true);
     }
 
     private void ConfigureVRGoggles()
@@ -122,8 +122,8 @@ public class OptionsPlayer : MonoBehaviour {
 	{
         UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(ToggleExitMenu);
 		UAP_AccessibilityManager.UnregisterOnBackCallback(FecharMenu);
-		if (UAP_AccessibilityManager.IsEnabled())
-			UAP_AccessibilityManager.PauseAccessibility(false);
+		// if (UAP_AccessibilityManager.IsEnabled())
+		// 	UAP_AccessibilityManager.PauseAccessibility(false);
     }
 
 	public void ToggleExitMenu()
@@ -163,7 +163,7 @@ public class OptionsPlayer : MonoBehaviour {
     private async void EndGame()
     {
         finalizou = true;
-		await SalvarTracer();
+        await SalvarTracer();
     }
 
     public async Task SaveUserStatus()
@@ -209,21 +209,20 @@ public class OptionsPlayer : MonoBehaviour {
     {
         menu.SetActive(false);
         PlaceCameraOnRenderSpot();
+        DeliverEndingMessage();
         Debug.Log($"Started Saving");
-        Task.Delay(1000).Wait();
-
-        //yield return new WaitForSeconds(1);
 
         SaveScreenshot();
         Debug.Log($"Saving Screenshot");
         await SaveUserStatus();
-        //yield return new WaitForSeconds(2);
+        await Task.Delay(100);
 
         Debug.Log($"Finished Saving");
-        DeliverEndingMessage();
-        Task.Delay(1000).Wait();
+        while (UAP_AccessibilityManager.IsSpeaking()) {
+            await Task.Delay(1000);
+        }
 
-        SceneManager.LoadScene(BuildIndex.MainMenu);
+        SceneManager.LoadSceneAsync(BuildIndex.MainMenu);
         Debug.Log($"Loading Main Menu...");
     }
 
@@ -270,19 +269,19 @@ public class OptionsPlayer : MonoBehaviour {
 	{
 		if (finalizou) {
             if (Tradutor2.portugues) {
-                EasyTTSUtil.SpeechAdd("Parabéns, você concluiu sua missão");
+                UAP_AccessibilityManager.Say("Parabéns, você concluiu sua missão", false);
             } else if (Tradutor2.ingles) {
-                EasyTTSUtil.SpeechAdd("Congratulations, you have completed your mission.");
+                UAP_AccessibilityManager.Say("Congratulations, you have completed your mission.", false);
             } else if (Tradutor2.espanhol) {
-                EasyTTSUtil.SpeechAdd("Enhorabuena, usted ha terminado su misión");
+                UAP_AccessibilityManager.Say("Enhorabuena, usted ha terminado su misión", false);
             }
         } else {
             if (Tradutor2.portugues) {
-                EasyTTSUtil.SpeechAdd("Desistiu... Tente novamente mais tarde!");
+                UAP_AccessibilityManager.Say("Desistiu... Tente novamente mais tarde!", false);
             } else if (Tradutor2.ingles) {
-                EasyTTSUtil.SpeechAdd("Gave up ... Try again later!");
+                UAP_AccessibilityManager.Say("Gave up ... Try again later!", false);
             } else if (Tradutor2.espanhol) {
-                EasyTTSUtil.SpeechAdd("Desistió ... ¡Inténtelo de nuevo más tarde!");
+                UAP_AccessibilityManager.Say("Desistió ... ¡Inténtelo de nuevo más tarde!", false);
             }
         }
 	}
@@ -298,17 +297,18 @@ public class OptionsPlayer : MonoBehaviour {
 	{
 		menu.SetActive(true);
 		playerControl.enabled = false;
-		UAP_AccessibilityManager.PauseAccessibility(false);
+		//UAP_AccessibilityManager.PauseAccessibility(false);
 	}
 
 	public void FecharMenu()
 	{
 		menu.SetActive(false);
 		playerControl.enabled = true;
-		UAP_AccessibilityManager.PauseAccessibility(true);
+		//UAP_AccessibilityManager.PauseAccessibility(true);
 	}
 
-	public async void VoltarParaOMenu() {
-		await SalvarTracer();
+	public async void VoltarParaOMenu()
+    {
+        await SalvarTracer();
 	}
 }

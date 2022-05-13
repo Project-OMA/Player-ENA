@@ -8,13 +8,13 @@ public class TTS : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        EasyTTSUtil.Initialize(EasyTTSUtil.Brazil);
+        //EasyTTSUtil.Initialize(EasyTTSUtil.Brazil);
 
     }
 
     void OnApplicationQuit()
     {
-        EasyTTSUtil.Stop();
+        //EasyTTSUtil.Stop();
     }
 
 }

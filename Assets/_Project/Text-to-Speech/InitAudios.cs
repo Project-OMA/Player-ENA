@@ -42,11 +42,11 @@ public class InitAudios : MonoBehaviour {
             {
                 if(objetiveController.objetives[0] != null){
                     string audio = dictionary.introducao[4].espanhol + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName();
-                    EasyTTSUtil.SpeechAdd(audio);
+                    UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }else{
                     string audio = "Usted debe volver al punto inicial";
-                    EasyTTSUtil.SpeechAdd(audio);
+                    UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }
                 
@@ -55,11 +55,11 @@ public class InitAudios : MonoBehaviour {
             {
                 if(objetiveController.objetives.Count > 0){
                     string audio = dictionary.introducao[4].ingles + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName();
-                    EasyTTSUtil.SpeechAdd(audio);
+                    UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }else{
                     string audio = "You must return to the starting point";
-                    EasyTTSUtil.SpeechAdd(audio);
+                    UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }
                 
@@ -68,11 +68,11 @@ public class InitAudios : MonoBehaviour {
             {
                 if(objetiveController.objetives.Count > 0){
                     string audio = dictionary.introducao[4].portugues + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName();
-                    EasyTTSUtil.SpeechAdd(audio);
+                    UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }else{
                     string audio = "Você deve retornar ao ponto inicial";
-                    EasyTTSUtil.SpeechAdd(audio);
+                    UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }
                 
@@ -83,7 +83,7 @@ public class InitAudios : MonoBehaviour {
    
     void OnApplicationQuit()
     {
-        EasyTTSUtil.Stop();
+        //EasyTTSUtil.Stop();
     }
 
     public void playAudios()
@@ -101,7 +101,7 @@ public class InitAudios : MonoBehaviour {
         if (Application.systemLanguage == SystemLanguage.Spanish)
         {
             //Outputs into console that the system is Portuguese
-            EasyTTSUtil.Initialize(EasyTTSUtil.Spain);
+            // EasyTTSUtil.Initialize(EasyTTSUtil.Spain);
 
             for (int i = 0; i < objetiveController.objetives.Count; i++) 
                 names = names + ", un " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
@@ -111,12 +111,12 @@ public class InitAudios : MonoBehaviour {
 
             print(names);
             string indrotucao = dictionary.introducao[0].espanhol + names + dictionary.introducao[1].espanhol+ names2 + dictionary.introducao[2].espanhol;
-            EasyTTSUtil.SpeechAdd(indrotucao);
+            UAP_AccessibilityManager.Say(indrotucao, false);
             print(indrotucao);
         }
         else if(Application.systemLanguage == SystemLanguage.English)
         {
-            EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
+            // EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
 
             for (int i = 0; i < objetiveController.objetives.Count; i++)
                 names = names + " a " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName() + " ";
@@ -125,12 +125,12 @@ public class InitAudios : MonoBehaviour {
                 names2 = names2 + " the " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
 
             string indrotucao = dictionary.introducao[0].ingles + names + dictionary.introducao[1].ingles + names2 + dictionary.introducao[2].ingles;
-            EasyTTSUtil.SpeechAdd(indrotucao);
+            UAP_AccessibilityManager.Say(indrotucao, false);
             Debug.Log(indrotucao);
         }
         else
         {
-            EasyTTSUtil.Initialize(EasyTTSUtil.Brazil);
+            // EasyTTSUtil.Initialize(EasyTTSUtil.Brazil);
 
             for (int i = 0; i < objetiveController.objetives.Count; i++)
                 names = names + " um " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName() + " ";
@@ -139,7 +139,7 @@ public class InitAudios : MonoBehaviour {
                 names2 = names2 + " o " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
 
             string indrotucao = dictionary.introducao[0].portugues + names + dictionary.introducao[1].portugues + names2 + dictionary.introducao[2].portugues;
-            EasyTTSUtil.SpeechAdd(indrotucao);
+            UAP_AccessibilityManager.Say(indrotucao, false);
             Debug.Log(indrotucao);
         }
     }
@@ -155,7 +155,7 @@ public class InitAudios : MonoBehaviour {
                 audio = dictionary.introducao[3].espanhol + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].espanhol;
                 OptionsPlayer.instance.finalizar = true;
             }
-            EasyTTSUtil.SpeechAdd(audio);
+            UAP_AccessibilityManager.Say(audio, false);
             print(audio);
         }
         else if (Application.systemLanguage == SystemLanguage.English)
@@ -166,7 +166,7 @@ public class InitAudios : MonoBehaviour {
                 audio = dictionary.introducao[3].ingles + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].ingles;
                 OptionsPlayer.instance.finalizar = true;
             }
-            EasyTTSUtil.SpeechAdd(audio);
+            UAP_AccessibilityManager.Say(audio, false);
             print(audio);
         }
         else
@@ -177,7 +177,7 @@ public class InitAudios : MonoBehaviour {
                 audio = dictionary.introducao[3].portugues + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].portugues;
                 OptionsPlayer.instance.finalizar = true;
             }
-            EasyTTSUtil.SpeechAdd(audio);
+            UAP_AccessibilityManager.Say(audio, false);
             print("Audio sendo tocado:" + audio);
         }
 

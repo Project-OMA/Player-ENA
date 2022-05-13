@@ -95,42 +95,13 @@ public class ObjectivesController : MonoBehaviour {
            
             if(stageCount < 3)
             {
-                EasyTTSUtil.SpeechAdd("Seu objetivo é encontrar " + ((Objective)allObjectives[stageCount]).nameTTS);
+                UAP_AccessibilityManager.Say("Seu objetivo é encontrar " + ((Objective)allObjectives[stageCount]).nameTTS, false);
             }
             else
             {
-                EasyTTSUtil.SpeechAdd("Seu objetivo é retornar para a porta");
+                UAP_AccessibilityManager.Say("Seu objetivo é retornar para a porta", false);
             }
         }
-
-
-            //stopAllAudios();
-            //ObjectivesController scrip = (ObjectivesController)GetComponentInParent(typeof(ObjectivesController));
-            //objectiveAudio = scrip.getAudioRescue();
-            //objectiveAudio.Play();
-            //scrip.playAudioRescue();
-
-        /*currentAudio();
-
-        if (stageCount == 4 && ((Objective)allObjectives[3]).hitSound.isPlaying == false)
-        {
-            
-            for(int i = 0; i < tracks.ToArray().Length; i++)
-            {
-                tracks.ToArray()[i].positionCount = positions.ToArray()[i].Length;
-                tracks.ToArray()[i].SetPositions(positions.ToArray()[i]);
-                 
-               
-            }
-
-
-            UnityEngine.XR.XRSettings.enabled = false;
-            //VRSettings.enabled = false;
-
-            saveInfos();
-            SceneManager.LoadSceneAsync(0);
-        }*/
-
     }
 
     void OnTriggerEnter(Collider col)
@@ -158,12 +129,8 @@ public class ObjectivesController : MonoBehaviour {
                 print("Tempo Total: " + UserModel.time);
 
 
-                EasyTTSUtil.SpeechAdd("Você encontrou a porta");
-                EasyTTSUtil.SpeechAdd("Parabéns, você concluiu o teste");
-
-                //portaWin.Play();
-                //portaWin2.Play();
-                //stageCount++;
+                UAP_AccessibilityManager.Say("Você encontrou a porta", false);
+                UAP_AccessibilityManager.Say("Parabéns, você concluiu o teste", false);
 
                 StartCoroutine(EndGame());
 
@@ -188,7 +155,7 @@ public class ObjectivesController : MonoBehaviour {
 
                 getParcialTime();
 
-                EasyTTSUtil.SpeechAdd("Você encontrou " + ((Objective)allObjectives[stageCount]).nameTTS);
+                UAP_AccessibilityManager.Say("Você encontrou " + ((Objective)allObjectives[stageCount]).nameTTS, false);
                 if(!enableAllObjectives)
                     ((Objective)allObjectives[stageCount]).sound.Stop();
                
@@ -196,13 +163,13 @@ public class ObjectivesController : MonoBehaviour {
 
                 if(stageCount < 3)
                 {
-                    EasyTTSUtil.SpeechAdd("Agora você deve encontrar " + ((Objective)allObjectives[stageCount]).nameTTS);
+                    UAP_AccessibilityManager.Say("Agora você deve encontrar " + ((Objective)allObjectives[stageCount]).nameTTS, false);
                     if (!enableAllObjectives)
                         StartCoroutine(StartSoundObjective(stageCount,5));
                 }
                 else
                 {
-                    EasyTTSUtil.SpeechAdd("Agora você deve retornar para a porta");
+                    UAP_AccessibilityManager.Say("Agora você deve retornar para a porta", false);
                 }
 
                 objetivoatual = ((Objective)allObjectives[stageCount]).nameTTS;

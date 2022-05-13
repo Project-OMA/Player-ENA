@@ -70,11 +70,11 @@ namespace ENA.Input
         public void FalarCarregando()
         {
             if(Tradutor2.portugues){
-                EasyTTSUtil.SpeechAdd("Carregando");
+                UAP_AccessibilityManager.Say("Carregando", false);
             }else if(Tradutor2.ingles){
-                EasyTTSUtil.SpeechAdd("Loading");
+                UAP_AccessibilityManager.Say("Loading", false);
             }else if(Tradutor2.espanhol){
-                EasyTTSUtil.SpeechAdd("Cargando");
+                UAP_AccessibilityManager.Say("Cargando", false);
             }
             print("falando carregando");	
         }
