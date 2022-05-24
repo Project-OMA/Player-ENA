@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ENA.Goals;
 using UnityEngine;
 
 public class InitAudios : MonoBehaviour {
@@ -21,7 +22,7 @@ public class InitAudios : MonoBehaviour {
     public MyScriptableObject dictionary;
 
     public int language;
-    public ObjetiveController objetiveController;
+    public ObjectiveController objetiveController;
 
     // Use this for initialization
     void Start()
@@ -40,8 +41,8 @@ public class InitAudios : MonoBehaviour {
             ajudaObjetivo++;
             if (Application.systemLanguage == SystemLanguage.Spanish)
             {
-                if(objetiveController.objetives[0] != null){
-                    string audio = dictionary.introducao[4].espanhol + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName();
+                if(objetiveController.objectives[0] != null){
+                    string audio = dictionary.introducao[4].espanhol + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName();
                     UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }else{
@@ -53,8 +54,8 @@ public class InitAudios : MonoBehaviour {
             }
             else if (Application.systemLanguage == SystemLanguage.English)
             {
-                if(objetiveController.objetives.Count > 0){
-                    string audio = dictionary.introducao[4].ingles + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName();
+                if(objetiveController.objectives.Count > 0){
+                    string audio = dictionary.introducao[4].ingles + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName();
                     UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }else{
@@ -66,8 +67,8 @@ public class InitAudios : MonoBehaviour {
             }
             else if (Application.systemLanguage == SystemLanguage.Portuguese)
             {
-                if(objetiveController.objetives.Count > 0){
-                    string audio = dictionary.introducao[4].portugues + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName();
+                if(objetiveController.objectives.Count > 0){
+                    string audio = dictionary.introducao[4].portugues + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName();
                     UAP_AccessibilityManager.Say(audio, false);
                     print(audio);
                 }else{
@@ -103,11 +104,11 @@ public class InitAudios : MonoBehaviour {
             //Outputs into console that the system is Portuguese
             // EasyTTSUtil.Initialize(EasyTTSUtil.Spain);
 
-            for (int i = 0; i < objetiveController.objetives.Count; i++) 
-                names = names + ", un " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
+            for (int i = 0; i < objetiveController.objectives.Count; i++) 
+                names = names + ", un " + objetiveController.objectives[i].GetComponent<objectCollider>().GetName();
 
-            for (int i = 0; i < objetiveController.objetives.Count; i++)
-                names2 = names2 + ", el " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
+            for (int i = 0; i < objetiveController.objectives.Count; i++)
+                names2 = names2 + ", el " + objetiveController.objectives[i].GetComponent<objectCollider>().GetName();
 
             print(names);
             string indrotucao = dictionary.introducao[0].espanhol + names + dictionary.introducao[1].espanhol+ names2 + dictionary.introducao[2].espanhol;
@@ -118,11 +119,11 @@ public class InitAudios : MonoBehaviour {
         {
             // EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
 
-            for (int i = 0; i < objetiveController.objetives.Count; i++)
-                names = names + " a " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName() + " ";
+            for (int i = 0; i < objetiveController.objectives.Count; i++)
+                names = names + " a " + objetiveController.objectives[i].GetComponent<objectCollider>().GetName() + " ";
 
-            for (int i = 0; i < objetiveController.objetives.Count; i++)
-                names2 = names2 + " the " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
+            for (int i = 0; i < objetiveController.objectives.Count; i++)
+                names2 = names2 + " the " + objetiveController.objectives[i].GetComponent<objectCollider>().GetName();
 
             string indrotucao = dictionary.introducao[0].ingles + names + dictionary.introducao[1].ingles + names2 + dictionary.introducao[2].ingles;
             UAP_AccessibilityManager.Say(indrotucao, false);
@@ -132,11 +133,11 @@ public class InitAudios : MonoBehaviour {
         {
             // EasyTTSUtil.Initialize(EasyTTSUtil.Brazil);
 
-            for (int i = 0; i < objetiveController.objetives.Count; i++)
-                names = names + " um " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName() + " ";
+            for (int i = 0; i < objetiveController.objectives.Count; i++)
+                names = names + " um " + objetiveController.objectives[i].GetComponent<objectCollider>().GetName() + " ";
 
-            for (int i = 0; i < objetiveController.objetives.Count; i++)
-                names2 = names2 + " o " + objetiveController.objetives[i].GetComponent<objectCollider>().GetName();
+            for (int i = 0; i < objetiveController.objectives.Count; i++)
+                names2 = names2 + " o " + objetiveController.objectives[i].GetComponent<objectCollider>().GetName();
 
             string indrotucao = dictionary.introducao[0].portugues + names + dictionary.introducao[1].portugues + names2 + dictionary.introducao[2].portugues;
             UAP_AccessibilityManager.Say(indrotucao, false);
@@ -149,10 +150,10 @@ public class InitAudios : MonoBehaviour {
         string audio = "";
         if (Application.systemLanguage == SystemLanguage.Spanish)
         {
-            if(objetiveController.objetives.Count > 1)
-                audio = dictionary.introducao[3].espanhol + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[4].espanhol + " " + objetiveController.objetives[1].GetComponent<objectCollider>().GetName();
+            if(objetiveController.objectives.Count > 1)
+                audio = dictionary.introducao[3].espanhol + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[4].espanhol + " " + objetiveController.objectives[1].GetComponent<objectCollider>().GetName();
             else{
-                audio = dictionary.introducao[3].espanhol + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].espanhol;
+                audio = dictionary.introducao[3].espanhol + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].espanhol;
                 OptionsPlayer.instance.finalizar = true;
             }
             UAP_AccessibilityManager.Say(audio, false);
@@ -160,10 +161,10 @@ public class InitAudios : MonoBehaviour {
         }
         else if (Application.systemLanguage == SystemLanguage.English)
         {
-            if (objetiveController.objetives.Count > 1)
-                audio = dictionary.introducao[3].ingles + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[4].ingles + " " + objetiveController.objetives[1].GetComponent<objectCollider>().GetName();
+            if (objetiveController.objectives.Count > 1)
+                audio = dictionary.introducao[3].ingles + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[4].ingles + " " + objetiveController.objectives[1].GetComponent<objectCollider>().GetName();
             else{
-                audio = dictionary.introducao[3].ingles + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].ingles;
+                audio = dictionary.introducao[3].ingles + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].ingles;
                 OptionsPlayer.instance.finalizar = true;
             }
             UAP_AccessibilityManager.Say(audio, false);
@@ -171,10 +172,10 @@ public class InitAudios : MonoBehaviour {
         }
         else
         {
-            if (objetiveController.objetives.Count > 1)
-                audio = dictionary.introducao[3].portugues + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[4].portugues + " " + objetiveController.objetives[1].GetComponent<objectCollider>().GetName();
+            if (objetiveController.objectives.Count > 1)
+                audio = dictionary.introducao[3].portugues + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[4].portugues + " " + objetiveController.objectives[1].GetComponent<objectCollider>().GetName();
             else{
-                audio = dictionary.introducao[3].portugues + " " + objetiveController.objetives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].portugues;
+                audio = dictionary.introducao[3].portugues + " " + objetiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + dictionary.introducao[5].portugues;
                 OptionsPlayer.instance.finalizar = true;
             }
             UAP_AccessibilityManager.Say(audio, false);

@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System.Globalization;
 using ENA;
+using System;
+using ENA.Goals;
 
+[Obsolete]
 public class ObjectivesController : MonoBehaviour {
 
     public Camera screenCam;
@@ -269,7 +272,7 @@ public class ObjectivesController : MonoBehaviour {
 
         for(int i = 0; i < old.Count; i++)
         {
-            int index = Random.Range(0, old.Count);
+            int index = UnityEngine.Random.Range(0, old.Count);
 
             Objective temp = (Objective) old[i];
             old[i] = old[index];
@@ -438,25 +441,6 @@ public class ObjectivesController : MonoBehaviour {
         Application.Quit();
 
 
-    }
-}
-
-public class Objective
-{
-    public AudioSource hitSound;
-    public string nameTTS;
-    public AudioSource audioRescueSound;
-    public AudioSource sound;
-    public string name;
-
-
-    public Objective(string nameTTS, AudioSource sound,string name)
-    {
-        //this.hitSound = hitSound;
-        this.nameTTS = nameTTS;
-        this.sound = sound;
-        this.name = name;
-       //this.audioRescueSound = audioRescueSound;
     }
 }
 

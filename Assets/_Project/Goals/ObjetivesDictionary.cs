@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-[System.Serializable]
+[Serializable, Obsolete]
 public struct ObjectsNames
 {
     public string GameName;
@@ -12,7 +13,8 @@ public struct ObjectsNames
     public string StringTSS_ES;
 }
 
-public class ObjetivesDictionary : ScriptableObject
+[Obsolete]
+public class ObjetivesDictionary: ScriptableObject
 {
     [Header("Objetos Interativos")]
     public ObjectsNames[] objectNames;

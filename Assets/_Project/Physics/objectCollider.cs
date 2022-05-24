@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ENA.Goals;
 using ENA.Input;
 using UnityEngine;
 
@@ -62,8 +63,8 @@ public class objectCollider : MonoBehaviour
             if (!hitsound.isPlaying){
                 hitsound.Play();
             }
-            if(ObjetiveController.instance.objetives.Count > 0){
-                if(gameObject == ObjetiveController.instance.objetives[0]){
+            if(ObjectiveController.instance.objectives.Count > 0){
+                if(gameObject == ObjectiveController.instance.objectives[0]){
                     OptionsPlayer.instance.InstanceTracer();
                     if(ControleMenuPrincipal.elementosValue){
                         Invoke("Desligar",3);

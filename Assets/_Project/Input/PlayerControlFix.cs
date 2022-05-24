@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ENA.Goals;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,7 +52,7 @@ namespace ENA.Input
 
         [SerializeField] float _easyInOut = 0;
 
-        [SerializeField] ObjetiveController objetiveController;
+        [SerializeField] ObjectiveController objetiveController;
 
         [SerializeField] List<Vector3> vectorPositions;
         List<LineRenderer> tracks = new List<LineRenderer>();
@@ -206,12 +207,12 @@ namespace ENA.Input
 
                 col.gameObject.GetComponent<objectCollider>().Collision();
 
-                if (objetiveController.objetives.Count > 0 && (col.gameObject == (objetiveController.objetives[0]))) {
+                if (objetiveController.objectives.Count > 0 && (col.gameObject == (objetiveController.objectives[0]))) {
                     objetiveController.StopObjectiveAudio();
                     objetiveController.PlayFindObjective();
-                    objetiveController.objetives.RemoveAt(0);
+                    objetiveController.objectives.RemoveAt(0);
                     UserModel.countQualTempo++;
-                    if (objetiveController.objetives.Count != 0)
+                    if (objetiveController.objectives.Count != 0)
                         objetiveController.StartObjectiveAudio(5);
 
                     print("Sim");

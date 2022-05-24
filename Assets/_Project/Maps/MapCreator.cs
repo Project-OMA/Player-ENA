@@ -7,6 +7,7 @@ using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ENA.Input;
+using ENA.Goals;
 
 namespace ENA.Maps
 {
@@ -14,7 +15,7 @@ namespace ENA.Maps
     {
         //public static bool recomecar;
         public GameObject playerFilho, telaPreta;
-        public ObjetiveController objectiveController;
+        public ObjectiveController objectiveController;
         //Prefabs necessarios, coloqueis eles separados assim pra não precisar mexer no dicionario 
         public GameObject noFloor;
         // precisei fazer dois prefabs pra paredes pq a unity tava scalando o prefab e não as instancias por algum motivo ainda desconhecido.
@@ -88,7 +89,7 @@ namespace ENA.Maps
             newData = newData.Replace("xmlns=\"http://www.w3.org/1999/xhtml\"", "");
 
             //Inicializar o parse
-            objectiveController.objetives = new List<GameObject>();
+            objectiveController.objectives = new List<GameObject>();
             parseXmlFile(newData);
         }
 
@@ -96,7 +97,7 @@ namespace ENA.Maps
         {
             //Reorganiza a lista se a lista de objetivos for maior que 1 e se a matrix inteira já foi construida
             //Como a matriz tem sempre o mesmo tamanho, o valor final do dontador vai ser sempre o mesmo
-            if (counter >= 375 && objectiveController.objetives.Count >=1) {
+            if (counter >= 375 && objectiveController.objectives.Count >=1) {
                 ReorganizaLista();
             }
         }
@@ -280,7 +281,7 @@ namespace ENA.Maps
             } else {
                 var newInstance = Instantiate(prefab, tileDestination, prefab.transform.rotation);
                 if (category == MapCategory.Interactive) {
-                    objectiveController.objetives.Add(newInstance);
+                    objectiveController.objectives.Add(newInstance);
                 }
             }
         }
@@ -309,21 +310,21 @@ namespace ENA.Maps
         {
 
             Debug.Log("Entrou no ReorganizaLista");
-            novosObjetivos = objectiveController.objetives;
-            int limite = objectiveController.objetives.Count;
+            novosObjetivos = objectiveController.objectives;
+            int limite = objectiveController.objectives.Count;
             float distancia;
                 
             novosObjetivos = novosObjetivos.OrderBy(
             novosObjetivos => Vector3.Distance(player.transform.position, novosObjetivos.transform.position)
             ).ToList();
 
-            objectiveController.objetives = novosObjetivos;
+            objectiveController.objectives = novosObjetivos;
 
 
             for (int i = 0; i < limite; i++)
             {
-                distancia = Vector3.Distance(objectiveController.objetives[i].transform.position, player.transform.position);
-                Debug.Log("A distancia do " + objectiveController.objetives[i].name + " para o player é " + distancia);
+                distancia = Vector3.Distance(objectiveController.objectives[i].transform.position, player.transform.position);
+                Debug.Log("A distancia do " + objectiveController.objectives[i].name + " para o player é " + distancia);
             }
         }
     }
