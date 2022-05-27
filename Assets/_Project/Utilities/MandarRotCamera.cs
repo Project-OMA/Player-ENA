@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using ENA.Input;
 using UnityEngine;
 
+[Obsolete]
 public class MandarRotCamera : MonoBehaviour {
-	public PlayerControlFix player;
+	public PlayerController player;
 	// Use this for initialization
 	void Start () {
 		
@@ -12,6 +14,6 @@ public class MandarRotCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		player.CameraRotation = (int)transform.eulerAngles.y;
+		// player.CameraRotation = (int)transform.eulerAngles.y;
 	}
 }

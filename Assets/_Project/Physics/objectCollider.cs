@@ -57,22 +57,21 @@ public class objectCollider : MonoBehaviour
 
     public void Collision()
     {
-         print("Colidiu");
+        print("Colidiu");
 
-
-            if (!hitsound.isPlaying){
-                hitsound.Play();
-            }
-            if(ObjectiveController.instance.objectives.Count > 0){
-                if(gameObject == ObjectiveController.instance.objectives[0]){
-                    OptionsPlayer.instance.InstanceTracer();
-                    if(ControleMenuPrincipal.elementosValue){
-                        Invoke("Desligar",3);
-                    }
+        if (!hitsound.isPlaying){
+            hitsound.Play();
+        }
+        if(ObjectiveController.instance.objectives.Count > 0){
+            if(gameObject == ObjectiveController.instance.objectives[0]){
+                OptionsPlayer.instance.InstanceTracer();
+                if(ControleMenuPrincipal.elementosValue){
+                    Invoke("Desligar",3);
                 }
             }
-            
-            collisionCount++;
+        }
+        
+        collisionCount++;
 
         if (collisionCount >= 3)
         {
@@ -91,7 +90,6 @@ public class objectCollider : MonoBehaviour
     
     IEnumerator disableSoundTTS(int time)
     {
-
         yield return new WaitForSeconds(time);
         soundTTS = true;
         // ((Objective)allObjectives[index]).sound.Play();

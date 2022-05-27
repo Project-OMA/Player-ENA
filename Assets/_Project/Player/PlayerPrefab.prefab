@@ -186,11 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5fbfac28c2b68a48a77ffac2dbcd073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetives: []
+  objectives: []
   initAudios: {fileID: 114272827316814706}
-  stageCount: 0
-  screenCam: {fileID: 0}
-  camPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1360457128858564
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +674,10 @@ GameObject:
   - component: {fileID: 114210643828000828}
   - component: {fileID: 114789037905417226}
   - component: {fileID: 114007720927469800}
+  - component: {fileID: 3462760766085959779}
+  - component: {fileID: 2372932992705593125}
+  - component: {fileID: 6629728589537707499}
+  - component: {fileID: 3685241738460539294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -848,31 +849,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2b149636568a24bbc2fd6e01299a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pontosCardeais: 0
-  pontosCardPassados: 0
-  contPassos: 0
-  contRotacao: 0
-  distPasso: 0.5
-  corpo: {fileID: 1683033025214330}
-  andando: 0
-  speed: 1
+  characterController: {fileID: 143955142695123202}
+  movementTracker: {fileID: 2372932992705593125}
+  rotationTracker: {fileID: 3462760766085959779}
+  collisionTracker: {fileID: 6629728589537707499}
+  objectiveController: {fileID: 114992077736940122}
+  playerSoundboard: {fileID: 3685241738460539294}
+  stepDistance: 0.5
   target: {fileID: 4598130206794710}
-  rotacaoCamera: 0
-  _characterController: {fileID: 143955142695123202}
-  _moveSpeed: 10
-  _distStep: 0.5
-  _gravity: 20
-  _pertoDaPorta: 0
-  _stickPressed: 0
-  _andando: 1
-  stepSound: {fileID: 0}
-  _beepLeft: {fileID: 82520010382770758}
-  _beepRight: {fileID: 82043053822442332}
-  _rotate: {x: 0, y: 0, z: 0, w: 1}
-  _newPosition: {x: 0, y: 0, z: 0}
-  _moveDirection: {x: 0, y: 0, z: 0}
-  _easyInOut: 0
-  objetiveController: {fileID: 114992077736940122}
   vectorPositions: []
 --- !u!114 &114789037905417226
 MonoBehaviour:
@@ -928,6 +912,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fe90fdd582e81448c894a9847a7c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3462760766085959779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d78ececca63c47f7bd6b9ca12eb9f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+--- !u!114 &2372932992705593125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f92b05c97854a10bb3febd6e80abc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  characterController: {fileID: 143955142695123202}
+--- !u!114 &6629728589537707499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c65935ffd652467f9b9fa520f85cc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  closeToDoor: 0
+--- !u!114 &3685241738460539294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d707167a342cf459f995a99511ed9226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: {fileID: 82941110892458878}
+  beepLeft: {fileID: 82520010382770758}
+  beepRight: {fileID: 82043053822442332}
 --- !u!1 &1659841169798336
 GameObject:
   m_ObjectHideFlags: 0

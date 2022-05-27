@@ -17,10 +17,68 @@ namespace ENA.Goals
         #region Static Variables
         public static ObjectiveController instance;
         #endregion
+        #region Properties
+        public int NumberOfObjectives => objectives?.Count ?? 0;
+        public GameObject NextObjective {
+            get {
+                if (NumberOfObjectives > 0) return objectives[0];
+                else return default;
+            }
+        }
+        #endregion
         [SerializeField] InitAudios initAudios;
 
         #region Methods
         #endregion
+        void AdicionarListaColisions()
+        {
+            for (int i = 0; i < objectives.Count + 1; i++)
+            {
+                UserModel.parcialTime.Add(0);
+            }
+        }
+
+        public bool FindObjective()
+        {
+            StopObjectiveAudio();
+            MoveToNextObjective();
+            NextObjective?.GetComponent<AudioSource>()?.Play();
+
+            if (objectives.Count == 0)
+                return false;
+            else
+            {
+                StartCoroutine(StartSoundObjective(1, 5));
+                return true;
+            }
+        }
+
+        public void MoveToNextObjective()
+        {
+            objectives.RemoveAt(0);
+        }
+
+        public void PlayFindObjective()
+        {
+            initAudios.PlayAudioFoundObjective();
+        }
+
+        public void StopObjectiveAudio()
+        {
+            Debug.Log("Ativou StopObjectiveAudio");
+
+            if (objectives.Count > 0)
+            {
+                ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
+                audioSource?.GetComponent<AudioSource>()?.Stop();
+            }
+        }
+
+        public void StartObjectiveAudio(int time)
+        {
+            StartCoroutine(StartSoundObjective(1, time));
+        }
+
         void Start()
         {
             instance = this;
@@ -31,63 +89,6 @@ namespace ENA.Goals
         public void StartAudios()
         {
             initAudios.checkLanguageAndInitTTS();
-        }
-
-        public bool FindObjective()
-        {
-
-            StopObjectiveAudio();
-            objectives.RemoveAt(0);
-            objectives[0].GetComponent<ResonanceAudioSource>().gameObject.GetComponent<AudioSource>().Play();
-
-
-            if (objectives.Count == 0)
-                return false;
-            else
-            {
-                StartCoroutine(StartSoundObjective(1, 5));
-                return true;
-            }
-
-        }
-
-        void AdicionarListaColisions()
-        {
-            for (int i = 0; i < objectives.Count + 1; i++)
-            {
-                UserModel.parcialTime.Add(0);
-            }
-
-        }
-        public void StopObjectiveAudio()
-        {
-            Debug.Log("Ativou StopObjectiveAudio");
-
-            if (objectives.Count > 0)
-            {
-                ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
-                audioSource.GetComponent<AudioSource>().Stop();
-            }
-        }
-
-        public void StartObjectiveAudio(int time)
-        {
-            StartCoroutine(StartSoundObjective(1, time));
-        }
-
-        IEnumerator StartSoundObjective(int index, int time)
-        {
-            yield return new WaitForSeconds(time);
-            if (objectives.Count > 0) {
-                ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
-                Debug.Log("Ativou o audio do objetivo");
-                audioSource.GetComponent<AudioSource>().Play();
-            }
-        }
-
-        public void PlayFindObjective()
-        {
-            initAudios.PlayAudioFoundObjective();
         }
 
         public void saveUserStatus()
@@ -119,12 +120,22 @@ namespace ENA.Goals
             //writer.WriteLine("Ajudas: " + UserModel.helps);
 
             writer.Close();
-
         }
 
         public void saveInfos()
         {
             saveUserStatus();
         }
+        #region Coroutines
+        IEnumerator StartSoundObjective(int index, int time)
+        {
+            yield return new WaitForSeconds(time);
+            if (objectives.Count > 0) {
+                ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
+                Debug.Log("Ativou o audio do objetivo");
+                audioSource.GetComponent<AudioSource>().Play();
+            }
+        }
+        #endregion
     }
 }

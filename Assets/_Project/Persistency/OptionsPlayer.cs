@@ -31,7 +31,7 @@ public class OptionsPlayer : MonoBehaviour {
 	public TrailRenderer[] cores;
 	public int contador;
 	public TrailRenderer qualTracer;
-	[SerializeField] PlayerControlFix playerControl;
+	[SerializeField] PlayerController playerControl;
     [SerializeField] RenderTexture minimap;
 	#endregion
 	private void Start()
@@ -60,9 +60,9 @@ public class OptionsPlayer : MonoBehaviour {
 		var isVREnabled = ControleMenuPrincipal.oculosValue;
 
         if (isVREnabled) {
-            playerControl.Target = cameraVR.transform;
+            playerControl.SetCameraTransform(cameraVR.transform);
         } else {
-            playerControl.Target = cameraNormal.transform;
+            playerControl.SetCameraTransform(cameraNormal.transform);
         }
 
 		cameraNormal.SetActive(!isVREnabled);

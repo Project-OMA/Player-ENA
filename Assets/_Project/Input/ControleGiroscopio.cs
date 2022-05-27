@@ -8,7 +8,7 @@ namespace ENA.Input
 	public class ControleGiroscopio: MonoBehaviour
 	{
 		#region Variables
-		public PlayerControlFix player;
+		public PlayerController player;
 		[SerializeField] private float fixedRotation;
 		[SerializeField] private float currentRotation;
 		private Gyroscope gyro;
@@ -26,7 +26,7 @@ namespace ENA.Input
 				transform.localRotation = gyro.AttitudeToUnity();
 			}
 
-			player.CameraRotation = (int)transform.localEulerAngles.y;
+			// player.CameraRotation = (int)transform.localEulerAngles.y;
 			currentRotation = transform.localEulerAngles.y;
 
 			if(currentRotation >= fixedRotation + 90) {

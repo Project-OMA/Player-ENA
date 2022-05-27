@@ -288,11 +288,7 @@ namespace ENA.Maps
 
         private void SetPlayerDirection(float angleDegrees)
         {
-            playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, angleDegrees, playerFilho.transform.localEulerAngles.z);
-            PlayerControlFix playerControlFix = playerFilho.GetComponent<PlayerControlFix>();
-            var rotate = playerControlFix.Rotate;
-            rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, angleDegrees, playerFilho.transform.localEulerAngles.z);
-            playerControlFix.Rotate = rotate;
+            playerFilho.GetComponent<PlayerController>()?.SetDirection(angleDegrees);
         }
 
 
