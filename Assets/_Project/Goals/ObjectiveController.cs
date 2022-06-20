@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using ENA.Input;
 using UnityEngine.Serialization;
+using UnityEngine.Localization.Settings;
 
 namespace ENA.Goals
 {
@@ -86,11 +87,6 @@ namespace ENA.Goals
             Invoke(nameof(AdicionarListaColisions), 0.5f);
         }
 
-        public void StartAudios()
-        {
-            initAudios.checkLanguageAndInitTTS();
-        }
-
         public void saveUserStatus()
         {
             var sceneName = SceneManager.GetActiveScene().name;;
@@ -135,6 +131,13 @@ namespace ENA.Goals
                 Debug.Log("Ativou o audio do objetivo");
                 audioSource.GetComponent<AudioSource>().Play();
             }
+        }
+        #endregion
+        #region Coroutines
+        public IEnumerator StartAudios()
+        {
+            yield return LocalizationSettings.InitializationOperation;
+            initAudios.PlayIntroMessage();
         }
         #endregion
     }

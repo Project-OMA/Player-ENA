@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Text-To-Speech_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 327c3a94f213141e7ad7620e5e7f75cf, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 781167091712
+    m_Localized: You are entering a room with
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2410817773568
+    m_Localized: which you can identify by their sounds. Your goal is to find
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4701008420864
+    m_Localized: 'in that order then, you must return to the starting point '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4835582664704
+    m_Localized: "Usted encontr\xF3 el"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4886006587392
+    m_Localized: Ahora usted debe encontrar el
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4921331015680
+    m_Localized: Ahora debe volver al punto inicial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 512901486993408
+    m_Localized: a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 513435660967936
+    m_Localized: the
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

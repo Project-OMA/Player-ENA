@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace SimpleFileBrowser
 {
@@ -186,12 +187,12 @@ namespace SimpleFileBrowser
 		private List<FileSystemInfo> validItems = new List<FileSystemInfo>();
 
 		[SerializeField]
-		private Text titleText;
+		private TextMeshProUGUI titleText;
 
 		[SerializeField]
-		private InputField pathInputField;
+		private TMP_InputField pathInputField;
 		[SerializeField]
-		private InputField searchInputField;
+		private TMP_InputField searchInputField;
 
 		[SerializeField]
 		private RectTransform quickLinksContainer;
@@ -206,25 +207,25 @@ namespace SimpleFileBrowser
 		private RecycledListView listView;
 
 		[SerializeField]
-		private InputField filenameInputField;
+		private TMP_InputField filenameInputField;
 
 		[SerializeField]
 		private Image filenameImage;
 
 		[SerializeField]
-		private Dropdown filtersDropdown;
+		private TMP_Dropdown filtersDropdown;
 
 		[SerializeField]
 		private RectTransform filtersDropdownContainer;
 
 		[SerializeField]
-		private Text filterItemTemplate;
+		private TextMeshProUGUI filterItemTemplate;
 
 		[SerializeField]
 		private Toggle showHiddenFilesToggle;
 
 		[SerializeField]
-		private Text submitButtonText;
+		private TextMeshProUGUI submitButtonText;
 
 		[Header( "Icons" )]
 
@@ -930,22 +931,23 @@ namespace SimpleFileBrowser
 		// Credit: http://answers.unity3d.com/questions/898770/how-to-get-the-width-of-ui-text-with-horizontal-ov.html
 		private int CalculateLengthOfDropdownText( string str )
 		{
-			int totalLength = 0;
+			// int totalLength = 0;
 
-			Font myFont = filterItemTemplate.font;
-			CharacterInfo characterInfo = new CharacterInfo();
+			// Font myFont = filterItemTemplate.font;
+			// CharacterInfo characterInfo = new CharacterInfo();
 
-			myFont.RequestCharactersInTexture( str, filterItemTemplate.fontSize, filterItemTemplate.fontStyle );
+			// myFont.RequestCharactersInTexture( str, filterItemTemplate.fontSize, filterItemTemplate.fontStyle );
 
-			for( int i = 0; i < str.Length; i++ )
-			{
-				if( !myFont.GetCharacterInfo( str[i], out characterInfo, filterItemTemplate.fontSize ) )
-					totalLength += 5;
+			// for( int i = 0; i < str.Length; i++ )
+			// {
+			// 	if( !myFont.GetCharacterInfo( str[i], out characterInfo, filterItemTemplate.fontSize ) )
+			// 		totalLength += 5;
 
-				totalLength += characterInfo.advance;
-			}
+			// 	totalLength += characterInfo.advance;
+			// }
+			return (int)filterItemTemplate.preferredWidth;
 
-			return totalLength;
+			// return totalLength;
 		}
 
 		private string GetInitialPath( string initialPath )

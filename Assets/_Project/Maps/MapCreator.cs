@@ -225,8 +225,7 @@ namespace ENA.Maps
                     //InstantiateTileAt(MapCategory.Ceiling, "-1", c, l);
                 }
             }
-            objectiveController.StartAudios();
-            yield return new WaitForSeconds(2f);
+            yield return objectiveController.StartAudios();
             telaPreta.SetActive(false);
         }
 

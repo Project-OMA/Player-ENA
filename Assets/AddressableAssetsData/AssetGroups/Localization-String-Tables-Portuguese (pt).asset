@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-pt
     - Preload
+  - m_GUID: ff3e4ebbed01c49a09741626b00a3117
+    m_Address: Text-To-Speech_pt
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-pt
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8d941e778e2844ec0a1b5bccf3530e4d, type: 2}
   m_SchemaSet:

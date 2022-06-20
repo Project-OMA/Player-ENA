@@ -66,5 +66,33 @@ MonoBehaviour:
     m_Localized: Espacio Navegable - ENA
     m_Metadata:
       m_Items: []
+  - m_Id: 27469841911767040
+    m_Localized: Buscar...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27475176315674624
+    m_Localized: Mostrar archivos ocultos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27482274097258496
+    m_Localized: Cancelar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27484323329335296
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27484771784318976
+    m_Localized: Nombre del archivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27525180141068288
+    m_Localized: Todos los archivos (.*)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27528107102560256
+    m_Localized: "Opci\xF3n A"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

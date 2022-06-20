@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 namespace SimpleFileBrowser
 {
@@ -20,7 +21,7 @@ namespace SimpleFileBrowser
 		private Image icon;
 
 		[SerializeField]
-		private Text nameText;
+		private TextMeshProUGUI nameText;
 
 		private float prevTouchTime = Mathf.NegativeInfinity;
 		#endregion

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Text-To-Speech Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Text-To-Speech
+  m_TableCollectionNameGuidString: 327c3a94f213141e7ad7620e5e7f75cf
+  m_Entries:
+  - m_Id: 781167091712
+    m_Key: Intro_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2410817773568
+    m_Key: Intro_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4701008420864
+    m_Key: Intro_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4835582664704
+    m_Key: FoundObjective_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4886006587392
+    m_Key: FoundObjective_2A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4921331015680
+    m_Key: FoundObjective_2B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 512901486993408
+    m_Key: Intro_Article
+    m_Metadata:
+      m_Items: []
+  - m_Id: 513435660967936
+    m_Key: Intro_Article2
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1655127520952

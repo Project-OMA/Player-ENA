@@ -198,7 +198,7 @@ public class OptionsPlayer : MonoBehaviour {
         sb.AppendLine("\nNumero de colisoes :" + UserModel.colisions);
         sb.AppendLine("Numero de rotações :" + playerControl.RotationCount);
         sb.AppendLine("Numero de passos :" + playerControl.StepCount);
-        sb.AppendLine("Ajudas Tipo1(objetivo): " + InitAudios.ajudaObjetivo.ToString());
+        sb.AppendLine("Ajudas Tipo1(objetivo): " + InitAudios.numberOfTipsGiven.ToString());
         sb.AppendLine("Ajuda Tipo2(ponto inicial): " + DirecaoInicial.ajudaInicial.ToString());
 
         var contents = sb.ToString();
