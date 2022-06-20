@@ -50,5 +50,21 @@ MonoBehaviour:
     m_Localized: the
     m_Metadata:
       m_Items: []
+  - m_Id: 2546410686767104
+    m_Localized: Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547834569089024
+    m_Localized: Congratulations, you have completed your mission.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547868601671680
+    m_Localized: Gave up ... Try again later!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2554489520250880
+    m_Localized: 'The starting point is '
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

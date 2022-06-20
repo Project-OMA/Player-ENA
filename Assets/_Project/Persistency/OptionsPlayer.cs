@@ -17,6 +17,10 @@ public class OptionsPlayer : MonoBehaviour {
 	#region Constants
     private const string relativePath = "/sdcard/LogsE3/";
 	#endregion
+    #region Voice Lines
+    public string SuccessMessage {get; set;}
+    public string FailedMessage {get; set;}
+    #endregion
 	#region Variables
     public Text path;
 	string folderPath = relativePath;
@@ -268,21 +272,9 @@ public class OptionsPlayer : MonoBehaviour {
     private void DeliverEndingMessage()
 	{
 		if (finalizou) {
-            if (Tradutor2.portugues) {
-                UAP_AccessibilityManager.Say("Parabéns, você concluiu sua missão", false);
-            } else if (Tradutor2.ingles) {
-                UAP_AccessibilityManager.Say("Congratulations, you have completed your mission.", false);
-            } else if (Tradutor2.espanhol) {
-                UAP_AccessibilityManager.Say("Enhorabuena, usted ha terminado su misión", false);
-            }
+            UAP_AccessibilityManager.Say(SuccessMessage, false);
         } else {
-            if (Tradutor2.portugues) {
-                UAP_AccessibilityManager.Say("Desistiu... Tente novamente mais tarde!", false);
-            } else if (Tradutor2.ingles) {
-                UAP_AccessibilityManager.Say("Gave up ... Try again later!", false);
-            } else if (Tradutor2.espanhol) {
-                UAP_AccessibilityManager.Say("Desistió ... ¡Inténtelo de nuevo más tarde!", false);
-            }
+            UAP_AccessibilityManager.Say(FailedMessage, false);
         }
 	}
 

@@ -104,13 +104,13 @@ public class DirecaoInicial : MonoBehaviour {
 	}
 
 	void Falar(int direcao){
-		if(Tradutor2.portugues){
-			UAP_AccessibilityManager.Say("O ponto inicial está " + portugues[direcao], false);
-			print("O ponto inicial está " + portugues[direcao]);
-		}else if(Tradutor2.ingles){
-			UAP_AccessibilityManager.Say("The starting point is "+ingles[direcao], false);
-		}else if(Tradutor2.espanhol){
-			UAP_AccessibilityManager.Say("El punto inicial está "+espanhol[direcao], false);
-		}
+		// if(Tradutor2.portugues){
+		// 	UAP_AccessibilityManager.Say("O ponto inicial está " + portugues[direcao], false);
+		// 	print("O ponto inicial está " + portugues[direcao]);
+		// }else if(Tradutor2.ingles){
+		// 	UAP_AccessibilityManager.Say("The starting point is "+ingles[direcao], false);
+		// }else if(Tradutor2.espanhol){
+		// 	UAP_AccessibilityManager.Say("El punto inicial está "+espanhol[direcao], false);
+		// }
 	}
 }

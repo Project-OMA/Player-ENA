@@ -340,7 +340,6 @@ MonoBehaviour:
   player: {fileID: 1763825173335788}
   button: {fileID: 0}
   skipIntro: 0
-  dictionary: {fileID: 11400000, guid: 015ad470ed921044c8f8021da4470557, type: 2}
   objetiveController: {fileID: 114992077736940122}
 --- !u!114 &6280388397472889329
 MonoBehaviour:
@@ -995,6 +994,8 @@ GameObject:
   - component: {fileID: 2372932992705593125}
   - component: {fileID: 6629728589537707499}
   - component: {fileID: 3685241738460539294}
+  - component: {fileID: 1028931677518862557}
+  - component: {fileID: 759756495722918765}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1284,6 +1285,84 @@ MonoBehaviour:
   step: {fileID: 82941110892458878}
   beepLeft: {fileID: 82520010382770758}
   beepRight: {fileID: 82043053822442332}
+--- !u!114 &1028931677518862557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:327c3a94f213141e7ad7620e5e7f75cf
+    m_TableEntryReference:
+      m_KeyId: 2547834569089024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114789037905417226}
+        m_TargetAssemblyTypeName: OptionsPlayer, Assembly-CSharp
+        m_MethodName: set_SuccessMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 1
+--- !u!114 &759756495722918765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:327c3a94f213141e7ad7620e5e7f75cf
+    m_TableEntryReference:
+      m_KeyId: 2547868601671680
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114789037905417226}
+        m_TargetAssemblyTypeName: OptionsPlayer, Assembly-CSharp
+        m_MethodName: set_FailedMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 1
 --- !u!1 &1659841169798336
 GameObject:
   m_ObjectHideFlags: 0

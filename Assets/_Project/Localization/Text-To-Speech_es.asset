@@ -50,5 +50,21 @@ MonoBehaviour:
     m_Localized: el
     m_Metadata:
       m_Items: []
+  - m_Id: 2546410686767104
+    m_Localized: Cargando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547834569089024
+    m_Localized: "Enhorabuena, usted ha terminado su misi\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547868601671680
+    m_Localized: "Desisti\xF3 ... \xA1Int\xE9ntelo de nuevo m\xE1s tarde!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2554489520250880
+    m_Localized: "El punto inicial est\xE1 "
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

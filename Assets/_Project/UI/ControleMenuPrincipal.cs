@@ -8,6 +8,9 @@ namespace ENA.Input
 {
     public class ControleMenuPrincipal: MonoBehaviour
     {
+        #region Voice Lines
+        public string LoadingMessage {get; set;}
+        #endregion
         #region Variables
         public GameObject buscaXML;
         public TMP_InputField nome;
@@ -69,13 +72,7 @@ namespace ENA.Input
 
         public void FalarCarregando()
         {
-            if(Tradutor2.portugues){
-                UAP_AccessibilityManager.Say("Carregando", false);
-            }else if(Tradutor2.ingles){
-                UAP_AccessibilityManager.Say("Loading", false);
-            }else if(Tradutor2.espanhol){
-                UAP_AccessibilityManager.Say("Cargando", false);
-            }
+            UAP_AccessibilityManager.Say(LoadingMessage, false);
             print("falando carregando");	
         }
         #endregion

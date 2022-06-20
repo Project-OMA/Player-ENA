@@ -47,6 +47,22 @@ MonoBehaviour:
     m_Key: Intro_Article2
     m_Metadata:
       m_Items: []
+  - m_Id: 2546410686767104
+    m_Key: Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547834569089024
+    m_Key: Activity_Success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547868601671680
+    m_Key: Activity_Fail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2554489520250880
+    m_Key: StartingPoint
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
