@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Video;
 
-namespace JurassicEngine.Services
+namespace ENA.Utilities.Services
 {
     public struct WebService
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using JurassicEngine;
+using ENA.Utilities;
 
 namespace ENA.Input
 {

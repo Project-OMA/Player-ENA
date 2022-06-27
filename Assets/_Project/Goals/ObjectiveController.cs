@@ -6,6 +6,7 @@ using UnityEngine;
 using ENA.Input;
 using UnityEngine.Serialization;
 using UnityEngine.Localization.Settings;
+using System.Linq;
 
 namespace ENA.Goals
 {
@@ -30,11 +31,35 @@ namespace ENA.Goals
         [SerializeField] InitAudios initAudios;
 
         #region Methods
+        public void Add(GameObject objective)
+        {
+            objectives.Add(objective);
+        }
+
+        public void RemoveAll()
+        {
+            objectives.Clear();
+        }
+
+        public void SortObjectivesBy(Vector3 position)
+        {
+            if (NumberOfObjectives <= 0) return;
+
+            objectives = objectives.OrderBy(
+                item => Vector3.Distance(position, item.transform.position)
+            ).ToList();
+
+            float distance;
+            for (int i = 0; i < NumberOfObjectives; i++) {
+                GameObject currentObject = objectives[i];
+                distance = Vector3.Distance(currentObject.transform.position, position);
+                Debug.Log("A distância do " + currentObject.name + " para o player é " + distance);
+            }
+        }
         #endregion
         void AdicionarListaColisions()
         {
-            for (int i = 0; i < objectives.Count + 1; i++)
-            {
+            for (int i = 0; i < objectives.Count + 1; i++) {
                 UserModel.parcialTime.Add(0);
             }
         }
@@ -47,8 +72,7 @@ namespace ENA.Goals
 
             if (objectives.Count == 0)
                 return false;
-            else
-            {
+            else {
                 StartCoroutine(StartSoundObjective(1, 5));
                 return true;
             }
@@ -68,8 +92,7 @@ namespace ENA.Goals
         {
             Debug.Log("Ativou StopObjectiveAudio");
 
-            if (objectives.Count > 0)
-            {
+            if (objectives.Count > 0) {
                 ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
                 audioSource?.GetComponent<AudioSource>()?.Stop();
             }
@@ -85,42 +108,6 @@ namespace ENA.Goals
             instance = this;
             StartObjectiveAudio(3);
             Invoke(nameof(AdicionarListaColisions), 0.5f);
-        }
-
-        public void saveUserStatus()
-        {
-            var sceneName = SceneManager.GetActiveScene().name;;
-            string path = Application.persistentDataPath + '/' + ControleMenuPrincipal.NomeDoUsuario + "_" + sceneName + "_timeLog.txt";
-
-            //Write some text to the test.txt file
-            StreamWriter writer = new StreamWriter(path, true);
-            writer.WriteLine(" ");
-
-            System.DateTime currentTime = System.DateTime.Now;
-
-            string time = currentTime.Hour + ":" + currentTime.Minute;
-            writer.WriteLine("Usuario: " + ControleMenuPrincipal.NomeDoUsuario + "-" + time);
-            writer.WriteLine(" ");
-
-            writer.WriteLine("Tempo Total: " + UserModel.time);
-
-            for (int i = 0; i < UserModel.parcialTime.Count; i++)
-            {
-                writer.WriteLine("T" + i + ": " + UserModel.parcialTime[i]);
-            }
-
-
-            writer.WriteLine(" ");
-
-            writer.WriteLine("Numero de colisoes: " + UserModel.colisions);
-            //writer.WriteLine("Ajudas: " + UserModel.helps);
-
-            writer.Close();
-        }
-
-        public void saveInfos()
-        {
-            saveUserStatus();
         }
         #region Coroutines
         IEnumerator StartSoundObjective(int index, int time)

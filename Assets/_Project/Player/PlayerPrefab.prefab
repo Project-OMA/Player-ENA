@@ -158,22 +158,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e55e08ceeb7198408fcfc7200f846e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFilho: {fileID: 1593246719849304}
-  telaPreta: {fileID: 0}
+  playerController: {fileID: 114210643828000828}
   objectiveController: {fileID: 114992077736940122}
-  noFloor: {fileID: 1953051814590918, guid: dea289c5b45f0c545ac1d877ec237e46, type: 3}
+  miniMap: {fileID: 0}
+  defaultFloor: {fileID: 1953051814590918, guid: dea289c5b45f0c545ac1d877ec237e46,
+    type: 3}
+  defaultCeiling: {fileID: 1953051814590918, guid: eaaad70601efe4475968b5e884e55527,
+    type: 3}
   invisibleWall: {fileID: 7407391712587931211, guid: bc47a7f515c9a3043814385b411ce269,
     type: 3}
-  invisibleWall2: {fileID: 7504086072415954548, guid: 4a2337e7e580d6e4fa4994f7be2aa490,
-    type: 3}
-  mineMap: {fileID: 0}
-  xmlRawFile: {fileID: 4900000, guid: 945a02596fe6c464eba231c047411220, type: 3}
-  matrixSize: {x: 0, y: 0}
-  testando: 1
   spawnObjList: {fileID: 11400000, guid: 27358891e6c46e042a5161e12c06cbab, type: 2}
-  player: {fileID: 1763825173335788}
-  counter: 0
-  novosObjetivos: []
+  canvasSize: {x: 0, y: 0}
+  tileSize: {x: 0, y: 0}
+  matrixSize: {x: 0, y: 0}
+  OnLoadedMap:
+    m_PersistentCalls:
+      m_Calls: []
+  testing: 0
+  testMapFile: {fileID: 4900000, guid: 945a02596fe6c464eba231c047411220, type: 3}
 --- !u!114 &114992077736940122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c65935ffd652467f9b9fa520f85cc53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 1683033025214330}
   closeToDoor: 0
 --- !u!114 &3685241738460539294
 MonoBehaviour:

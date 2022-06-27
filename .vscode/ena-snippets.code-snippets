@@ -1,0 +1,13 @@
+{
+	"New Projeto ENA Script": {
+		"scope": "csharp",
+	 	"prefix": ["ena-file","player-ena-file"],
+	 	"body": [
+	 		"using UnityEngine;",
+			"\nnamespace ENA${1:.Feature}\n{",
+			"\t$0",
+			"}" 
+	 	],
+	 	"description": "Creates a new script for Projeto ENA"
+	},
+}

@@ -2,7 +2,7 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace JurassicEngine
+namespace ENA.Utilities
 {
     public static partial class StreamWriterExtensions
     {

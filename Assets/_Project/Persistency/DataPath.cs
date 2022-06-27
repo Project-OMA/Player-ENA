@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace JurassicEngine.Persistency
+namespace ENA.Utilities.Persistency
 {
     public class DataPath
     {
