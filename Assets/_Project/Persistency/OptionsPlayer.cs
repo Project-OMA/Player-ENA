@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-using ENA.Utilities.Persistency;
 using System.Threading.Tasks;
 using System.Text;
 using TMPro;
@@ -15,7 +14,8 @@ using ENA.Input;
 
 public class OptionsPlayer : MonoBehaviour {
 	#region Constants
-    private const string relativePath = "/sdcard/LogsE3/";
+    public const string LoadedMapKey = "MapPath";
+    private const string RelativePath = "/sdcard/LogsE3/";
 	#endregion
     #region Voice Lines
     public string SuccessMessage {get; set;}
@@ -23,7 +23,7 @@ public class OptionsPlayer : MonoBehaviour {
     #endregion
 	#region Variables
     public Text path;
-	string folderPath = relativePath;
+	string folderPath = RelativePath;
 	public static string nomeFase;
 	public GameObject menu, telaPreta;
 	public new RectTransform camera, print;
@@ -94,7 +94,7 @@ public class OptionsPlayer : MonoBehaviour {
     private void ConfigureSaveFolder()
     {
 		#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
-        folderPath = Application.persistentDataPath + relativePath;
+        folderPath = Application.persistentDataPath + RelativePath;
 		#endif
 
         if (!System.IO.Directory.Exists(folderPath)) {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ENA.Utilities.Persistency
+namespace ENA.Services
 {
     public class DataPath
     {
