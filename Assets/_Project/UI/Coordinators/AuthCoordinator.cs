@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using ENA.Input;
 using ENA.Services;
 using TMPro;
 using UnityEngine;
@@ -47,11 +48,13 @@ namespace ENA.UI
         public async void Logout()
         {
             await authService.Logout();
+            ControleMenuPrincipal.NomeDoUsuario = "";
         }
 
         private async void Validate(string login, string password)
         {
-            await authService.LoginWith(login, password);
+            var profile = await authService.LoginWith(login, password);
+            ControleMenuPrincipal.NomeDoUsuario = profile.UserName;
             manager.Pop(authDisplay);
         }
         #endregion

@@ -458,7 +458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Usu\xE1rio Convidado"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2c6c768f4fc04cdabefc0c7460d7069, type: 2}
   m_sharedMaterial: {fileID: -1893815422411575521, guid: a2c6c768f4fc04cdabefc0c7460d7069,
