@@ -21,8 +21,8 @@ namespace ENA.Maps
         private const string NodePath = "/root/layers/layer";
         private const string TilesetPath = "/root/tilesets/tileset";
         public const float TileSizeToUnit = 0.5f;
-        public const int WallHeight = 10;
-        private const int CeilingHeight = 2;
+        public const float WallHeight = 10;
+        private const float CeilingHeight = 1.25f;
         public readonly MapCategory[] LayerOrder = new MapCategory[9]{
             MapCategory.Floor, MapCategory.Wall, MapCategory.DoorWindow, MapCategory.Furniture,
             MapCategory.Electronics, MapCategory.Utensils, MapCategory.Interactive, MapCategory.CharacterElements,
@@ -195,7 +195,7 @@ namespace ENA.Maps
             string rawData = "";
 
             if (!testing) {
-                var mapPath = PlayerPrefs.GetString("MapPath");
+                var mapPath = PlayerPrefs.GetString(OptionsPlayer.LoadedMapKey);
                 if (File.Exists(mapPath))
                     rawData = File.ReadAllText(mapPath);
                 else

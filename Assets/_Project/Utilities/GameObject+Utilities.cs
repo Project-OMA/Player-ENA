@@ -25,5 +25,10 @@ namespace ENA.Utilities
             gameObj.transform.localScale = scale;
             return gameObj;
         }
+
+        public static void SetParent(this GameObject self, Transform transform, bool keepGlobalState = false)
+        {
+            self.transform.SetParent(transform, keepGlobalState);
+        }
     }
 }
