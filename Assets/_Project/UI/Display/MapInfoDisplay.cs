@@ -11,6 +11,7 @@ namespace ENA.UI
         [Header("References")]
         [SerializeField] Image mapThumbnail;
         [SerializeField] TextMeshProUGUI titleLabel;
+        public string LoadingMessage {get; set;}
         #endregion
         #region Methods
         public void SetMapData(MapData data)

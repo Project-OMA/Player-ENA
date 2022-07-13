@@ -531,6 +531,16 @@ PrefabInstance:
       propertyPath: m_text
       value: "Girosc\xF3pio"
       objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 273052327936
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:c67b344e18aef4cc789e84bd32223d93
+      objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172114, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
       propertyPath: m_Name
@@ -1056,6 +1066,16 @@ PrefabInstance:
       propertyPath: m_text
       value: "Vibra\xE7\xE3o"
       objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 988353126400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:c67b344e18aef4cc789e84bd32223d93
+      objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172114, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
       propertyPath: m_Name
@@ -1245,6 +1265,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Mini Mapa
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 877900324864
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:c67b344e18aef4cc789e84bd32223d93
       objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172114, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
@@ -1566,6 +1596,16 @@ PrefabInstance:
       propertyPath: m_text
       value: "\xD3culos de Realidade Virtual"
       objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 458667057152
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:c67b344e18aef4cc789e84bd32223d93
+      objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172114, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
       propertyPath: m_Name
@@ -1745,6 +1785,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Objetivos Desaparecem
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 674258477056
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195782843195499472, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:c67b344e18aef4cc789e84bd32223d93
       objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172114, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}

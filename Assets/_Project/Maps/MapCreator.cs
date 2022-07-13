@@ -137,7 +137,8 @@ namespace ENA.Maps
 
                     playerController.transform.parent.position = tileDestination;
                 } else {
-                    Debug.LogError("Problemas ao pegar o prefab");
+                    Debug.LogWarning($"{code} [{c},{l}]");
+                    //Debug.LogError("Problemas ao pegar o prefab");
                     return;
                 }
             } else {
@@ -178,7 +179,6 @@ namespace ENA.Maps
         public void SpawnRoomBounds()
         {
             const float HalfTileSizeToUnit = TileSizeToUnit/2;
-            Quaternion RotatedWall = Quaternion.Euler(0, 90, 0);
             float ZOffset = matrixSize.y * TileSizeToUnit;
             float HalfZOffset = matrixSize.y * HalfTileSizeToUnit;
             float XOffset = matrixSize.x * TileSizeToUnit;
@@ -186,8 +186,8 @@ namespace ENA.Maps
 
             invisibleWall.Instance(new Vector3(0, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
             invisibleWall.Instance(new Vector3(XOffset, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
-            invisibleWall.Instance(new Vector3(XHalfOffset, 0, 0), RotatedWall, new Vector3(XOffset, WallHeight, TileSizeToUnit));
-            invisibleWall.Instance(new Vector3(XHalfOffset, 0, -ZOffset), RotatedWall, new Vector3(XOffset, WallHeight, TileSizeToUnit));
+            invisibleWall.Instance(new Vector3(XHalfOffset, 0, 0), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
+            invisibleWall.Instance(new Vector3(XHalfOffset, 0, -ZOffset), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
         }
 
         void Start()
