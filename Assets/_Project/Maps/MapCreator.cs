@@ -182,11 +182,11 @@ namespace ENA.Maps
             float ZOffset = matrixSize.y * TileSizeToUnit;
             float HalfZOffset = matrixSize.y * HalfTileSizeToUnit;
             float XOffset = matrixSize.x * TileSizeToUnit;
-            float XHalfOffset = matrixSize.x * HalfTileSizeToUnit;
+            float XHalfOffset = (matrixSize.x + 1) * HalfTileSizeToUnit;
 
-            invisibleWall.Instance(new Vector3(0, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
+            invisibleWall.Instance(new Vector3(-TileSizeToUnit, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
             invisibleWall.Instance(new Vector3(XOffset, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
-            invisibleWall.Instance(new Vector3(XHalfOffset, 0, 0), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
+            invisibleWall.Instance(new Vector3(XHalfOffset, 0, TileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
             invisibleWall.Instance(new Vector3(XHalfOffset, 0, -ZOffset), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
         }
 
