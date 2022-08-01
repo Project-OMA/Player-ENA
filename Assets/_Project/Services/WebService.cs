@@ -77,7 +77,8 @@ namespace ENA.Services
             apiRequest.SetRequestHeader("Content-Type", "application/json");
             var operation = apiRequest.SendWebRequest();
 
-            while(!operation.isDone) await Task.Yield();
+            do await Task.Delay(10);
+            while(!operation.isDone);
 
             if (apiRequest.result != UnityWebRequest.Result.Success) {
                 Debug.LogError(apiRequest.error);

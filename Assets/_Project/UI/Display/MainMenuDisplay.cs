@@ -10,14 +10,14 @@ namespace ENA.UI
         [SerializeField] UIList mapDataListRoot;
         #endregion
         #region Methods
-        public void SetHeader(string text)
-        {
-            userLabel.text = text;
-        }
-
         public UIList GetList()
         {
             return mapDataListRoot;
+        }
+
+        public void SetHeader(string text)
+        {
+            userLabel.text = text;
         }
         #endregion
     }

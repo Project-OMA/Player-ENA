@@ -5,11 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Project/Scenes/Menu.unity
-    guid: 982173da9ce099241b479cbd901893c7
   - enabled: 1
-    path: Assets/_Placeholder/Debug.unity
+    path: Assets/_Project/Scenes/Menu.unity
     guid: 3573ee46ced674b94a29df872c643cda
   - enabled: 1
     path: Assets/_Project/Scenes/CenaPrincipal - Copia.unity

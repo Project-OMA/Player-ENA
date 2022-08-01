@@ -16,14 +16,18 @@ namespace ENA.Services
         #endregion
         #region Variables
         DataSource dataSource;
+        LocalCache localCache;
         #endregion
         #region Constructors
-        public MapService() {}
+        public MapService()
+        {
+            localCache = new LocalCache();
+        }
         #endregion
         #region Methods
         public Task<MapData[]> FetchMaps(ENAProfile profile)
         {
-            return dataSource.FetchMapsFor(profile.UserID);
+            return localCache.FetchMapsFor(profile.UserID);
         }
 
         public void SetDataSource(DataSource source)
@@ -46,7 +50,7 @@ namespace ENA.Services
             return obj.maps;
         }
 
-        public static bool SaveMaps(MapData[] maps)
+        public static bool SaveMaps(MapData[] maps, string targetFile)
         {
             throw new System.NotImplementedException();
         }

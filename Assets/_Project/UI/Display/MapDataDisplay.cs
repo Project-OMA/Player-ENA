@@ -14,19 +14,19 @@ namespace ENA.UI
         [SerializeField] TextMeshProUGUI titleLabel;
         #endregion
         #region Methods
-        public void SetMapData(MapData mapData)
-        {
-            thumbnailImage.sprite = mapData.Sprite;
-            titleLabel.text = mapData.Name;
-            button.onClick.RemoveAllListeners();
-        }
-
         public void SetBind(Action<int> action)
         {
             if (action == null) return;
 
             int siblingIndex = transform.GetSiblingIndex();
             button.onClick.AddListener(delegate{action(siblingIndex);});
+        }
+
+        public void SetMapData(MapData mapData)
+        {
+            thumbnailImage.sprite = mapData.Sprite;
+            titleLabel.text = mapData.Name;
+            button.onClick.RemoveAllListeners();
         }
         #endregion
     }

@@ -7,7 +7,7 @@ namespace ENA.Services
     public class ENAWebService: MapService.DataSource, AuthService.CredentialManager
     {
         #region Constants
-        public const string ENAServicePath = "http://localhost:3000";
+        public const string ENAServicePath = "https://localhost:7073/api";
         #endregion
         #region Classes
         public struct URI {
@@ -21,19 +21,24 @@ namespace ENA.Services
         #region Constructors
         public ENAWebService()
         {
-            
+            apiService = new WebService(ENAServicePath);
         }
         #endregion
         #region MapService.DataSource Implementation
         public async Task<MapData[]> FetchMapsFor(string userID)
         {
-            string PathToMaps = DataPath.Default+"Assets/_Placeholder/Maps/";
-            var maps = new MapData[3]{
-                new MapData("Casa Simples", PathToMaps+"Casa Simples/"),
-                new MapData("Escola", PathToMaps+"Escola/"),
-                new MapData("Escritório", PathToMaps+"Escritório/")
-            };
-            return maps;
+            //const string mapURL = ENAServicePath+URI.Maps;
+            var response = await apiService.MakeRequest(URI.Maps);
+            Debug.Log($"Response: {response}");
+            return new MapData[0];
+            
+            // string PathToMaps = DataPath.Default+"Assets/_Placeholder/Maps/";
+            // var maps = new MapData[3]{
+            //     new MapData("Casa Simples", PathToMaps+"Casa Simples/"),
+            //     new MapData("Escola", PathToMaps+"Escola/"),
+            //     new MapData("Escritório", PathToMaps+"Escritório/")
+            // };
+            // return maps;
         }
         #endregion
         #region AuthService.CredentialManager

@@ -15,14 +15,14 @@ namespace ENA.Services
         #region Constructors
         public ENAProfile()
         {
-            name = "Test";
-            ID = "0000";
+            name = "Usuário Convidado";
+            ID = "-1";
         }
 
-        public ENAProfile(string username)
+        public ENAProfile(string username, int id = -1)
         {
             name = username;
-            ID = "0000";
+            ID = id.ToString();
         }
         #endregion
     }

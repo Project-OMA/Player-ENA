@@ -20,14 +20,14 @@ namespace ENA.Maps
         }
         #endregion
         #region Variables
-        [SerializeField] string mapName;
         [SerializeField] string folderPath;
+        [SerializeField] string mapName;
         Sprite sprite;
         #endregion
         #region Properties
-        public Sprite Sprite => sprite;
+        public string FolderPath => folderPath+MapFileName;
         public string Name => mapName;
-        public string FilePath => folderPath+MapFileName;
+        public Sprite Sprite => sprite;
         #endregion
         #region Constructors
         public MapData(string mapName, string folderPath)
@@ -42,6 +42,7 @@ namespace ENA.Maps
         {
             if (string.IsNullOrEmpty(folderPath)) return null;
             string imagePath = folderPath+ImageFileName;
+            Debug.Log($"{imagePath}");
 
             Texture2D texture = new Texture2D(1,1);
             texture.LoadImage(imagePath);
