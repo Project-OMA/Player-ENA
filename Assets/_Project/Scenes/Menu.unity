@@ -679,6 +679,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &986323040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1813884847001662, guid: 89f4a0ae7ea3fa84ea56c91291d7bd87,
+    type: 3}
+  m_PrefabInstance: {fileID: 1800200656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &986323041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986323040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298fbfd5cc1bb1544905437fd345493c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CurrentQueueLength: 0
+  m_CurrentPauseDuration: 0
+  m_CurrentElement: none
+  m_IsSpeaking: 0
 --- !u!114 &1174588681 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6741884459761932247, guid: 26fb3a53b26794c81856f62194311a8d,
@@ -997,11 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be99a2e235ae5491b8cef79fcd97f71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gyroEnabled: 0
-  minimapEnabled: 0
-  vrEnabled: 0
-  vibrationEnabled: 0
-  elementsDisappearEnabled: 0
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   settingsPanel: {fileID: 6045360964524925006}
 --- !u!114 &1914273463
 MonoBehaviour:
@@ -1029,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862d12946baa34679a432828e3092426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   authDisplay: {fileID: 1434911146}
   signupPanel: {fileID: 0}
 --- !u!114 &1914273465
@@ -1167,7 +1186,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2053022917}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UAP_AccessibilityManager, Assembly-CSharp
         m_MethodName: ToggleAccessibility
         m_Mode: 1
@@ -1186,18 +1205,6 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2053022917 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 11475380, guid: 89f4a0ae7ea3fa84ea56c91291d7bd87,
-    type: 3}
-  m_PrefabInstance: {fileID: 1800200656}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2053022915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9e42417444b96439dd7aeff0814d84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1440706331028442262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2336,41 +2343,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1449679380}
     m_Modifications:
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1914273462}
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetGyro
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ENA.UI.SettingsCoordinator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117623930448640, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 693117623930448647, guid: e501eb2cb6b734e34853523c8fbd3b82,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2430,21 +2402,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -46.205
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624264340819, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624264340819, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624264340819, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 693117624264340820, guid: e501eb2cb6b734e34853523c8fbd3b82,
         type: 3}
@@ -2506,41 +2463,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -46.205
       objectReference: {fileID: 0}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1914273462}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetVibration
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ENA.UI.SettingsCoordinator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624564316840, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 693117624564316847, guid: e501eb2cb6b734e34853523c8fbd3b82,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2570,41 +2492,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -279.02502
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1914273462}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SeMinimap
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ENA.UI.SettingsCoordinator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117624903847467, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 693117624903847468, guid: e501eb2cb6b734e34853523c8fbd3b82,
         type: 3}
@@ -2726,41 +2613,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -170.615
       objectReference: {fileID: 0}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1914273462}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetVR
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ENA.UI.SettingsCoordinator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625675165132, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 693117625757839531, guid: e501eb2cb6b734e34853523c8fbd3b82,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2790,41 +2642,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -46.205
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1914273462}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetElementsDisappear
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ENA.UI.SettingsCoordinator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 693117625958430234, guid: e501eb2cb6b734e34853523c8fbd3b82,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 693117625958430237, guid: e501eb2cb6b734e34853523c8fbd3b82,
         type: 3}

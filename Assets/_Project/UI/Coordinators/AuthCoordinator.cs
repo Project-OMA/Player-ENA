@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using ENA.Input;
+using ENA.Persistency;
 using ENA.Services;
 using TMPro;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace ENA.UI
     {
         #region Variables
         AuthService authService;
-        [FormerlySerializedAs("authPanel")]
+        [SerializeField] SettingsProfile profile;
+        [Header("Panels")]
         [SerializeField] AuthDisplay authDisplay;
         [SerializeField] UIPanel signupPanel;
         #endregion
@@ -48,13 +50,14 @@ namespace ENA.UI
         public async void Logout()
         {
             await authService.Logout();
-            ControleMenuPrincipal.NomeDoUsuario = "";
         }
 
         private async void Validate(string login, string password)
         {
-            var profile = await authService.LoginWith(login, password);
-            ControleMenuPrincipal.NomeDoUsuario = profile.UserName;
+            var user = await authService.LoginWith(login, password);
+            if (await authService.LoginWith(login, password) is ENAProfile loggedUser) {
+                profile.LoggedProfile = loggedUser;
+            }
             manager.Pop(authDisplay);
         }
         #endregion

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ENA.Goals;
+using ENA.Persistency;
 using ENA.Physics;
 using ENA.Player;
 using UnityEngine;
@@ -23,8 +24,7 @@ namespace ENA.Input
         [SerializeField] CollisionTracker collisionTracker;
         [SerializeField] ObjectiveController objectiveController;
         [SerializeField] Soundboard playerSoundboard;
-        #endregion
-        #region Other variables
+        [SerializeField] SettingsProfile profile;
         [Header("Parameters")]
         [FormerlySerializedAs("distPasso")]
         [SerializeField] float stepDistance;
@@ -70,7 +70,7 @@ namespace ENA.Input
 
         private void CheckRotation()
         {
-            if (ControleMenuPrincipal.giroscopioValue) {
+            if (profile.GyroEnabled) {
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, cameraTransform.transform.eulerAngles.y, transform.eulerAngles.z);
             } else {
                 float axisValue = UnityEngine.Input.GetAxis("Horizontal");
@@ -134,7 +134,7 @@ namespace ENA.Input
 
         private void UpdateEndPosition()
         {
-            if (ControleMenuPrincipal.giroscopioValue) {
+            if (profile.GyroEnabled) {
                 transform.localPosition = new Vector3(transform.localPosition.x, 0.64f, transform.localPosition.z);
             } else {
                 transform.position = collisionTracker.Target.transform.position;

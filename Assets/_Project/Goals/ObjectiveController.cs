@@ -7,6 +7,7 @@ using ENA.Input;
 using UnityEngine.Serialization;
 using UnityEngine.Localization.Settings;
 using System.Linq;
+using ENA.TTS;
 
 namespace ENA.Goals
 {

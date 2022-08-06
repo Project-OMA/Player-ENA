@@ -50,6 +50,11 @@ namespace ENA.UI
             mapDataCoordinator = GetComponent<MapDataCoordinator>();
             settingsCoordinator = GetComponent<SettingsCoordinator>();
         }
+
+        public void SpeakLoading()
+        {
+            
+        }
         #endregion
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ENA.Goals;
 using ENA.Input;
+using ENA.Persistency;
 using UnityEngine;
 
 public class objectCollider : MonoBehaviour
@@ -17,6 +18,7 @@ public class objectCollider : MonoBehaviour
     int language = 0;
 
     AudioSource hitsound;
+    [SerializeField] SettingsProfile profile;
 
     // Use this for initialization
     void Start()
@@ -62,10 +64,11 @@ public class objectCollider : MonoBehaviour
         if (!hitsound.isPlaying){
             hitsound.Play();
         }
+
         if(ObjectiveController.instance.objectives.Count > 0){
             if(gameObject == ObjectiveController.instance.objectives[0]){
                 OptionsPlayer.instance.InstanceTracer();
-                if(ControleMenuPrincipal.elementosValue){
+                if(profile.ElementsDisappearEnabled){
                     Invoke("Desligar",3);
                 }
             }

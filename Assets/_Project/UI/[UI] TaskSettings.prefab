@@ -651,6 +651,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+        type: 2}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetGyro
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ENA.Persistency.SettingsProfile, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172117, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
       propertyPath: m_Text
@@ -851,6 +887,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+        type: 2}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.UI.Toggle, UnityEngine.UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172117, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
       propertyPath: m_Text
@@ -1046,6 +1118,11 @@ PrefabInstance:
       propertyPath: m_text
       value: Confirmar
       objectReference: {fileID: 0}
+    - target: {fileID: 8029919520798274049, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
+        type: 3}
+      propertyPath: m_Text
+      value: Confirmar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a6cf6c1f2a9749c89ecbafef1779e16, type: 3}
 --- !u!224 &6668396742303634561 stripped
@@ -1185,6 +1262,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+        type: 2}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetVibration
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ENA.Persistency.SettingsProfile, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172117, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_Text
+      value: "Vibra\xE7\xE3o"
       objectReference: {fileID: 0}
     - target: {fileID: 6519836818136947199, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
@@ -1386,6 +1504,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+        type: 2}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetMinimap
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ENA.Persistency.SettingsProfile, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172117, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: m_Text
+      value: Mini Mapa
+      objectReference: {fileID: 0}
     - target: {fileID: 6519836818136947199, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1576,6 +1735,11 @@ PrefabInstance:
       propertyPath: m_text
       value: Cancelar
       objectReference: {fileID: 0}
+    - target: {fileID: 8029919520798274049, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
+        type: 3}
+      propertyPath: m_Text
+      value: Cancelar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a6cf6c1f2a9749c89ecbafef1779e16, type: 3}
 --- !u!224 &6668396741783159274 stripped
@@ -1700,6 +1864,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+        type: 2}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetVR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ENA.Persistency.SettingsProfile, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172117, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}
@@ -1905,6 +2105,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+        type: 2}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetElementsDisappear
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ENA.Persistency.SettingsProfile, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519836816712172116, guid: 961a74720f2474a0a8e9405ee23921aa,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6519836816712172117, guid: 961a74720f2474a0a8e9405ee23921aa,
         type: 3}

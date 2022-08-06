@@ -236,3 +236,4 @@ MonoBehaviour:
   collisionCount: 0
   colliderAlert: []
   names: []
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}

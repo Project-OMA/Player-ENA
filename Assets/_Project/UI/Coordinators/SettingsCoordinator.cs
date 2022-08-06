@@ -1,33 +1,25 @@
+using ENA.Persistency;
 using UnityEngine;
-using SaveContainer = ENA.Input.ControleMenuPrincipal;
 
 namespace ENA.UI
 {
     public class SettingsCoordinator: UICoordinator
     {
         #region Variables
-        public bool gyroEnabled;
-        public bool minimapEnabled;
-        public bool vrEnabled;
-        public bool vibrationEnabled;
-        public bool elementsDisappearEnabled;
+        [SerializeField] SettingsProfile profile;
         [Header("Displays")]
         [SerializeField] TaskSettingsDisplay settingsPanel;
         #endregion
         #region UICoordinator Implementation
         public override void Setup()
         {
-            
+            profile.Load();
         }
         #endregion
         #region Methods
         public void CancelChanges()
         {
-            gyroEnabled = SaveContainer.giroscopioValue;
-            minimapEnabled = SaveContainer.mapaValue;
-            vrEnabled = SaveContainer.oculosValue;
-            elementsDisappearEnabled = SaveContainer.elementosValue;
-            vibrationEnabled = SaveContainer.vibrationValue;
+            profile.Load();
         }
 
         public void CloseSettingsPanel()
@@ -42,45 +34,12 @@ namespace ENA.UI
 
         public void ResetToDefault()
         {
-            gyroEnabled = false;
-            minimapEnabled = false;
-            vrEnabled = false;
-            vibrationEnabled = false;
-            elementsDisappearEnabled = false;
+            profile.Reset();
         }
 
         public void SaveSettings()
         {
-            SaveContainer.giroscopioValue = gyroEnabled;
-            SaveContainer.mapaValue = minimapEnabled;
-            SaveContainer.oculosValue = vrEnabled;
-            SaveContainer.elementosValue = elementsDisappearEnabled;
-            SaveContainer.vibrationValue = vibrationEnabled;
-        }
-        
-        public void SetGyro(bool value)
-        {
-            gyroEnabled = value;
-        }
-
-        public void SeMinimap(bool value)
-        {
-            minimapEnabled = value;
-        }
-
-        public void SetVR(bool value)
-        {
-            vrEnabled = value;
-        }
-
-        public void SetElementsDisappear(bool value)
-        {
-            elementsDisappearEnabled = value;
-        }
-
-        public void SetVibration(bool value)
-        {
-            vibrationEnabled = value;
+            profile.Save();
         }
         #endregion
     }

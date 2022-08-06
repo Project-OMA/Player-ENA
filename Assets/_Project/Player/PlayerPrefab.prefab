@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341dce83cc6a89048aac5ed847f08cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
 --- !u!1 &1219753439919190
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4883219862275778}
   - component: {fileID: 114513856519621808}
-  - component: {fileID: 114790678973239888}
+  - component: {fileID: 7198635901266376462}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!114 &114790678973239888
+--- !u!114 &7198635901266376462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,16 +279,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1365587848896392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!1 &1368452835872898
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,10 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e55fba29bd70a44abe06f779fc2fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1763825173335788}
-  button: {fileID: 0}
-  skipIntro: 0
-  objetiveController: {fileID: 114992077736940122}
+  objectiveController: {fileID: 114992077736940122}
 --- !u!114 &6280388397472889329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,36 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8af40bbdbf4806469187a816f22e650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pai: {fileID: 4189089848957160}
-  player: {fileID: 4856322360425268}
   pontoInicial: {fileID: 4001924771458506}
-  portugues:
-  - "\xE0 sua frente"
-  - "atr\xE1s de voc\xEA"
-  - "\xE0 sua direita"
-  - "\xE0 sua esquerda"
-  - "entre \xE0 sua frente e direita"
-  - "entre \xE0 sua frente e esquerda"
-  - "entre atr\xE1s de voc\xEA e a direita"
-  - "entre atr\xE1s de voc\xEA e a esquerda"
-  ingles:
-  - in front of you
-  - behind you
-  - 'to your right '
-  - to your left
-  - between its front and the right
-  - between its front and the left
-  - 'between behind you and the right '
-  - 'between behind you and the left '
-  espanhol:
-  - "\xE0 sua frente"
-  - "detr\xE1s de t\xED "
-  - 'a su derecha '
-  - a la izquierda
-  - entre delante y derecha
-  - entre delante y izquierda
-  - "entre detr\xE1s de ti y la derecha"
-  - "entre detr\xE1s de ti y la izquierda"
   aproximadamenteX: 0
   aproximadamenteZ: 0
   frente: 0
@@ -775,8 +764,8 @@ Camera:
   m_GameObject: {fileID: 1442737346793800}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.22948559, g: 0.2392978, b: 0.254717, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -903,8 +892,8 @@ Camera:
   m_GameObject: {fileID: 1462552281347958}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.22948559, g: 0.2392978, b: 0.254717, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1175,6 +1164,7 @@ MonoBehaviour:
   collisionTracker: {fileID: 6629728589537707499}
   objectiveController: {fileID: 114992077736940122}
   playerSoundboard: {fileID: 3685241738460539294}
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   stepDistance: 0.5
   cameraTransform: {fileID: 4598130206794710}
 --- !u!114 &114789037905417226
@@ -1219,6 +1209,7 @@ MonoBehaviour:
   qualTracer: {fileID: 0}
   playerControl: {fileID: 114210643828000828}
   minimap: {fileID: 8400000, guid: 4ba9f8aa5bb577e4bbfe287c99696c33, type: 2}
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
 --- !u!114 &114007720927469800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1809,6 +1800,7 @@ MonoBehaviour:
   - NomePt
   - NomeEs
   - NomeIg
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
 --- !u!1 &1790537708424730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,8 +2178,8 @@ Camera:
   m_GameObject: {fileID: 1867147039822052}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.22948559, g: 0.2392978, b: 0.254717, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

@@ -11,6 +11,9 @@ using TMPro;
 using ENA.Utilities;
 using ENA;
 using ENA.Input;
+using ENA.TTS;
+using ENA.Persistency;
+using ENA.Services;
 
 public class OptionsPlayer : MonoBehaviour {
 	#region Constants
@@ -37,6 +40,7 @@ public class OptionsPlayer : MonoBehaviour {
 	public TrailRenderer qualTracer;
 	[SerializeField] PlayerController playerControl;
     [SerializeField] RenderTexture minimap;
+    [SerializeField] SettingsProfile profile;
 	#endregion
 	private void Start()
     {
@@ -61,7 +65,7 @@ public class OptionsPlayer : MonoBehaviour {
 
     private void ConfigureVRGoggles()
     {
-		var isVREnabled = ControleMenuPrincipal.oculosValue;
+		var isVREnabled = profile.VREnabled;
 
         if (isVREnabled) {
             playerControl.SetCameraTransform(cameraVR.transform);
@@ -75,7 +79,7 @@ public class OptionsPlayer : MonoBehaviour {
 
     private void ConfigureGyroscope()
 	{
-		var isGyroEnabled = ControleMenuPrincipal.giroscopioValue;
+		var isGyroEnabled = profile.GyroEnabled;
 
 		var cameraVRGyro = cameraVR.GetComponent<ControleGiroscopio>();
 		var cameraNormalGyro = cameraNormal.GetComponent<ControleGiroscopio>();
@@ -117,7 +121,7 @@ public class OptionsPlayer : MonoBehaviour {
 
 	private void Update()
 	{
-		if(ControleMenuPrincipal.giroscopioValue) {
+		if(profile.GyroEnabled) {
 			cameraMaster.transform.localPosition = gameObject.transform.localPosition;
 		}
 	}
@@ -170,24 +174,24 @@ public class OptionsPlayer : MonoBehaviour {
         await SalvarTracer();
     }
 
-    public async Task SaveUserStatus()
+    public async Task SaveUserStatus(string username)
     {
         System.DateTime currentTime = System.DateTime.Now;
         string time = currentTime.Hour + "_" + currentTime.Minute;
-        string path = folderPath + GetSessionName() + "_Log.txt";
+        string path = folderPath + GetSessionName(username) + "_Log.txt";
 
         //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);
-        string contents = BuildLog(time);
+        string contents = BuildLog(time, username);
         await writer.WriteAsync(contents);
         writer.Close();
 
         Debug.Log($"Saved Log to Path: {path}");
     }
 
-    private string BuildLog(string time)
+    private string BuildLog(string time, string username)
     {
-        var userName = ControleMenuPrincipal.NomeDoUsuario + "-" + time;
+        var userName = username + "-" + time;
 		var stageFileName = PlayerPrefs.GetString("Fase");
         var stageName = stageFileName.Substring(0, Mathf.Max(stageFileName.Length - 4, 0));
 
@@ -211,14 +215,16 @@ public class OptionsPlayer : MonoBehaviour {
 
     public async Task SalvarTracer()
     {
+        var userProfile = profile.LoggedProfile;
+
         menu.SetActive(false);
         PlaceCameraOnRenderSpot();
         DeliverEndingMessage();
         Debug.Log($"Started Saving");
 
-        SaveScreenshot();
+        SaveScreenshot(userProfile.UserName);
         Debug.Log($"Saving Screenshot");
-        await SaveUserStatus();
+        await SaveUserStatus(userProfile.UserName);
         await Task.Delay(100);
 
         Debug.Log($"Finished Saving");
@@ -230,9 +236,9 @@ public class OptionsPlayer : MonoBehaviour {
         Debug.Log($"Loading Main Menu...");
     }
 
-    private void SaveScreenshot()
+    private void SaveScreenshot(string username)
     {
-        string screenshotName = GetSessionName() + "_Tracker.png";
+        string screenshotName = GetSessionName(username) + "_Tracker.png";
         string myScreenshotLocation = folderPath + screenshotName;
 
         Texture2D texture = minimap.ToTexture2D();
@@ -242,10 +248,10 @@ public class OptionsPlayer : MonoBehaviour {
         Debug.Log($"Moved file to Path: {myScreenshotLocation}");
     }
 
-    private string GetSessionName()
+    private string GetSessionName(string username)
     {
 		string dateTime = FetchCurrentDateTime();
-        return ControleMenuPrincipal.NomeDoUsuario + "_" + dateTime;
+        return username + "_" + dateTime;
     }
 
     private string FetchCurrentDateTime()

@@ -10,9 +10,11 @@ namespace ENA.Services
     {
         #region Constants
         public const string MapsFolder = "resources/maps/";
+        public const string LogsFolder = "logs/";
         #endregion
         #region Properties
         private string MapsFullPath => DataPath.Persistent+MapsFolder;
+        private string LogsFullPath => DataPath.Persistent+LogsFolder;
         #endregion
         #region MapService.DataSource Implementation
         public Task<MapData[]> FetchMapsFor(string userToken)
