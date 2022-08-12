@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -9,6 +10,85 @@ namespace ENA.Services
 {
     public struct WebService
     {
+        #region Constants
+        public const string DefaultContentType = "application/json";
+        #endregion
+        #region Classes
+        public struct Request: IDisposable
+        {
+            #region Variables
+            UnityWebRequest request;
+            #endregion
+            #region Constructors
+            public Request(UnityWebRequest request)
+            {
+                this.request = request;
+            }
+
+            public Request(UnityWebRequest request, string contentType)
+            {
+                this.request = request;
+                request.SetRequestHeader("Content-Type", contentType);
+            }
+            #endregion
+            #region IDisposable Implementation
+            public void Dispose()
+            {
+                request?.Dispose();
+            }
+            #endregion
+            #region Methods
+            public void Cancel()
+            {
+                request?.Abort();
+            }
+
+            public async Task<Response> Send()
+            {
+                Response response;
+
+                using (request) {
+                    request.disposeDownloadHandlerOnDispose = false;
+                    var operation = request.SendWebRequest();
+
+                    do await Task.Delay(10);
+                    while(!operation.isDone);
+
+                    if (request.result != UnityWebRequest.Result.Success) {
+                        Debug.LogWarning(request.error);
+                    }
+
+                    response = new Response(request);
+                }
+
+                return response;
+            }
+            #endregion
+        }
+
+        public struct Response: IDisposable
+        {
+            #region Variables
+            public DownloadHandler Handler {get; private set;}
+            public long ResponseCode {get; private set;}
+            public UnityWebRequest.Result Result {get; private set;}
+            #endregion
+            #region Constructors
+            public Response(UnityWebRequest request)
+            {
+                Handler = request.downloadHandler;
+                ResponseCode = request.responseCode;
+                Result = request.result;
+            }
+            #endregion
+            #region IDisposable Implementation
+            public void Dispose()
+            {
+                Handler?.Dispose();
+            }
+            #endregion
+        }
+        #endregion
         #region Enums
         public enum RequestType {
             GET, POST, PUT, DELETE
@@ -24,38 +104,68 @@ namespace ENA.Services
         }
         #endregion
         #region Methods
-        public async Task<string> MakeRequest(string subpath, RequestType requestType = RequestType.GET, string requestData = null)
+        public Request Audio(string subpath, AudioType type = AudioType.AUDIOQUEUE)
         {
-            return await WebService.Request(apiRoot+subpath, requestType, requestData);
+            return WebService.AudioRequest(Path.Combine(apiRoot,subpath));
         }
 
-        public async Task<T> MakeRequest<T>(string subpath, RequestType requestType = RequestType.GET, string requestData = null)
+        public Request Delete(string subpath)
         {
-            return await WebService.Request<T>(apiRoot+subpath, requestType, requestData);
+            return WebService.HTTPDelete(Path.Combine(apiRoot,subpath));
         }
 
-        public async Task<AudioClip> MakeRequestAudio(string path, AudioType type = AudioType.AUDIOQUEUE)
+        public Request Get(string subpath, string contentType = DefaultContentType)
         {
-            return await WebService.RequestAudio(path, type);
+            return WebService.HTTPGet(Path.Combine(apiRoot,subpath), contentType);
         }
 
-        public async Task<Texture2D> MakeRequestTexture(string subpath)
+        public Request Post(string subpath, string requestData, string contentType = DefaultContentType)
         {
-            return await WebService.RequestTexture(apiRoot+subpath);
+            return WebService.HTTPPost(Path.Combine(apiRoot,subpath), requestData, contentType);
+        }
+
+        public Request Put(string subpath, string requestData)
+        {
+            return WebService.HTTPPut(Path.Combine(apiRoot,subpath), requestData);
+        }
+
+        public Request Image(string subpath)
+        {
+            return WebService.ImageRequest(Path.Combine(apiRoot,subpath));
         }
         #endregion
         #region Static Methods
-        public static UnityWebRequest CreateAudioRequest(string path, AudioType type = AudioType.AUDIOQUEUE)
+        private static Request AudioRequest(string path, AudioType type = AudioType.AUDIOQUEUE)
         {
-            return UnityWebRequestMultimedia.GetAudioClip(path,type);
+            return new Request(UnityWebRequestMultimedia.GetAudioClip(path, type));
         }
 
-        public static UnityWebRequest CreateImageRequest(string path)
+        public static Request HTTPDelete(string path)
         {
-            return UnityWebRequestTexture.GetTexture(path);
+            return new Request(WebRequest(path, RequestType.DELETE));
         }
 
-        public static UnityWebRequest CreateWebRequest(string path, RequestType requestType = RequestType.GET, string requestData = null)
+        public static Request HTTPGet(string path, string contentType = DefaultContentType)
+        {
+            return new Request(WebRequest(path, RequestType.GET), contentType);
+        }
+
+        public static Request HTTPPost(string path, string requestData, string contentType = DefaultContentType)
+        {
+            return new Request(WebRequest(path, RequestType.POST, requestData), contentType);
+        }
+
+        public static Request HTTPPut(string path, string requestData)
+        {
+            return new Request(WebRequest(path, RequestType.PUT, requestData));
+        }
+
+        private static Request ImageRequest(string path)
+        {
+            return new Request(UnityWebRequestTexture.GetTexture(path));
+        }
+
+        private static UnityWebRequest WebRequest(string path, RequestType requestType = RequestType.GET, string requestData = null)
         {
             switch (requestType) {
                 case RequestType.GET:
@@ -69,62 +179,6 @@ namespace ENA.Services
                 default:
                     return default(UnityWebRequest);
             }
-        }
-
-        public static async Task<string> Request(string path, RequestType requestType = RequestType.GET, string requestData = null)
-        {
-            var apiRequest = CreateWebRequest(path);
-            apiRequest.SetRequestHeader("Content-Type", "application/json");
-            var operation = apiRequest.SendWebRequest();
-
-            do await Task.Delay(10);
-            while(!operation.isDone);
-
-            if (apiRequest.result != UnityWebRequest.Result.Success) {
-                Debug.LogError(apiRequest.error);
-            } else {
-                return apiRequest.downloadHandler.text;
-            }
-
-            return null;
-        }
-
-        public static async Task<T> Request<T>(string path, RequestType requestType = RequestType.GET, string requestData = null)
-        {
-            var result = await WebService.Request(path, requestType, requestData);
-            return JsonUtility.FromJson<T>(result);
-        }
-
-        public static async Task<AudioClip> RequestAudio(string path, AudioType type = AudioType.AUDIOQUEUE)
-        {
-            var audioRequest = CreateAudioRequest(path, type);
-            var operation = audioRequest.SendWebRequest();
-
-            while(!operation.isDone) await Task.Yield();
-
-            if (audioRequest.result != UnityWebRequest.Result.Success) {
-                Debug.LogError(audioRequest.error);
-            } else {
-                return DownloadHandlerAudioClip.GetContent(audioRequest);
-            }
-
-            return null;
-        }
-
-        public static async Task<Texture2D> RequestTexture(string path)
-        {
-            var imageRequest = CreateImageRequest(path);
-            var operation = imageRequest.SendWebRequest();
-
-            while(!operation.isDone) await Task.Yield();
-
-            if (imageRequest.result != UnityWebRequest.Result.Success) {
-                Debug.LogError(imageRequest.error);
-            } else {
-                return DownloadHandlerTexture.GetContent(imageRequest);
-            }
-
-            return null;
         }
         #endregion
     }

@@ -1,37 +1,53 @@
 using System;
 using UnityEngine;
 using ENA.Utilities;
+using System.Collections.Generic;
 
 namespace ENA.Maps
 {
     public class MapData
     {
         #region Constants
-        const string MapFileName = "map.xml";
-        const string ImageFileName = "thumbnail.png";
+        public const string MapFileName = "map.xml";
+        public const string ImageFileName = "thumbnail.png";
+        public const string MetadataFileName = "ena.json";
         #endregion
         #region Classes
-        [Serializable]
-        public class List
+        public struct IDComparer: IEqualityComparer<MapData>
         {
-            #region Variables
-            public MapData[] maps;
+            #region Static Variables
+            public static IDComparer New => new IDComparer();
+            #endregion
+            #region IEqualityComparer Implementation
+            public bool Equals(MapData x, MapData y)
+            {
+                return x.ID == y.ID;
+            }
+
+            public int GetHashCode(MapData obj)
+            {
+                return (int)obj.ID;
+            }
             #endregion
         }
         #endregion
         #region Variables
+        [SerializeField] uint mapID;
         [SerializeField] string folderPath;
         [SerializeField] string mapName;
         Sprite sprite;
         #endregion
         #region Properties
-        public string FolderPath => folderPath+MapFileName;
+        public string FilePath => folderPath+MapFileName;
+        public uint ID => mapID;
         public string Name => mapName;
         public Sprite Sprite => sprite;
+        public string ThumbnailPath => folderPath+ImageFileName;
         #endregion
         #region Constructors
-        public MapData(string mapName, string folderPath)
+        public MapData(uint id, string mapName, string folderPath)
         {
+            this.mapID = id;
             this.mapName = mapName;
             this.folderPath = folderPath;
             this.sprite = GenerateSprite();

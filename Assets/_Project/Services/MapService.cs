@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using ENA.Maps;
 using UnityEngine;
@@ -25,9 +27,23 @@ namespace ENA.Services
         }
         #endregion
         #region Methods
-        public Task<MapData[]> FetchMaps(ENAProfile profile)
+        public async Task<MapData[]> FetchMaps(ENAProfile profile)
         {
-            return localCache.FetchMapsFor(profile.UserID);
+            var results = await Task.WhenAll(localCache.FetchMapsFor(profile.UserID), dataSource.FetchMapsFor(profile.UserID));
+            var mapList = results.SelectMany(result => result).Distinct(MapData.IDComparer.New).ToList();
+            ValidateMaps(mapList);
+            return mapList.ToArray();
+        }
+
+        private void ValidateMaps(List<MapData> mapList)
+        {
+            for(int i = mapList.Count-1; i > 0; i--) {
+                var map = mapList[i];
+                Debug.Log($"Map ID: {map.ID}");
+                if (!File.Exists(map.FilePath)) {
+                    mapList.RemoveAt(i);
+                }
+            }
         }
 
         public void SetDataSource(DataSource source)
@@ -41,15 +57,6 @@ namespace ENA.Services
         }
         #endregion
         #region Static Methods
-        public static MapData[] LoadMaps(string jsonFile)
-        {
-            if (!File.Exists(jsonFile)) return new MapData[0];
-            string jsonString = File.ReadAllText(jsonFile);
-
-            var obj = JsonUtility.FromJson<MapData.List>(jsonFile);
-            return obj.maps;
-        }
-
         public static bool SaveMaps(MapData[] maps, string targetFile)
         {
             throw new System.NotImplementedException();

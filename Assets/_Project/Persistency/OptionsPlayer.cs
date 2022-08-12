@@ -13,7 +13,6 @@ using ENA;
 using ENA.Input;
 using ENA.TTS;
 using ENA.Persistency;
-using ENA.Services;
 
 public class OptionsPlayer : MonoBehaviour {
 	#region Constants

@@ -1,5 +1,10 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ENA.Maps;
+using ENA.Utilities;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace ENA.Services
@@ -11,8 +16,15 @@ namespace ENA.Services
         #endregion
         #region Classes
         public struct URI {
-            public const string Maps = "/maps";
-            public const string User = "/user";
+            public const string Maps = "maps";
+            public const string User = "user";
+        }
+        [System.Serializable]
+        public class MapPayload {
+            public uint id;
+            public string mapName;
+            public string mapURL;
+            public string imageURL;
         }
         #endregion
         #region Variables
@@ -27,18 +39,16 @@ namespace ENA.Services
         #region MapService.DataSource Implementation
         public async Task<MapData[]> FetchMapsFor(string userID)
         {
-            //const string mapURL = ENAServicePath+URI.Maps;
-            var response = await apiService.MakeRequest(URI.Maps);
-            Debug.Log($"Response: {response}");
-            return new MapData[0];
+            var maps = new List<MapData>();
+            var payload = await FetchPayload();
+
+            foreach(var data in payload) {
+                var map = LocalCache.CreateMap(data.id, data.mapName);
+                await Validate(map, data);
+                maps.Add(map);
+            }
             
-            // string PathToMaps = DataPath.Default+"Assets/_Placeholder/Maps/";
-            // var maps = new MapData[3]{
-            //     new MapData("Casa Simples", PathToMaps+"Casa Simples/"),
-            //     new MapData("Escola", PathToMaps+"Escola/"),
-            //     new MapData("Escritório", PathToMaps+"Escritório/")
-            // };
-            // return maps;
+            return maps.ToArray();
         }
         #endregion
         #region AuthService.CredentialManager
@@ -54,16 +64,67 @@ namespace ENA.Services
             throw new System.NotImplementedException();
         }
         #endregion
+        #region Methods
+        private MapPayload[] Decode(string jsonString)
+        {
+            return Json.DecodeArray<MapPayload>(jsonString, false);
+        }
+
+        private async Task<bool> Download(string url, string destination)
+        {
+            using (var response = await apiService.Get(url).Send()) {
+                var handler = response.Handler;
+                if (string.IsNullOrEmpty(handler.text)) {
+                    return false;
+                } else {
+                    await handler.WriteToFile(destination);
+                    return true;
+                }
+            }
+        }
+
+        private async Task<bool> DownloadImage(string url, string destination)
+        {
+            using (var response = await apiService.Image(url).Send()) {
+                var imageHandler = response.Handler.ToImage();
+                if (imageHandler?.texture == null) {
+                    return false;
+                } else {
+                    await imageHandler.WriteToFile(destination);
+                    return true;
+                }
+            }
+        }
+
+        public async Task<MapPayload[]> FetchPayload()
+        {
+            var mapRequest = apiService.Get(URI.Maps);
+            MapPayload[] payload = new MapPayload[0];
+
+            using (var response = await apiService.Get(URI.Maps).Send()) {
+                payload = Decode(response.Handler.text);
+            }
+
+            return payload;
+        }
+
+        private async Task Validate(MapData map, MapPayload payload)
+        {
+            await Download(payload.mapURL, map.FilePath);
+            await DownloadImage(payload.imageURL, map.ThumbnailPath);
+        }
+        #endregion
         #region Debug
         #if UNITY_EDITOR
-        [ContextMenu("Try HTTP GET")]
-        public async void TryRequestGet()
+        [MenuItem("ENA/Services/Connection Test")]
+        public static async void TryRequestGet()
         {
             var testAPI = "https://api.quotable.io";
             var testRequest = "/random";
-
-            var quoteData = await WebService.Request(testAPI+testRequest);
-            Debug.Log(quoteData);
+            
+            using (var response = await WebService.HTTPGet(testAPI+testRequest).Send()) {
+                Debug.Log(response.Handler.text);
+            }
         }
         #endif
         #endregion
