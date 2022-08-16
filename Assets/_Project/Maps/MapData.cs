@@ -41,7 +41,13 @@ namespace ENA.Maps
         public string FilePath => folderPath+MapFileName;
         public uint ID => mapID;
         public string Name => mapName;
-        public Sprite Sprite => sprite;
+        public Sprite Sprite {
+            get {
+                if (sprite == null) sprite = GenerateSprite();
+                Debug.Log($"Sprite: {sprite}");
+                return sprite;
+            }
+        }
         public string ThumbnailPath => folderPath+ImageFileName;
         #endregion
         #region Constructors
@@ -50,7 +56,6 @@ namespace ENA.Maps
             this.mapID = id;
             this.mapName = mapName;
             this.folderPath = folderPath;
-            this.sprite = GenerateSprite();
         }
         #endregion
         #region Methods
