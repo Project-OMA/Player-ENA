@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 using UnityEngine.Localization.Settings;
 using System.Linq;
 using ENA.TTS;
+using UnityEngine.Events;
 
 namespace ENA.Goals
 {
@@ -21,6 +22,7 @@ namespace ENA.Goals
         public static ObjectiveController instance;
         #endregion
         #region Properties
+        public bool HasFinished => NumberOfObjectives == 0;
         public int NumberOfObjectives => objectives?.Count ?? 0;
         public GameObject NextObjective {
             get {
@@ -29,8 +31,10 @@ namespace ENA.Goals
             }
         }
         #endregion
+        #region Events
+        [SerializeField] UnityEvent<bool> foundObjective;
+        #endregion
         [SerializeField] InitAudios initAudios;
-
         #region Methods
         public void Add(GameObject objective)
         {
@@ -82,6 +86,7 @@ namespace ENA.Goals
         public void MoveToNextObjective()
         {
             objectives.RemoveAt(0);
+            foundObjective?.Invoke(HasFinished);
         }
 
         public void PlayFindObjective()
