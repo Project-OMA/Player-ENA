@@ -66,5 +66,9 @@ MonoBehaviour:
     m_Localized: 'The starting point is '
     m_Metadata:
       m_Items: []
+  - m_Id: 27660302328782848
+    m_Localized: You collided with
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

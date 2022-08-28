@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Key: StartingPoint
     m_Metadata:
       m_Items: []
+  - m_Id: 27660302328782848
+    m_Key: CollisionAlert
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

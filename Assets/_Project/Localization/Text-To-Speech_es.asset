@@ -66,5 +66,9 @@ MonoBehaviour:
     m_Localized: "El punto inicial est\xE1 "
     m_Metadata:
       m_Items: []
+  - m_Id: 27660302328782848
+    m_Localized: "Usted choc\xF3 con"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
