@@ -16,13 +16,13 @@ namespace ENA.Player
         {
             AudioSource source;
             switch (audioClip) {
-                case "Step":
+                case nameof(step):
                     source = step;
                     break;
-                case "beepLeft":
+                case nameof(beepLeft):
                     source = beepLeft;
                     break;
-                case "beepRight":
+                case nameof(beepRight):
                     source = beepRight;
                     break;
                 default:
