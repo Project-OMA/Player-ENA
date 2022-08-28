@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: Assets/_Project/Localization/Text-To-Speech Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 644f6e3b1578040bfb6b0236fb79594f
+    m_Address: Assets/_Project/Localization/Object List Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8d941e778e2844ec0a1b5bccf3530e4d, type: 2}
   m_SchemaSet:
