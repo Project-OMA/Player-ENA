@@ -35,7 +35,7 @@ namespace ENA.UI
 
         public void Load()
         {
-            PlayerPrefs.SetString(OptionsPlayer.LoadedMapKey, currentMap.FilePath);
+            LocalCache.SetCurrentMap(currentMap);
             UAP_AccessibilityManager.Say(mapInfoDisplay.LoadingMessage, false);
             SceneManager.LoadSceneAsync(BuildIndex.GameplayScene);
         }

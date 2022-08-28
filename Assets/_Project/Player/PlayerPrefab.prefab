@@ -190,6 +190,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectives: []
+  foundObjective:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1054888015792107542}
+        m_TargetAssemblyTypeName: ENA.Utilities.PathManager, Assembly-CSharp
+        m_MethodName: NewPath
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1593246719849304}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   initAudios: {fileID: 114272827316814706}
 --- !u!1 &1360457128858564
 GameObject:
@@ -327,6 +342,8 @@ GameObject:
   - component: {fileID: 4145828521165483773}
   - component: {fileID: 7339456246638988439}
   - component: {fileID: 5860922647851112013}
+  - component: {fileID: 2155927615792925169}
+  - component: {fileID: 3810119250228893206}
   m_Layer: 0
   m_Name: InitAudio
   m_TagString: Untagged
@@ -673,6 +690,84 @@ MonoBehaviour:
         m_CallState: 2
   references:
     version: 1
+--- !u!114 &2155927615792925169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368452835872898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:327c3a94f213141e7ad7620e5e7f75cf
+    m_TableEntryReference:
+      m_KeyId: 2547834569089024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114272827316814706}
+        m_TargetAssemblyTypeName: ENA.TTS.InitAudios, Assembly-CSharp
+        m_MethodName: set_SuccessMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 1
+--- !u!114 &3810119250228893206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368452835872898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:327c3a94f213141e7ad7620e5e7f75cf
+    m_TableEntryReference:
+      m_KeyId: 2547868601671680
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114272827316814706}
+        m_TargetAssemblyTypeName: ENA.TTS.InitAudios, Assembly-CSharp
+        m_MethodName: set_FailedMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 1
 --- !u!1 &1417594526498238
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4813527096150324}
+  - component: {fileID: 3097618829654338900}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -966,6 +1062,21 @@ Transform:
   m_Father: {fileID: 4856322360425268}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3097618829654338900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465113080148144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6ee068110964caf9ed23a74be8d965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114210643828000828}
+  defaultCameraGyro: {fileID: 114334510194106022}
+  vrCameraGyro: {fileID: 114420606383682084}
 --- !u!1 &1593246719849304
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +1096,7 @@ GameObject:
   - component: {fileID: 2372932992705593125}
   - component: {fileID: 6629728589537707499}
   - component: {fileID: 3685241738460539294}
+  - component: {fileID: 1054888015792107542}
   - component: {fileID: 1028931677518862557}
   - component: {fileID: 759756495722918765}
   m_Layer: 0
@@ -1179,37 +1291,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6171175774d229498d93d8e23117e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 0}
-  menu: {fileID: 0}
-  telaPreta: {fileID: 0}
-  camera: {fileID: 0}
-  print: {fileID: 0}
-  textoData: {fileID: 0}
-  finalizar: 0
-  finalizou: 0
   inicialPosition: {fileID: 4001924771458506}
-  cameraVR: {fileID: 1790537708424730}
-  cameraNormal: {fileID: 1867147039822052}
-  cameraMaster: {fileID: 1465113080148144}
-  playerPai: {fileID: 1763825173335788}
-  cores:
-  - {fileID: 96042581623243258, guid: efbc1073b5c3bf44fad4a28a86103747, type: 3}
-  - {fileID: 96764431059870066, guid: dd388835cca26c6498cafc7773713f1f, type: 3}
-  - {fileID: 96070568196379926, guid: 5e22ae7f14a93324a9c256bfcb093019, type: 3}
-  - {fileID: 96813638182781468, guid: 53ecfb41feb5b5d43a04924ac90500d9, type: 3}
-  - {fileID: 96606136232014828, guid: ffcc874f942efda4c9ad2391ec016a01, type: 3}
-  - {fileID: 96683659183784720, guid: 1db008893514155448c8ff1fe4b86ff7, type: 3}
-  - {fileID: 96285480613593442, guid: f7b0ea4755bf42d45b91ebb0fb587067, type: 3}
-  - {fileID: 96438044993769648, guid: f94e40f0d8f2b2042932cf2acf38cf16, type: 3}
-  - {fileID: 96530985977741942, guid: 2b2271990f3aaf745ab984484d57aac2, type: 3}
-  - {fileID: 96915089635408250, guid: ca4ff763ae1e74744946984133702fdb, type: 3}
-  - {fileID: 96524888156607536, guid: 6c67c0438b2fab044afcc4156ed706e7, type: 3}
-  - {fileID: 96256982652205058, guid: e55d0731496fc4a4e8732dfb348fa727, type: 3}
-  contador: 0
-  qualTracer: {fileID: 0}
   playerControl: {fileID: 114210643828000828}
   minimap: {fileID: 8400000, guid: 4ba9f8aa5bb577e4bbfe287c99696c33, type: 2}
   profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
+  cameraManager: {fileID: 3097618829654338900}
+  pathManager: {fileID: 1054888015792107542}
 --- !u!114 &114007720927469800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,6 +1365,32 @@ MonoBehaviour:
   step: {fileID: 82941110892458878}
   beepLeft: {fileID: 82520010382770758}
   beepRight: {fileID: 82043053822442332}
+--- !u!114 &1054888015792107542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593246719849304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c0b4c0adf164f7ba8ad14c73f8979f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTrail: {fileID: 0}
+  trailModels:
+  - {fileID: 96042581623243258, guid: efbc1073b5c3bf44fad4a28a86103747, type: 3}
+  - {fileID: 96764431059870066, guid: dd388835cca26c6498cafc7773713f1f, type: 3}
+  - {fileID: 96070568196379926, guid: 5e22ae7f14a93324a9c256bfcb093019, type: 3}
+  - {fileID: 96813638182781468, guid: 53ecfb41feb5b5d43a04924ac90500d9, type: 3}
+  - {fileID: 96606136232014828, guid: ffcc874f942efda4c9ad2391ec016a01, type: 3}
+  - {fileID: 96683659183784720, guid: 1db008893514155448c8ff1fe4b86ff7, type: 3}
+  - {fileID: 96285480613593442, guid: f7b0ea4755bf42d45b91ebb0fb587067, type: 3}
+  - {fileID: 96438044993769648, guid: f94e40f0d8f2b2042932cf2acf38cf16, type: 3}
+  - {fileID: 96530985977741942, guid: 2b2271990f3aaf745ab984484d57aac2, type: 3}
+  - {fileID: 96915089635408250, guid: ca4ff763ae1e74744946984133702fdb, type: 3}
+  - {fileID: 96524888156607536, guid: 6c67c0438b2fab044afcc4156ed706e7, type: 3}
+  - {fileID: 96256982652205058, guid: e55d0731496fc4a4e8732dfb348fa727, type: 3}
 --- !u!114 &1028931677518862557
 MonoBehaviour:
   m_ObjectHideFlags: 0

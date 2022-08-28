@@ -30,5 +30,10 @@ namespace ENA.Utilities
         {
             self.transform.SetParent(transform, keepGlobalState);
         }
+
+        public static void ToggleActive(this GameObject self)
+        {
+            self.SetActive(!self.activeSelf);
+        }
     }
 }

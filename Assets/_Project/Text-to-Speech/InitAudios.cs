@@ -15,9 +15,11 @@ namespace ENA.TTS
         public string Intro1Text {get; set;}
         public string Intro2Text {get; set;}
         public string Intro3Text {get; set;}
+        public string FailedMessage {get; set;}
         public string FoundItemText {get; set;}
         public string NextObjectiveText {get; set;}
         public string ReturnToStartText {get; set;}
+        public string SuccessMessage {get; set;}
         #endregion
         #region Variables
         public static int numberOfTipsGiven;
@@ -38,11 +40,19 @@ namespace ENA.TTS
                 audio = FoundItemText + " " + objectiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + NextObjectiveText + " " + objectiveController.objectives[1].GetComponent<objectCollider>().GetName();
             else{
                 audio = FoundItemText + " " + objectiveController.objectives[0].GetComponent<objectCollider>().GetName() + " " + ReturnToStartText;
-                OptionsPlayer.instance.finalizar = true;
             }
 
             UAP_AccessibilityManager.Say(audio, false);
             print("Audio sendo tocado:" + audio);
+        }
+
+        public void PlayEndingMessage()
+        {
+            if (objectiveController.HasFinished) {
+                UAP_AccessibilityManager.Say(SuccessMessage, false);
+            } else {
+                UAP_AccessibilityManager.Say(FailedMessage, false);
+            }
         }
 
         public void PlayHintMessage()

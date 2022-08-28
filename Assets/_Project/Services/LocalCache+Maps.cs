@@ -11,6 +11,7 @@ namespace ENA.Services
     {
         #region Constants
         public const string MapsFolder = "resources/maps/";
+        public const string LoadedMapKey = "MapPath";
         #endregion
         #region Properties
         private static string MapsFullPath => DataPath.Persistent+MapsFolder;
@@ -50,6 +51,16 @@ namespace ENA.Services
         public static MapData CreateMap(uint id, string mapName)
         {
             return new MapData(id, mapName, MapsFullPath+id+"--"+mapName+"/");
+        }
+
+        public static MapData GetLoadedMap()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public static void SetCurrentMap(MapData map)
+        {
+            PlayerPrefs.SetString(LocalCache.LoadedMapKey, map.FilePath);
         }
         #endregion
     }

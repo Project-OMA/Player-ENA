@@ -11,6 +11,7 @@ using ENA.Goals;
 using UnityEngine.Serialization;
 using UnityEngine.Events;
 using ENA.Utilities;
+using ENA.Services;
 
 namespace ENA.Maps
 {
@@ -195,7 +196,7 @@ namespace ENA.Maps
             string rawData = "";
 
             if (!testing) {
-                var mapPath = PlayerPrefs.GetString(OptionsPlayer.LoadedMapKey);
+                var mapPath = PlayerPrefs.GetString(LocalCache.LoadedMapKey);
                 if (File.Exists(mapPath))
                     rawData = File.ReadAllText(mapPath);
                 else

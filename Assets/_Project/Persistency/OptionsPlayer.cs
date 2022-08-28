@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -13,217 +11,87 @@ using ENA;
 using ENA.Input;
 using ENA.TTS;
 using ENA.Persistency;
+using ENA.Player;
+using ENA.Services;
+using ENA.Goals;
 
 public class OptionsPlayer : MonoBehaviour {
-	#region Constants
-    public const string LoadedMapKey = "MapPath";
-    private const string RelativePath = "/sdcard/LogsE3/";
-	#endregion
-    #region Voice Lines
-    public string SuccessMessage {get; set;}
-    public string FailedMessage {get; set;}
-    #endregion
-	#region Variables
-    public Text path;
-	string folderPath = RelativePath;
-	public static string nomeFase;
-	public GameObject menu, telaPreta;
-	public new RectTransform camera, print;
-	[SerializeField] TextMeshProUGUI textoData;
-	public bool finalizar, finalizou;
-	public Transform inicialPosition;
-	public static OptionsPlayer instance;
-	public GameObject cameraVR,cameraNormal,cameraMaster,playerPai;
-	public TrailRenderer[] cores;
-	public int contador;
-	public TrailRenderer qualTracer;
+	#region Variables (Temporary)
+	[SerializeField] Transform inicialPosition;
 	[SerializeField] PlayerController playerControl;
     [SerializeField] RenderTexture minimap;
     [SerializeField] SettingsProfile profile;
+    [Header("Cleanup")]
+    [SerializeField] CameraManager cameraManager;
+    [SerializeField] PathManager pathManager;
 	#endregion
 	private void Start()
     {
-        instance = this;
+        pathManager.NewPath(gameObject);
+        cameraManager.SetVR(profile.VREnabled);
+        cameraManager.SetCameraGyro(profile.GyroEnabled);
 
-        ConfigureSaveFolder();
-        InstanceTracer();
-        ConfigureVRGoggles();
-        ConfigureGyroscope();
-        ConfigureAccessibility();
-
-		Invoke(nameof(DefinirInicio), 0.5f);
+        inicialPosition.parent = null;
+        Debug.Log($"{BuildLog(DateTime.Now, new ENAProfile())}");
     }
-
-    private void ConfigureAccessibility()
-    {
-        UAP_AccessibilityManager.RegisterOnPauseToggledCallback(ToggleExitMenu);
-        UAP_AccessibilityManager.RegisterOnBackCallback(FecharMenu);
-        // if (UAP_AccessibilityManager.IsActive())
-        //     UAP_AccessibilityManager.PauseAccessibility(true);
-    }
-
-    private void ConfigureVRGoggles()
-    {
-		var isVREnabled = profile.VREnabled;
-
-        if (isVREnabled) {
-            playerControl.SetCameraTransform(cameraVR.transform);
-        } else {
-            playerControl.SetCameraTransform(cameraNormal.transform);
-        }
-
-		cameraNormal.SetActive(!isVREnabled);
-		cameraVR.SetActive(isVREnabled);
-    }
-
-    private void ConfigureGyroscope()
-	{
-		var isGyroEnabled = profile.GyroEnabled;
-
-		var cameraVRGyro = cameraVR.GetComponent<ControleGiroscopio>();
-		var cameraNormalGyro = cameraNormal.GetComponent<ControleGiroscopio>();
-
-		cameraVRGyro.enabled = isGyroEnabled;
-        cameraNormalGyro.enabled = isGyroEnabled;
-
-		if (isGyroEnabled) {
-            cameraMaster.transform.localEulerAngles = new Vector3(90, 0, 0);
-            cameraMaster.transform.SetParent(playerPai.transform);
-        } else {
-            cameraMaster.transform.localEulerAngles = new Vector3(0, 0, 0);
-        }
-	}
-
-    private void ConfigureSaveFolder()
-    {
-		#if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
-        folderPath = Application.persistentDataPath + RelativePath;
-		#endif
-
-        if (!System.IO.Directory.Exists(folderPath)) {
-            try {
-                System.IO.Directory.CreateDirectory(folderPath);
-            } catch (UnauthorizedAccessException uae) {
-                Debug.LogWarning(uae);
-				Debug.Log("Using Default Persistent Path");
-				folderPath = Application.persistentDataPath;
-            }
-        }
-
-		path.text = folderPath;
-    }
-
-    private void DefinirInicio()
-	{
-		inicialPosition.parent = null;
-	}
-
-	private void Update()
-	{
-		if(profile.GyroEnabled) {
-			cameraMaster.transform.localPosition = gameObject.transform.localPosition;
-		}
-	}
-
-	private void OnDestroy()
-	{
-        UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(ToggleExitMenu);
-		UAP_AccessibilityManager.UnregisterOnBackCallback(FecharMenu);
-		// if (UAP_AccessibilityManager.IsEnabled())
-		// 	UAP_AccessibilityManager.PauseAccessibility(false);
-    }
-
-	public void ToggleExitMenu()
-	{
-		if (menu.activeInHierarchy) {
-			AbrirMenuSair();
-		} else {
-			FecharMenu();
-		}
-	}
-
-	public void InstanceTracer()
-	{
-		if(qualTracer != null) {
-			qualTracer.transform.parent = null;
-		}
-
-		qualTracer = Instantiate(cores[contador], Vector3.zero, Quaternion.identity);
-		qualTracer.transform.parent = gameObject.transform;
-		qualTracer.transform.localPosition = Vector3.zero;
-		qualTracer.GetComponent<TrailRenderer>().Clear();
-		qualTracer.gameObject.SetActive(true);
-
-		contador++;
-		if(contador > 11)  {
-			contador = 0;
-		}
-	}
 
 	private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "final" && finalizar) {
+        var objectiveController = ObjectiveController.instance;
+        if (other.tag == "final" && objectiveController.HasFinished) {
             EndGame();
         }
     }
 
     private async void EndGame()
     {
-        finalizou = true;
         await SalvarTracer();
     }
 
-    public async Task SaveUserStatus(string username)
+    private string BuildLog(DateTime time, ENAProfile profile)
     {
-        System.DateTime currentTime = System.DateTime.Now;
-        string time = currentTime.Hour + "_" + currentTime.Minute;
-        string path = folderPath + GetSessionName(username) + "_Log.txt";
-
-        //Write some text to the test.txt file
-        StreamWriter writer = new StreamWriter(path, true);
-        string contents = BuildLog(time, username);
-        await writer.WriteAsync(contents);
-        writer.Close();
-
-        Debug.Log($"Saved Log to Path: {path}");
-    }
-
-    private string BuildLog(string time, string username)
-    {
-        var userName = username + "-" + time;
+        string timeString = time.Hour + "_" + time.Minute;
+        var userName = profile.UserName + "-" + timeString;
 		var stageFileName = PlayerPrefs.GetString("Fase");
         var stageName = stageFileName.Substring(0, Mathf.Max(stageFileName.Length - 4, 0));
 
-        var sb = new StringBuilder();
-        sb.AppendLine("\nUsuario: " + userName);
-        sb.AppendLine("\nMapa: " + stageName);
-        sb.AppendLine("\nTempo Total: " + UserModel.time);
-        for (int i = 0; i < UserModel.parcialTime.Count; i++) {
-            var partialTimeLog = "T" + i + ": " + UserModel.parcialTime[i];
-            sb.AppendLine(partialTimeLog);
+        var yaml = new YAMLBuilder();
+        yaml.Header("Resultado da Sessão");
+        yaml.Mapping("Usuario", userName);
+        yaml.Mapping("Mapa", stageName);
+        yaml.Mapping("TempoTotal", UserModel.time.ToString(), "segundos");
+        if (UserModel.parcialTime.Count > 0) {
+            yaml.Mapping("Segmentos",null);
+            using (var indent = yaml.Indent()) {
+                UserModel.parcialTime.ForEach((item) => {
+                    yaml.Block(item.ToString(),"segundos");
+                });
+            }
         }
-        sb.AppendLine("\nNumero de colisoes :" + UserModel.colisions);
-        sb.AppendLine("Numero de rotações :" + playerControl.RotationCount);
-        sb.AppendLine("Numero de passos :" + playerControl.StepCount);
-        sb.AppendLine("Ajudas Tipo1(objetivo): " + InitAudios.numberOfTipsGiven.ToString());
-        sb.AppendLine("Ajuda Tipo2(ponto inicial): " + DirecaoInicial.ajudaInicial.ToString());
+        yaml.Mapping("NumeroDeColisoes", UserModel.colisions.ToString());
+        yaml.Mapping("NumeroDeRotações", playerControl.RotationCount.ToString());
+        yaml.Mapping("NumeroDePassos", playerControl.StepCount.ToString());
+        yaml.Mapping("Ajudas", null);
+        using (var indent = yaml.Indent()) {
+            yaml.Mapping("Objetivo", InitAudios.numberOfTipsGiven.ToString());
+            yaml.Mapping("PontoInicial", DirecaoInicial.ajudaInicial.ToString());
+        }
 
-        var contents = sb.ToString();
+        var contents = yaml.Output();
         return contents;
     }
 
     public async Task SalvarTracer()
     {
         var userProfile = profile.LoggedProfile;
+        var recordingTime = DateTime.Now;
 
-        menu.SetActive(false);
-        PlaceCameraOnRenderSpot();
-        DeliverEndingMessage();
         Debug.Log($"Started Saving");
 
-        SaveScreenshot(userProfile.UserName);
+        LocalCache.SaveTracker(recordingTime, userProfile, minimap);
         Debug.Log($"Saving Screenshot");
-        await SaveUserStatus(userProfile.UserName);
+        string logContents = BuildLog(recordingTime, userProfile);
+        await LocalCache.SaveLog(recordingTime, userProfile, logContents);
         await Task.Delay(100);
 
         Debug.Log($"Finished Saving");
@@ -234,78 +102,4 @@ public class OptionsPlayer : MonoBehaviour {
         SceneManager.LoadSceneAsync(BuildIndex.MainMenu);
         Debug.Log($"Loading Main Menu...");
     }
-
-    private void SaveScreenshot(string username)
-    {
-        string screenshotName = GetSessionName(username) + "_Tracker.png";
-        string myScreenshotLocation = folderPath + screenshotName;
-
-        Texture2D texture = minimap.ToTexture2D();
-        File.WriteAllBytes(myScreenshotLocation, texture.EncodeToPNG());
-        Destroy(texture);
-
-        Debug.Log($"Moved file to Path: {myScreenshotLocation}");
-    }
-
-    private string GetSessionName(string username)
-    {
-		string dateTime = FetchCurrentDateTime();
-        return username + "_" + dateTime;
-    }
-
-    private string FetchCurrentDateTime()
-    {
-        System.DateTime currentTime = System.DateTime.Now;
-
-        string day = currentTime.Date.ToString().Split(' ')[0];
-        day = day.Replace("/", "-");
-
-        string time = currentTime.Hour + "_" + currentTime.Minute;
-        DisplayDateTime(currentTime, day);
-
-        return day + "_" + time;
-    }
-
-    private void DisplayDateTime(DateTime currentTime, string day)
-    {
-        string hour = currentTime.TimeOfDay.ToString().Split('.')[0];
-        string date = day + "_" + hour;
-        textoData.text = date;
-        textoData.gameObject.SetActive(true);
-    }
-
-    private void DeliverEndingMessage()
-	{
-		if (finalizou) {
-            UAP_AccessibilityManager.Say(SuccessMessage, false);
-        } else {
-            UAP_AccessibilityManager.Say(FailedMessage, false);
-        }
-	}
-
-    private void PlaceCameraOnRenderSpot()
-    {
-        camera.gameObject.SetActive(true);
-        camera.anchoredPosition = print.anchoredPosition;
-        camera.sizeDelta = print.sizeDelta;
-    }
-
-    public void AbrirMenuSair()
-	{
-		menu.SetActive(true);
-		playerControl.enabled = false;
-		//UAP_AccessibilityManager.PauseAccessibility(false);
-	}
-
-	public void FecharMenu()
-	{
-		menu.SetActive(false);
-		playerControl.enabled = true;
-		//UAP_AccessibilityManager.PauseAccessibility(true);
-	}
-
-	public async void VoltarParaOMenu()
-    {
-        await SalvarTracer();
-	}
 }

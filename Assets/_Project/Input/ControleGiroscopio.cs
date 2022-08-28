@@ -8,7 +8,7 @@ namespace ENA.Input
 	public class ControleGiroscopio: MonoBehaviour
 	{
 		#region Variables
-		public PlayerController player;
+		[SerializeField] PlayerController player;
 		[SerializeField] private float fixedRotation;
 		[SerializeField] private float currentRotation;
 		private Gyroscope gyro;

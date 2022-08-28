@@ -67,7 +67,6 @@ public class objectCollider : MonoBehaviour
 
         if(ObjectiveController.instance.objectives.Count > 0){
             if(gameObject == ObjectiveController.instance.objectives[0]){
-                OptionsPlayer.instance.InstanceTracer();
                 if(profile.ElementsDisappearEnabled){
                     Invoke("Desligar",3);
                 }

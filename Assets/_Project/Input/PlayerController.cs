@@ -26,9 +26,7 @@ namespace ENA.Input
         [SerializeField] Soundboard playerSoundboard;
         [SerializeField] SettingsProfile profile;
         [Header("Parameters")]
-        [FormerlySerializedAs("distPasso")]
         [SerializeField] float stepDistance;
-        [FormerlySerializedAs("target")]
         [SerializeField] Transform cameraTransform;
         #endregion
         #region Properties
@@ -76,6 +74,18 @@ namespace ENA.Input
                 float axisValue = UnityEngine.Input.GetAxis("Horizontal");
                 rotationTracker.Rotate(axisValue);
             }
+        }
+
+        private void OnDisable()
+        {
+            movementTracker.enabled = false;
+            rotationTracker.enabled = false;
+        }
+
+        private void OnEnable()
+        {
+            movementTracker.enabled = true;
+            rotationTracker.enabled = true;
         }
 
         private void PlayStepSounds(GameObject collidedObject)

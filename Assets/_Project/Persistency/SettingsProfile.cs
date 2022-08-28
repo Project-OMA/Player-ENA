@@ -11,11 +11,11 @@ namespace ENA.Persistency
         #region Variables
         public ENAProfile LoggedProfile {get; set;}
         [Header("Gameplay Settings")]
+        public bool ElementsDisappearEnabled;
         public bool GyroEnabled;
         public bool MinimapEnabled;
         public bool VREnabled;
         public bool VibrationEnabled;
-        public bool ElementsDisappearEnabled;
         #endregion
         #region Methods
         private void GetBool(string key, out bool value)
@@ -26,20 +26,20 @@ namespace ENA.Persistency
 
         public void Load()
         {
+            GetBool(nameof(ElementsDisappearEnabled), out ElementsDisappearEnabled);
             GetBool(nameof(GyroEnabled), out GyroEnabled);
             GetBool(nameof(MinimapEnabled), out MinimapEnabled);
             GetBool(nameof(VREnabled), out VREnabled);
             GetBool(nameof(VibrationEnabled), out VibrationEnabled);
-            GetBool(nameof(ElementsDisappearEnabled), out ElementsDisappearEnabled);
         }
 
         public void Reset()
         {
+            ResetKey(nameof(ElementsDisappearEnabled), out ElementsDisappearEnabled);
             ResetKey(nameof(GyroEnabled), out GyroEnabled);
             ResetKey(nameof(MinimapEnabled), out MinimapEnabled);
             ResetKey(nameof(VREnabled), out VREnabled);
             ResetKey(nameof(VibrationEnabled), out VibrationEnabled);
-            ResetKey(nameof(ElementsDisappearEnabled), out ElementsDisappearEnabled);
         }
 
         private void ResetKey(string key, out bool value)
@@ -50,11 +50,11 @@ namespace ENA.Persistency
 
         public void Save()
         {
+            SetBool(nameof(ElementsDisappearEnabled), in ElementsDisappearEnabled);
             SetBool(nameof(GyroEnabled), in GyroEnabled);
             SetBool(nameof(MinimapEnabled), in MinimapEnabled);
             SetBool(nameof(VREnabled), in VREnabled);
             SetBool(nameof(VibrationEnabled), in VibrationEnabled);
-            SetBool(nameof(ElementsDisappearEnabled), in ElementsDisappearEnabled);
         }
 
         public void SetAcessibility(bool value)

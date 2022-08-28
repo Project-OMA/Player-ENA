@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d206ce3356a17460d951dea50bd11992, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  gyroEnabled: 0
-  minimapEnabled: 0
-  vrEnabled: 0
-  vibrationEnabled: 0
-  elementsDisappearEnabled: 0
+  ElementsDisappearEnabled: 1
+  GyroEnabled: 0
+  MinimapEnabled: 1
+  VREnabled: 0
+  VibrationEnabled: 1
