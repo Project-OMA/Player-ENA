@@ -23,7 +23,6 @@ namespace ENA.TTS
         #endregion
         #region Variables
         public static int numberOfTipsGiven;
-        [FormerlySerializedAs("objetiveController")]
         [SerializeField] ObjectiveController objectiveController;
         #endregion
         #region Methods
