@@ -165,9 +165,6 @@ namespace ENA.Maps
             tileSize = new Vector2(tileNode.GetValue(TileWidthKey).AsFloat(), tileNode.GetValue(TileHeightKey).AsFloat());
             matrixSize = new Vector2Int(Mathf.RoundToInt(canvasSize.x / tileSize.x), Mathf.RoundToInt(canvasSize.y / tileSize.y));
 
-            miniMap.position = new Vector2(canvasSize.x / 4, 1080 - (canvasSize.y / 4));
-            miniMap.sizeDelta = new Vector2(canvasSize.x / 2, canvasSize.y / 2);
-
             string[] mapLayers = parser.FetchAllItems(NodePath).Select((item) => item.InnerText).ToArray();
             BuildMapMatrix(mapLayers[0], mapLayers[1], mapLayers[2], mapLayers[3], mapLayers[4], mapLayers[5], mapLayers[6], mapLayers[7]);
         }
