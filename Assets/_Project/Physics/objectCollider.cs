@@ -27,14 +27,11 @@ public class objectCollider : MonoBehaviour
         language = GetLanguage();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Desligar()
     {
-       
-    }
-    void Desligar(){
         gameObject.SetActive(false);
     }
+
     int GetLanguage()
     {
         if (Application.systemLanguage == SystemLanguage.Portuguese)
