@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ENA.Maps;
@@ -102,7 +103,11 @@ namespace ENA.Services
             MapPayload[] payload = new MapPayload[0];
 
             using (var response = await apiService.Get(URI.Maps).Send()) {
-                payload = Decode(response.Handler.text);
+                try {
+                    payload = Decode(response.Handler.text);
+                } catch(Exception e) {
+                    Debug.LogError("JSON parsing has failed!\n"+e.StackTrace);
+                }
             }
 
             return payload;
