@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using ENA.Input;
 using ENA.Persistency;
+using ENA.Player;
 using ENA.Services;
-using ENA.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -12,8 +13,13 @@ namespace ENA.UI
     public class GameplayCoordinator: UICoordinator
     {
         #region Variables
-        [SerializeField] PauseMenuDisplay pauseMenuDisplay;
         [SerializeField] SettingsProfile settingsProfile;
+        [SerializeField] RenderTexture minimap;
+        [SerializeField] PlayerController playerController;
+        [Header("Displays")]
+        [SerializeField] PauseMenuDisplay pauseMenuDisplay;
+        [SerializeField] TrackerDisplay trackerDisplay;
+        [SerializeField] GameObject fullMapDisplay;
         #endregion
         #region Events
         [SerializeField] UnityEvent onPause;
@@ -47,12 +53,14 @@ namespace ENA.UI
         public void ResumeGameplay()
         {
             manager.Pop(pauseMenuDisplay);
+            playerController.enabled = true;
             onResume?.Invoke();
         }
 
         public void PauseGameplay()
         {
             manager.Push(pauseMenuDisplay);
+            playerController.enabled = false;
             onPause?.Invoke();
         }
 
@@ -60,12 +68,22 @@ namespace ENA.UI
         {
             var userProfile = settingsProfile.LoggedProfile;
             var recordingTime = DateTime.Now;
+            var logContents = LogBuilder.MakeLog(userProfile, recordingTime, playerController);
 
-            // LocalCache.SaveTracker(recordingTime, userProfile, minimap);
-            // await LocalCache.SaveLog(recordingTime, userProfile, logContents);
+            ShowTracker(recordingTime);
+            LocalCache.SaveTracker(recordingTime, userProfile, minimap);
+            await LocalCache.SaveLog(recordingTime, userProfile, logContents);
+
             while (UAP_AccessibilityManager.IsSpeaking()) {
                 await Task.Delay(1000);
             }
+        }
+
+        public void ShowTracker(DateTime timestamp)
+        {
+            trackerDisplay.SetAnnotation(timestamp.ToString("MM/dd/yyyy h:mm"));
+            manager.Push(trackerDisplay);
+            fullMapDisplay.SetActive(true);
         }
         #endregion
     }

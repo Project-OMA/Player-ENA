@@ -33,6 +33,7 @@ namespace ENA.Goals
         #endregion
         #region Events
         [SerializeField] UnityEvent<bool> foundObjective;
+        [SerializeField] UnityEvent foundAllObjectives;
         #endregion
         [SerializeField] InitAudios initAudios;
         #region Methods
@@ -72,15 +73,16 @@ namespace ENA.Goals
         public bool FindObjective()
         {
             StopObjectiveAudio();
+
+            if (objectives.Count == 0) {
+                foundAllObjectives?.Invoke();
+                return false;
+            } 
+
             MoveToNextObjective();
             NextObjective?.GetComponent<AudioSource>()?.Play();
-
-            if (objectives.Count == 0)
-                return false;
-            else {
-                StartCoroutine(StartSoundObjective(1, 5));
-                return true;
-            }
+            StartCoroutine(StartSoundObjective(1, 5));
+            return true;
         }
 
         public void MoveToNextObjective()

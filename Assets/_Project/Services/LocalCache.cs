@@ -16,22 +16,13 @@ namespace ENA.Services
         #region Properties
         private static string LogsFullPath => DataPath.Persistent+LogsFolder;
         #endregion
-        #region Methods
-        public void VerifyLogsFolder()
-        {
-            var logsPath = LogsFullPath;
-            if (!Directory.Exists(logsPath)) {
-                Directory.CreateDirectory(logsPath);
-            }
-        }
-        #endregion
         #region Static Methods
         private static string GenerateSessionTag(DateTime recordingTime, ENAProfile profile)
         {
             string day = recordingTime.Date.ToString().Split(' ')[0];
             day = day.Replace("/", "-");
 
-            return $"{profile.UserName}_{day}_{recordingTime.Hour}_{recordingTime.Minute}";
+            return $"{profile?.UserName ?? "Guest"}_{day}_{recordingTime.Hour}_{recordingTime.Minute}";
         }
 
         public static async Task SaveLog(DateTime recordingTime, ENAProfile profile, string contents)
@@ -39,6 +30,7 @@ namespace ENA.Services
             string sessionTag = GenerateSessionTag(recordingTime, profile);
             string path = LogsFullPath+$"{sessionTag}_Log.txt";
 
+            VerifyLogsFolder();
             using (var fileWriter = new StreamWriter(path, true)) {
                 await fileWriter.WriteAsync(contents);
             }
@@ -51,9 +43,18 @@ namespace ENA.Services
             string sessionTag = GenerateSessionTag(recordingTime, profile);
             string path = LogsFullPath+$"{sessionTag}_Tracker.png";
 
+            VerifyLogsFolder();
             texture.OutputToFile(path);
 
             Debug.Log($"Saved Screenshot to Path: {path}");
+        }
+
+        public static void VerifyLogsFolder()
+        {
+            var logsPath = LogsFullPath;
+            if (!Directory.Exists(logsPath)) {
+                Directory.CreateDirectory(logsPath);
+            }
         }
         #endregion
     }
