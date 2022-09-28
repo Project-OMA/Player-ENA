@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using ENA.Utilities;
 
 namespace ENA.Physics
 {
@@ -16,11 +18,8 @@ namespace ENA.Physics
         #region Properties
         public int NumberOfRotations {get; set;}
         #endregion
-        #region Delegates
-        public delegate void Event(bool turnedRight);
-        #endregion
         #region Events
-        public event Event onTurn;
+        public Event<bool> OnTurn;
         #endregion
         #region Methods
         private void CheckRotation()
@@ -48,7 +47,7 @@ namespace ENA.Physics
                         targetRotation.eulerAngles = new Vector3(transform.localRotation.eulerAngles.x, currentAngle, transform.localRotation.eulerAngles.z);
                     }
                     selectedDirection = true;
-                    onTurn?.Invoke(right);
+                    OnTurn.Invoke(right);
                 }
             } else {
                 selectedDirection = false;

@@ -67,13 +67,26 @@ MonoBehaviour:
     m_Key: CollisionAlert
     m_Metadata:
       m_Items: []
+  - m_Id: 33481358989844480
+    m_Key: Intro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33481963686846464
+    m_Key: FoundObjective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38578828480602112
+    m_Key: StartPoint
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    id: 0
+    rid: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:

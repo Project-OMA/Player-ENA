@@ -1,4 +1,5 @@
 using UnityEngine;
+using ENA.Utilities;
 
 namespace ENA.Physics
 {
@@ -11,11 +12,8 @@ namespace ENA.Physics
         #region Properties
         public GameObject Target => target;
         #endregion
-        #region Delegates
-        public delegate void Event(GameObject collidedObj);
-        #endregion
         #region Events
-        public event Event onHitFloor, onHitObjective, onHitObstacle;
+        public Event<GameObject> OnHitFloor, OnHitObjective, OnHitObstacle;
         #endregion
         #region Methods
         private void OnControllerColliderHit(ControllerColliderHit col)
@@ -24,25 +22,24 @@ namespace ENA.Physics
 
             if (collidedObject.tag == "floor") {
                 target = collidedObject.GetComponent<GetTarget>().target;
-                onHitFloor?.Invoke(collidedObject);
-            } else {
-                onHitObstacle?.Invoke(collidedObject);
-            }
-
-            if (collidedObject.tag == "objects")
-            {
-                UserModel.colisions++;
-
-#if UNITY_IOS
-                if(ControleMenuPrincipal.vibrationValue)
-                {
+                OnHitFloor.Invoke(collidedObject);
+            } else if (collidedObject.tag == "objects") {
+                #if UNITY_IOS
+                if (ControleMenuPrincipal.vibrationValue) {
                     Handheld.Vibrate();
                 }
-#endif
-                print(collidedObject.name);
+                #endif
+                var prop = collidedObject.GetComponentInParent<CollidableProp>();
+                if (prop == null) return;
 
-                collidedObject.GetComponent<objectCollider>()?.Collision();
-                onHitObjective?.Invoke(collidedObject);
+                prop.CollisionAudioSource.RequestPlay();
+                if (prop.IsCurrentObjective()) {
+                    OnHitObjective.Invoke(prop.gameObject);
+                } else {
+                    OnHitObstacle.Invoke(prop.gameObject);
+                }
+            } else {
+                OnHitObstacle.Invoke(collidedObject);
             }
         }
 

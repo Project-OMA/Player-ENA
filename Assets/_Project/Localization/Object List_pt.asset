@@ -254,5 +254,14 @@ MonoBehaviour:
     m_Localized: o vaso de planta
     m_Metadata:
       m_Items: []
+  - m_Id: 10776063171878912
+    m_Localized: a borda do mapa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951199981568
+    m_Localized: a porta aberta
+    m_Metadata:
+      m_Items: []
   references:
-    version: 1
+    version: 2
+    RefIds: []

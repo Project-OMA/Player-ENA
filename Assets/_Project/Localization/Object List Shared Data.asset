@@ -255,13 +255,18 @@ MonoBehaviour:
     m_Key: Plant
     m_Metadata:
       m_Items: []
+  - m_Id: 10776063171878912
+    m_Key: MapBorder
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    id: 0
+    rid: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:

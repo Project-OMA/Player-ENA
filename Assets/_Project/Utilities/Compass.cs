@@ -1,18 +1,13 @@
 using UnityEngine;
+using ENA.Physics;
 
 namespace ENA.Utilities
 {
     public class Compass
     {
-        #region Enums
-        public enum Direction
-        {
-            Left, UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, None
-        }
-        #endregion
         #region Variables
         [SerializeField] Transform referencePoint;
-        [SerializeField] Direction direction;
+        [SerializeField] Direction.Basic direction;
         #endregion
         #region Methods
         public void DefineDirection()

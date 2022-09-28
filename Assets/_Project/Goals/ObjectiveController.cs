@@ -1,29 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using ENA.Input;
-using UnityEngine.Serialization;
 using UnityEngine.Localization.Settings;
 using System.Linq;
-using ENA.TTS;
-using UnityEngine.Events;
+using ENA.Accessibility;
+using ENA.Utilities;
+using Event = ENA.Utilities.Event;
+using ENA.Physics;
+using UnityEngine.Serialization;
+using System;
 
 namespace ENA.Goals
 {
     public class ObjectiveController: MonoBehaviour
     {
+        #region Constant
+        public const float WaitingTimeForAudio = 5;
+        #endregion
         #region Variables
-        [FormerlySerializedAs("objetives")]
         public List<GameObject> objectives = new List<GameObject>();
+        [SerializeField] SpeakerComponent speaker;
+        [SerializeField] GameObject startingPoint;
         #endregion
         #region Static Variables
         public static ObjectiveController instance;
         #endregion
         #region Properties
-        public bool HasFinished => NumberOfObjectives == 0;
-        public int NumberOfObjectives => objectives?.Count ?? 0;
+        public bool ClearedAllObjectives => NumberOfObjectives == 0;
+        public int NumberOfObjectives => objectives.Count;
         public GameObject NextObjective {
             get {
                 if (NumberOfObjectives > 0) return objectives[0];
@@ -32,14 +36,49 @@ namespace ENA.Goals
         }
         #endregion
         #region Events
-        [SerializeField] UnityEvent<bool> foundObjective;
-        [SerializeField] UnityEvent foundAllObjectives;
+        public Event<bool> FoundObjective;
+        public Event FinishedGame;
         #endregion
-        [SerializeField] InitAudios initAudios;
         #region Methods
         public void Add(GameObject objective)
         {
             objectives.Add(objective);
+        }
+
+        public void EndGame()
+        {
+            startingPoint.SetActive(false);
+
+            FinishedGame.Invoke();
+        }
+
+        public string ExtractObjectiveName(GameObject obj)
+        {
+            if (obj.TryGetComponent<CollidableProp>(out var prop))
+                return prop.GetName();
+            else
+                return obj.name;
+        }
+
+        public bool GetObjectiveAudioSource(int objectiveIndex, out AudioSource source)
+        {
+            source = default;
+            if (objectiveIndex >= NumberOfObjectives) return false;
+
+            var resonance = objectives[objectiveIndex].GetComponentInChildren<ResonanceAudioSource>();
+            return resonance.TryGetComponent(out source);
+        }
+
+        public void MoveToNextObjective()
+        {
+            SwitchAudioToNextObjective();
+            SpeakNextObjective();
+
+            objectives.RemoveAt(0);
+
+            FoundObjective.Invoke(ClearedAllObjectives);
+
+            if (ClearedAllObjectives) startingPoint.SetActive(true);
         }
 
         public void RemoveAll()
@@ -62,77 +101,52 @@ namespace ENA.Goals
                 Debug.Log("A distância do " + currentObject.name + " para o player é " + distance);
             }
         }
-        #endregion
-        void AdicionarListaColisions()
+
+        public void SpeakNextObjective()
         {
-            for (int i = 0; i < objectives.Count + 1; i++) {
-                UserModel.parcialTime.Add(0);
+            string currentObjective, nextObjective;
+            switch (NumberOfObjectives) {
+                case 0:
+                    return;
+                case 1:
+                    currentObjective = ExtractObjectiveName(objectives[0]);
+                    nextObjective = default;
+                    break;
+                default:
+                    currentObjective = ExtractObjectiveName(objectives[0]);
+                    nextObjective = ExtractObjectiveName(objectives[1]);
+                    break;
             }
+
+            speaker.SpeakObjectiveFound(currentObjective, nextObjective);
         }
 
-        public bool FindObjective()
+        private void SwitchAudioToNextObjective()
         {
-            StopObjectiveAudio();
+            if (GetObjectiveAudioSource(0, out var oldObjective))
+                oldObjective.Stop();
 
-            if (objectives.Count == 0) {
-                foundAllObjectives?.Invoke();
-                return false;
-            } 
-
-            MoveToNextObjective();
-            NextObjective?.GetComponent<AudioSource>()?.Play();
-            StartCoroutine(StartSoundObjective(1, 5));
-            return true;
-        }
-
-        public void MoveToNextObjective()
-        {
-            objectives.RemoveAt(0);
-            foundObjective?.Invoke(HasFinished);
-        }
-
-        public void PlayFindObjective()
-        {
-            initAudios.PlayAudioFoundObjective();
-        }
-
-        public void StopObjectiveAudio()
-        {
-            Debug.Log("Ativou StopObjectiveAudio");
-
-            if (objectives.Count > 0) {
-                ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
-                audioSource?.GetComponent<AudioSource>()?.Stop();
-            }
-        }
-
-        public void StartObjectiveAudio(int time)
-        {
-            StartCoroutine(StartSoundObjective(1, time));
+            if (GetObjectiveAudioSource(1, out var newObjective))
+                newObjective.PlayDelayed(WaitingTimeForAudio);
         }
 
         void Start()
         {
             instance = this;
-            StartObjectiveAudio(3);
-            Invoke(nameof(AdicionarListaColisions), 0.5f);
-        }
-        #region Coroutines
-        IEnumerator StartSoundObjective(int index, int time)
-        {
-            yield return new WaitForSeconds(time);
-            if (objectives.Count > 0) {
-                ResonanceAudioSource audioSource = objectives[0].GetComponentInChildren<ResonanceAudioSource>();
-                Debug.Log("Ativou o audio do objetivo");
-                audioSource.GetComponent<AudioSource>().Play();
-            }
+
+            startingPoint.SetActive(false);
         }
         #endregion
         #region Coroutines
         public IEnumerator StartAudios()
         {
             yield return LocalizationSettings.InitializationOperation;
-            initAudios.PlayIntroMessage();
+
+            var objectiveNames = objectives.ConvertAll(ExtractObjectiveName);
+            speaker.SpeakIntro(objectiveNames);
+
+            if (GetObjectiveAudioSource(0, out var newObjective))
+                newObjective.Play();
         }
         #endregion
     }

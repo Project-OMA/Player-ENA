@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ENA.Utilities
+namespace ENA
 {
     public static partial class GameObjectExtensions
     {

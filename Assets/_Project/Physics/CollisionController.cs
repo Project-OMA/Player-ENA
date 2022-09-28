@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete]
 public class CollisionController : MonoBehaviour {
 
    
@@ -157,7 +159,7 @@ public class CollisionController : MonoBehaviour {
     {
         for(int i = 0; i < 3; i++)
         {
-            int index = Random.Range(0, 6 - i);
+            int index = UnityEngine.Random.Range(0, 6 - i);
 
             allObjectives.RemoveAt(index);
 

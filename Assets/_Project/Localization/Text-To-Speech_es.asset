@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: es
   m_SharedData: {fileID: 11400000, guid: 327c3a94f213141e7ad7620e5e7f75cf, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 7805073818938769413
   m_TableData:
   - m_Id: 781167091712
     m_Localized: "Usted est\xE1 entrando en un ambiente con"
@@ -67,8 +68,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27660302328782848
-    m_Localized: "Usted choc\xF3 con"
+    m_Localized: "Usted choc\xF3 con {1}."
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769413
+  - m_Id: 33481358989844480
+    m_Localized: "Usted est\xE1 entrando en un ambiente con {0} que pueden ser identificados
+      por sus sonidos. Su objetivo es encontrar {0} en ese orden e Luego vuelva al
+      punto inicial"
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769413
+  - m_Id: 33481963686846464
+    m_Localized: "Usted encontr\xF3 {0}. Ahora usted debe encontrar {1}."
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769413
+  - m_Id: 38578828480602112
+    m_Localized: al punto inicial
     m_Metadata:
       m_Items: []
   references:
-    version: 1
+    version: 2
+    RefIds:
+    - rid: 7805073818938769413
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e02f5d1ef3760000e0ef27abf3760000e0affee5446200

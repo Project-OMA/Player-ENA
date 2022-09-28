@@ -48,7 +48,7 @@ namespace ENA.Input
                 playerSoundboard.Play("beepLeft");
             }
         }
-
+ 
         private void ChangeObjective(GameObject gameObject)
         {
             if (objectiveController.NumberOfObjectives > 0 && gameObject == objectiveController.NextObjective) {
@@ -97,12 +97,7 @@ namespace ENA.Input
 
         private void PlayNewObjective()
         {
-            objectiveController.StopObjectiveAudio();
-            objectiveController.PlayFindObjective();
             objectiveController.MoveToNextObjective();
-            UserModel.countQualTempo++;
-            if (objectiveController.objectives.Count != 0)
-                objectiveController.StartObjectiveAudio(5);
         }
 
         public void SetDirection(float angle)
@@ -119,11 +114,12 @@ namespace ENA.Input
             collisionTracker = GetComponent<CollisionTracker>();
             playerSoundboard = GetComponent<Soundboard>();
 
-            movementTracker.onEndWalking += UpdateEndPosition;
-            rotationTracker.onTurn += BeepOnTurn;
-            collisionTracker.onHitFloor += PlayStepSounds;
-            collisionTracker.onHitObstacle += (obj) => WalkBack();
-            collisionTracker.onHitObjective += ChangeObjective;
+            movementTracker.OnEndWalking += UpdateEndPosition;
+            rotationTracker.OnTurn += BeepOnTurn;
+            collisionTracker.OnHitFloor += PlayStepSounds;
+            collisionTracker.OnHitObstacle += WalkBack;
+            collisionTracker.OnHitObjective += ChangeObjective;
+            collisionTracker.OnHitObjective += WalkBack;
         }
 
         public void SetCameraTransform(Transform t)
@@ -151,10 +147,9 @@ namespace ENA.Input
             }
         }
 
-        private void WalkBack()
+        private void WalkBack(GameObject gameObject)
         {
-            int forwardInput = -1;
-            movementTracker.BeginWalking(forwardInput, 0.1f, false);
+            movementTracker.RevertWalk();
         }
         #endregion
     }

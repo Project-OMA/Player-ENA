@@ -89,5 +89,11 @@ namespace ENA.Utilities
             return yaml.ToString();
         }
         #endregion
+        #region Static Methods
+        public static string Parse(Vector3 vector)
+        {
+            return $"{{x: {vector.x}, y: {vector.y}, z: {vector.z}}}";
+        }
+        #endregion
     }
 }

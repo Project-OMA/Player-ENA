@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 327c3a94f213141e7ad7620e5e7f75cf, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 7805073818938769412
   m_TableData:
   - m_Id: 781167091712
     m_Localized: You are entering a room with
@@ -67,8 +68,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27660302328782848
-    m_Localized: You collided with
+    m_Localized: You collided with {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769412
+  - m_Id: 33481358989844480
+    m_Localized: You are entering a room with {0} which you can identify by their
+      sounds. Your goal is to find {0} in that order then, you must return to the
+      starting point
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769412
+  - m_Id: 33481963686846464
+    m_Localized: You found {0}. Now, you must look for {1}.
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769412
+  - m_Id: 38578828480602112
+    m_Localized: the starting point
     m_Metadata:
       m_Items: []
   references:
-    version: 1
+    version: 2
+    RefIds:
+    - rid: 7805073818938769412
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e02f5d1ef3760000e0ef27abf3760000e0affee5446200

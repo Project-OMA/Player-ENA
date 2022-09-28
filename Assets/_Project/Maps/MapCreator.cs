@@ -5,13 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using ENA.Input;
 using ENA.Goals;
 using UnityEngine.Serialization;
-using UnityEngine.Events;
 using ENA.Utilities;
 using ENA.Services;
+using Event = ENA.Utilities.Event;
+using ENA.Props;
 
 namespace ENA.Maps
 {
@@ -21,9 +21,9 @@ namespace ENA.Maps
         private const string CanvasPath = "/root/canvas";
         private const string NodePath = "/root/layers/layer";
         private const string TilesetPath = "/root/tilesets/tileset";
-        public const float TileSizeToUnit = 0.5f;
+        public const float TileSizeToUnit = 1;
         public const float WallHeight = 10;
-        private const float CeilingHeight = 1.25f;
+        private const float CeilingHeight = 3f;
         public readonly MapCategory[] LayerOrder = new MapCategory[9]{
             MapCategory.Floor, MapCategory.Wall, MapCategory.DoorWindow, MapCategory.Furniture,
             MapCategory.Electronics, MapCategory.Utensils, MapCategory.Interactive, MapCategory.CharacterElements,
@@ -34,23 +34,23 @@ namespace ENA.Maps
         [Header("References")]
         [SerializeField] PlayerController playerController;
         [SerializeField] ObjectiveController objectiveController;
-        [FormerlySerializedAs("mineMap")]
-        [SerializeField] RectTransform miniMap;
+        [SerializeField] Transform mapParent;
+        [SerializeField] Camera trackerCamera;
         private string[,,] mapMatrix;
         [Header("Default Tiles")]
-        [FormerlySerializedAs("noFloor")]
         [SerializeField] GameObject defaultFloor;
         [SerializeField] GameObject defaultCeiling;
         [SerializeField] GameObject invisibleWall;
         [Header("Map Data")]
         [SerializeField] SpawnObjectsList spawnObjList;
+        [SerializeField] PropTheme theme;
         [SerializeField] Vector2 canvasSize;
         [SerializeField] Vector2 tileSize;
         [SerializeField] Vector2Int matrixSize;
         #endregion
         #region Events
         [Header("Events")]
-        public UnityEvent OnLoadedMap;
+        public Event OnLoadedMap;
         [Header("Debugging")]
         [FormerlySerializedAs("testando")]
         [SerializeField] bool testing;
@@ -87,15 +87,43 @@ namespace ENA.Maps
 
             StartCoroutine(InstanceMap());
             SpawnRoomBounds();
+            PlaceTrackerCamera();
             objectiveController.SortObjectivesBy(playerController.transform.parent.position);
         }
 
-        public void InstantiateTileAt(MapCategory category, string code, int c, int l)
+        private void DefinePlayerPosition(string inputCode, int column, int line)
         {
-            GameObject prefab;
-            Vector3 tileDestination;
+            switch (inputCode) {
+                case "0.0":
+                    SetPlayerDirection(0);
+                    break;
+                case "1.0":
+                    SetPlayerDirection(90);
+                    break;
+                case "2.0":
+                    SetPlayerDirection(180);
+                    break;
+                case "3.0":
+                    SetPlayerDirection(270);
+                    break;
+                default:
+                    return;
+            }
 
-            if (spawnObjList.IsNull(code)) {
+            playerController.transform.parent.position = GridPositionFor(column, line);
+        }
+
+        private Vector3 GridPositionFor(int column, int line)
+        {
+            return new Vector3(line, 0, column);
+        }
+
+        public void InstanceTile(MapCategory category, string code, int c, int l)
+        {
+            GameObject prefab = null;
+            Vector3 tileDestination, tileRotation;
+
+            if (!theme.GetPrefab(category, code, out var spawn)) {
                 switch (category) {
                     case MapCategory.Floor:
                         prefab = defaultFloor;
@@ -103,47 +131,31 @@ namespace ENA.Maps
                     case MapCategory.Ceiling:
                         prefab = defaultCeiling;
                         break;
+                    case MapCategory.CharacterElements:
+                        DefinePlayerPosition(code, c, l);
+                        break;
                     default:
                         return;
                 }
+                tileRotation = Vector3.zero;
             } else {
-                prefab = spawnObjList.GetPrefab(((int)category), code);
+                prefab = spawn.Prefab;
+                tileRotation = spawn.Rotation;
             }
 
-            tileDestination = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
+
+            tileDestination = GridPositionFor(c, l);
             if (category == MapCategory.Ceiling) {
                 tileDestination.y += CeilingHeight;
             }
 
             Debug.Log($"List Index: {category} | Code: {code}");
             if (prefab == null) {
-                if (category == MapCategory.CharacterElements) {
-                    switch (code) {
-                        case "0.0":
-                            SetPlayerDirection(0);
-                            break;
-                        case "1.0":
-                            SetPlayerDirection(90);
-                            break;
-                        case "2.0":
-                            SetPlayerDirection(180);
-                            break;
-                        case "3.0":
-                            SetPlayerDirection(270);
-                            break;
-                        default:
-                            return;
-                    }
-                    print("O code é: " + code);
-
-                    playerController.transform.parent.position = tileDestination;
-                } else {
-                    Debug.LogWarning($"{code} [{c},{l}]");
-                    //Debug.LogError("Problemas ao pegar o prefab");
-                    return;
-                }
+                Debug.LogWarning($"Error: {code} [{c},{l}] is invalid!");
+                return;
             } else {
-                var newInstance = Instantiate(prefab, tileDestination, prefab.transform.rotation);
+                var newInstance = Instantiate(prefab, tileDestination, Quaternion.Euler(tileRotation));
+                newInstance.SetParent(mapParent, true);
                 if (category == MapCategory.Interactive) {
                     objectiveController.Add(newInstance);
                 }
@@ -169,6 +181,14 @@ namespace ENA.Maps
             BuildMapMatrix(mapLayers[0], mapLayers[1], mapLayers[2], mapLayers[3], mapLayers[4], mapLayers[5], mapLayers[6], mapLayers[7]);
         }
 
+        public void PlaceTrackerCamera()
+        {
+            const float xFactor = 10/6f;
+
+            trackerCamera.orthographicSize = Mathf.Max(matrixSize.x * xFactor, matrixSize.y)*TileSizeToUnit/5;
+            trackerCamera.transform.position = new Vector3(matrixSize.x*TileSizeToUnit/2,CeilingHeight*2,matrixSize.y*TileSizeToUnit/2);
+        }
+
         private void SetPlayerDirection(float angleDegrees)
         {
             playerController.SetDirection(angleDegrees);
@@ -180,12 +200,12 @@ namespace ENA.Maps
             float ZOffset = matrixSize.y * TileSizeToUnit;
             float HalfZOffset = matrixSize.y * HalfTileSizeToUnit;
             float XOffset = matrixSize.x * TileSizeToUnit;
-            float XHalfOffset = (matrixSize.x + 1) * HalfTileSizeToUnit;
+            float HalfXOffset = matrixSize.x * HalfTileSizeToUnit;
 
-            invisibleWall.Instance(new Vector3(-TileSizeToUnit, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
-            invisibleWall.Instance(new Vector3(XOffset, 0, -HalfZOffset), Quaternion.identity, new Vector3(TileSizeToUnit, WallHeight, ZOffset));
-            invisibleWall.Instance(new Vector3(XHalfOffset, 0, TileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
-            invisibleWall.Instance(new Vector3(XHalfOffset, 0, -ZOffset), Quaternion.identity, new Vector3(XOffset, WallHeight, TileSizeToUnit));
+            invisibleWall.Instance(new Vector3(-HalfTileSizeToUnit, 0, HalfZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(HalfTileSizeToUnit, WallHeight, ZOffset));
+            invisibleWall.Instance(new Vector3(XOffset-HalfTileSizeToUnit, 0, HalfZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(HalfTileSizeToUnit, WallHeight, ZOffset));
+            invisibleWall.Instance(new Vector3(HalfXOffset-HalfTileSizeToUnit, 0, -HalfTileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, HalfTileSizeToUnit));
+            invisibleWall.Instance(new Vector3(HalfXOffset-HalfTileSizeToUnit, 0, ZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, HalfTileSizeToUnit));
         }
 
         void Start()
@@ -212,13 +232,14 @@ namespace ENA.Maps
             int numberOfLayers = LayerOrder.Length;
             for (int c = 0; c < matrixSize.y; c++) {
                 for (int l = 0; l < matrixSize.x; l++) {
+                    var skewedColumn = matrixSize.y - c - 1;
                     for (int x = 0; x < numberOfLayers; x++) {
-                        InstantiateTileAt(LayerOrder[x], mapMatrix[x, c, l], c, l);
+                        InstanceTile(LayerOrder[x], mapMatrix[x, skewedColumn, l], c, l);
                     }
                 }
             }
             yield return objectiveController.StartAudios();
-            OnLoadedMap?.Invoke();
+            OnLoadedMap.Invoke();
         }
         #endregion
     }

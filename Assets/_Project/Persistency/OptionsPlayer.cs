@@ -9,7 +9,7 @@ using TMPro;
 using ENA.Utilities;
 using ENA;
 using ENA.Input;
-using ENA.TTS;
+using ENA.Accessibility;
 using ENA.Persistency;
 using ENA.Player;
 using ENA.Services;
@@ -35,8 +35,8 @@ public class OptionsPlayer : MonoBehaviour {
 	private void OnTriggerEnter(Collider other)
     {
         var objectiveController = ObjectiveController.instance;
-        if (other.tag == "final" && objectiveController.HasFinished) {
-            objectiveController.FindObjective();
+        if (other.tag == "final" && objectiveController.ClearedAllObjectives) {
+            objectiveController.EndGame();
         }
     }
 }

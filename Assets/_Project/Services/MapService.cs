@@ -29,7 +29,8 @@ namespace ENA.Services
         #region Methods
         public async Task<MapData[]> FetchMaps(ENAProfile profile)
         {
-            var results = await Task.WhenAll(localCache.FetchMapsFor(profile.UserID), dataSource.FetchMapsFor(profile.UserID));
+            var userToken = $"{profile.UserID}";
+            var results = await Task.WhenAll(localCache.FetchMapsFor(userToken), dataSource.FetchMapsFor(userToken));
             var mapList = results.SelectMany(result => result).Distinct(MapData.IDComparer.New).ToList();
             ValidateMaps(mapList);
             return mapList.ToArray();

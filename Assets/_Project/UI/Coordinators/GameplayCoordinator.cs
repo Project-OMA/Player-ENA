@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using ENA.Input;
+using ENA.Metrics;
 using ENA.Persistency;
 using ENA.Player;
 using ENA.Services;
@@ -16,6 +17,7 @@ namespace ENA.UI
         [SerializeField] SettingsProfile settingsProfile;
         [SerializeField] RenderTexture minimap;
         [SerializeField] PlayerController playerController;
+        [SerializeField] SessionTracker tracker;
         [Header("Displays")]
         [SerializeField] PauseMenuDisplay pauseMenuDisplay;
         [SerializeField] TrackerDisplay trackerDisplay;
@@ -68,7 +70,7 @@ namespace ENA.UI
         {
             var userProfile = settingsProfile.LoggedProfile;
             var recordingTime = DateTime.Now;
-            var logContents = LogBuilder.MakeLog(userProfile, recordingTime, playerController);
+            var logContents = LogBuilder.MakeLog(userProfile, recordingTime, tracker.Model);
 
             ShowTracker(recordingTime);
             LocalCache.SaveTracker(recordingTime, userProfile, minimap);

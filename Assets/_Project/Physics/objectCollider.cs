@@ -62,10 +62,10 @@ public class objectCollider : MonoBehaviour
             hitsound.Play();
         }
 
-        if(ObjectiveController.instance.objectives.Count > 0){
-            if(gameObject == ObjectiveController.instance.objectives[0]){
+        if(ObjectiveController.instance.NumberOfObjectives > 0){
+            if(gameObject == ObjectiveController.instance.NextObjective){
                 if(profile.ElementsDisappearEnabled){
-                    Invoke("Desligar",3);
+                    Invoke(nameof(Desligar),3);
                 }
             }
         }

@@ -1,4 +1,6 @@
 using UnityEngine;
+using ENA.Utilities;
+using Event = ENA.Utilities.Event;
 
 namespace ENA.Physics
 {
@@ -7,6 +9,8 @@ namespace ENA.Physics
     {
         #region Variables
         float analogPower;
+        float timeLeft = 0;
+        Vector3 startingSpot;
         [SerializeField] float speed = 1;
         [Header("References")]
         [SerializeField] CharacterController characterController;
@@ -15,26 +19,32 @@ namespace ENA.Physics
         public bool IsWalking {get; private set;}
         public int NumberOfSteps {get; private set;}
         #endregion
-        #region Delegates
-        public delegate void Event();
-        #endregion
         #region Events
-        public event Event onBeginWalking, onEndWalking;
+        public Event OnBeginWalking, OnEndWalking;
         #endregion
         #region Methods
         public void BeginWalking(float value, float time, bool countStep = true)
         {
+            if(IsWalking) return;
+
             analogPower = value;
+            if ((transform.position - startingSpot).magnitude > 0.9f) {
+                startingSpot = transform.position;
+            }
+
             if (countStep) NumberOfSteps++;
+
             IsWalking = true;
-            Invoke(nameof(EndWalking), time);
-            onBeginWalking?.Invoke();
+            timeLeft = time;
+
+            OnBeginWalking.Invoke();
         }
 
         private void EndWalking()
         {
             IsWalking = false;
-            onEndWalking?.Invoke();
+
+            OnEndWalking.Invoke();
         }
 
         private void Start()
@@ -43,19 +53,31 @@ namespace ENA.Physics
 
             NumberOfSteps = 0;
 
-            Invoke(nameof(EndWalking), 0.1f);
+            IsWalking = false;
+            startingSpot = transform.position;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (IsWalking) {
+            if (timeLeft > 0.001f) {
+                timeLeft -= Time.fixedDeltaTime;
                 Walk();
+            } else if (IsWalking) {
+                EndWalking();
             }
+        }
+
+        public void RevertWalk()
+        {
+            transform.position = startingSpot;
+            timeLeft = 0;
+            IsWalking = false;
         }
 
         private void Walk()
         {
-            characterController.Move(analogPower * transform.forward * Time.deltaTime * speed);
+            var delta = analogPower * transform.forward * Time.fixedDeltaTime * speed;
+            characterController.Move(delta);
         }
         #endregion
     }
