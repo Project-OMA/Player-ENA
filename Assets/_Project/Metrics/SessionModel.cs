@@ -50,13 +50,14 @@ namespace ENA.Metrics
             #endregion
         }
         [Serializable]
-        public struct Objective
+        public class Objective: EntityFactory
         {
             #region Variables
             public string ObjectiveID;
             public List<Action> Actions;
             public List<Collision> Collisions;
             float initialTimestamp;
+            string entityID;
             #endregion
             #region Properties
             public float TimeSpent => CalculateTimeSpent();
@@ -67,10 +68,22 @@ namespace ENA.Metrics
             #region Constructors
             public Objective(string objectiveID, float startingTimestamp)
             {
+                entityID = Entity.GenerateEntityID();
                 ObjectiveID = objectiveID;
                 initialTimestamp = startingTimestamp;
                 Actions = new List<Action>();
                 Collisions = new List<Collision>();
+            }
+            #endregion
+            #region EntityFactory Implementation
+            public Entity GetEntity()
+            {
+                var entity = new Entity(entityID, ObjectiveID);
+                entity.AddProperty(nameof(TimeSpent), TimeSpent);
+                entity.AddProperty(nameof(NumberOfCollisions), NumberOfCollisions);
+                entity.AddProperty(nameof(NumberOfRotations), NumberOfRotations);
+                entity.AddProperty(nameof(NumberOfSteps), NumberOfSteps);
+                return entity;
             }
             #endregion
             #region Methods
