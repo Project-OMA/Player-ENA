@@ -29,14 +29,39 @@ namespace ENA.Input
         [SerializeField] float stepDistance;
         [SerializeField] Transform cameraTransform;
         #endregion
-        #region Properties
-        public int RotationCount {
-            get => rotationTracker.NumberOfRotations;
-            set => rotationTracker.NumberOfRotations = value;
+        #region MonoBehaviour Lifecycle
+        private void OnDisable()
+        {
+            movementTracker.enabled = false;
+            rotationTracker.enabled = false;
         }
 
-        public int StepCount {
-            get => movementTracker.NumberOfSteps;
+        private void OnEnable()
+        {
+            movementTracker.enabled = true;
+            rotationTracker.enabled = true;
+        }
+
+        private void Start()
+        {
+            characterController = GetComponent<CharacterController>();
+            movementTracker = GetComponent<MovementTracker>();
+            rotationTracker = GetComponent<RotationTracker>();
+            collisionTracker = GetComponent<CollisionTracker>();
+            playerSoundboard = GetComponent<Soundboard>();
+
+            movementTracker.OnEndWalking += UpdateEndPosition;
+            rotationTracker.OnTurn += BeepOnTurn;
+            collisionTracker.OnHitFloor += PlayStepSounds;
+            collisionTracker.OnHitObstacle += WalkBack;
+            collisionTracker.OnHitObjective += ChangeObjective;
+            collisionTracker.OnHitObjective += WalkBack;
+        }
+
+        private void Update()
+        {
+            if (!rotationTracker.IsRotating) CheckMovement();
+            if (!movementTracker.IsWalking) CheckRotation();
         }
         #endregion
         #region Methods
@@ -76,18 +101,6 @@ namespace ENA.Input
             }
         }
 
-        private void OnDisable()
-        {
-            movementTracker.enabled = false;
-            rotationTracker.enabled = false;
-        }
-
-        private void OnEnable()
-        {
-            movementTracker.enabled = true;
-            rotationTracker.enabled = true;
-        }
-
         private void PlayStepSounds(GameObject collidedObject)
         {
             if (!movementTracker.IsWalking) return;
@@ -106,22 +119,6 @@ namespace ENA.Input
             rotationTracker.SetTrackedAngle(angle);
         }
 
-        private void Start()
-        {
-            characterController = GetComponent<CharacterController>();
-            movementTracker = GetComponent<MovementTracker>();
-            rotationTracker = GetComponent<RotationTracker>();
-            collisionTracker = GetComponent<CollisionTracker>();
-            playerSoundboard = GetComponent<Soundboard>();
-
-            movementTracker.OnEndWalking += UpdateEndPosition;
-            rotationTracker.OnTurn += BeepOnTurn;
-            collisionTracker.OnHitFloor += PlayStepSounds;
-            collisionTracker.OnHitObstacle += WalkBack;
-            collisionTracker.OnHitObjective += ChangeObjective;
-            collisionTracker.OnHitObjective += WalkBack;
-        }
-
         public void SetCameraTransform(Transform t)
         {
             cameraTransform = t;
@@ -130,12 +127,6 @@ namespace ENA.Input
         public void ToggleControls()
         {
             this.enabled = !this.enabled;
-        }
-
-        private void Update()
-        {
-            CheckRotation();
-            CheckMovement();
         }
 
         private void UpdateEndPosition()

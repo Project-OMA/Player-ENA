@@ -15,27 +15,33 @@ namespace ENA.Physics
         Direction.Cardinal cardinalDirection;
         Direction.Cardinal lastCardinalDirection;
         #endregion
-        #region Properties
-        public int NumberOfRotations {get; set;}
-        #endregion
+        public bool IsRotating => !IsLookingAtSameDirection();
         #region Events
         public Event<bool> OnTurn;
         #endregion
-        #region Methods
-        private void CheckRotation()
+        #region MonoBehaviour Lifecycle
+        private void Start()
         {
-            if(lastCardinalDirection != cardinalDirection) {
-                NumberOfRotations++;
-            }
-
+            currentAngle = (int)transform.localEulerAngles.y;
             lastCardinalDirection = cardinalDirection;
+            targetRotation = transform.rotation;
+        }
+
+        private void Update()
+        {
+            rotationTimer += Time.deltaTime;
+            cardinalDirection = Direction.CardinalFor(currentAngle);
+        }
+        #endregion
+        #region Methods
+        public bool IsLookingAtSameDirection()
+        {
+            return Mathf.Abs(transform.eulerAngles.y - targetRotation.eulerAngles.y) < 0.001f;
         }
 
         public void Rotate(float axisValue)
         {
-            bool lookingAtSameAngle = (int)transform.eulerAngles.y == (int)targetRotation.eulerAngles.y;
-
-            if (lookingAtSameAngle && axisValue != 0) {
+            if (IsLookingAtSameDirection() && axisValue != 0) {
                 rotationTimer = 0;
                 if (!selectedDirection) {
                     bool right = axisValue > 0;
@@ -59,22 +65,6 @@ namespace ENA.Physics
         public void SetTrackedAngle(float angle)
         {
             targetRotation = Quaternion.Euler(targetRotation.eulerAngles.x, angle, targetRotation.eulerAngles.z);
-        }
-
-        private void Start()
-        {
-            currentAngle = (int)transform.localEulerAngles.y;
-            lastCardinalDirection = cardinalDirection;
-
-            NumberOfRotations = -2;
-        }
-
-        private void Update()
-        {
-            rotationTimer += Time.deltaTime;
-            cardinalDirection = Direction.CardinalFor(currentAngle);
-
-            CheckRotation();
         }
         #endregion
     }

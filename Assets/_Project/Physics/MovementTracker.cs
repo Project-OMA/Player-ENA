@@ -10,17 +10,35 @@ namespace ENA.Physics
         #region Variables
         float analogPower;
         float timeLeft = 0;
-        Vector3 startingSpot;
+        Vector3 startingSpot, forward;
         [SerializeField] float speed = 1;
         [Header("References")]
         [SerializeField] CharacterController characterController;
         #endregion
         #region Properties
         public bool IsWalking {get; private set;}
-        public int NumberOfSteps {get; private set;}
         #endregion
         #region Events
         public Event OnBeginWalking, OnEndWalking;
+        #endregion
+        #region MonoBehaviour Lifecycle
+        private void FixedUpdate()
+        {
+            if (timeLeft > 0.001f) {
+                timeLeft -= Time.fixedDeltaTime;
+                Walk();
+            } else if (IsWalking) {
+                EndWalking();
+            }
+        }
+
+        private void Start()
+        {
+            characterController = GetComponent<CharacterController>();
+
+            IsWalking = false;
+            startingSpot = transform.position;
+        }
         #endregion
         #region Methods
         public void BeginWalking(float value, float time, bool countStep = true)
@@ -31,8 +49,7 @@ namespace ENA.Physics
             if ((transform.position - startingSpot).magnitude > 0.9f) {
                 startingSpot = transform.position;
             }
-
-            if (countStep) NumberOfSteps++;
+            forward = transform.forward;
 
             IsWalking = true;
             timeLeft = time;
@@ -45,26 +62,6 @@ namespace ENA.Physics
             IsWalking = false;
 
             OnEndWalking.Invoke();
-        }
-
-        private void Start()
-        {
-            characterController = GetComponent<CharacterController>();
-
-            NumberOfSteps = 0;
-
-            IsWalking = false;
-            startingSpot = transform.position;
-        }
-
-        private void FixedUpdate()
-        {
-            if (timeLeft > 0.001f) {
-                timeLeft -= Time.fixedDeltaTime;
-                Walk();
-            } else if (IsWalking) {
-                EndWalking();
-            }
         }
 
         public void RevertWalk()
