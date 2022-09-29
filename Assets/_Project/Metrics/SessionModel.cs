@@ -54,20 +54,21 @@ namespace ENA.Metrics
         {
             #region Variables
             public string ObjectiveID;
-            public float TimeSpent;
             public List<Action> Actions;
             public List<Collision> Collisions;
+            float initialTimestamp;
             #endregion
             #region Properties
+            public float TimeSpent => CalculateTimeSpent();
             public int NumberOfCollisions => Collisions.Count;
             public int NumberOfRotations => ActionCount(Action.Type.Turn);
             public int NumberOfSteps => ActionCount(Action.Type.Walk);
             #endregion
             #region Constructors
-            public Objective(string objectiveID)
+            public Objective(string objectiveID, float startingTimestamp)
             {
                 ObjectiveID = objectiveID;
-                TimeSpent = 0.0f;
+                initialTimestamp = startingTimestamp;
                 Actions = new List<Action>();
                 Collisions = new List<Collision>();
             }
@@ -78,9 +79,12 @@ namespace ENA.Metrics
                 return Actions.Count((action) => action.ActionType == actionType);
             }
 
-            private void SetTimeSpent(float value)
+            private float CalculateTimeSpent()
             {
-                TimeSpent = value;
+                if (Actions.Count == 0) return 0;
+
+                var lastAction = Actions.Last();
+                return lastAction.Timestamp - initialTimestamp;
             }
             #endregion
         }
@@ -90,7 +94,7 @@ namespace ENA.Metrics
         [field: SerializeField] public int MapID {get; private set;}
         [field: SerializeField] public DateTime SessionDate {get; private set;}
         [field: SerializeField] public bool ClearedMap {get; private set;}
-        [SerializeField] public List<Objective> objectives;
+        [SerializeField] List<Objective> objectives;
         #endregion
         #region Properties
         public int NumberOfCollisions => (from objective in objectives select objective.NumberOfCollisions).Sum();
@@ -107,7 +111,6 @@ namespace ENA.Metrics
             SessionDate = DateTime.Now;
             ClearedMap = false;
             objectives = new List<Objective>();
-
         }
         #endregion
         #region Methods

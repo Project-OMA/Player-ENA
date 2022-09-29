@@ -31,7 +31,7 @@ namespace ENA.Metrics
 
         private SessionModel.Action CreateAction(SessionModel.Action.Type type, Direction.Basic direction)
         {
-            var timestamp = Time.time;
+            var timestamp = GetCurrentTimestamp();
             return new SessionModel.Action(type, direction, timestamp, controller.transform.position);
         }
 
@@ -42,6 +42,11 @@ namespace ENA.Metrics
             } else {
                 return "No ID";
             }
+        }
+
+        private float GetCurrentTimestamp()
+        {
+            return Time.timeSinceLevelLoad;
         }
 
         public void OpenSession()
@@ -70,7 +75,7 @@ namespace ENA.Metrics
         {
             var objectiveID = ExtractID(gameObject.transform);
 
-            var objectiveModel = new SessionModel.Objective(objectiveID);
+            var objectiveModel = new SessionModel.Objective(objectiveID, GetCurrentTimestamp());
             Model.Register(objectiveModel);
 
             Debug.Log($"New Objective: {objectiveModel.ObjectiveID}");
