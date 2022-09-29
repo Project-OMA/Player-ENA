@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ENA.Accessibility;
 using ENA.Goals;
 using ENA.Input;
 using ENA.Persistency;
@@ -25,6 +26,7 @@ namespace ENA.Metrics
         [SerializeField] PlayerController controller;
         [SerializeField] ObjectiveController objectiveManager;
         [SerializeField] SettingsProfile profile;
+        [SerializeField] SpeakerComponent speaker;
         Vector3 lastPosition;
         SessionModel.Objective currentObjective;
         #endregion
@@ -42,6 +44,7 @@ namespace ENA.Metrics
         #region Methods
         public void CloseSession()
         {
+            speaker.SpeakActivityResults(Model.ClearedMap);
             Model = null;
             micelioWeb.Disable();
         }
@@ -94,6 +97,7 @@ namespace ENA.Metrics
             Model.Register(collisionModel);
 
             micelioWeb.Register(MetricsUtility.GenerateCollisionActivity(collisionModel, currentObjective));
+            speaker.SpeakCollision(objectID);
 
             Debug.Log($"{collisionModel.Timestamp} | Collided with {collisionModel.ObjectID} @ {collisionModel.Position}");
         }
