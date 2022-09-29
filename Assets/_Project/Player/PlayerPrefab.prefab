@@ -1512,11 +1512,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9f6dcf5bd84450590ed6fbcd305f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model:
+  <Model>k__BackingField:
     <UserID>k__BackingField: 0
     <MapID>k__BackingField: 0
-    ClearedMap: 0
-    Objectives: []
+    <ClearedMap>k__BackingField: 0
+    objectives: []
+  enableAPI: 0
+  devMode: 0
   controller: {fileID: 114210643828000828}
   objectiveManager: {fileID: 114992077736940122}
   profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
@@ -1828,7 +1830,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4189089848957160}
   - component: {fileID: 82120401034210012}
-  - component: {fileID: 114178393482619770}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -1948,28 +1949,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114178393482619770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763825173335788}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac676d7084a01d41b20d096226619c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionCount: 0
-  colliderAlert:
-  - "Voc\xEA colidiu com"
-  - "Usted choc\xF3 con"
-  - You collided with
-  names:
-  - NomePt
-  - NomeEs
-  - NomeIg
-  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
 --- !u!1 &1790537708424730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,9 +1998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2776ed43be3ee4d9b6e1595847288a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114210643828000828}
   fixedRotation: 0
   currentRotation: 0
+  player: {fileID: 114210643828000828}
+  sessionTracker: {fileID: 1357019057768933895}
 --- !u!81 &81823680701127492
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2405,9 +2385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2776ed43be3ee4d9b6e1595847288a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114210643828000828}
   fixedRotation: 0
   currentRotation: 0
+  player: {fileID: 114210643828000828}
+  sessionTracker: {fileID: 0}
 --- !u!81 &81620548418371212
 AudioListener:
   m_ObjectHideFlags: 0

@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ENA.Utilities;
+using ENA.Metrics;
 
 namespace ENA.Input
 {
 	public class ControleGiroscopio: MonoBehaviour
 	{
 		#region Variables
-		[SerializeField] PlayerController player;
 		[SerializeField] private float fixedRotation;
 		[SerializeField] private float currentRotation;
+		[Header("References")]
+		[SerializeField] PlayerController player;
+		[SerializeField] SessionTracker sessionTracker;
 		private Gyroscope gyro;
 		#endregion
 		#region Methods
@@ -30,10 +33,10 @@ namespace ENA.Input
 			currentRotation = transform.localEulerAngles.y;
 
 			if(currentRotation >= fixedRotation + 90) {
-				player.RotationCount++;
+				sessionTracker.RegisterRotation(true);
 				currentRotation += 90;
 			} else if(currentRotation <= fixedRotation - 90) {
-				player.RotationCount++;
+				sessionTracker.RegisterRotation(false);
 				currentRotation -= 90;
 			}
 		}
