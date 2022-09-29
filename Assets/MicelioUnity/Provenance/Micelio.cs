@@ -27,7 +27,7 @@ public class Micelio
         this._token = token;
         this._device_id = GetDeviceInformation();
         string path = Directory.GetCurrentDirectory();
-        this._dll = Assembly.LoadFrom(path+"/Assets/Provenance/LitJson.dll");
+        this._dll = Assembly.LoadFrom(Path.Combine(path,"Assets/MicelioUnity/Provenance/LitJson.dll"));
         if(is_dev == "dev"){
             this._is_dev = true;
         }
