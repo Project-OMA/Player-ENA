@@ -71,7 +71,7 @@ namespace ENA.Utilities
         private void InsertLineIndents()
         {
             for(int i = 0; i < currentIndentLevel; i++)
-                yaml.Append("\t");
+                yaml.Append("  ");
         }
 
         public void Mapping(string parameter, string value, string comment = null)
