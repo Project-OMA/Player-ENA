@@ -51,9 +51,9 @@ namespace ENA.UI
             settingsCoordinator = GetComponent<SettingsCoordinator>();
         }
 
-        public void SpeakLoading()
+        public void QuitGame()
         {
-            
+            Application.Quit();
         }
         #endregion
     }
