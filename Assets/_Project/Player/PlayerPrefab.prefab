@@ -1517,7 +1517,7 @@ MonoBehaviour:
     <MapID>k__BackingField: 0
     <ClearedMap>k__BackingField: 0
     objectives: []
-  enableAPI: 0
+  enableAPI: 1
   devMode: 0
   controller: {fileID: 114210643828000828}
   objectiveManager: {fileID: 114992077736940122}
@@ -2389,7 +2389,7 @@ MonoBehaviour:
   fixedRotation: 0
   currentRotation: 0
   player: {fileID: 114210643828000828}
-  sessionTracker: {fileID: 0}
+  sessionTracker: {fileID: 1357019057768933895}
 --- !u!81 &81620548418371212
 AudioListener:
   m_ObjectHideFlags: 0

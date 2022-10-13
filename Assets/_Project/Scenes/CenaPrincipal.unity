@@ -216,6 +216,11 @@ PrefabInstance:
       objectReference: {fileID: 602448545}
     - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
+        type: 3}
       propertyPath: mapParent
       value: 
       objectReference: {fileID: 21002960}
@@ -224,6 +229,11 @@ PrefabInstance:
       propertyPath: telaPreta
       value: 
       objectReference: {fileID: 1428692516}
+    - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
+        type: 3}
+      propertyPath: testMapFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 8aac417f039f7a54193aef4f2355e54d, type: 3}
     - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
       propertyPath: trackerCamera
@@ -434,6 +444,11 @@ PrefabInstance:
       propertyPath: FoundAllObjectives.unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1357019057768933895, guid: 1b479b7b51a580c4698735b4ab79fefd,
+        type: 3}
+      propertyPath: enableAPI
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b479b7b51a580c4698735b4ab79fefd, type: 3}
 --- !u!114 &196943514 stripped
@@ -520,6 +535,10 @@ PrefabInstance:
     - target: {fileID: 1774798324733892, guid: 7a62c3ed0dd892e43b1d94526911d1cb, type: 3}
       propertyPath: m_Name
       value: '[Camera] Tracker'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1961636186173488, guid: 7a62c3ed0dd892e43b1d94526911d1cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4085750301735714, guid: 7a62c3ed0dd892e43b1d94526911d1cb, type: 3}
       propertyPath: m_RootOrder
@@ -848,6 +867,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5096055961307990516, guid: 322a3a36f02b74d149cd50aa7bed9abf,
         type: 2}
+    - target: {fileID: 3164609515947834436, guid: 7a62c3ed0dd892e43b1d94526911d1cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3314375181967048044, guid: 7a62c3ed0dd892e43b1d94526911d1cb,
         type: 3}
       propertyPath: speaker
@@ -998,7 +1022,7 @@ PrefabInstance:
     - target: {fileID: 8298472746949551955, guid: 7a62c3ed0dd892e43b1d94526911d1cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8437932809095393319, guid: 7a62c3ed0dd892e43b1d94526911d1cb,
         type: 3}

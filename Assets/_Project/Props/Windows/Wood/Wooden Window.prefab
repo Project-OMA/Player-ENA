@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wooden Window
       objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: fcfb68985ef0662409888d1d44db7798, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: fcfb68985ef0662409888d1d44db7798, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -167,6 +171,10 @@ PrefabInstance:
     - target: {fileID: 100062, guid: fcfb68985ef0662409888d1d44db7798, type: 3}
       propertyPath: m_Name
       value: Wooden Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 100064, guid: fcfb68985ef0662409888d1d44db7798, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: fcfb68985ef0662409888d1d44db7798, type: 3}
       propertyPath: m_RootOrder
