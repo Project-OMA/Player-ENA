@@ -7,9 +7,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5403070174060260048}
     m_Modifications:
+    - target: {fileID: 100446, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 100528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_Name
       value: Cup Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 100528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100530, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400344, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400344, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400344, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_RootOrder
@@ -17,27 +46,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.01
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.01
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.94
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -69,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400528, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d93825918567a246a9c60f43f45339a, type: 3}
@@ -83,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 2430089414631383700, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2462795157548765354, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
