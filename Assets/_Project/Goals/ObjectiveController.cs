@@ -39,6 +39,21 @@ namespace ENA.Goals
         public Event<bool> FoundObjective;
         public Event FinishedGame;
         #endregion
+        #region MonoBehaviour Lifecycle
+        private void Start()
+        {
+            instance = this;
+
+            startingPoint.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (!UnityEngine.Input.GetButtonDown("Jump")) return;
+
+            speaker.SpeakHint(ExtractObjectiveName(NextObjective));
+        }
+        #endregion
         #region Methods
         public void Add(GameObject objective)
         {
@@ -128,13 +143,6 @@ namespace ENA.Goals
 
             if (GetObjectiveAudioSource(1, out var newObjective))
                 newObjective.PlayDelayed(WaitingTimeForAudio);
-        }
-
-        void Start()
-        {
-            instance = this;
-
-            startingPoint.SetActive(false);
         }
         #endregion
         #region Coroutines
