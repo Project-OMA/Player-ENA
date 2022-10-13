@@ -14,7 +14,7 @@ namespace ENA.Services
         public MicelioWebService(string apiToken, bool devMode, bool enabled)
         {
             micelio = new Micelio(apiToken, devMode ? "dev" : string.Empty);
-            enabled = false;
+            this.enabled = enabled;
         }
         #endregion
         #region Methods
