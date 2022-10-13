@@ -23,6 +23,9 @@ namespace ENA.UI
         [SerializeField] TrackerDisplay trackerDisplay;
         [SerializeField] GameObject fullMapDisplay;
         #endregion
+        #region Properties
+        public bool GameplayIsPaused => !playerController.enabled;
+        #endregion
         #region Events
         [SerializeField] UnityEvent onPause;
         [SerializeField] UnityEvent onResume;
@@ -86,6 +89,12 @@ namespace ENA.UI
             trackerDisplay.SetAnnotation(timestamp.ToString("MM/dd/yyyy h:mm"));
             manager.Push(trackerDisplay);
             fullMapDisplay.SetActive(true);
+        }
+
+        public void TogglePause()
+        {
+            if (GameplayIsPaused) ResumeGameplay();
+            else PauseGameplay();
         }
         #endregion
     }
