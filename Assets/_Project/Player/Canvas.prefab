@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 114990535125507472}
   - component: {fileID: 114419415035473966}
   - component: {fileID: 5538423574466131148}
+  - component: {fileID: 206737620578696899}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1008,6 +1009,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootCoordinator: {fileID: 3314375181967048044}
+--- !u!114 &206737620578696899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818987786747100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: e9d428dffc9f4402bb58e7df121d12e5,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78fd8733-6809-49ce-b6f1-2958290061e3
+    m_ActionName: UI/ToggleScreenReader[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3314375181967048044}
+        m_TargetAssemblyTypeName: ENA.UI.GameplayCoordinator, Assembly-CSharp
+        m_MethodName: TogglePause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fa75f8e7-d047-4ad1-bf82-f9e2c0661d9e
+    m_ActionName: UI/Pause[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1823468143682148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,7 +1511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   annotationLabel: {fileID: 1191346359494110237}
-  background: {fileID: 6690549205758721928}
 --- !u!1 &1630159405660603697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,7 +2411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   annotationLabel: {fileID: 1191346359494110237}
-  background: {fileID: 6690549205758721928}
 --- !u!1 &8867316649904350516
 GameObject:
   m_ObjectHideFlags: 0
