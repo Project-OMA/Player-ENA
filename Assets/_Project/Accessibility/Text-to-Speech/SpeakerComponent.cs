@@ -15,6 +15,7 @@ namespace ENA.Accessibility
         [SerializeField] LocalizedString IntroMessage;
         [SerializeField] LocalizedString LoadingMessage;
         [SerializeField] LocalizedString ObjectiveFoundMessage;
+        [SerializeField] LocalizedString HintMessage;
         #endregion
         #region Methods
         public void SpeakActivityResults(bool wasSuccessful)
@@ -29,6 +30,14 @@ namespace ENA.Accessibility
         public void SpeakCollision(string objectName)
         {
             Speak(CollisionMessage.GetLocalizedString(objectName));
+        }
+
+        public void SpeakHint(string objectiveName)
+        {
+            if (string.IsNullOrEmpty(objectiveName))
+                objectiveName = InitialSpotMessage.GetLocalizedString();
+
+            Speak(HintMessage.GetLocalizedString(objectiveName));
         }
 
         public void SpeakIntro(List<string> objectives)
