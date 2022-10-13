@@ -91,13 +91,42 @@ MonoBehaviour:
     m_Key: Key_OptionA
     m_Metadata:
       m_Items: []
+  - m_Id: 66735710219001856
+    m_Key: Key_Enter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66736026033315840
+    m_Key: Key_Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66736594495725568
+    m_Key: Key_Signup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66737193509445632
+    m_Key: Key_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66737748847878144
+    m_Key: Key_LoadMap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66738516170629120
+    m_Key: Key_Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66739259099308032
+    m_Key: Key_Start
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    id: 0
+    rid: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
       data:

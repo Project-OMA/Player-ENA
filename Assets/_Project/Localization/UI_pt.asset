@@ -94,5 +94,34 @@ MonoBehaviour:
     m_Localized: "Op\xE7\xE3o A"
     m_Metadata:
       m_Items: []
+  - m_Id: 66735710219001856
+    m_Localized: Entrar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66736026033315840
+    m_Localized: Senha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66736594495725568
+    m_Localized: Criar Conta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66737193509445632
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66737748847878144
+    m_Localized: Carregar...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66738516170629120
+    m_Localized: Confirmar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66739259099308032
+    m_Localized: Iniciar
+    m_Metadata:
+      m_Items: []
   references:
-    version: 1
+    version: 2
+    RefIds: []

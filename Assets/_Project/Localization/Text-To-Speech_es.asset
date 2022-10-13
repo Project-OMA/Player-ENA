@@ -19,38 +19,6 @@ MonoBehaviour:
     m_Items:
     - rid: 7805073818938769413
   m_TableData:
-  - m_Id: 781167091712
-    m_Localized: "Usted est\xE1 entrando en un ambiente con"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2410817773568
-    m_Localized: que pueden ser identificados por sus sonidos. Su objetivo es encontrar
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4701008420864
-    m_Localized: en ese orden e Luego vuelva al punto inicial
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4835582664704
-    m_Localized: You found the
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4886006587392
-    m_Localized: Now, you must look for the
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4921331015680
-    m_Localized: You should now return to the starting point
-    m_Metadata:
-      m_Items: []
-  - m_Id: 512901486993408
-    m_Localized: un
-    m_Metadata:
-      m_Items: []
-  - m_Id: 513435660967936
-    m_Localized: el
-    m_Metadata:
-      m_Items: []
   - m_Id: 2546410686767104
     m_Localized: Cargando
     m_Metadata:
@@ -63,8 +31,8 @@ MonoBehaviour:
     m_Localized: "Desisti\xF3 ... \xA1Int\xE9ntelo de nuevo m\xE1s tarde!"
     m_Metadata:
       m_Items: []
-  - m_Id: 2554489520250880
-    m_Localized: "El punto inicial est\xE1 "
+  - m_Id: 39321609608093696
+    m_Localized: Ahora usted debe encontrar {0}.
     m_Metadata:
       m_Items: []
   - m_Id: 27660302328782848

@@ -19,38 +19,6 @@ MonoBehaviour:
     m_Items:
     - rid: 7805073818938769412
   m_TableData:
-  - m_Id: 781167091712
-    m_Localized: You are entering a room with
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2410817773568
-    m_Localized: which you can identify by their sounds. Your goal is to find
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4701008420864
-    m_Localized: 'in that order then, you must return to the starting point '
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4835582664704
-    m_Localized: "Usted encontr\xF3 el"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4886006587392
-    m_Localized: Ahora usted debe encontrar el
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4921331015680
-    m_Localized: Ahora debe volver al punto inicial
-    m_Metadata:
-      m_Items: []
-  - m_Id: 512901486993408
-    m_Localized: a
-    m_Metadata:
-      m_Items: []
-  - m_Id: 513435660967936
-    m_Localized: the
-    m_Metadata:
-      m_Items: []
   - m_Id: 2546410686767104
     m_Localized: Loading
     m_Metadata:
@@ -63,8 +31,8 @@ MonoBehaviour:
     m_Localized: Gave up ... Try again later!
     m_Metadata:
       m_Items: []
-  - m_Id: 2554489520250880
-    m_Localized: 'The starting point is '
+  - m_Id: 39321609608093696
+    m_Localized: Now, you must look for {0}
     m_Metadata:
       m_Items: []
   - m_Id: 27660302328782848

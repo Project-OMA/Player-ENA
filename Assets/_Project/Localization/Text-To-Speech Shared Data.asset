@@ -15,38 +15,6 @@ MonoBehaviour:
   m_TableCollectionName: Text-To-Speech
   m_TableCollectionNameGuidString: 327c3a94f213141e7ad7620e5e7f75cf
   m_Entries:
-  - m_Id: 781167091712
-    m_Key: Intro_1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2410817773568
-    m_Key: Intro_2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4701008420864
-    m_Key: Intro_3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4835582664704
-    m_Key: FoundObjective_1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4886006587392
-    m_Key: FoundObjective_2A
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4921331015680
-    m_Key: FoundObjective_2B
-    m_Metadata:
-      m_Items: []
-  - m_Id: 512901486993408
-    m_Key: Intro_Article
-    m_Metadata:
-      m_Items: []
-  - m_Id: 513435660967936
-    m_Key: Intro_Article2
-    m_Metadata:
-      m_Items: []
   - m_Id: 2546410686767104
     m_Key: Loading
     m_Metadata:
@@ -57,10 +25,6 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 2547868601671680
     m_Key: Activity_Fail
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2554489520250880
-    m_Key: StartingPoint
     m_Metadata:
       m_Items: []
   - m_Id: 27660302328782848
@@ -77,6 +41,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 38578828480602112
     m_Key: StartPoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39321609608093696
+    m_Key: Hint
     m_Metadata:
       m_Items: []
   m_Metadata:
