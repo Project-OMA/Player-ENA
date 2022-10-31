@@ -113,7 +113,9 @@ namespace ENA.Goals
             for (int i = 0; i < NumberOfObjectives; i++) {
                 GameObject currentObject = objectives[i];
                 distance = Vector3.Distance(currentObject.transform.position, position);
+                #if ENABLE_LOG
                 Debug.Log("A distância do " + currentObject.name + " para o player é " + distance);
+                #endif
             }
         }
 

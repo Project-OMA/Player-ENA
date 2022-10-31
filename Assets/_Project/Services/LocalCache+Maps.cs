@@ -25,7 +25,9 @@ namespace ENA.Services
             var fullPath = MapsFullPath;
             var directories = Directory.GetDirectories(fullPath);
 
+            #if ENABLE_LOG
             Debug.Log($"Load Maps from {fullPath}");
+            #endif
 
             foreach(var directory in directories) {
                 var mapData = directory.Replace(fullPath, string.Empty).Replace("--", "#").Split('#');

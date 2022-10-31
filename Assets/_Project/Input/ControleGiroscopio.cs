@@ -6,7 +6,7 @@ using ENA.Metrics;
 
 namespace ENA.Input
 {
-	public class ControleGiroscopio: MonoBehaviour
+	public class ControleGiroscopio: ExtendedMonoBehaviour
 	{
 		#region Variables
 		[SerializeField] private float fixedRotation;
@@ -14,31 +14,40 @@ namespace ENA.Input
 		[Header("References")]
 		[SerializeField] PlayerController player;
 		[SerializeField] SessionTracker sessionTracker;
-		private Gyroscope gyro;
+		[SerializeField] Gyroscope gyro;
 		#endregion
-		#region Methods
-		private void Start()
+		#region MonoBehaviour Lifecycle
+		protected override void Awake()
 		{
+			base.Awake();
 			currentRotation = 0;
 			CheckForGyro();
 		}
+
+		void OnDisable()
+		{
+			StopAllCoroutines();
+		}
+
+		void OnEnable()
+		{
+			StartCoroutine(TrackRotation());
+		}
+		#endregion
+		#region Methods
 		
 		private void Update()
 		{
 			if (gyro != null) {
-				transform.localRotation = gyro.AttitudeToUnity();
+				#if ENABLE_LOG
+				Debug.Log($"Altitude: {gyro.attitude}");
+				Debug.Log($"Gravity: {gyro.gravity}");
+				#endif
+
+				Transform.localRotation = gyro.AttitudeToUnity();
 			}
 
-			// player.CameraRotation = (int)transform.localEulerAngles.y;
-			currentRotation = transform.localEulerAngles.y;
-
-			if(currentRotation >= fixedRotation + 90) {
-				sessionTracker.RegisterRotation(true);
-				currentRotation += 90;
-			} else if(currentRotation <= fixedRotation - 90) {
-				sessionTracker.RegisterRotation(false);
-				currentRotation -= 90;
-			}
+			currentRotation = Transform.localEulerAngles.y;
 		}
 
 		private void CheckForGyro()
@@ -47,6 +56,25 @@ namespace ENA.Input
 				gyro = UnityEngine.Input.gyro;
 				gyro.enabled = true;
 			}
+
+			#if ENABLE_LOG
+			Debug.Log($"Gyro Supported?: {SystemInfo.supportsGyroscope}");
+			#endif
+		}
+		#endregion
+		#region Coroutines
+		private readonly WaitForSeconds WaitForNextSample = new WaitForSeconds(1);
+		IEnumerator TrackRotation()
+		{
+			if(currentRotation >= fixedRotation + 90) {
+				sessionTracker.RegisterRotation(true);
+				currentRotation += 90;
+			} else if(currentRotation <= fixedRotation - 90) {
+				sessionTracker.RegisterRotation(false);
+				currentRotation -= 90;
+			}
+
+			yield return WaitForNextSample;
 		}
 		#endregion
 	}

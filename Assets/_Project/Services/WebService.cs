@@ -55,7 +55,9 @@ namespace ENA.Services
                     while(!operation.isDone);
 
                     if (request.result != UnityWebRequest.Result.Success) {
+                        #if ENABLE_LOG
                         Debug.LogWarning(request.error);
+                        #endif
                     }
 
                     response = new Response(request);

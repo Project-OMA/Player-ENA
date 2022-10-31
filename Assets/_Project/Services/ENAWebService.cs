@@ -106,7 +106,9 @@ namespace ENA.Services
                 try {
                     payload = Decode(response.Handler.text);
                 } catch(Exception e) {
-                    Debug.LogError("JSON parsing has failed!\n"+e.StackTrace);
+                    #if ENABLE_LOG
+                    Debug.LogWarning("JSON parsing has failed!\n"+e.StackTrace);
+                    #endif
                 }
             }
 

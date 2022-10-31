@@ -44,7 +44,9 @@ namespace ENA.Maps
         public Sprite Sprite {
             get {
                 if (sprite == null) sprite = GenerateSprite();
+                #if ENABLE_LOG
                 Debug.Log($"Sprite: {sprite}");
+                #endif
                 return sprite;
             }
         }
@@ -63,7 +65,9 @@ namespace ENA.Maps
         {
             if (string.IsNullOrEmpty(folderPath)) return null;
             string imagePath = folderPath+ImageFileName;
+            #if ENABLE_LOG
             Debug.Log($"{imagePath}");
+            #endif
 
             Texture2D texture = new Texture2D(1,1);
             texture.LoadImage(imagePath);

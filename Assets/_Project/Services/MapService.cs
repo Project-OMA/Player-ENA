@@ -40,7 +40,9 @@ namespace ENA.Services
         {
             for(int i = mapList.Count-1; i > 0; i--) {
                 var map = mapList[i];
+                #if ENABLE_LOG
                 Debug.Log($"Map ID: {map.ID}");
+                #endif
                 if (!File.Exists(map.FilePath)) {
                     mapList.RemoveAt(i);
                 }

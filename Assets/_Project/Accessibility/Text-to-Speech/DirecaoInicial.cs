@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ENA.Accessibility
 {
-	public class DirecaoInicial: MonoBehaviour
+	public class DirecaoInicial: ExtendedMonoBehaviour
 	{
 		public static int ajudaInicial;
 		public Transform pontoInicial;
@@ -18,14 +18,14 @@ namespace ENA.Accessibility
 		// 6 = atras e direita
 		// 7 = atras e esquerda
 		public bool aproximadamenteX,aproximadamenteZ;
-
 		public bool frente,atras,esquerda,direita;
-		void Start () {
+		void Start()
+		{
 			ajudaInicial = 0;
 		}
 		
 		void Update () {
-			transform.position = pontoInicial.position;
+			Transform.position = pontoInicial.position;
 			CalculoAproximado();
 			Calcular();
 			if(UnityEngine.Input.GetButtonDown("Fire1")){
@@ -36,22 +36,22 @@ namespace ENA.Accessibility
 		}
 		
 		void Calcular(){
-			if(transform.localPosition.x < 0.5f && !aproximadamenteX){
+			if(Transform.localPosition.x < 0.5f && !aproximadamenteX){
 				esquerda = true;
 			}else{
 				esquerda = false;
 			}
-			if(transform.localPosition.x > 0.5f && !aproximadamenteX){
+			if(Transform.localPosition.x > 0.5f && !aproximadamenteX){
 				direita = true;
 			}else{
 				direita = false;
 			}
-			if(transform.localPosition.z > 0.5f && !aproximadamenteZ){
+			if(Transform.localPosition.z > 0.5f && !aproximadamenteZ){
 				frente = true;
 			}else{
 				frente = false;
 			}
-			if(transform.localPosition.z < 0.5f && !aproximadamenteZ){
+			if(Transform.localPosition.z < 0.5f && !aproximadamenteZ){
 				atras = true;
 			}else{
 				atras = false;
@@ -60,14 +60,14 @@ namespace ENA.Accessibility
 		}
 
 		void CalculoAproximado(){
-			if(transform.localPosition.x > -0.5f && transform.localPosition.x < 0.5f){
+			if(Transform.localPosition.x > -0.5f && Transform.localPosition.x < 0.5f){
 				aproximadamenteX = true;
 			}else
 			{
 				aproximadamenteX = false;
 			}
 
-			if(transform.localPosition.z > -0.5f && transform.localPosition.z < 0.5f){
+			if(Transform.localPosition.z > -0.5f && Transform.localPosition.z < 0.5f){
 				aproximadamenteZ = true;
 			}else
 			{

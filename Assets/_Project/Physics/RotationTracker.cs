@@ -4,7 +4,7 @@ using ENA.Utilities;
 
 namespace ENA.Physics
 {
-    public class RotationTracker: MonoBehaviour
+    public class RotationTracker: ExtendedMonoBehaviour
     {
         #region Variables
         int currentAngle = 0;
@@ -22,9 +22,9 @@ namespace ENA.Physics
         #region MonoBehaviour Lifecycle
         private void Start()
         {
-            currentAngle = (int)transform.localEulerAngles.y;
+            currentAngle = (int)Transform.localEulerAngles.y;
             lastCardinalDirection = cardinalDirection;
-            targetRotation = transform.rotation;
+            targetRotation = Transform.rotation;
         }
 
         private void Update()
@@ -36,7 +36,7 @@ namespace ENA.Physics
         #region Methods
         public bool IsLookingAtSameDirection()
         {
-            return Mathf.Abs(transform.eulerAngles.y - targetRotation.eulerAngles.y) < 0.001f;
+            return Mathf.Abs(Transform.eulerAngles.y - targetRotation.eulerAngles.y) < 0.001f;
         }
 
         public void Rotate(float axisValue)
@@ -59,12 +59,13 @@ namespace ENA.Physics
                 selectedDirection = false;
             }
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationTimer * moveSpeed * Time.deltaTime * 2);
+            Transform.rotation = Quaternion.Lerp(Transform.rotation, targetRotation, rotationTimer * moveSpeed * Time.deltaTime * 2);
         }
 
         public void SetTrackedAngle(float angle)
         {
-            targetRotation = Quaternion.Euler(targetRotation.eulerAngles.x, angle, targetRotation.eulerAngles.z);
+            Vector3 eulerAngles = targetRotation.eulerAngles;
+            targetRotation = Quaternion.Euler(eulerAngles.x, angle, eulerAngles.z);
         }
         #endregion
     }

@@ -65,7 +65,9 @@ namespace ENA.Accessibility
         public static void Speak(string text, bool canBeInterrupted = false)
         {
             UAP_AccessibilityManager.Say(text, canBeInterrupted);
+            #if ENABLE_LOG
             Debug.Log("Speaker: "+text);
+            #endif
         }
         #endregion
     }

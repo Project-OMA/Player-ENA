@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4333079630266192}
   m_RootOrder: 0
@@ -66,6 +67,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -202,7 +204,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4333079630266192}
   - component: {fileID: 82188909926400266}
-  - component: {fileID: 114279436113955296}
   m_Layer: 0
   m_Name: PrefabModel
   m_TagString: Untagged
@@ -220,6 +221,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4995454873882532}
   m_Father: {fileID: 0}
@@ -321,25 +323,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114279436113955296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637333446073542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac676d7084a01d41b20d096226619c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionCount: 0
-  colliderAlert:
-  - "Voc\xEA colidiu com"
-  - "Usted choc\xF3 con"
-  - You collided with
-  names:
-  - NomePt
-  - NomeEs
-  - NomeIg
-  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}

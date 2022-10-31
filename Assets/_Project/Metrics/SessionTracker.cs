@@ -13,8 +13,8 @@ namespace ENA.Metrics
     public class SessionTracker: MonoBehaviour
     {
         #region Constants
-        private const string AppToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjQ0NjA2NjUsInN1YiI6ImFmMmIzMjM1LTE3ZTItNGE5Yy04YmU0LTkzOGVlZjYxNGE0NyJ9.ApF2QYhWjlmCX8poqoAz1Qh1rY7dNASYcqUj0N7AIW4";
-        private const string DevGroupID = "58339";
+        private const string AppToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY4ODc3MDAsInN1YiI6IjBhMGFmODdmLTIzN2EtNDFhMC1hZjFjLTFiNjNhNDM2NDk5MiJ9.My-vLE7J9ftI-UFewaHSDeEiIb1ym2_gaWOZKWM-cic";
+        private const string DevGroupID = "93196";
         #endregion
         #region Variables
         [field: SerializeField] public SessionModel Model {get; private set;}
@@ -57,7 +57,7 @@ namespace ENA.Metrics
         private SessionModel.Action CreateAction(SessionModel.Action.Type type, Direction.Basic direction)
         {
             var timestamp = GetCurrentTimestamp();
-            return new SessionModel.Action(type, direction, timestamp, controller.transform.position);
+            return new SessionModel.Action(type, direction, timestamp, controller.Transform.position);
         }
 
         public string ExtractID(Transform transform)
@@ -80,11 +80,13 @@ namespace ENA.Metrics
 
             Model = new SessionModel(profile.LoggedProfile?.UserID ?? -1, mapID);
             RegisterObjective(objectiveManager.NextObjective);
-            lastPosition = controller.transform.position;
+            lastPosition = controller.Transform.position;
 
             micelioWeb.OpenSession("Activity Started!", DevGroupID, mapID.ToString());
 
+            #if ENABLE_LOG
             Debug.Log("Started Session!");
+            #endif
         }
 
         public void RegisterCollision(GameObject gameObject)
@@ -93,13 +95,15 @@ namespace ENA.Metrics
             var timestamp = Time.time;
             objectID = ExtractID(gameObject.transform);
 
-            var collisionModel = new SessionModel.Collision(objectID, timestamp, controller.transform.position);
+            var collisionModel = new SessionModel.Collision(objectID, timestamp, controller.Transform.position);
             Model.Register(collisionModel);
 
             micelioWeb.Register(MetricsUtility.GenerateCollisionActivity(collisionModel, currentObjective));
             speaker.SpeakCollision(objectID);
 
+            #if ENABLE_LOG
             Debug.Log($"{collisionModel.Timestamp} | Collided with {collisionModel.ObjectID} @ {collisionModel.Position}");
+            #endif
         }
 
         public void RegisterObjective(GameObject gameObject)
@@ -111,7 +115,9 @@ namespace ENA.Metrics
             currentObjective = new SessionModel.Objective(objectiveID, GetCurrentTimestamp());
             Model.Register(currentObjective);
 
+            #if ENABLE_LOG
             Debug.Log($"New Objective: {currentObjective.ObjectiveID}");
+            #endif
         }
 
         public void RegisterRotation(bool turnedRight)
@@ -125,14 +131,16 @@ namespace ENA.Metrics
 
             micelioWeb.Register(MetricsUtility.GenerateActionActivity(actionModel, currentObjective));
 
+            #if ENABLE_LOG
             Debug.Log($"{actionModel.Timestamp} | Player turned {actionModel.Direction} @ {actionModel.Position}.");
+            #endif
         } 
 
         public void RegisterStep()
         {
             if (currentObjective == null) return;
 
-            Vector3 currentPosition = controller.transform.position;
+            Vector3 currentPosition = controller.Transform.position;
             Vector3 currentDirection = currentPosition - lastPosition;
 
             var direction = Direction.DetermineDirection(Vector3.right, currentDirection);
@@ -141,7 +149,9 @@ namespace ENA.Metrics
 
             micelioWeb.Register(MetricsUtility.GenerateActionActivity(actionModel, currentObjective));
 
+            #if ENABLE_LOG
             Debug.Log($"{actionModel.Timestamp} | Player Moved: ({lastPosition} -> {actionModel.Position}).");
+            #endif
             lastPosition = currentPosition;
         }
         #endregion

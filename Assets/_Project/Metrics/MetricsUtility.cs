@@ -12,9 +12,11 @@ namespace ENA.Metrics
             return activity;
         }
 
-        public static Activity GenerateCompletedObjectiveActivity(SessionModel.Objective objective)
+        public static Activity GenerateCompletedObjectiveActivity(SessionModel.Objective objective, float timestamp)
         {
-            throw new System.NotImplementedException();
+            var activity = new Activity("foundObjective", timestamp.ToString());
+            activity.AddEntity(objective, nameof(objective));
+            return activity;
         }
 
         public static Activity GenerateActionActivity(SessionModel.Action action, SessionModel.Objective objective)

@@ -35,8 +35,10 @@ namespace ENA.Maps
                 if(string.Equals(inputCode,objs.code)){
                     return objs.prefab;
                 }
-            } 
+            }
+            #if ENABLE_LOG
             Debug.Log(inputCode);
+            #endif
             return null;
         }
 

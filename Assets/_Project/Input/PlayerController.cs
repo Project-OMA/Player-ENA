@@ -13,7 +13,7 @@ namespace ENA.Input
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(MovementTracker), typeof(RotationTracker))]
     [RequireComponent(typeof(CollisionTracker), typeof(Soundboard))]
-    public class PlayerController: MonoBehaviour
+    public class PlayerController: ExtendedMonoBehaviour
     {
         #region Variables
         [Header("References")]
@@ -30,19 +30,19 @@ namespace ENA.Input
         [SerializeField] Transform cameraTransform;
         #endregion
         #region MonoBehaviour Lifecycle
-        private void OnDisable()
+        void OnDisable()
         {
             movementTracker.enabled = false;
             rotationTracker.enabled = false;
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             movementTracker.enabled = true;
             rotationTracker.enabled = true;
         }
 
-        private void Start()
+        void Start()
         {
             characterController = GetComponent<CharacterController>();
             movementTracker = GetComponent<MovementTracker>();
@@ -58,7 +58,7 @@ namespace ENA.Input
             collisionTracker.OnHitObjective += WalkBack;
         }
 
-        private void Update()
+        void Update()
         {
             if (!rotationTracker.IsRotating) CheckMovement();
             if (!movementTracker.IsWalking) CheckRotation();
@@ -87,7 +87,8 @@ namespace ENA.Input
 
             if (AxisTracker.VerticalDown()) {
                 int forwardInput = UnityEngine.Input.GetAxis("Vertical") > 0 ? 1 : -1;
-                movementTracker.BeginWalking(forwardInput, stepDistance);
+                movementTracker.BeginWalking(forwardInput, 1);
+                Debug.Log($"Analog Signal: {forwardInput}");
             }
         }
 
@@ -115,7 +116,7 @@ namespace ENA.Input
 
         public void SetDirection(float angle)
         {
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, angle, transform.localEulerAngles.z);
+            Transform.localEulerAngles = new Vector3(Transform.localEulerAngles.x, angle, Transform.localEulerAngles.z);
             rotationTracker.SetTrackedAngle(angle);
         }
 
@@ -132,9 +133,9 @@ namespace ENA.Input
         private void UpdateEndPosition()
         {
             if (profile.GyroEnabled) {
-                transform.localPosition = new Vector3(transform.localPosition.x, 0.64f, transform.localPosition.z);
+                Transform.localPosition = new Vector3(Transform.localPosition.x, 0.64f, Transform.localPosition.z);
             } else {
-                transform.position = collisionTracker.Target.transform.position;
+                Transform.position = collisionTracker.Target.transform.position;
             }
         }
 

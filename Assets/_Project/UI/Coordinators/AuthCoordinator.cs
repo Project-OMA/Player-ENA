@@ -22,9 +22,7 @@ namespace ENA.UI
         public override void Setup()
         {
             authService = manager.Get<AuthService>();
-
-            var loginKey = GetLoginKey();
-            var wasLoggedIn = !string.IsNullOrEmpty(loginKey);
+            WaitForLogin = new WaitUntil(authService.IsLogged);
         }
         #endregion
         #region Methods
@@ -62,10 +60,11 @@ namespace ENA.UI
         }
         #endregion
         #region Coroutines
+        public WaitUntil WaitForLogin;
         IEnumerator RequestAuthentication(Action<ENAProfile> completion)
         {
             manager.Push(authDisplay);
-            yield return new WaitUntil(authService.IsLogged);
+            yield return WaitForLogin;
             completion?.Invoke(authService.Profile);
         }
         #endregion

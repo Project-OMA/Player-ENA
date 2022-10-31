@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ENA.UI
 {
     [RequireComponent(typeof(LayoutGroup))]
-    public class UIList: MonoBehaviour
+    public class UIList: ExtendedMonoBehaviour
     {
         #region Variables
         [SerializeField] GameObject prefab;
@@ -21,10 +21,10 @@ namespace ENA.UI
 
         public void Resize(int newAmount)
         {
-            if (newAmount > transform.childCount) {
-                AddInstances(newAmount - transform.childCount);
-            } else if (newAmount < transform.childCount) {
-                RemoveInstances(transform.childCount - newAmount);
+            if (newAmount > Transform.childCount) {
+                AddInstances(newAmount - Transform.childCount);
+            } else if (newAmount < Transform.childCount) {
+                RemoveInstances(Transform.childCount - newAmount);
             }
         }
 

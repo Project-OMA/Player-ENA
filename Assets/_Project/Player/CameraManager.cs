@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ENA.Player
 {
-    public class CameraManager: MonoBehaviour
+    public class CameraManager: ExtendedMonoBehaviour
     {
         #region Variables
         [SerializeField] PlayerController player;
@@ -19,10 +19,10 @@ namespace ENA.Player
             defaultCameraGyro.enabled = value;
 
             if (value) {
-                transform.localEulerAngles = new Vector3(90, 0, 0);
-                transform.SetParent(player.transform.parent);
+                Transform.localEulerAngles = new Vector3(90, 0, 0);
+                Transform.SetParent(player.Transform.parent);
             } else {
-                transform.localEulerAngles = new Vector3(0, 0, 0);
+                Transform.localEulerAngles = new Vector3(0, 0, 0);
             }
         }
 

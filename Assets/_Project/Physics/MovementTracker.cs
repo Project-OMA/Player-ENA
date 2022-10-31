@@ -5,12 +5,11 @@ using Event = ENA.Utilities.Event;
 namespace ENA.Physics
 {
     [RequireComponent(typeof(CharacterController))]
-    public class MovementTracker: MonoBehaviour
+    public class MovementTracker: ExtendedMonoBehaviour
     {
         #region Variables
-        float analogPower;
         float timeLeft = 0;
-        Vector3 startingSpot, forward;
+        Vector3 startingSpot, targetSpot;
         [SerializeField] float speed = 1;
         [Header("References")]
         [SerializeField] CharacterController characterController;
@@ -24,9 +23,10 @@ namespace ENA.Physics
         #region MonoBehaviour Lifecycle
         private void FixedUpdate()
         {
-            if (timeLeft > 0.001f) {
-                timeLeft -= Time.fixedDeltaTime;
-                Walk();
+            timeLeft -= Time.fixedDeltaTime;
+
+            if (timeLeft > 0f) {
+                Walk(Time.fixedDeltaTime * speed);
             } else if (IsWalking) {
                 EndWalking();
             }
@@ -37,44 +37,45 @@ namespace ENA.Physics
             characterController = GetComponent<CharacterController>();
 
             IsWalking = false;
-            startingSpot = transform.position;
+            startingSpot = Vector3.negativeInfinity;
         }
         #endregion
         #region Methods
-        public void BeginWalking(float value, float time, bool countStep = true)
+        public void BeginWalking(float moveDistance, float time, bool countStep = true)
         {
             if(IsWalking) return;
 
-            analogPower = value;
-            if ((transform.position - startingSpot).magnitude > 0.9f) {
-                startingSpot = transform.position;
-            }
-            forward = transform.forward;
+            var currentPosition = Transform.position;
+            if ((currentPosition - startingSpot).magnitude <= 0.9f) return;
 
             IsWalking = true;
             timeLeft = time;
+            startingSpot = currentPosition;
+            targetSpot = currentPosition + Transform.forward * moveDistance;
 
-            OnBeginWalking.Invoke();
+            if (countStep) {
+                OnBeginWalking.Invoke();
+            }
         }
 
         private void EndWalking()
         {
             IsWalking = false;
+            timeLeft = 0;
 
             OnEndWalking.Invoke();
         }
 
         public void RevertWalk()
         {
-            transform.position = startingSpot;
+            Transform.position = startingSpot;
             timeLeft = 0;
             IsWalking = false;
         }
 
-        private void Walk()
+        private void Walk(float deltaDistance)
         {
-            var delta = analogPower * transform.forward * Time.fixedDeltaTime * speed;
-            characterController.Move(delta);
+            characterController.MoveTowards(targetSpot, deltaDistance);
         }
         #endregion
     }

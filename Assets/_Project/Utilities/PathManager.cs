@@ -22,9 +22,9 @@ namespace ENA.Utilities
                 currentTrail.transform.parent = null;
             }
 
-            currentTrail = Instantiate(trailModels[counter], Vector3.zero, Quaternion.identity);
-            currentTrail.transform.SetParent(attach.transform);
-            currentTrail.transform.localPosition = Vector3.zero;
+            Transform attachTransform = attach.transform;
+            currentTrail = Instantiate(trailModels[counter], attachTransform);
+            currentTrail.transform.SetPositionAndRotation(attachTransform.position, Quaternion.identity);
             currentTrail.Clear();
             currentTrail.gameObject.SetActive(true);
 

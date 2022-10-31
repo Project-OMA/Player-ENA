@@ -88,7 +88,7 @@ namespace ENA.Maps
             StartCoroutine(InstanceMap());
             SpawnRoomBounds();
             PlaceTrackerCamera();
-            objectiveController.SortObjectivesBy(playerController.transform.parent.position);
+            objectiveController.SortObjectivesBy(playerController.Transform.parent.position);
         }
 
         private void DefinePlayerPosition(string inputCode, int column, int line)
@@ -110,7 +110,7 @@ namespace ENA.Maps
                     return;
             }
 
-            playerController.transform.parent.position = GridPositionFor(column, line);
+            playerController.Transform.parent.position = GridPositionFor(column, line);
         }
 
         private Vector3 GridPositionFor(int column, int line)
@@ -149,9 +149,13 @@ namespace ENA.Maps
                 tileDestination.y += CeilingHeight;
             }
 
+            #if ENABLE_LOG
             Debug.Log($"List Index: {category} | Code: {code}");
+            #endif
             if (prefab == null) {
+                #if ENABLE_LOG
                 Debug.LogWarning($"Error: {code} [{c},{l}] is invalid!");
+                #endif
                 return;
             } else {
                 var newInstance = Instantiate(prefab, tileDestination, Quaternion.Euler(tileRotation));

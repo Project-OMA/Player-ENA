@@ -28,25 +28,29 @@ namespace ENA.Services
         public static async Task SaveLog(DateTime recordingTime, ENAProfile profile, string contents)
         {
             string sessionTag = GenerateSessionTag(recordingTime, profile);
-            string path = LogsFullPath+$"{sessionTag}_Log.txt";
+            string path = LogsFullPath+$"/{sessionTag}_Log.txt";
 
             VerifyLogsFolder();
             using (var fileWriter = new StreamWriter(path, true)) {
                 await fileWriter.WriteAsync(contents);
             }
 
+            #if ENABLE_LOG
             Debug.Log($"Saved Log to Path: {path}");
+            #endif
         }
 
         public static void SaveTracker(DateTime recordingTime, ENAProfile profile, RenderTexture texture)
         {
             string sessionTag = GenerateSessionTag(recordingTime, profile);
-            string path = LogsFullPath+$"{sessionTag}_Tracker.png";
+            string path = LogsFullPath+$"/{sessionTag}_Tracker.png";
 
             VerifyLogsFolder();
             texture.OutputToFile(path);
 
+            #if ENABLE_LOG
             Debug.Log($"Saved Screenshot to Path: {path}");
+            #endif
         }
 
         public static void VerifyLogsFolder()
