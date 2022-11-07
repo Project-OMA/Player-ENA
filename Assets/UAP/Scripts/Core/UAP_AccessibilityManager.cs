@@ -11,6 +11,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Globalization;
+using UnityEngine.InputSystem;
+using ENA.Utilities;
 
 /// <summary>This is the main object to handle all the accessibility in an app. Please use the premade Accessibility Manager prefab.</summary>
 [AddComponentMenu("Accessibility/Core/UAP Manager")]
@@ -4819,6 +4821,55 @@ public class UAP_AccessibilityManager : MonoBehaviour
 	}
 
 	//////////////////////////////////////////////////////////////////////////
+	#region Input System Callbacks
+	public void MoveUserInterface(InputAction.CallbackContext context)
+	{
+		if (context.phase != InputActionPhase.Performed) return;
 
+		var value = context.ReadValue<Vector2>();
+		var angle = Vector2.SignedAngle(Vector2.down, value.normalized)+360;
+		var cardinal = Direction.CardinalFor(angle);
+		#if ENABLE_LOG
+		Debug.Log($"Compass: {angle} -> {cardinal}");
+		#endif
+
+		if (IsActiveContainer2DNavigation()) {
+			switch(cardinal) {
+				case Direction.Cardinal.North:
+					Navigate2DUIElement(ESDirection.EUp);
+					break;
+				case Direction.Cardinal.South:
+					Navigate2DUIElement(ESDirection.EDown);
+					break;
+				case Direction.Cardinal.East:
+					Navigate2DUIElement(ESDirection.ERight);
+					break;
+				case Direction.Cardinal.West:
+					Navigate2DUIElement(ESDirection.ELeft);
+					break; 
+			}
+		} else {
+			switch(cardinal) {
+				case Direction.Cardinal.South:
+				case Direction.Cardinal.East:
+					IncrementUIElement();
+					break;
+				case Direction.Cardinal.North:
+				case Direction.Cardinal.West:
+					DecrementUIElement();
+					break;
+			}
+		}
+
+		
+	}
+
+	public void Interact(InputAction.CallbackContext context)
+	{
+		if (context.phase != InputActionPhase.Performed) return;
+
+		InteractWithElement(m_CurrentItem);
+	}
+	#endregion
 }
 
