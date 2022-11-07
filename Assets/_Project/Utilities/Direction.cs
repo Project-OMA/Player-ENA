@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ENA.Utilities
 {
-    public class Direction
+    public static class Direction
     {
         #region Enums
         public enum Basic
@@ -19,7 +19,7 @@ namespace ENA.Utilities
         #region Static Methods
         public static Cardinal CardinalFor(float angle)
         {
-            angle = angle % 360;
+            angle = (angle+360) % 360;
 
             if (315 <= angle && angle < 360 || 0 <= angle && angle < 45) return Cardinal.East;
             else if(45 <= angle && angle < 135) return Cardinal.South;
@@ -31,7 +31,7 @@ namespace ENA.Utilities
 
         public static Basic DirectionFor(float angle)
         {
-            angle = angle % 360;
+            angle = (angle+360) % 360;
 
             if (337.5 <= angle && angle < 360 || 0 <= angle && angle < 22.5) return Basic.Right;
             else if (22.5 <= angle && angle < 67.5) return Basic.DownRight;
@@ -45,10 +45,59 @@ namespace ENA.Utilities
             return default;
         }
 
+        public static Cardinal DetermineCardinal(Vector3 reference, Vector3 target)
+        {
+            var signedAngle = reference.GetAngleOnAxis(target, Vector3.up);
+            return CardinalFor(signedAngle+360);
+        }
+
         public static Basic DetermineDirection(Vector3 reference, Vector3 target)
         {
             var signedAngle = reference.GetAngleOnAxis(target, Vector3.up);
             return DirectionFor(signedAngle+360);
+        }
+        #endregion
+        #region Extensions
+        public static Vector2 ToVector2(this Cardinal cardinal)
+        {
+            switch(cardinal) {
+                case Cardinal.North:
+                    return Vector2.up;
+                case Cardinal.South:
+                    return Vector2.down;
+                case Cardinal.East:
+                    return Vector2.right;
+                case Cardinal.West:
+                    return Vector2.left;
+                default:
+                    return Vector2.zero;
+            }
+        }
+
+        public static float ToAngle(this Cardinal cardinal)
+        {
+            switch(cardinal) {
+                case Cardinal.North:
+                    return 0;
+                case Cardinal.South:
+                    return 180;
+                case Cardinal.East:
+                    return 90;
+                case Cardinal.West:
+                    return 270;
+                default:
+                    return 0;
+            }
+        }
+
+        public static Cardinal RotateLeft(Cardinal direction)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public static Cardinal RotateRight(Cardinal direction)
+        {
+            throw new System.NotImplementedException();
         }
         #endregion
     }
