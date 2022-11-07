@@ -233,7 +233,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testMapFile
       value: 
-      objectReference: {fileID: 4900000, guid: 8aac417f039f7a54193aef4f2355e54d, type: 3}
+      objectReference: {fileID: 4900000, guid: 8745eda3024744c3dad5ffb552865736, type: 3}
     - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
       propertyPath: trackerCamera

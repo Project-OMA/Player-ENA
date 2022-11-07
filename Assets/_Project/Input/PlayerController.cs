@@ -16,14 +16,15 @@ namespace ENA.Input
     public class PlayerController: ExtendedMonoBehaviour
     {
         #region Variables
-        [Header("References")]
-        [FormerlySerializedAs("_characterController")]
+        [Header("Dependencies")]
         [SerializeField] CharacterController characterController;
         [SerializeField] MovementTracker movementTracker;
         [SerializeField] RotationTracker rotationTracker;
         [SerializeField] CollisionTracker collisionTracker;
-        [SerializeField] ObjectiveController objectiveController;
         [SerializeField] Soundboard playerSoundboard;
+        [Header("References")]
+        [SerializeField] ObjectiveController objectiveController;
+        [SerializeField] GyroCamera gyro;
         [SerializeField] SettingsProfile profile;
         [Header("Parameters")]
         [SerializeField] float stepDistance;
@@ -42,7 +43,7 @@ namespace ENA.Input
             rotationTracker.enabled = true;
         }
 
-        void Start()
+        IEnumerator Start()
         {
             characterController = GetComponent<CharacterController>();
             movementTracker = GetComponent<MovementTracker>();
@@ -50,12 +51,17 @@ namespace ENA.Input
             collisionTracker = GetComponent<CollisionTracker>();
             playerSoundboard = GetComponent<Soundboard>();
 
+            movementTracker.OnCancelWalking += UpdateEndPosition;
             movementTracker.OnEndWalking += UpdateEndPosition;
             rotationTracker.OnTurn += BeepOnTurn;
             collisionTracker.OnHitFloor += PlayStepSounds;
             collisionTracker.OnHitObstacle += WalkBack;
             collisionTracker.OnHitObjective += ChangeObjective;
             collisionTracker.OnHitObjective += WalkBack;
+
+            yield return new WaitForSeconds(0.5f);
+
+            GyroAttach(false);
         }
 
         void Update()
@@ -88,18 +94,35 @@ namespace ENA.Input
             if (AxisTracker.VerticalDown()) {
                 int forwardInput = UnityEngine.Input.GetAxis("Vertical") > 0 ? 1 : -1;
                 movementTracker.BeginWalking(forwardInput, 1);
-                Debug.Log($"Analog Signal: {forwardInput}");
+                if (profile.GyroEnabled) {
+                    GyroAttach(true);
+                }
             }
         }
 
         private void CheckRotation()
         {
             if (profile.GyroEnabled) {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, cameraTransform.transform.eulerAngles.y, transform.eulerAngles.z);
+                GyroRotate();
             } else {
                 float axisValue = UnityEngine.Input.GetAxis("Horizontal");
-                rotationTracker.Rotate(axisValue);
+                Rotate(axisValue);
             }
+        }
+
+        private void GyroAttach(bool linked)
+        {
+            if (linked) {
+                gyro.Transform.SetParent(Transform);
+            } else {
+                gyro.Transform.SetParent(null);
+            }
+        }
+
+        private void GyroRotate()
+        {
+            var gyroAngle = gyro.Transform.eulerAngles.y;
+            rotationTracker.GyroRotate(gyroAngle);
         }
 
         private void PlayStepSounds(GameObject collidedObject)
@@ -112,6 +135,11 @@ namespace ENA.Input
         private void PlayNewObjective()
         {
             objectiveController.MoveToNextObjective();
+        }
+
+        public void Rotate(float signal)
+        {
+            rotationTracker.Rotate(signal);
         }
 
         public void SetDirection(float angle)
@@ -132,10 +160,14 @@ namespace ENA.Input
 
         private void UpdateEndPosition()
         {
+            Transform.position = collisionTracker.Target.transform.position;
+            DetachCameras();
+        }
+
+        private void DetachCameras()
+        {
             if (profile.GyroEnabled) {
-                Transform.localPosition = new Vector3(Transform.localPosition.x, 0.64f, Transform.localPosition.z);
-            } else {
-                Transform.position = collisionTracker.Target.transform.position;
+                GyroAttach(false);
             }
         }
 
