@@ -18,10 +18,10 @@ namespace ENA.Physics
         public bool IsWalking {get; private set;}
         #endregion
         #region Events
-        public Event OnBeginWalking, OnEndWalking;
+        public Event OnBeginWalking, OnEndWalking, OnCancelWalking;
         #endregion
         #region MonoBehaviour Lifecycle
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             timeLeft -= Time.fixedDeltaTime;
 
@@ -30,9 +30,13 @@ namespace ENA.Physics
             } else if (IsWalking) {
                 EndWalking();
             }
+
+            #if ENABLE_LOG
+            Debug.Log($"Is Walking: {IsWalking}, Time Left: {timeLeft}");
+            #endif
         }
 
-        private void Start()
+        void Start()
         {
             characterController = GetComponent<CharacterController>();
 
@@ -43,10 +47,10 @@ namespace ENA.Physics
         #region Methods
         public void BeginWalking(float moveDistance, float time, bool countStep = true)
         {
-            if(IsWalking) return;
+            if (IsWalking) return;
 
             var currentPosition = Transform.position;
-            if ((currentPosition - startingSpot).magnitude <= 0.9f) return;
+            // if ((currentPosition - startingSpot).magnitude <= 0.9f) return;
 
             IsWalking = true;
             timeLeft = time;
@@ -71,6 +75,8 @@ namespace ENA.Physics
             Transform.position = startingSpot;
             timeLeft = 0;
             IsWalking = false;
+
+            OnCancelWalking.Invoke();
         }
 
         private void Walk(float deltaDistance)
