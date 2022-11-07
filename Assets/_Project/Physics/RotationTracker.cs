@@ -12,31 +12,50 @@ namespace ENA.Physics
         float rotationTimer = 0;
         bool selectedDirection = false;
         Quaternion targetRotation = Quaternion.identity;
-        Direction.Cardinal cardinalDirection;
-        Direction.Cardinal lastCardinalDirection;
         #endregion
+        #region Properties
         public bool IsRotating => !IsLookingAtSameDirection();
+        #endregion
         #region Events
         public Event<bool> OnTurn;
         #endregion
         #region MonoBehaviour Lifecycle
-        private void Start()
-        {
-            currentAngle = (int)Transform.localEulerAngles.y;
-            lastCardinalDirection = cardinalDirection;
-            targetRotation = Transform.rotation;
-        }
-
-        private void Update()
+        void FixedUpdate()
         {
             rotationTimer += Time.deltaTime;
-            cardinalDirection = Direction.CardinalFor(currentAngle);
+            #if ENABLE_LOG
+            Debug.Log($"{rotationTimer}s: {IsRotating}");
+            #endif
+        }
+
+        void Start()
+        {
+            currentAngle = (int)Transform.localEulerAngles.y;
+            targetRotation = Transform.rotation;
         }
         #endregion
         #region Methods
         public bool IsLookingAtSameDirection()
         {
-            return Mathf.Abs(Transform.eulerAngles.y - targetRotation.eulerAngles.y) < 0.001f;
+            return rotationTimer >= 1;
+        }
+
+        public void GyroRotate(float gyroAngle)
+        {
+            var playerAngle = Transform.eulerAngles.y;
+            var directionGyro = Direction.CardinalFor(gyroAngle-90);
+            var directionPlayer = Direction.CardinalFor(playerAngle-90);
+            #if ENABLE_LOG
+            Debug.Log($"Gyro: {directionGyro} | Player: {directionPlayer}");
+            #endif
+
+            if (directionGyro != directionPlayer) {
+                targetRotation = Quaternion.Euler(0, directionGyro.ToAngle(), 0);
+                Transform.rotation = targetRotation;
+                #if ENABLE_LOG
+                Debug.Log($"Changed direction to {directionGyro.ToAngle()}!");
+                #endif
+            }
         }
 
         public void Rotate(float axisValue)
@@ -46,11 +65,9 @@ namespace ENA.Physics
                 if (!selectedDirection) {
                     bool right = axisValue > 0;
                     if (right) {
-                        currentAngle += 90;
-                        targetRotation.eulerAngles = new Vector3(transform.eulerAngles.x, currentAngle, transform.eulerAngles.z);
+                        RotateRight();
                     } else {
-                        currentAngle -= 90;
-                        targetRotation.eulerAngles = new Vector3(transform.localRotation.eulerAngles.x, currentAngle, transform.localRotation.eulerAngles.z);
+                        RotateLeft();
                     }
                     selectedDirection = true;
                     OnTurn.Invoke(right);
@@ -59,7 +76,25 @@ namespace ENA.Physics
                 selectedDirection = false;
             }
 
-            Transform.rotation = Quaternion.Lerp(Transform.rotation, targetRotation, rotationTimer * moveSpeed * Time.deltaTime * 2);
+            var t = rotationTimer * moveSpeed * Time.deltaTime * 2;
+            Rotate(targetRotation, t);
+        }
+
+        private void Rotate(Quaternion targetRotation, float t)
+        {
+            Transform.rotation = Quaternion.Lerp(Transform.rotation, targetRotation, t);
+        }
+
+        private void RotateLeft()
+        {
+            currentAngle -= 90;
+            targetRotation.eulerAngles = new Vector3(transform.localRotation.eulerAngles.x, currentAngle, transform.localRotation.eulerAngles.z);
+        }
+
+        private void RotateRight()
+        {
+            currentAngle += 90;
+            targetRotation.eulerAngles = new Vector3(transform.eulerAngles.x, currentAngle, transform.eulerAngles.z);
         }
 
         public void SetTrackedAngle(float angle)
