@@ -3,54 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using ENA.Utilities;
 using ENA.Metrics;
+using System;
 
 namespace ENA.Input
 {
+	[Obsolete]
 	public class ControleGiroscopio: ExtendedMonoBehaviour
 	{
 		#region Variables
-		[SerializeField] private float fixedRotation;
-		[SerializeField] private float currentRotation;
 		[Header("References")]
 		[SerializeField] PlayerController player;
-		[SerializeField] SessionTracker sessionTracker;
 		[SerializeField] Gyroscope gyro;
+		[SerializeField] Vector3 offsetRotation;
 		#endregion
 		#region MonoBehaviour Lifecycle
 		protected override void Awake()
 		{
 			base.Awake();
-			currentRotation = 0;
 			CheckForGyro();
 		}
 
-		void OnDisable()
+		void Start()
 		{
-			StopAllCoroutines();
+			offsetRotation = player.Transform.eulerAngles + new Vector3(90,0,0);
 		}
-
-		void OnEnable()
+		
+		void Update()
 		{
-			StartCoroutine(TrackRotation());
+			if (gyro == null) return;
+
+			#if ENABLE_LOG
+			Debug.Log($"Altitude: {gyro.attitude}");
+			Debug.Log($"Gravity: {gyro.gravity}");
+			#endif
+
+			var angle = gyro.AttitudeToUnity().eulerAngles;
+			#if ENABLE_LOG
+			Debug.Log($"Angle: {angle}");
+			#endif
+
+			Transform.eulerAngles = angle + offsetRotation;
+
+			UpdateRotationTracker();
 		}
 		#endregion
 		#region Methods
-		
-		private void Update()
-		{
-			if (gyro != null) {
-				#if ENABLE_LOG
-				Debug.Log($"Altitude: {gyro.attitude}");
-				Debug.Log($"Gravity: {gyro.gravity}");
-				#endif
+        private void UpdateRotationTracker()
+        {
+			var cameraRotation = Transform.eulerAngles;
+			var playerRotation = player.Transform.eulerAngles;
+			var delta = cameraRotation.y - playerRotation.y;
 
-				Transform.localRotation = gyro.AttitudeToUnity();
-			}
+			if (Mathf.Abs(cameraRotation.x) > 45) return;
 
-			currentRotation = Transform.localEulerAngles.y;
-		}
+			// if (delta >= 90) {
+			// 	// player.Rotate(1);
+			// } else if (delta <= -90) {
+			// 	// player.Rotate(-1);
+			// }
+        }
 
-		private void CheckForGyro()
+        private void CheckForGyro()
 		{
 			if(SystemInfo.supportsGyroscope) {
 				gyro = UnityEngine.Input.gyro;
@@ -60,21 +73,6 @@ namespace ENA.Input
 			#if ENABLE_LOG
 			Debug.Log($"Gyro Supported?: {SystemInfo.supportsGyroscope}");
 			#endif
-		}
-		#endregion
-		#region Coroutines
-		private readonly WaitForSeconds WaitForNextSample = new WaitForSeconds(1);
-		IEnumerator TrackRotation()
-		{
-			if(currentRotation >= fixedRotation + 90) {
-				sessionTracker.RegisterRotation(true);
-				currentRotation += 90;
-			} else if(currentRotation <= fixedRotation - 90) {
-				sessionTracker.RegisterRotation(false);
-				currentRotation -= 90;
-			}
-
-			yield return WaitForNextSample;
 		}
 		#endregion
 	}
