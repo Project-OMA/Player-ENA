@@ -47,8 +47,6 @@ MonoBehaviour:
       Rotation: {x: 0, y: 90, z: 0}
     - Code: 5.3
       Rotation: {x: 0, y: 270, z: 0}
-  - Prop: {fileID: 11400000, guid: 4619a7e95c02e4cbebb9e19daccd2818, type: 2}
-    Presets: []
   - Prop: {fileID: 11400000, guid: c1cbb266d458b448ea374c8ff3351fb9, type: 2}
     Presets:
     - Code: 2.0

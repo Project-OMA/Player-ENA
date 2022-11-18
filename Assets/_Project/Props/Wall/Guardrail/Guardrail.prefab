@@ -182,13 +182,18 @@ PrefabInstance:
     - target: {fileID: 2495871554259634058, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: m_Name
-      value: Cup Holder
+      value: Guardrail
       objectReference: {fileID: 0}
     - target: {fileID: 2495871554259634063, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 1ad8610eac783af44b703a26af5529a1, type: 3}
+    - target: {fileID: 5941759134597828627, guid: 7541e9694f5ac4ea0923736123710e9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7541e9694f5ac4ea0923736123710e9b, type: 3}
 --- !u!4 &5403070174060260048 stripped

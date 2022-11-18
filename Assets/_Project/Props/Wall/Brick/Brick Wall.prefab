@@ -11,7 +11,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c41cc5eeb52bc144c8ad409a0aafc24b, type: 2}
+      objectReference: {fileID: 2100000, guid: dddc17ca2ab2e4fc4864410d2611d79f, type: 2}
     - target: {fileID: 2462795157548765354, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: <LocalizedName>k__BackingField.m_TableEntryReference.m_KeyId
@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 2495871554259634058, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: m_Name
-      value: Wall Object
+      value: Brick Wall
       objectReference: {fileID: 0}
     - target: {fileID: 2495871554259634063, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}

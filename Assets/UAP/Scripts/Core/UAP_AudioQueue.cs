@@ -347,7 +347,7 @@ public class UAP_AudioQueue : MonoBehaviour
 			if (UAP_AccessibilityManager.UseAndroidTTS())
 			{
 				m_TTS_SpeakingTimer += (text.Length * 3.0f / 16.0f);
-				AndroidTTS.SetSpeechRate(m_SpeechRate);
+				AndroidTTS.SetSpeechRate(m_SpeechRate/2);
 				AndroidTTS.Speak(text);
 			}
 #elif UNITY_IOS
