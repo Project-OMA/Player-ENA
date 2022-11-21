@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Text-To-Speech_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 327c3a94f213141e7ad7620e5e7f75cf, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 7805073818938769412
+  m_TableData:
+  - m_Id: 2546410686767104
+    m_Localized: Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547834569089024
+    m_Localized: Congratulations, you have completed your mission.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547868601671680
+    m_Localized: Gave up ... Try again later!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39321609608093696
+    m_Localized: Now, you must look for {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27660302328782848
+    m_Localized: You collided with {0}.
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769412
+  - m_Id: 33481358989844480
+    m_Localized: You are entering a room with {0} which you can identify by their
+      sounds. Your goal is to find {0} in that order then, you must return to the
+      starting point
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769412
+  - m_Id: 33481963686846464
+    m_Localized: You found {0}. Now, you must look for {1}.
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769412
+  - m_Id: 38578828480602112
+    m_Localized: the starting point
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7805073818938769412
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e02f5d1ef3760000e0ef27abf3760000e0affee5446200

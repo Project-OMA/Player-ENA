@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c43c38103ae41c099b98c1596bc974, type: 3}
+  m_Name: Default Theme
+  m_EditorClassIdentifier: 
+  floorObjects: {fileID: 11400000, guid: 109139b5d4eca48439933f8888b2e10c, type: 2}
+  wallObjects: {fileID: 11400000, guid: 42193f600e3c24697a7c702b5646e41e, type: 2}
+  doorWindowObjects: {fileID: 11400000, guid: 0f860ed2442494e2bb9029b129b05c41, type: 2}
+  furnitureObjects: {fileID: 11400000, guid: 944d9df465bce4332a04323c452bba97, type: 2}
+  eletronicsObjects: {fileID: 11400000, guid: e2637e661763741edb025303fbeae6ed, type: 2}
+  utensilsObjects: {fileID: 11400000, guid: d03422b1685e04bdc8cebcf0a9b4fcc7, type: 2}
+  interactiveElementsObjects: {fileID: 11400000, guid: a7ef8252c08544b5ea1aa36a0dd33217,
+    type: 2}

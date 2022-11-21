@@ -1,0 +1,19 @@
+{
+    "maps": [
+        {
+            "mapName": "<name>",
+            "filePath": "<path/to/xml>",
+            "imagePath": "<path/to/png>"
+        },
+        {
+            "mapName": "<name>",
+            "filePath": "<path/to/xml>",
+            "imagePath": "<path/to/png>"
+        },
+        {
+            "mapName": "<name>",
+            "filePath": "<path/to/xml>",
+            "imagePath": "<path/to/png>"
+        }
+    ]
+}

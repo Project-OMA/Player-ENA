@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: db2b149636568a24bbc2fd6e01299a3a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - characterController: {instanceID: 0}
+  - movementTracker: {instanceID: 0}
+  - rotationTracker: {instanceID: 0}
+  - collisionTracker: {instanceID: 0}
+  - objectiveController: {instanceID: 0}
+  - playerSoundboard: {instanceID: 0}
+  - profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
+  - cameraTransform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

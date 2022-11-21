@@ -5,323 +5,246 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using ENA.Input;
+using ENA.Goals;
+using UnityEngine.Serialization;
+using ENA.Utilities;
+using ENA.Services;
+using Event = ENA.Utilities.Event;
+using ENA.Props;
 
 namespace ENA.Maps
 {
     public class MapCreator: MonoBehaviour
     {
-        //public static bool recomecar;
-        public GameObject playerFilho, telaPreta;
-        public ObjetiveController objectiveController;
-        //Prefabs necessarios, coloqueis eles separados assim pra não precisar mexer no dicionario 
-        public GameObject noFloor;
-        // precisei fazer dois prefabs pra paredes pq a unity tava scalando o prefab e não as instancias por algum motivo ainda desconhecido.
-        public GameObject invisibleWall;
-        public GameObject invisibleWall2;
-        public RectTransform mineMap;
-        //Escolher qual o nó que interessa para ser lido
-        private string nodeLocation = "/root/layers/layer";
-        //Xml que foi exportado do site
-        public TextAsset xmlRawFile;
-        //Tamanho do canvas
-        private Vector2 canvasSize;
-        //Tamanho do tileset
-        private Vector2 tileSize;
-        //Tamanho da matriz do mapa
-        public Vector2 matrixSize;
-        //Matriz do chao
-        private string[,] floorMatrix;
-        //Matriz das paredes 
-        private string[,] wallMatrix;
-        //Matriz das portas e janelas
-        private string[,] doorWindowMatrix;
-        //Matriz dos moveis
-        private string[,] furnitureMatrix;
-        //Matriz dos eletronicos
-        private string[,] eletronicsMatrix;
-        //Matriz dos utensilios
-        private string[,] utensilsMatrix;
-        //Matriz dos elementos interativos
-        private string[,] interactiveElementsMatrix;
-
-        private string[,] characterElementsMatrix;
-        public bool testando;
-        //Dicionario
-        public SpawnObjectsList spawnObjList;
-
-        public GameObject player;
-
-        Vector3 spawnPositionPlus;
-
-        //Botei o contador como publico pra poder usar ele em outras partes do código
-        //e ter um norte de quando a matriz inteira foi feita
-        public int counter;
-
-
-        public List<GameObject> novosObjetivos = new List<GameObject>();
-
-        // Use this for initialization
-        void Start()
+        #region Constants
+        private const string CanvasPath = "/root/canvas";
+        private const string NodePath = "/root/layers/layer";
+        private const string TilesetPath = "/root/tilesets/tileset";
+        public const float TileSizeToUnit = 1;
+        public const float WallHeight = 10;
+        private const float CeilingHeight = 3f;
+        public readonly MapCategory[] LayerOrder = new MapCategory[9]{
+            MapCategory.Floor, MapCategory.Wall, MapCategory.DoorWindow, MapCategory.Furniture,
+            MapCategory.Electronics, MapCategory.Utensils, MapCategory.Interactive, MapCategory.CharacterElements,
+            MapCategory.Ceiling
+        };
+        #endregion
+        #region Variables
+        [Header("References")]
+        [SerializeField] PlayerController playerController;
+        [SerializeField] ObjectiveController objectiveController;
+        [SerializeField] Transform mapParent;
+        [SerializeField] Camera trackerCamera;
+        private string[,,] mapMatrix;
+        [Header("Default Tiles")]
+        [SerializeField] GameObject defaultFloor;
+        [SerializeField] GameObject defaultCeiling;
+        [SerializeField] GameObject invisibleWall;
+        [Header("Map Data")]
+        [SerializeField] SpawnObjectsList spawnObjList;
+        [SerializeField] PropTheme theme;
+        [SerializeField] Vector2 canvasSize;
+        [SerializeField] Vector2 tileSize;
+        [SerializeField] Vector2Int matrixSize;
+        #endregion
+        #region Events
+        [Header("Events")]
+        public Event OnLoadedMap;
+        [Header("Debugging")]
+        [FormerlySerializedAs("testando")]
+        [SerializeField] bool testing;
+        [FormerlySerializedAs("xmlRawFile")]
+        [SerializeField] TextAsset testMapFile;
+        #endregion
+        #region Methods
+        void BuildMapMatrix(string floor, string wall, string doorWind, string furniture, string electronics, string utensils, string interactive, string character)
         {
-            telaPreta.SetActive(false);
+            int width = Mathf.RoundToInt(matrixSize.y);
+            int height = Mathf.RoundToInt(matrixSize.x);
 
-            //Aqui trato o xml para retirar esse bloco que texto que atrapalha na leitura e gero uma copia sem ele.
-            TextAsset mapxml = new TextAsset();
-            //mapxml = (TextAsset)Resources.Load(), typeof(TextAsset));
-            string data = "";
-            if (!testando) {
-                var mapPath = PlayerPrefs.GetString("MapPath");
-                if (File.Exists(mapPath))
-                    data = File.ReadAllText(mapPath);
-                else
-                    return; 
-            }
-            else
-            {
-                data = xmlRawFile.text;
-            }
-            // if (data.Equals(""))
-            //      data = xmlRawFile.text;
-            string newData = data;
-            newData = newData.Replace("xmlns=\"http://www.w3.org/1999/xhtml\"", "");
+            mapMatrix = new string[LayerOrder.Length, width, height];
+            string[] layers = new string[8]{floor, wall, doorWind, furniture, electronics, utensils, interactive, character};
 
-            //Inicializar o parse
-            objectiveController.objetives = new List<GameObject>();
-            parseXmlFile(newData);
-        }
-
-        void Update()
-        {
-            //Reorganiza a lista se a lista de objetivos for maior que 1 e se a matrix inteira já foi construida
-            //Como a matriz tem sempre o mesmo tamanho, o valor final do dontador vai ser sempre o mesmo
-            if (counter >= 375 && objectiveController.objetives.Count >=1) {
-                ReorganizaLista();
-            }
-        }
-
-
-        //Funcao feita para fazer a conversao do xml para unity
-        void parseXmlFile(string xmlData)
-        {
-            //Criando e carregando
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(new StringReader(xmlData));
-
-            //Aqui pego a lista de nós que foram selecionados no atributo nodeLocation e os nos para saber informacoes do mapa
-            XmlNodeList myNodeList = xmlDoc.SelectNodes(nodeLocation);
-            XmlNode canvasNode = xmlDoc.SelectSingleNode("/root/canvas");
-            XmlNode tileNode = xmlDoc.SelectSingleNode("/root/tilesets/tileset");
-
-            //Recuperando os valores de canvas para descobrir as dimensoes da matriz
-            canvasSize = new Vector2(float.Parse(canvasNode.Attributes["width"].Value), float.Parse(canvasNode.Attributes["height"].Value));
-            tileSize = new Vector2(float.Parse(tileNode.Attributes["tilewidth"].Value), float.Parse(tileNode.Attributes["tileheight"].Value));
-            matrixSize = new Vector2(Mathf.RoundToInt(canvasSize.x / tileSize.x), Mathf.RoundToInt(canvasSize.y / tileSize.y));
-            mineMap.position = new Vector2(canvasSize.x / 4, 1080 - (canvasSize.y / 4));
-            mineMap.sizeDelta = new Vector2(canvasSize.x / 2, canvasSize.y / 2);
-            // txt1.text = myNodeList.Item(0).InnerText;
-            //Criar matrizes
-            CreateMapMatrix(myNodeList.Item(0).InnerText, myNodeList.Item(1).InnerText, myNodeList.Item(2).InnerText, myNodeList.Item(3).InnerText
-            , myNodeList.Item(4).InnerText, myNodeList.Item(5).InnerText, myNodeList.Item(6).InnerText, myNodeList.Item(7).InnerText);
-
-        }
-
-
-        //Funcao que cria as matrizes do mapa
-        void CreateMapMatrix(string floor, string wall, string doorWind, string furniture, string eletronics, string utensils, string interactive, string character)
-        {
-            //contador
-            counter = 0;
-
-            //Inicializando matrizes do tamanho certo
-            floorMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            wallMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            doorWindowMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            furnitureMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            eletronicsMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            utensilsMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            interactiveElementsMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-            characterElementsMatrix = new string[Mathf.RoundToInt(matrixSize.y), Mathf.RoundToInt(matrixSize.x)];
-
-            //Splitando a string recebida no xml para ter os valores separados
-            string[] floorValues = floor.Split(',');
-            string[] wallValues = wall.Split(',');
-            string[] doorWindValues = doorWind.Split(',');
-            string[] furnitureValues = furniture.Split(',');
-            string[] eletronicsValues = eletronics.Split(',');
-            string[] utensilsValues = utensils.Split(',');
-            string[] interactiveValues = interactive.Split(',');
-            string[] characterValues = character.Split(',');
-
-            //Povoando matrizes 
-            for (int c = 0; c < matrixSize.y; c++)
-            {
-                for (int l = 0; l < matrixSize.x; l++)
-                {
-                    floorMatrix[c, l] = RemoveBlankChars(floorValues[counter]);
-                    wallMatrix[c, l] = RemoveBlankChars(wallValues[counter]);
-                    doorWindowMatrix[c, l] = RemoveBlankChars(doorWindValues[counter]);
-                    furnitureMatrix[c, l] = RemoveBlankChars(furnitureValues[counter]);
-                    eletronicsMatrix[c, l] = RemoveBlankChars(eletronicsValues[counter]);
-                    utensilsMatrix[c, l] = RemoveBlankChars(utensilsValues[counter]);
-                    interactiveElementsMatrix[c, l] = RemoveBlankChars(interactiveValues[counter]);
-                    characterElementsMatrix[c, l] = RemoveBlankChars(characterValues[counter]);
-
-                    counter = counter + 1;
+            int counter = 0;
+            for (int x = 0; x < layers.Length; x++) {
+                counter = 0;
+                string[] layerValues = layers[x].Split(',');
+                for (int c = 0; c < matrixSize.y; c++) {
+                    for (int l = 0; l < matrixSize.x; l++) {
+                        mapMatrix[x, c, l] = layerValues[counter].RemoveBlankChars();
+                        counter++;
+                    }
                 }
             }
-            // InstantiateMap();
-            StartCoroutine(InstantiateMap());
-            InstantiateWall();
 
-        }
-
-        //função que instancia, posiciona e scala as paredes invisiveis
-        public void InstantiateWall()
-        {
-            //cria instancias diferentes para que um não interfica na scala do outro
-            //tem muito o que melhorar nessa função, mas devido ao tempo ela resolve por enquanto :3 
-            GameObject wall1 = invisibleWall;
-            GameObject wall2 = invisibleWall;
-            GameObject wall5 = invisibleWall2;
-            GameObject wall4 = invisibleWall2;
-
-            Vector3 wallPosition = new Vector3(-0.035f, 0, -canvasSize.y * 0.008f);
-            Instantiate(wall1, wallPosition, Quaternion.identity);
-            wall1.transform.localScale = new Vector3(0.2f, 10, canvasSize.y * 0.02f);
-
-
-            wallPosition = new Vector3(canvasSize.x * 0.016f, 0, -canvasSize.y * 0.008f);
-            Instantiate(wall2, wallPosition, Quaternion.identity);
-            wall2.transform.localScale = new Vector3(0.2f, 10, canvasSize.y * 0.02f);
-
-
-            wallPosition = new Vector3(canvasSize.x * 0.008f, 0, -0.035f);
-            Instantiate(wall5, wallPosition, Quaternion.identity);
-            wall5.transform.localScale = new Vector3(canvasSize.x * 0.02f, 10, 0.2f);
-
-            wallPosition = new Vector3(canvasSize.x * 0.008f, 0, -canvasSize.y * 0.016f);
-            Instantiate(wall4, wallPosition, Quaternion.identity);
-            wall4.transform.localScale = new Vector3(canvasSize.x * 0.02f, 10, 0.2f);
-
-
-        }
-
-        //Funcao que instancia o mapa
-        public IEnumerator InstantiateMap()
-        {
             for (int c = 0; c < matrixSize.y; c++) {
                 for (int l = 0; l < matrixSize.x; l++) {
-                    InstantiateTileAt(MapCategory.Floor, floorMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.Wall, wallMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.DoorWindow, doorWindowMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.Furniture, furnitureMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.Eletronics, eletronicsMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.Utensils, utensilsMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.Interactive, interactiveElementsMatrix[c, l], c, l);
-                    InstantiateTileAt(MapCategory.CharacterElements, characterElementsMatrix[c, l], c, l);
-                    //InstantiateTileAt(MapCategory.Ceiling, "-1", c, l);
+                    mapMatrix[8, c, l] = "-1";
+                    counter++;
                 }
             }
-            objectiveController.StartAudios();
-            yield return new WaitForSeconds(2f);
-            telaPreta.SetActive(false);
+
+            StartCoroutine(InstanceMap());
+            SpawnRoomBounds();
+            PlaceTrackerCamera();
+            objectiveController.SortObjectivesBy(playerController.Transform.parent.position);
         }
 
-        //Funcao que instancia o objeto referente ao codigo no lugar certo    
-        public void InstantiateTileAt(MapCategory category, string code, int c, int l)
+        private void DefinePlayerPosition(string inputCode, int column, int line)
         {
-            //Checa se é o objeto nulo
-            //Condicional para pular a lista de chão, para que caso o usuario tenha esquecido de adicionar chão entre o prefab padrão
-            GameObject prefab;
-            Vector3 tileDestination;
-
-            if (spawnObjList.isNull(code)) {
-                if (category == MapCategory.Floor || category == MapCategory.Ceiling) {
-                    prefab = noFloor;
-                    tileDestination = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
-                } else {
+            switch (inputCode) {
+                case "0.0":
+                    SetPlayerDirection(0);
+                    break;
+                case "1.0":
+                    SetPlayerDirection(90);
+                    break;
+                case "2.0":
+                    SetPlayerDirection(180);
+                    break;
+                case "3.0":
+                    SetPlayerDirection(270);
+                    break;
+                default:
                     return;
-                }
-            } else {
-                prefab = spawnObjList.getPrefab(((int)category), code);
-                tileDestination = new Vector3(spawnObjList.distance * l, 0, spawnObjList.distance * c * -1);
-                spawnPositionPlus = new Vector3((spawnObjList.distance * l), 0, (spawnObjList.distance * c * -1) - .29f);
             }
 
+            playerController.Transform.parent.position = GridPositionFor(column, line);
+        }
+
+        private Vector3 GridPositionFor(int column, int line)
+        {
+            return new Vector3(line, 0, column);
+        }
+
+        public void InstanceTile(MapCategory category, string code, int c, int l)
+        {
+            GameObject prefab = null;
+            Vector3 tileDestination, tileRotation;
+
+            if (!theme.GetPrefab(category, code, out var spawn)) {
+                switch (category) {
+                    case MapCategory.Floor:
+                        prefab = defaultFloor;
+                        break;
+                    case MapCategory.Ceiling:
+                        prefab = defaultCeiling;
+                        break;
+                    case MapCategory.CharacterElements:
+                        DefinePlayerPosition(code, c, l);
+                        break;
+                    default:
+                        return;
+                }
+                tileRotation = Vector3.zero;
+            } else {
+                prefab = spawn.Prefab;
+                tileRotation = spawn.Rotation;
+            }
+
+
+            tileDestination = GridPositionFor(c, l);
             if (category == MapCategory.Ceiling) {
-                tileDestination.y += 4;
+                tileDestination.y += CeilingHeight;
             }
 
+            #if ENABLE_LOG
             Debug.Log($"List Index: {category} | Code: {code}");
+            #endif
             if (prefab == null) {
-                //Caso o prebab seja o player, seta a posicao do player
-                if (category == MapCategory.CharacterElements) {
-                    if (string.IsNullOrEmpty(code)) return;
-                    print("O code é: " + code);
-                    if (code == "0.0") {
-                        SetPlayerDirection(0);
-                    } else if (code == "1.0") {
-                        SetPlayerDirection(90);
-                    } else if (code == "2.0") {
-                        SetPlayerDirection(180);
-                    } else if (code == "3.0") {
-                        SetPlayerDirection(270);
-                    }
-
-                    player.transform.position = spawnPositionPlus;
-                    print("spawnPosition: " + spawnPositionPlus);
-
-                } else {
-                    Debug.LogError("Problemas ao pegar o prefab");
-                    return;
-                }
+                #if ENABLE_LOG
+                Debug.LogWarning($"Error: {code} [{c},{l}] is invalid!");
+                #endif
+                return;
             } else {
-                var newInstance = Instantiate(prefab, tileDestination, prefab.transform.rotation);
+                var newInstance = Instantiate(prefab, tileDestination, Quaternion.Euler(tileRotation));
+                newInstance.SetParent(mapParent, true);
                 if (category == MapCategory.Interactive) {
-                    objectiveController.objetives.Add(newInstance);
+                    objectiveController.Add(newInstance);
                 }
             }
+        }
+
+        private void ParseXmlFile(string xmlData)
+        {
+            const string MapWidthKey = "width";
+            const string MapHeightKey = "height";
+            const string TileWidthKey = "tilewidth";
+            const string TileHeightKey = "tileheight";
+
+            XMLParser parser = XMLParser.Create(xmlData);
+            XmlNode canvasNode = parser.Fetch(CanvasPath);
+            XmlNode tileNode = parser.Fetch(TilesetPath);
+
+            canvasSize = new Vector2(canvasNode.GetValue(MapWidthKey).AsFloat(), canvasNode.GetValue(MapHeightKey).AsFloat());
+            tileSize = new Vector2(tileNode.GetValue(TileWidthKey).AsFloat(), tileNode.GetValue(TileHeightKey).AsFloat());
+            matrixSize = new Vector2Int(Mathf.RoundToInt(canvasSize.x / tileSize.x), Mathf.RoundToInt(canvasSize.y / tileSize.y));
+
+            string[] mapLayers = parser.FetchAllItems(NodePath).Select((item) => item.InnerText).ToArray();
+            BuildMapMatrix(mapLayers[0], mapLayers[1], mapLayers[2], mapLayers[3], mapLayers[4], mapLayers[5], mapLayers[6], mapLayers[7]);
+        }
+
+        public void PlaceTrackerCamera()
+        {
+            const float xFactor = 10/6f;
+
+            trackerCamera.orthographicSize = Mathf.Max(matrixSize.x * xFactor, matrixSize.y)*TileSizeToUnit/5;
+            trackerCamera.transform.position = new Vector3(matrixSize.x*TileSizeToUnit/2,CeilingHeight*2,matrixSize.y*TileSizeToUnit/2);
         }
 
         private void SetPlayerDirection(float angleDegrees)
         {
-            playerFilho.transform.localEulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, angleDegrees, playerFilho.transform.localEulerAngles.z);
-            playerFilho.GetComponent<PlayerControlFix>()._rotate.eulerAngles = new Vector3(playerFilho.transform.localEulerAngles.x, angleDegrees, playerFilho.transform.localEulerAngles.z);
+            playerController.SetDirection(angleDegrees);
         }
 
-
-        //Funcao que remove caracteres indesejados do elemento
-        public string RemoveBlankChars(string entry)
+        public void SpawnRoomBounds()
         {
-            string outstring = entry.Replace(" ", string.Empty);
-            outstring = outstring.Replace("\n", string.Empty);
-            outstring = outstring.Replace("\r", string.Empty);
-            return outstring;
+            const float HalfTileSizeToUnit = TileSizeToUnit/2;
+            float ZOffset = matrixSize.y * TileSizeToUnit;
+            float HalfZOffset = matrixSize.y * HalfTileSizeToUnit;
+            float XOffset = matrixSize.x * TileSizeToUnit;
+            float HalfXOffset = matrixSize.x * HalfTileSizeToUnit;
+
+            invisibleWall.Instance(new Vector3(-HalfTileSizeToUnit, 0, HalfZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(HalfTileSizeToUnit, WallHeight, ZOffset));
+            invisibleWall.Instance(new Vector3(XOffset-HalfTileSizeToUnit, 0, HalfZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(HalfTileSizeToUnit, WallHeight, ZOffset));
+            invisibleWall.Instance(new Vector3(HalfXOffset-HalfTileSizeToUnit, 0, -HalfTileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, HalfTileSizeToUnit));
+            invisibleWall.Instance(new Vector3(HalfXOffset-HalfTileSizeToUnit, 0, ZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, HalfTileSizeToUnit));
         }
 
-        //Função que reorganiza os objetivos
-        public void ReorganizaLista()
+        void Start()
         {
+            string rawData = "";
 
-            Debug.Log("Entrou no ReorganizaLista");
-            novosObjetivos = objectiveController.objetives;
-            int limite = objectiveController.objetives.Count;
-            float distancia;
-                
-            novosObjetivos = novosObjetivos.OrderBy(
-            novosObjetivos => Vector3.Distance(player.transform.position, novosObjetivos.transform.position)
-            ).ToList();
-
-            objectiveController.objetives = novosObjetivos;
-
-
-            for (int i = 0; i < limite; i++)
-            {
-                distancia = Vector3.Distance(objectiveController.objetives[i].transform.position, player.transform.position);
-                Debug.Log("A distancia do " + objectiveController.objetives[i].name + " para o player é " + distancia);
+            if (!testing) {
+                var mapPath = PlayerPrefs.GetString(LocalCache.LoadedMapKey);
+                if (File.Exists(mapPath))
+                    rawData = File.ReadAllText(mapPath);
+                else
+                    return; 
+            } else {
+                rawData = testMapFile.text;
             }
+
+            objectiveController.RemoveAll();
+            ParseXmlFile(rawData);
         }
+        #endregion
+        #region Coroutines
+        IEnumerator InstanceMap()
+        {
+            int numberOfLayers = LayerOrder.Length;
+            for (int c = 0; c < matrixSize.y; c++) {
+                for (int l = 0; l < matrixSize.x; l++) {
+                    var skewedColumn = matrixSize.y - c - 1;
+                    for (int x = 0; x < numberOfLayers; x++) {
+                        InstanceTile(LayerOrder[x], mapMatrix[x, skewedColumn, l], c, l);
+                    }
+                }
+            }
+            yield return objectiveController.StartAudios();
+            OnLoadedMap.Invoke();
+        }
+        #endregion
     }
 }

@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -46.724373, y: -48.229156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224510104821068024}
   m_Father: {fileID: 0}
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9e42417444b96439dd7aeff0814d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DefaultState: 0
+  m_DefaultState: 1
   m_AutoTurnOnIfScreenReaderDetected: 1
   m_RecheckAutoEnablingOnResume: 0
   m_SaveEnabledState: 1
@@ -81,7 +82,7 @@ MonoBehaviour:
   m_TouchBlocker: {fileID: 171630}
   m_DebugOutputLabel: {fileID: 11450450}
   m_AllowVoiceOverGlobal: 1
-  m_DetectVoiceOverAtRuntime: 0
+  m_DetectVoiceOverAtRuntime: 1
 --- !u!1 &136924
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +112,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999963, y: 0.9999963, z: 0.9999963}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22419810}
   m_RootOrder: 1
@@ -207,6 +209,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 224510104821068024}
   m_RootOrder: 1
@@ -301,6 +304,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224812681074095320}
   - {fileID: 22468522}
@@ -379,6 +383,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 22419810}
   m_RootOrder: 0
@@ -477,6 +482,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 22419810}
   - {fileID: 22474968}
