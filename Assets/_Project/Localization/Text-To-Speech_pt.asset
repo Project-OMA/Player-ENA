@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Text-To-Speech_pt
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pt
+  m_SharedData: {fileID: 11400000, guid: 327c3a94f213141e7ad7620e5e7f75cf, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 7805073818938769411
+  m_TableData:
+  - m_Id: 2546410686767104
+    m_Localized: Carregando
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547834569089024
+    m_Localized: "Parab\xE9ns, voc\xEA concluiu sua miss\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2547868601671680
+    m_Localized: Desistiu... Tente novamente mais tarde!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39321609608093696
+    m_Localized: "Agora voc\xEA deve encontrar {0}."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27660302328782848
+    m_Localized: "Voc\xEA colidiu com {0}."
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769411
+  - m_Id: 33481358989844480
+    m_Localized: "Voc\xEA est\xE1 entrando em ambiente com {0} que podem ser identificados
+      pelos seus sons. Seu objetivo \xE9 encontrar {0} nessa ordem e depois retornar
+      para o ponto inicial."
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769411
+  - m_Id: 33481963686846464
+    m_Localized: "Voc\xEA encontrou {0}. Agora voc\xEA deve ir para {1}."
+    m_Metadata:
+      m_Items:
+      - rid: 7805073818938769411
+  - m_Id: 38578828480602112
+    m_Localized: o ponto inicial
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7805073818938769411
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 00e02f5d1ef3760000e0ef27abf3760000e0affee5446200

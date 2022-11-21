@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051a158deb536472eaa4daba51026411, type: 3}
+  m_Name: Wall Group
+  m_EditorClassIdentifier: 
+  entries:
+  - Prop: {fileID: 11400000, guid: 78562c412efa54ecfaa3ab7699781e2b, type: 2}
+    Presets:
+    - Code: 3.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 8c2388ce93b0a41eba14cc8212ab8847, type: 2}
+    Presets:
+    - Code: 0.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: dc768a39cf5274221b639a600624eae1, type: 2}
+    Presets:
+    - Code: 7.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 487c85e1630454f5b8810f1f4ec3796f, type: 2}
+    Presets:
+    - Code: 4.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 3106617a6ef5c4e388e58a921f62f69e, type: 2}
+    Presets:
+    - Code: 6.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 4550d84b717a54650acb7358a7627b33, type: 2}
+    Presets:
+    - Code: 5.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 6d66a5ed7f50f4e1682a76f8c4b5d369, type: 2}
+    Presets:
+    - Code: 0.1
+      Rotation: {x: 0, y: 90, z: 0}
+    - Code: 1.2
+      Rotation: {x: 0, y: 270, z: 0}
+    - Code: 2.2
+      Rotation: {x: 0, y: 0, z: 0}
+    - Code: 3.1
+      Rotation: {x: 0, y: 180, z: 0}
+  - Prop: {fileID: 11400000, guid: 267cfe61f94fd4363ae87f1b64be752b, type: 2}
+    Presets:
+    - Code: 1.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: f818123c91d104b489cad5d535ecee93, type: 2}
+    Presets:
+    - Code: 2.0
+      Rotation: {x: 0, y: 0, z: 0}

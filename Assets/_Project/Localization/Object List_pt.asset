@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Object List_pt
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pt
+  m_SharedData: {fileID: 11400000, guid: 644f6e3b1578040bfb6b0236fb79594f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 291939278848
+    m_Localized: a janela de vidro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 560345374720
+    m_Localized: a janela de madeira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 679144841216
+    m_Localized: o ar condicionado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 664213118976
+    m_Localized: a geladeira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702880407552
+    m_Localized: o telefone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716620947456
+    m_Localized: o microondas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 741262483456
+    m_Localized: "o fog\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 755141435392
+    m_Localized: a maquina de lavar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791640268800
+    m_Localized: o computador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 817183580160
+    m_Localized: a xerox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 850482159616
+    m_Localized: a TV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 970619609088
+    m_Localized: a porta fechada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989779189760
+    m_Localized: "uma porta fechada, aperte um bot\xE3o para abr\xED-la"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1013921603584
+    m_Localized: a chaleira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2378584547328
+    m_Localized: o celular
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2406396977152
+    m_Localized: o ventilador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2419911024640
+    m_Localized: o gato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2433852891136
+    m_Localized: "o p\xE1ssaro"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2445395615744
+    m_Localized: "o r\xE1dio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2460138594304
+    m_Localized: o secador de cabelo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2485551882240
+    m_Localized: o grilo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2502136160256
+    m_Localized: "a crian\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2515411132416
+    m_Localized: o inseto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2538383335424
+    m_Localized: o sapo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2582339641344
+    m_Localized: a batedeira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2613746589696
+    m_Localized: a impressora
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2632293801984
+    m_Localized: o despertador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2654641053696
+    m_Localized: o liquidificador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2666938753024
+    m_Localized: o cachorro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2690573656064
+    m_Localized: "o arm\xE1rio de ferro"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2713893986304
+    m_Localized: o guarda roupa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2735003918336
+    m_Localized: a mesa de jantar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2756701052928
+    m_Localized: o criado mudo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2772635213824
+    m_Localized: a estante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2789345320960
+    m_Localized: a comoda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2811646435328
+    m_Localized: a mesa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2825462472704
+    m_Localized: a cama de casal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3113414025216
+    m_Localized: a cama de solteiro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3156082679808
+    m_Localized: a poltrona
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3174747332608
+    m_Localized: a cadeira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3189897158656
+    m_Localized: "o sof\xE1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3205848096768
+    m_Localized: a parede de vidro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3222499483648
+    m_Localized: a escada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3264127950848
+    m_Localized: a parede de azulejo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3301964767232
+    m_Localized: a parede de tijolo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3319891222528
+    m_Localized: a parede de gesso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3336681021440
+    m_Localized: a parede de madeira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3362601820160
+    m_Localized: o guarda copos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3385129426944
+    m_Localized: a parede
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3450543792128
+    m_Localized: "a parede de pl\xE1stico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3486539309056
+    m_Localized: a pia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3517375832064
+    m_Localized: "o sanit\xE1rio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3533599399936
+    m_Localized: o piano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3559662804992
+    m_Localized: o quadro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3574980403200
+    m_Localized: o cone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3588494450688
+    m_Localized: a lata de lixo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3604780933120
+    m_Localized: a guitarra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3621008695296
+    m_Localized: o abajur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3631137939456
+    m_Localized: o vaso de planta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10776063171878912
+    m_Localized: a borda do mapa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951199981568
+    m_Localized: a porta aberta
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

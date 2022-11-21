@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Object List_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 644f6e3b1578040bfb6b0236fb79594f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 291939278848
+    m_Localized: a glass window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 560345374720
+    m_Localized: a wooden window
+    m_Metadata:
+      m_Items: []
+  - m_Id: 664213118976
+    m_Localized: a fridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 679144841216
+    m_Localized: an air conditioner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702880407552
+    m_Localized: a telephone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716620947456
+    m_Localized: a microwave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 741262483456
+    m_Localized: a stove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 755141435392
+    m_Localized: a washer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791640268800
+    m_Localized: a computer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 817183580160
+    m_Localized: a xerox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 850482159616
+    m_Localized: a TV
+    m_Metadata:
+      m_Items: []
+  - m_Id: 970619609088
+    m_Localized: a closed door
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989779189760
+    m_Localized: a closed door, push a button to open it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1013921603584
+    m_Localized: a kettler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2378584547328
+    m_Localized: a cellphone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2406396977152
+    m_Localized: a fan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2419911024640
+    m_Localized: a cat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2433852891136
+    m_Localized: a bird
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2445395615744
+    m_Localized: a radio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2460138594304
+    m_Localized: a hair dryer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2485551882240
+    m_Localized: a cricket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2502136160256
+    m_Localized: a kid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2515411132416
+    m_Localized: a bug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2538383335424
+    m_Localized: a frog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2582339641344
+    m_Localized: a food mixer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2613746589696
+    m_Localized: a printer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2632293801984
+    m_Localized: an alarm clock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2654641053696
+    m_Localized: a blender
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2666938753024
+    m_Localized: a dog
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2690573656064
+    m_Localized: a iron box
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2713893986304
+    m_Localized: a wardrobe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2735003918336
+    m_Localized: a dining table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2756701052928
+    m_Localized: a bedside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2772635213824
+    m_Localized: a shelf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2789345320960
+    m_Localized: a drawer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2811646435328
+    m_Localized: a table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2825462472704
+    m_Localized: a couples bed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3113414025216
+    m_Localized: a singles bed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3156082679808
+    m_Localized: an armchair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3174747332608
+    m_Localized: a chair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3189897158656
+    m_Localized: a sofa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3205848096768
+    m_Localized: a glass wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3222499483648
+    m_Localized: a ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3264127950848
+    m_Localized: a tile wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3301964767232
+    m_Localized: a brick wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3319891222528
+    m_Localized: a plaster wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3336681021440
+    m_Localized: a wooden wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3362601820160
+    m_Localized: a cup holder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3385129426944
+    m_Localized: a wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3450543792128
+    m_Localized: a plastic wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3486539309056
+    m_Localized: a sink
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3517375832064
+    m_Localized: a sanitary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3533599399936
+    m_Localized: a piano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3559662804992
+    m_Localized: a painting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3574980403200
+    m_Localized: a cone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3588494450688
+    m_Localized: a trash can
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3604780933120
+    m_Localized: a guitar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3621008695296
+    m_Localized: a bedside lamp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3631137939456
+    m_Localized: a plant vase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10776063171878912
+    m_Localized: the map border
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951199981568
+    m_Localized: an open door
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using SimpleFileBrowser;
+using System;
 
+[Obsolete]
 public class AccessibleInteractable<T>: UAP_BaseElement where T: class, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
 

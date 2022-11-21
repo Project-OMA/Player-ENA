@@ -66,5 +66,62 @@ MonoBehaviour:
     m_Localized: Espacio Navegable - ENA
     m_Metadata:
       m_Items: []
+  - m_Id: 27469841911767040
+    m_Localized: Buscar...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27475176315674624
+    m_Localized: Mostrar archivos ocultos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27482274097258496
+    m_Localized: Cancelar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27484323329335296
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27484771784318976
+    m_Localized: Nombre del archivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27525180141068288
+    m_Localized: Todos los archivos (.*)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27528107102560256
+    m_Localized: "Opci\xF3n A"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66735710219001856
+    m_Localized: Entrar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66736026033315840
+    m_Localized: "Contrase\xF1a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66736594495725568
+    m_Localized: Crear cuenta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66737193509445632
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66737748847878144
+    m_Localized: Cargar...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66738516170629120
+    m_Localized: Confirmar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66739259099308032
+    m_Localized: Iniciar
+    m_Metadata:
+      m_Items: []
   references:
-    version: 1
+    version: 2
+    RefIds: []

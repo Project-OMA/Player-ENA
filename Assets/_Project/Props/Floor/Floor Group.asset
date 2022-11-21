@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051a158deb536472eaa4daba51026411, type: 3}
+  m_Name: Floor Group
+  m_EditorClassIdentifier: 
+  entries:
+  - Prop: {fileID: 11400000, guid: f28b21e8128c54922a7c480d7e472558, type: 2}
+    Presets:
+    - Code: 0.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 509f6cef87a9f422795a4ca70aed1af4, type: 2}
+    Presets:
+    - Code: 0.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: c09e4506eb3124437a154c9ba8909b73, type: 2}
+    Presets:
+    - Code: 1.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 31f1363064c8e4071a890630c44e0e98, type: 2}
+    Presets:
+    - Code: 1.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 9ef48e814cdb54ded8e0a321c7cd965f, type: 2}
+    Presets:
+    - Code: 2.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 5c174b5540981440db7846c28ffb50ca, type: 2}
+    Presets:
+    - Code: 2.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: fad66184dc275420180bb725cdaf2944, type: 2}
+    Presets:
+    - Code: 3.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 7bb4ea2d5c5674a08aeeccf3d65a79e4, type: 2}
+    Presets:
+    - Code: 3.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: bbf42509fd29444ce81187fb0457b98b, type: 2}
+    Presets:
+    - Code: 4.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: e2af30502201643049bc68d37adb7c9b, type: 2}
+    Presets:
+    - Code: 4.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: a6666251cd6cc4674b47ae141c6278fd, type: 2}
+    Presets:
+    - Code: 5.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 5d992bec1cc7a43a0b09d23c8371f4d3, type: 2}
+    Presets:
+    - Code: 5.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: a453100dd35e245cca4e1724ef7694fd, type: 2}
+    Presets:
+    - Code: 6.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: ac0ba3905dcb24b6b8f248374e39b9a7, type: 2}
+    Presets:
+    - Code: 6.1
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 8f77bd0d2ba584fe7a8c72c6fa9b1096, type: 2}
+    Presets:
+    - Code: 7.0
+      Rotation: {x: 0, y: 0, z: 0}
+  - Prop: {fileID: 11400000, guid: 22bd3510958d04bad8b39e995e8918db, type: 2}
+    Presets:
+    - Code: 7.1
+      Rotation: {x: 0, y: 0, z: 0}
