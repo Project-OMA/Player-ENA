@@ -238,6 +238,6 @@
 <canvas width="1344" height="832">
 </canvas>
 
-<ambient name="jardim" sound="passaros.mp3" top="15" left="15" width="5" height="5"/>
+<ambient name="jardim" sound="passaros" top="15" left="15" width="5" height="5"/>
 
 </root>

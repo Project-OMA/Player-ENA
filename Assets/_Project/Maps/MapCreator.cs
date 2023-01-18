@@ -116,11 +116,12 @@ namespace ENA.Maps
                 newInstance.transform.localScale = new Vector3(width, 1, height);
 
                 var audioSource = newInstance.GetComponent<AudioSource>();
+
+                Debug.Log($"audioSource: {audioSource}");
+
                 audioSource.clip = Resources.Load(sound) as AudioClip;
 
-                // AudioSource audioSource = newInstance.AddComponent <AudioSource>() as AudioSource;
-                // AudioClip audio = Resources.Load<AudioClip>(sound);
-                // audioSource.PlayOneShot (audio);
+                Debug.Log($"audioSource.clip: {audioSource.clip}");
            }
         }
 
