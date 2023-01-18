@@ -21,6 +21,7 @@ namespace ENA.Maps
         private const string CanvasPath = "/root/canvas";
         private const string NodePath = "/root/layers/layer";
         private const string TilesetPath = "/root/tilesets/tileset";
+        private const string AmbientPath = "root/ambient";
         public const float TileSizeToUnit = 1;
         public const float WallHeight = 10;
         private const float CeilingHeight = 3f;
@@ -41,6 +42,7 @@ namespace ENA.Maps
         [SerializeField] GameObject defaultFloor;
         [SerializeField] GameObject defaultCeiling;
         [SerializeField] GameObject invisibleWall;
+        [SerializeField] GameObject ambientPrefab;
         [Header("Map Data")]
         [SerializeField] SpawnObjectsList spawnObjList;
         [SerializeField] PropTheme theme;
@@ -89,6 +91,37 @@ namespace ENA.Maps
             SpawnRoomBounds();
             PlaceTrackerCamera();
             objectiveController.SortObjectivesBy(playerController.Transform.parent.position);
+        }
+
+        void BuildAmbients(List<XmlNode> ambientNodes)
+        {
+           foreach (var node in ambientNodes)
+           {
+                var top = node.GetValue("top").AsFloat();
+                var left = node.GetValue("left").AsFloat();
+                var width = node.GetValue("width").AsFloat();
+                var height = node.GetValue("height").AsFloat();
+
+                var sound = node.GetValue("sound");
+
+                Debug.Log($"Sound file: {sound}");
+
+                var text = node.InnerText;
+
+                var ambientPosition = new Vector3((left+width/2),1,(top+height/2));
+
+                var newInstance = Instantiate(ambientPrefab, ambientPosition, Quaternion.Euler(Vector3.zero));
+                newInstance.SetParent(mapParent, true);
+
+                newInstance.transform.localScale = new Vector3(width, 1, height);
+
+                var audioSource = newInstance.GetComponent<AudioSource>();
+                audioSource.clip = Resources.Load(sound) as AudioClip;
+
+                // AudioSource audioSource = newInstance.AddComponent <AudioSource>() as AudioSource;
+                // AudioClip audio = Resources.Load<AudioClip>(sound);
+                // audioSource.PlayOneShot (audio);
+           }
         }
 
         private void DefinePlayerPosition(string inputCode, int column, int line)
@@ -176,6 +209,7 @@ namespace ENA.Maps
             XMLParser parser = XMLParser.Create(xmlData);
             XmlNode canvasNode = parser.Fetch(CanvasPath);
             XmlNode tileNode = parser.Fetch(TilesetPath);
+            var ambientNodes = parser.FetchAllItems(AmbientPath).ToList();
 
             canvasSize = new Vector2(canvasNode.GetValue(MapWidthKey).AsFloat(), canvasNode.GetValue(MapHeightKey).AsFloat());
             tileSize = new Vector2(tileNode.GetValue(TileWidthKey).AsFloat(), tileNode.GetValue(TileHeightKey).AsFloat());
@@ -183,6 +217,7 @@ namespace ENA.Maps
 
             string[] mapLayers = parser.FetchAllItems(NodePath).Select((item) => item.InnerText).ToArray();
             BuildMapMatrix(mapLayers[0], mapLayers[1], mapLayers[2], mapLayers[3], mapLayers[4], mapLayers[5], mapLayers[6], mapLayers[7]);
+            BuildAmbients(ambientNodes);
         }
 
         public void PlaceTrackerCamera()

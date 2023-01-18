@@ -217,7 +217,7 @@ PrefabInstance:
     - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
       propertyPath: testing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
@@ -233,7 +233,13 @@ PrefabInstance:
         type: 3}
       propertyPath: testMapFile
       value: 
-      objectReference: {fileID: 4900000, guid: 8745eda3024744c3dad5ffb552865736, type: 3}
+      objectReference: {fileID: 4900000, guid: a7c4acc60f680b24294af863b10f5819, type: 3}
+    - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
+        type: 3}
+      propertyPath: ambientPrefab
+      value: 
+      objectReference: {fileID: 8392775423162882448, guid: b02544fdbb308f34e8e8f34b726204bf,
+        type: 3}
     - target: {fileID: 114759291479644862, guid: 1b479b7b51a580c4698735b4ab79fefd,
         type: 3}
       propertyPath: trackerCamera
