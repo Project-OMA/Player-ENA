@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ENA.Accessibility
 {
+	[Obsolete]
 	public class DirecaoInicial: ExtendedMonoBehaviour
 	{
 		public static int ajudaInicial;
