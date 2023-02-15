@@ -8,7 +8,7 @@
 - Interface Gráfica
 - Localização
 - Mapas
-- Métricas
+- [Métricas](Métricas/Métricas.md)
 - Persistência
 - [Props](Props/Props.md)
 - Serviços
