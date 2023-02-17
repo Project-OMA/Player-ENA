@@ -4,7 +4,7 @@
 - [Acessibilidade](Acessibilidade.md)
 - Audio
 - Controles
-- Física
+- [Física](Física.md)
 - Interface Gráfica
 - Localização
 - Mapas
