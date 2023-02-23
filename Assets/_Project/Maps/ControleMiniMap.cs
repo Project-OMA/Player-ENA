@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ENA.Persistency;
 using UnityEngine;
 
-namespace ENA.Input
+namespace ENA.Maps
 {
 	public class ControleMiniMap : MonoBehaviour
 	{
