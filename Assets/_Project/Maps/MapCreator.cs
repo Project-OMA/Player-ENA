@@ -42,7 +42,6 @@ namespace ENA.Maps
         [SerializeField] GameObject defaultCeiling;
         [SerializeField] GameObject invisibleWall;
         [Header("Map Data")]
-        [SerializeField] SpawnObjectsList spawnObjList;
         [SerializeField] PropTheme theme;
         [SerializeField] Vector2 canvasSize;
         [SerializeField] Vector2 tileSize;
