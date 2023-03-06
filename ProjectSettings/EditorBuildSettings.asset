@@ -12,7 +12,11 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/CenaPrincipal.unity
     guid: c590295264101d1439d5e5cb36b4e4a4
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 71d3305f638c7495aa71579eb693bdeb,
+      type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: 5dae9e067d9af48f1ab726981379b558,
       type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 5f9625bb12f3a40edbffdc2218b92beb,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1cbb5452f0fc6451ba36db8bb7b0d7dc,
       type: 2}
