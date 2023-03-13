@@ -1,6 +1,6 @@
 # Sumário
 
-- Como Funciona
+- [Como Funciona](Como%20Funciona/Como%20Funciona.md)
 - [Acessibilidade](Acessibilidade.md)
 - [Audio](Audio.md)
 - [Classes Utilitárias](Utilitários.md)
