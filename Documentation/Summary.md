@@ -2,7 +2,7 @@
 
 - Como Funciona
 - [Acessibilidade](Acessibilidade.md)
-- Audio
+- [Audio](Audio.md)
 - [Classes Utilitárias](Utilitários.md)
 - [Controles](Controles.md)
 - [Física](Física.md)
