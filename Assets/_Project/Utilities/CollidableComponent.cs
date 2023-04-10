@@ -1,18 +1,20 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ENA.Utilities
 {
-    [AddComponentMenu("ENA/Pressure Plate")]
-    public class PressurePlateComponent: MonoBehaviour
+    [AddComponentMenu("ENA/Collidable")]
+    public class CollidableComponent: MonoBehaviour
     {
         #region Variables
-        public Event OnPress;
+        [FormerlySerializedAs("OnPress")]
+        public Event OnPlayerCollision;
         #endregion
         #region Methods
         void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == "Player") {
-                OnPress.Invoke();
+                OnPlayerCollision.Invoke();
             }
         }
         #endregion
