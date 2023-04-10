@@ -56,6 +56,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3374dcaa-4011-49cd-b955-fc742d7aed9c",
+                    "path": "<OculusTouchController>/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleScreenReader",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6f8cc81f-9763-496f-ae36-e3d759f65220",
                     "path": "<Keyboard>/p",
                     "interactions": "",
@@ -144,6 +155,17 @@
                 },
                 {
                     "name": "",
+                    "id": "10447f00-e3f3-4bb4-ada7-dc36bf7885ce",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cae8728f-bb2c-419c-ac6c-6e264252d419",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -157,6 +179,17 @@
                     "name": "",
                     "id": "5eee5429-36b0-43fa-a81b-cd33512a0c31",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72728cc0-ea01-4924-9ca5-6fe7146e2d14",
+                    "path": "<OculusTouchController>/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -183,6 +216,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6eb7cc7-c02d-4bd0-a4af-19fa751cde9d",
+                    "path": "<OculusTouchController>/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gameplay",
+            "id": "0d97f14b-0890-4d02-a89d-815f35318321",
+            "actions": [
+                {
+                    "name": "Hint",
+                    "type": "Button",
+                    "id": "1a0aad0d-a6dc-4d72-a5f1-b9126333f129",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "da19ac90-9ed4-4273-81a8-37a413087048",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5e08e67-0774-4166-aea3-b6480f1e8e27",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
