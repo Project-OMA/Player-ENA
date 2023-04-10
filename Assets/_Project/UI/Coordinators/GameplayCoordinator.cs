@@ -52,6 +52,7 @@ namespace ENA.UI
             manager.Pop(pauseMenuDisplay);
             onQuit?.Invoke();
             await SaveSession();
+            tracker.ClearSession();
             SceneManager.LoadSceneAsync(BuildIndex.MainMenu);
         }
 
