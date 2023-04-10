@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace UnityStandardAssets.Utility
 {
@@ -19,7 +20,7 @@ namespace UnityStandardAssets.Utility
         private void Update()
         {
             // Make sure the user pressed the mouse down
-            if (!Input.GetMouseButtonDown(0))
+            if (!Mouse.current.leftButton.wasPressedThisFrame)
             {
                 return;
             }
@@ -68,7 +69,7 @@ namespace UnityStandardAssets.Utility
             m_SpringJoint.connectedBody.drag = k_Drag;
             m_SpringJoint.connectedBody.angularDrag = k_AngularDrag;
             var mainCamera = FindCamera();
-            while (Input.GetMouseButton(0))
+            while (Mouse.current.leftButton.isPressed)
             {
                 var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
                 m_SpringJoint.transform.position = ray.GetPoint(distance);
