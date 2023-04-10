@@ -1,64 +1,63 @@
 using UnityEngine;
 using ENA.Utilities;
+using ENA.Goals;
+using ENA.Maps;
 
 namespace ENA.Physics
 {
     public class CollisionTracker: MonoBehaviour
     {
         #region Variables
-        [SerializeField] GameObject target;
-        [SerializeField] bool closeToDoor;
+        [SerializeField] Transform target;
+        [SerializeField] ObjectiveList objectiveList;
         #endregion
         #region Properties
-        public GameObject Target => target;
+        public Transform Target => target;
         #endregion
         #region Events
-        public Event<GameObject> OnHitFloor, OnHitObjective, OnHitObstacle;
+        public Event<GameObject> OnHitFloor, OnHitObstacle;
+        public Event<ObjectiveComponent> OnHitObjective;
         #endregion
-        #region Methods
+        #region MonoBehaviour Lifecycle
         private void OnControllerColliderHit(ControllerColliderHit col)
         {
             GameObject collidedObject = col.gameObject;
 
-            if (collidedObject.tag == "floor") {
-                target = collidedObject.GetComponent<GetTarget>().target;
-                OnHitFloor.Invoke(collidedObject);
-            } else if (collidedObject.tag == "objects") {
-                #if UNITY_IOS
-                if (ControleMenuPrincipal.vibrationValue) {
-                    Handheld.Vibrate();
-                }
-                #endif
-                var prop = collidedObject.GetComponentInParent<CollidableProp>();
-                if (prop == null) return;
-
-                prop.CollisionAudioSource.RequestPlay();
-                if (prop.IsCurrentObjective()) {
-                    OnHitObjective.Invoke(prop.gameObject);
-                } else {
-                    OnHitObstacle.Invoke(prop.gameObject);
-                }
+            if (collidedObject.TryGetComponentInParent(out FloorComponent floor)) {
+                HitFloor(floor);
+            } else if (collidedObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
+                HitObjective(objective);
+            } else if (collidedObject.TryGetComponentInParent(out CollidableProp prop)) {
+                HitProp(prop);
             } else {
                 OnHitObstacle.Invoke(collidedObject);
             }
         }
-
-        private void OnTriggerStay(Collider other)
+        #endregion
+        #region Methods
+        private void HitFloor(FloorComponent floor)
         {
-            if (other.tag == "door") {
-                closeToDoor = true;
-            }
-
-            if (other.tag == "target") {
-                target = other.gameObject;
-            }
+            target = floor.Target;
+            OnHitFloor.Invoke(floor.gameObject);
         }
 
-        private void OnTriggerExit(Collider other)
+        private void HitObjective(ObjectiveComponent objective)
         {
-            if (other.tag == "door") {
-                closeToDoor = false;
+            objectiveList.Check(objective);
+            objective.PlayCollisionSound();
+            OnHitObjective.Invoke(objective);
+        }
+
+        private void HitProp(CollidableProp prop)
+        {
+            #if UNITY_IOS
+            if (ControleMenuPrincipal.vibrationValue) {
+                Handheld.Vibrate();
             }
+            #endif
+
+            prop.CollisionAudioSource.RequestPlay();
+            OnHitObstacle.Invoke(prop.gameObject);
         }
         #endregion
     }

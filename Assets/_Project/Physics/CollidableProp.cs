@@ -10,16 +10,5 @@ namespace ENA.Physics
         [field: SerializeField] public LocalizedString LocalizedName {get; private set;}
         [field: SerializeField] public AudioSource CollisionAudioSource {get; private set;}
         #endregion
-        #region Region
-        public string GetName()
-        {
-            return LocalizedName.GetLocalizedString();
-        }
-
-        public bool IsCurrentObjective()
-        {
-            return gameObject == ObjectiveController.instance.NextObjective;
-        }
-        #endregion
     }
 }
