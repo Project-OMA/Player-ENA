@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 114652379721571407}
   - component: {fileID: 114652379721571401}
   - component: {fileID: 374698572045423766}
+  - component: {fileID: 2409076296069125435}
+  - component: {fileID: 6415287496036377482}
   m_Layer: 0
   m_Name: Floor Object
   m_TagString: floor
@@ -143,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc82b0804b584fcb988990826956297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPress:
+  OnPlayerCollision:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -159,6 +161,44 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2409076296069125435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114652379721571404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bbced0d556c41ab959b4c8b5116894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <LocalizedName>k__BackingField:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  <CollisionAudioSource>k__BackingField: {fileID: 114652379721571401}
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &6415287496036377482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114652379721571404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a700c76cbc7a42d49691b124b56fd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Target>k__BackingField: {fileID: 0}
 --- !u!1 &8160821852205353941
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 224718387049360422}
   - component: {fileID: 222377356366477886}
   - component: {fileID: 114203634633083060}
-  - component: {fileID: 114158789756583702}
   - component: {fileID: 5246825769413222427}
   - component: {fileID: 199573532322663066}
+  - component: {fileID: 4410716603930616078}
   m_Layer: 5
   m_Name: Mini Map
   m_TagString: Untagged
@@ -76,19 +76,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &114158789756583702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320702486612786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341dce83cc6a89048aac5ed847f08cf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
 --- !u!114 &5246825769413222427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +106,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0.1254902, g: 0.12941177, b: 0.14117648, a: 1}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!114 &4410716603930616078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320702486612786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00748f3c25f3436ba5f2761dd14c64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
 --- !u!1 &1595391135937960
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -206,6 +207,7 @@ MonoBehaviour:
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &1655089065396668
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +980,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fa75f8e7-d047-4ad1-bf82-f9e2c0661d9e
     m_ActionName: UI/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3a533ff-de90-4778-b917-01c8764753e0
+    m_ActionName: UI/Move
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bef322ba-b134-4ed8-9837-6b610a15ad22
+    m_ActionName: UI/Interact
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a0aad0d-a6dc-4d72-a5f1-b9126333f129
+    m_ActionName: Gameplay/Hint[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
