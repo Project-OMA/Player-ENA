@@ -2306,7 +2306,8 @@ public class UAP_AccessibilityManager : MonoBehaviour
 		// Mac: Shift-Cmd-A
 		//////////////////////////////////////////////////////////////////////////
 		UpdateThreeFingerTapDetection();
-		if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.A) && (Input.GetKey(KeyCode.LeftWindows) || Input.GetKey(KeyCode.LeftCommand)))
+		var keyboard = Keyboard.current;
+		if (keyboard.leftShiftKey.isPressed && keyboard.aKey.isPressed && (keyboard.leftWindowsKey.isPressed || keyboard.leftAppleKey.isPressed))
 		{
 			ToggleAccessibility();
 		}
@@ -2740,7 +2741,7 @@ public class UAP_AccessibilityManager : MonoBehaviour
 				{
 					// Only start the timer if the touch occurred this frame
 					// (i.e. it should not be restarted once it is up)
-					if (Input.GetMouseButtonDown(0))
+					if (Mouse.current.leftButton.wasPressedThisFrame)
 					{
 						m_ExploreByTouch_SingleTapWaitTimer = m_DoubleTapTime;
 						m_ExploreByTouch_SingleTapStartPosition = GetTouchPosition();
@@ -2921,7 +2922,7 @@ public class UAP_AccessibilityManager : MonoBehaviour
 		int touchCount = GetTouchCount();
 
 		// This will work on touch as well
-		if (Input.GetMouseButtonDown(0) && touchCount == 1)
+		if (Mouse.current.leftButton.wasPressedThisFrame && touchCount == 1)
 		{
 			if (Time.unscaledTime < m_DoubleTap_LastTapTime + m_DoubleTapTime)
 			{
@@ -3025,12 +3026,12 @@ public class UAP_AccessibilityManager : MonoBehaviour
 			if (m_CurrentItem.m_Type == AccessibleUIGroupRoot.EUIElement.ESlider)
 			{
 				bool readValue = false;
-				if (Input.GetKeyDown(m_SliderIncrementKey))
+				if (Keyboard.current.upArrowKey.wasPressedThisFrame)
 				{
 					(m_CurrentItem.m_Object).Increment();
 					readValue = true;
 				}
-				else if (Input.GetKeyDown(m_SliderDecrementKey))
+				else if (Keyboard.current.upArrowKey.wasPressedThisFrame)
 				{
 					(m_CurrentItem.m_Object).Decrement();
 					readValue = true;
@@ -3044,13 +3045,13 @@ public class UAP_AccessibilityManager : MonoBehaviour
 			{
 				bool readValue = false;
 				bool boundReached = false;
-				if (Input.GetKeyDown(m_DropDownNextKey))
+				if (Keyboard.current.downArrowKey.wasPressedThisFrame)
 				{
 					if (!(m_CurrentItem.m_Object).Increment())
 						boundReached = true;
 					readValue = true;
 				}
-				else if (Input.GetKeyDown(m_DropDownPreviousKey))
+				else if (Keyboard.current.upArrowKey.wasPressedThisFrame)
 				{
 					if (!(m_CurrentItem.m_Object).Decrement())
 						boundReached = true;
@@ -3070,13 +3071,13 @@ public class UAP_AccessibilityManager : MonoBehaviour
 				}
 			}
 
-			if (Input.GetKeyDown(m_InteractKey))
+			if (Keyboard.current.enterKey.wasPressedThisFrame)
 			{
 				m_CurrentItem.m_Object.InteractEnd();
 				LeaveFocussedItem();
 			}
 
-			if (Input.GetKeyDown(m_AbortKey))
+			if (Keyboard.current.escapeKey.wasPressedThisFrame)
 			{
 				CancelFocussedItem();
 			}
@@ -3091,16 +3092,16 @@ public class UAP_AccessibilityManager : MonoBehaviour
 				if (IsActiveContainer2DNavigation())
 				{
 					//Debug.Log("Handling 2D Navigation");
-					if (Input.GetKeyDown(m_DownKey))
+					if (Keyboard.current.downArrowKey.wasPressedThisFrame)
 						Navigate2DUIElement(ESDirection.EDown);
-					if (Input.GetKeyDown(m_UpKey))
+					if (Keyboard.current.upArrowKey.wasPressedThisFrame)
 						Navigate2DUIElement(ESDirection.EUp);
-					if (Input.GetKeyDown(m_RightKey))
+					if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
 						Navigate2DUIElement(ESDirection.ERight);
-					if (Input.GetKeyDown(m_LeftKey))
+					if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
 						Navigate2DUIElement(ESDirection.ELeft);
 
-					if (Input.GetKeyDown(m_DownKey) || Input.GetKeyDown(m_UpKey) || Input.GetKeyDown(m_RightKey) || Input.GetKeyDown(m_LeftKey))
+					if (Keyboard.current.downArrowKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame || Keyboard.current.rightArrowKey.wasPressedThisFrame || Keyboard.current.leftArrowKey.wasPressedThisFrame)
 					{
 						//Debug.Log("Navigated");
 						return;
@@ -3109,17 +3110,17 @@ public class UAP_AccessibilityManager : MonoBehaviour
 				else
 				{
 					// Arrow keys to navigate
-					if (Input.GetKeyDown(m_NextElementKey))
+					if (Keyboard.current.downArrowKey.wasPressedThisFrame)
 					{
 						IncrementUIElement();
 						return;
 					}
-					if (Input.GetKeyDown(m_PreviousElementKey))
+					if (Keyboard.current.upArrowKey.wasPressedThisFrame)
 					{
 						DecrementUIElement();
 						return;
 					}
-					if (Input.GetKeyDown(m_PreviousContainerKey) || (m_UseTabAndShiftTabForContainerJumping && Input.GetKeyDown(KeyCode.Tab) && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))))
+					if (Keyboard.current.leftArrowKey.wasPressedThisFrame || (m_UseTabAndShiftTabForContainerJumping && Keyboard.current.tabKey.wasPressedThisFrame && (Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame)))
 					{
 						int currentContainerIndex = m_ActiveContainerIndex;
 						if (DecrementContainer(true))
@@ -3136,7 +3137,7 @@ public class UAP_AccessibilityManager : MonoBehaviour
 						ReadItem(m_CurrentItem);
 						return;
 					}
-					if (Input.GetKeyDown(m_NextContainerKey) || (m_UseTabAndShiftTabForContainerJumping && Input.GetKeyDown(KeyCode.Tab)))
+					if (Keyboard.current.rightArrowKey.wasPressedThisFrame || (m_UseTabAndShiftTabForContainerJumping && Keyboard.current.tabKey.wasPressedThisFrame))
 					{
 						int currentContainerIndex = m_ActiveContainerIndex;
 						if (IncrementContainer(true))
@@ -3155,7 +3156,7 @@ public class UAP_AccessibilityManager : MonoBehaviour
 					}
 				}
 
-				if (Input.GetKeyDown(m_InteractKey))
+				if (Keyboard.current.enterKey.wasPressedThisFrame)
 				{
 					// Interact with current element
 					InteractWithElement(m_CurrentItem);
@@ -4060,20 +4061,20 @@ public class UAP_AccessibilityManager : MonoBehaviour
 #if UNITY_STANDALONE || UNITY_EDITOR || UNITY_WEBGL
 
 		// The left ALT (Left Command on a Mac) key is held, this emulates a second finger
-		if (Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftAlt) == true || Input.GetKey(KeyCode.LeftCommand) == true))
+		if (Mouse.current.leftButton.isPressed && (Keyboard.current.leftAltKey.isPressed == true || Keyboard.current.leftCommandKey.isPressed == true))
 		{
 			//Debug.Log("Emulating second finger");
 			return 2;
 		}
 
 		// If this is the Editor, clicking the RIGHT mouse button and the left ALT (Left Command on a Mac) key is held, this emulates a three finger tap
-		if (Input.GetMouseButton(1) && (Input.GetKey(KeyCode.LeftAlt) == true || Input.GetKey(KeyCode.LeftCommand) == true))
+		if (Mouse.current.rightButton.isPressed && (Keyboard.current.leftAltKey.isPressed == true || Keyboard.current.leftCommandKey.isPressed == true))
 		{
 			//Debug.Log("Emulating third finger");
 			return 3;
 		}
 
-		if (Input.GetMouseButton(0))
+		if (Mouse.current.leftButton.isPressed)
 			return 1;
 		return 0;
 

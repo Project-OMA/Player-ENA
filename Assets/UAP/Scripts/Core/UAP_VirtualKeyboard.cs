@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UAP_VirtualKeyboard : MonoBehaviour
@@ -106,17 +107,17 @@ public class UAP_VirtualKeyboard : MonoBehaviour
 		m_PreviewTextAccessible.SetCustomText((m_KeyboardMode == EKeyboardMode.Password ? UAP_AccessibilityManager.Localize_Internal("Keyboard_PasswordHidden") : m_EditedText)); 
 
 		// Support actual keyboard input coming from a Bluetooth keyboard or similar
-		if (Input.GetKeyDown(KeyCode.Backspace))
+		if (Keyboard.current.backspaceKey.wasPressedThisFrame)
 		{
 			// #UAP_Keyboard_Backlog Handle backspace key being held continuously (use a sensible repeat rate)
 			OnBackSpacePressed();
 		}
-		else if (Input.GetKeyDown(KeyCode.Return))
+		else if (Keyboard.current.enterKey.wasPressedThisFrame)
 		{
 			// Return is needed to activate items - at least on Desktop. 
 			// For Bluetooth keyboards on mobile Return will have the actual effect, since it can be assumed it is used
 			// for text input and NOT to control the UI. To enter a new line on Desktop platform, the left shift key can be held
-			if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android || Input.GetKey(KeyCode.LeftShift))
+			if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android || Keyboard.current.leftShiftKey.isPressed)
 				OnReturnPressed();
 		}
 		else if (!string.IsNullOrEmpty(Input.inputString))
