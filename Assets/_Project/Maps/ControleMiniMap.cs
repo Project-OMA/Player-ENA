@@ -11,7 +11,7 @@ namespace ENA.Maps
 
 		private void Start()
 		{
-			if(!profile.MinimapEnabled) {
+			if (!profile.MinimapEnabled) {
 				gameObject.SetActive(false);
 			}
 		}

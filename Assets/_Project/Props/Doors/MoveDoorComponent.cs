@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ENA.Props
 {
@@ -33,7 +34,7 @@ namespace ENA.Props
 
         private void OnTriggerStay(Collider other)
         {
-            if (IsOpen || other.name != "Player" || !UnityEngine.Input.GetButtonDown("Fire1")) return;
+            if (IsOpen || other.name != "Player" || !Keyboard.current.spaceKey.wasPressedThisFrame) return;
 
             SetDoorState(false);
         }

@@ -18,7 +18,7 @@ namespace ENA.Input
         #region MonoBehaviour Lifecycle
         private IEnumerator Start()
         {
-            if(SystemInfo.supportsGyroscope) {
+            if (SystemInfo.supportsGyroscope) {
 				gyro = UnityEngine.Input.gyro;
 				gyro.enabled = true;
 

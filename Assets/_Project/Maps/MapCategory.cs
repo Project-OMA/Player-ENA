@@ -1,6 +1,7 @@
 namespace ENA.Maps
 {
-    public enum MapCategory {
+    public enum MapCategory
+    {
         Floor = 1,
         Wall = 2,
         DoorWindow = 3,

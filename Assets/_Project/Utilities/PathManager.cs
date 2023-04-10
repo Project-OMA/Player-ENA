@@ -18,7 +18,7 @@ namespace ENA.Utilities
 
         public void NewPath(GameObject attach, out TrailRenderer trailRenderer)
         {
-            if(currentTrail != null) {
+            if (currentTrail != null) {
                 currentTrail.transform.parent = null;
             }
 
