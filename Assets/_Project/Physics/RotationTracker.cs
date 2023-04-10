@@ -1,106 +1,98 @@
 using System;
 using UnityEngine;
 using ENA.Utilities;
+using UnityEngine.InputSystem;
+using ENA.Input;
+using ENA.Persistency;
 
 namespace ENA.Physics
 {
     public class RotationTracker: ExtendedMonoBehaviour
     {
         #region Variables
-        int currentAngle = 0;
-        [SerializeField] float moveSpeed;
-        float rotationTimer = 0;
-        bool selectedDirection = false;
+        [SerializeField] RotationComponent component;
         Quaternion targetRotation = Quaternion.identity;
+        [Header("References")]
+        [SerializeField] GyroCamera gyro;
+        [SerializeField] SettingsProfile profile;
         #endregion
         #region Properties
-        public bool IsRotating => !IsLookingAtSameDirection();
         #endregion
         #region Events
         public Event<bool> OnTurn;
         #endregion
         #region MonoBehaviour Lifecycle
+        /// <summary>
+        /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+        /// </summary>
         void FixedUpdate()
         {
-            rotationTimer += Time.deltaTime;
-            #if ENABLE_LOG
-            Debug.Log($"{rotationTimer}s: {IsRotating}");
-            #endif
+            component.RotateTowards(targetRotation);
         }
-
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
         void Start()
         {
-            currentAngle = (int)Transform.localEulerAngles.y;
             targetRotation = Transform.rotation;
+        }
+        /// <summary>
+        /// Update is called every frame, if the MonoBehaviour is enabled.
+        /// </summary>
+        void Update()
+        {
+            CheckInput();
         }
         #endregion
         #region Methods
-        public bool IsLookingAtSameDirection()
+        private void CheckInput()
         {
-            return rotationTimer >= 1;
+            if (profile.GyroEnabled) {
+                GyroRotate();
+                return;
+            }
+
+            var keyboard = Keyboard.current;
+
+            if (keyboard.leftArrowKey.wasPressedThisFrame) {
+                RotateLeft();
+            } else if (keyboard.rightArrowKey.wasPressedThisFrame) {
+                RotateRight();
+            }
         }
 
-        public void GyroRotate(float gyroAngle)
+        private void GyroRotate()
         {
+            var gyroAngle = gyro.Transform.eulerAngles.y;
             var playerAngle = Transform.eulerAngles.y;
-            var directionGyro = Direction.CardinalFor(gyroAngle-90);
-            var directionPlayer = Direction.CardinalFor(playerAngle-90);
+            var directionGyro = Direction.CardinalFor(gyroAngle - 90);
+            var directionPlayer = Direction.CardinalFor(playerAngle - 90);
             #if ENABLE_LOG
             Debug.Log($"Gyro: {directionGyro} | Player: {directionPlayer}");
             #endif
 
-            if (directionGyro != directionPlayer) {
-                targetRotation = Quaternion.Euler(0, directionGyro.ToAngle(), 0);
-                Transform.rotation = targetRotation;
-                #if ENABLE_LOG
-                Debug.Log($"Changed direction to {directionGyro.ToAngle()}!");
-                #endif
-            }
+            if (directionGyro == directionPlayer) return;
+
+            RotateBy(gyroAngle - playerAngle);
         }
 
-        public void Rotate(float axisValue)
+        public void RotateLeft()
         {
-            if (IsLookingAtSameDirection() && axisValue != 0) {
-                rotationTimer = 0;
-                if (!selectedDirection) {
-                    bool right = axisValue > 0;
-                    if (right) {
-                        RotateRight();
-                    } else {
-                        RotateLeft();
-                    }
-                    selectedDirection = true;
-                    OnTurn.Invoke(right);
-                }
-            } else {
-                selectedDirection = false;
-            }
-
-            var t = rotationTimer * moveSpeed * Time.deltaTime * 2;
-            Rotate(targetRotation, t);
+            RotateBy(-90);
+            OnTurn.Invoke(false);
         }
 
-        private void Rotate(Quaternion targetRotation, float t)
+        public void RotateRight()
         {
-            Transform.rotation = Quaternion.Lerp(Transform.rotation, targetRotation, t);
+            RotateBy(90);
+            OnTurn.Invoke(true);
         }
 
-        private void RotateLeft()
-        {
-            currentAngle -= 90;
-            targetRotation.eulerAngles = new Vector3(transform.localRotation.eulerAngles.x, currentAngle, transform.localRotation.eulerAngles.z);
-        }
-
-        private void RotateRight()
-        {
-            currentAngle += 90;
-            targetRotation.eulerAngles = new Vector3(transform.eulerAngles.x, currentAngle, transform.eulerAngles.z);
-        }
-
-        public void SetTrackedAngle(float angle)
+        public void RotateBy(float angleDegreesDelta)
         {
             Vector3 eulerAngles = targetRotation.eulerAngles;
-            targetRotation = Quaternion.Euler(eulerAngles.x, angle, eulerAngles.z);
+            targetRotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y + angleDegreesDelta, eulerAngles.z);
         }
         #endregion
     }

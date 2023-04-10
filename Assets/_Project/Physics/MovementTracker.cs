@@ -1,6 +1,8 @@
 using UnityEngine;
 using ENA.Utilities;
 using Event = ENA.Utilities.Event;
+using UnityEngine.InputSystem;
+using System.Collections;
 
 namespace ENA.Physics
 {
@@ -8,80 +10,92 @@ namespace ENA.Physics
     public class MovementTracker: ExtendedMonoBehaviour
     {
         #region Variables
-        float timeLeft = 0;
+        [SerializeField] float stepDistance = 1;
         Vector3 startingSpot, targetSpot;
-        [SerializeField] float speed = 1;
+        WaitForSeconds cooldownYield;
         [Header("References")]
-        [SerializeField] CharacterController characterController;
+        [SerializeField] MovementComponent movement;
         #endregion
         #region Properties
-        public bool IsWalking {get; private set;}
+        [field: SerializeField] public bool CanPerformMove {get; private set;}
         #endregion
         #region Events
-        public Event OnBeginWalking, OnEndWalking, OnCancelWalking;
+        public Event OnBeginWalking;
         #endregion
         #region MonoBehaviour Lifecycle
+        /// <summary>
+        /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+        /// </summary>
         void FixedUpdate()
         {
-            timeLeft -= Time.fixedDeltaTime;
-
-            if (timeLeft > 0f) {
-                Walk(Time.fixedDeltaTime * speed);
-            } else if (IsWalking) {
-                EndWalking();
-            }
-
-            #if ENABLE_LOG
-            Debug.Log($"Is Walking: {IsWalking}, Time Left: {timeLeft}");
-            #endif
+            UpdateMovement();
         }
-
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
         void Start()
         {
-            characterController = GetComponent<CharacterController>();
-
-            IsWalking = false;
-            startingSpot = Vector3.negativeInfinity;
+            CanPerformMove = true;
+            startingSpot = targetSpot = Transform.position;
+            cooldownYield = new WaitForSeconds(stepDistance / movement.MoveSpeed);
+        }
+        /// <summary>
+        /// Update is called every frame, if the MonoBehaviour is enabled.
+        /// </summary>
+        void Update()
+        {
+            CheckInput();
         }
         #endregion
         #region Methods
-        public void BeginWalking(float moveDistance, float time, bool countStep = true)
+        private void CheckInput()
         {
-            if (IsWalking) return;
+            if (!CanPerformMove) return;
 
-            var currentPosition = Transform.position;
-            // if ((currentPosition - startingSpot).magnitude <= 0.9f) return;
+            var keyboard = Keyboard.current;
 
-            IsWalking = true;
-            timeLeft = time;
-            startingSpot = currentPosition;
-            targetSpot = currentPosition + Transform.forward * moveDistance;
-
-            if (countStep) {
-                OnBeginWalking.Invoke();
+            if (keyboard.upArrowKey.wasPressedThisFrame) {
+                WalkForward();
+            } else if (keyboard.downArrowKey.wasPressedThisFrame) {
+                WalkBackward();
             }
-        }
-
-        private void EndWalking()
-        {
-            IsWalking = false;
-            timeLeft = 0;
-
-            OnEndWalking.Invoke();
         }
 
         public void RevertWalk()
         {
-            Transform.position = startingSpot;
-            timeLeft = 0;
-            IsWalking = false;
-
-            OnCancelWalking.Invoke();
+            Transform.position = targetSpot = startingSpot;
         }
 
-        private void Walk(float deltaDistance)
+        private void UpdateMovement()
         {
-            characterController.MoveTowards(targetSpot, deltaDistance);
+            movement.MoveTowards(targetSpot);
+        }
+
+        public void WalkBackward()
+        {
+            WalkBy(-stepDistance);
+        }
+
+        public void WalkBy(float distance)
+        {
+            startingSpot = Transform.position;
+            targetSpot += Transform.forward * distance;
+            OnBeginWalking.Invoke();
+            StartCoroutine(BlockInput());
+        }
+
+        public void WalkForward()
+        {
+            WalkBy(stepDistance);
+        }
+        #endregion
+        #region Coroutines
+        IEnumerator BlockInput()
+        {
+            CanPerformMove = false;
+            yield return cooldownYield;
+            CanPerformMove = true; 
         }
         #endregion
     }
