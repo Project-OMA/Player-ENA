@@ -1,14 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 using System.Linq;
 using ENA.Accessibility;
 using ENA.Utilities;
 using Event = ENA.Utilities.Event;
 using ENA.Physics;
-using UnityEngine.Serialization;
-using System;
+using UnityEngine.InputSystem;
 
 namespace ENA.Goals
 {
@@ -18,145 +17,91 @@ namespace ENA.Goals
         public const float WaitingTimeForAudio = 5;
         #endregion
         #region Variables
-        public List<GameObject> objectives = new List<GameObject>();
+        [SerializeField] ObjectiveList objectiveList;
         [SerializeField] SpeakerComponent speaker;
-        [SerializeField] GameObject startingPoint;
-        #endregion
-        #region Static Variables
-        public static ObjectiveController instance;
+        [SerializeField] InputAction hintInput;
         #endregion
         #region Properties
-        public bool ClearedAllObjectives => NumberOfObjectives == 0;
-        public int NumberOfObjectives => objectives.Count;
-        public GameObject NextObjective {
-            get {
-                if (NumberOfObjectives > 0) return objectives[0];
-                else return default;
-            }
-        }
         #endregion
         #region Events
         public Event<bool> FoundObjective;
         public Event FinishedGame;
         #endregion
         #region MonoBehaviour Lifecycle
-        private void Start()
+        /// <summary>
+        /// Awake is called when the script instance is being loaded.
+        /// </summary>
+        void Awake()
         {
-            instance = this;
-
-            startingPoint.SetActive(false);
+            hintInput.started += SpeakObjectiveHint;
+            objectiveList.OnClearObjective += ClearedObjective;
+            objectiveList.OnClearAllObjectives += FinishedMission;
         }
-
-        private void Update()
+        /// <summary>
+        /// This function is called when the MonoBehaviour will be destroyed.
+        /// </summary>
+        void OnDestroy()
         {
-            if (!UnityEngine.Input.GetButtonDown("Jump")) return;
-
-            speaker.SpeakHint(ExtractObjectiveName(NextObjective));
+            hintInput.started -= SpeakObjectiveHint;
+            objectiveList.OnClearObjective -= ClearedObjective;
+            objectiveList.OnClearAllObjectives -= FinishedMission;
         }
         #endregion
         #region Methods
-        public void Add(GameObject objective)
+        private void ClearedObjective(ObjectiveComponent objective)
         {
-            objectives.Add(objective);
+            FoundObjective.Invoke(objectiveList.ClearedAllObjectives);
         }
 
-        public void EndGame()
+        public string ExtractObjectiveName(ObjectiveComponent objective)
         {
-            startingPoint.SetActive(false);
+            if (objective.TryGetComponent<CollidableProp>(out var prop))
+                return prop.LocalizedName.GetLocalizedString();
+            else
+                return objective.name;
+        }
 
+        private void FinishedMission()
+        {
             FinishedGame.Invoke();
         }
 
-        public string ExtractObjectiveName(GameObject obj)
+        public void StateMission()
         {
-            if (obj.TryGetComponent<CollidableProp>(out var prop))
-                return prop.GetName();
-            else
-                return obj.name;
+            var objectiveNames = objectiveList.Select(ExtractObjectiveName).ToList();
+            speaker.SpeakIntro(objectiveNames);
+
+            objectiveList.NextObjective.PlaySound();
         }
 
-        public bool GetObjectiveAudioSource(int objectiveIndex, out AudioSource source)
+        public void SpeakObjectiveHint(InputAction.CallbackContext context)
         {
-            source = default;
-            if (objectiveIndex >= NumberOfObjectives) return false;
-
-            var resonance = objectives[objectiveIndex].GetComponentInChildren<ResonanceAudioSource>();
-            return resonance.TryGetComponent(out source);
+            speaker.SpeakHint(ExtractObjectiveName(objectiveList.NextObjective));
         }
 
-        public void MoveToNextObjective()
-        {
-            SwitchAudioToNextObjective();
-            SpeakNextObjective();
-
-            objectives.RemoveAt(0);
-
-            FoundObjective.Invoke(ClearedAllObjectives);
-
-            if (ClearedAllObjectives) startingPoint.SetActive(true);
-        }
-
-        public void RemoveAll()
-        {
-            objectives.Clear();
-        }
-
-        public void SortObjectivesBy(Vector3 position)
-        {
-            if (NumberOfObjectives <= 0) return;
-
-            objectives = objectives.OrderBy(
-                item => Vector3.Distance(position, item.transform.position)
-            ).ToList();
-
-            float distance;
-            for (int i = 0; i < NumberOfObjectives; i++) {
-                GameObject currentObject = objectives[i];
-                distance = Vector3.Distance(currentObject.transform.position, position);
-                #if ENABLE_LOG
-                Debug.Log("A distância do " + currentObject.name + " para o player é " + distance);
-                #endif
-            }
-        }
-
-        public void SpeakNextObjective()
+        public void SpeakNextObjective(ObjectiveComponent objective)
         {
             string currentObjective, nextObjective;
-            switch (NumberOfObjectives) {
+            switch (objectiveList.AmountLeft) {
                 case 0:
                     return;
                 case 1:
-                    currentObjective = ExtractObjectiveName(objectives[0]);
+                    currentObjective = ExtractObjectiveName(objective);
                     nextObjective = default;
                     break;
                 default:
-                    currentObjective = ExtractObjectiveName(objectives[0]);
-                    nextObjective = ExtractObjectiveName(objectives[1]);
+                    currentObjective = ExtractObjectiveName(objective);
+                    nextObjective = ExtractObjectiveName(objectiveList.NextObjective);
                     break;
             }
 
             speaker.SpeakObjectiveFound(currentObjective, nextObjective);
         }
 
-        private void SwitchAudioToNextObjective()
+        private void SwitchAudioSources(ObjectiveComponent objective)
         {
-            if (GetObjectiveAudioSource(0, out var oldObjective))
-                oldObjective.Stop();
-
-            if (GetObjectiveAudioSource(1, out var newObjective))
-                newObjective.PlayDelayed(WaitingTimeForAudio);
-        }
-        #endregion
-        #region Coroutines
-        public IEnumerator StartAudios()
-        {
-            yield return LocalizationSettings.InitializationOperation;
-
-            var objectiveNames = objectives.ConvertAll(ExtractObjectiveName);
-            speaker.SpeakIntro(objectiveNames);
-
-            if (GetObjectiveAudioSource(0, out var newObjective))
-                newObjective.Play();
+            objective.StopSound();
+            objectiveList.NextObjective.PlaySoundDelayed(WaitingTimeForAudio);
         }
         #endregion
     }
