@@ -12,6 +12,7 @@ using ENA.Utilities;
 using ENA.Services;
 using Event = ENA.Utilities.Event;
 using ENA.Props;
+using UnityEngine.Localization.Settings;
 
 namespace ENA.Maps
 {
@@ -24,7 +25,7 @@ namespace ENA.Maps
         public const float TileSizeToUnit = 1;
         public const float WallHeight = 10;
         private const float CeilingHeight = 3f;
-        public readonly MapCategory[] LayerOrder = new MapCategory[9]{
+        public readonly MapCategory[] LayerOrder = new MapCategory[9] {
             MapCategory.Floor, MapCategory.Wall, MapCategory.DoorWindow, MapCategory.Furniture,
             MapCategory.Electronics, MapCategory.Utensils, MapCategory.Interactive, MapCategory.CharacterElements,
             MapCategory.Ceiling
@@ -33,7 +34,8 @@ namespace ENA.Maps
         #region Variables
         [Header("References")]
         [SerializeField] PlayerController playerController;
-        [SerializeField] ObjectiveController objectiveController;
+        [SerializeField] ObjectiveComponent startingPoint;
+        [SerializeField] ObjectiveList objectiveList;
         [SerializeField] Transform mapParent;
         [SerializeField] Camera trackerCamera;
         private string[,,] mapMatrix;
@@ -51,10 +53,27 @@ namespace ENA.Maps
         [Header("Events")]
         public Event OnLoadedMap;
         [Header("Debugging")]
-        [FormerlySerializedAs("testando")]
         [SerializeField] bool testing;
-        [FormerlySerializedAs("xmlRawFile")]
         [SerializeField] TextAsset testMapFile;
+        #endregion
+        #region MonoBehaviour Lifecycle
+        void Start()
+        {
+            string rawData = "";
+
+            if (!testing) {
+                var mapPath = PlayerPrefs.GetString(LocalCache.LoadedMapKey);
+                if (File.Exists(mapPath))
+                    rawData = File.ReadAllText(mapPath);
+                else
+                    return; 
+            } else {
+                rawData = testMapFile.text;
+            }
+
+            objectiveList.Clear();
+            ParseXmlFile(rawData);
+        }
         #endregion
         #region Methods
         void BuildMapMatrix(string floor, string wall, string doorWind, string furniture, string electronics, string utensils, string interactive, string character)
@@ -87,7 +106,7 @@ namespace ENA.Maps
             StartCoroutine(InstanceMap());
             SpawnRoomBounds();
             PlaceTrackerCamera();
-            objectiveController.SortObjectivesBy(playerController.Transform.parent.position);
+            PrepareObjectiveList();
         }
 
         private void DefinePlayerPosition(string inputCode, int column, int line)
@@ -115,6 +134,15 @@ namespace ENA.Maps
         private Vector3 GridPositionFor(int column, int line)
         {
             return new Vector3(line, 0, column);
+        }
+
+        private void InstanceObjective(MapCategory category, GameObject prefab, Vector3 tileDestination, Vector3 tileRotation)
+        {
+            var newInstance = Instantiate(prefab, tileDestination, Quaternion.Euler(tileRotation));
+            newInstance.transform.SetParent(mapParent, true);
+            if (category == MapCategory.Interactive && newInstance.TryGetComponent(out ObjectiveComponent objective)) {
+                objectiveList.Add(objective);
+            }
         }
 
         public void InstanceTile(MapCategory category, string code, int c, int l)
@@ -157,11 +185,7 @@ namespace ENA.Maps
                 #endif
                 return;
             } else {
-                var newInstance = Instantiate(prefab, tileDestination, Quaternion.Euler(tileRotation));
-                newInstance.SetParent(mapParent, true);
-                if (category == MapCategory.Interactive) {
-                    objectiveController.Add(newInstance);
-                }
+                InstanceObjective(category, prefab, tileDestination, tileRotation);
             }
         }
 
@@ -192,6 +216,13 @@ namespace ENA.Maps
             trackerCamera.transform.position = new Vector3(matrixSize.x*TileSizeToUnit/2,CeilingHeight*2,matrixSize.y*TileSizeToUnit/2);
         }
 
+        public void PrepareObjectiveList()
+        {
+            var position = playerController.Transform.parent.position;
+            objectiveList.Sort(item => Vector3.Distance(position, item.transform.position));
+            objectiveList.Add(startingPoint);
+        }
+
         private void SetPlayerDirection(float angleDegrees)
         {
             playerController.SetDirection(angleDegrees);
@@ -210,24 +241,6 @@ namespace ENA.Maps
             invisibleWall.Instance(new Vector3(HalfXOffset-HalfTileSizeToUnit, 0, -HalfTileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, HalfTileSizeToUnit));
             invisibleWall.Instance(new Vector3(HalfXOffset-HalfTileSizeToUnit, 0, ZOffset-HalfTileSizeToUnit), Quaternion.identity, new Vector3(XOffset, WallHeight, HalfTileSizeToUnit));
         }
-
-        void Start()
-        {
-            string rawData = "";
-
-            if (!testing) {
-                var mapPath = PlayerPrefs.GetString(LocalCache.LoadedMapKey);
-                if (File.Exists(mapPath))
-                    rawData = File.ReadAllText(mapPath);
-                else
-                    return; 
-            } else {
-                rawData = testMapFile.text;
-            }
-
-            objectiveController.RemoveAll();
-            ParseXmlFile(rawData);
-        }
         #endregion
         #region Coroutines
         IEnumerator InstanceMap()
@@ -241,7 +254,8 @@ namespace ENA.Maps
                     }
                 }
             }
-            yield return objectiveController.StartAudios();
+            startingPoint.transform.SetParent(null);
+            yield return LocalizationSettings.InitializationOperation;
             OnLoadedMap.Invoke();
         }
         #endregion
