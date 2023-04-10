@@ -227,12 +227,16 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.yasirkula.simplefilebrowser": {
-      "version": "https://github.com/yasirkula/UnitySimpleFileBrowser.git",
+    "com.unity.xr.openxr": {
+      "version": "1.5.3",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "e24a26238a04aa249257b14882a56d5304ea9d45"
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "4.0.1",
+        "com.unity.xr.legacyinputhelpers": "2.1.2",
+        "com.unity.inputsystem": "1.4.2"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
