@@ -24,7 +24,7 @@ namespace ENA.Metrics
         MicelioWebService micelioWeb;
         [Header("References")]
         [SerializeField] PlayerController controller;
-        [SerializeField] ObjectiveController objectiveManager;
+        [SerializeField] ObjectiveList objectiveList;
         [SerializeField] SettingsProfile profile;
         [SerializeField] SpeakerComponent speaker;
         Vector3 lastPosition;
@@ -35,17 +35,11 @@ namespace ENA.Metrics
         {
             micelioWeb = new MicelioWebService(AppToken, devMode, enableAPI);
         }
-
-        private void OnDestroy()
-        {
-            CloseSession();
-        }
         #endregion
         #region Methods
         public void CloseSession()
         {
             speaker.SpeakActivityResults(Model.ClearedMap);
-            Model = null;
             micelioWeb.Disable();
         }
 
@@ -79,7 +73,7 @@ namespace ENA.Metrics
             var mapID = -1;
 
             Model = new SessionModel(profile.LoggedProfile?.UserID ?? -1, mapID);
-            RegisterObjective(objectiveManager.NextObjective);
+            RegisterNextObjective();
             lastPosition = controller.Transform.position;
 
             micelioWeb.OpenSession("Activity Started!", DevGroupID, mapID.ToString());
@@ -104,6 +98,15 @@ namespace ENA.Metrics
             #if ENABLE_LOG
             Debug.Log($"{collisionModel.Timestamp} | Collided with {collisionModel.ObjectID} @ {collisionModel.Position}");
             #endif
+        }
+
+        public void RegisterNextObjective()
+        {
+            var nextObjective = objectiveList.NextObjective;
+
+            if (nextObjective == null) return;
+
+            RegisterObjective(nextObjective.gameObject);
         }
 
         public void RegisterObjective(GameObject gameObject)
