@@ -23,7 +23,7 @@ namespace ENA.Metrics
         [SerializeField] bool devMode;
         MicelioWebService micelioWeb;
         [Header("References")]
-        [SerializeField] PlayerController controller;
+        [SerializeField] Transform playerTransform;
         [SerializeField] ObjectiveList objectiveList;
         [SerializeField] SettingsProfile profile;
         [SerializeField] SpeakerComponent speaker;
@@ -51,7 +51,7 @@ namespace ENA.Metrics
         private SessionModel.Action CreateAction(SessionModel.Action.Type type, Direction.Basic direction)
         {
             var timestamp = GetCurrentTimestamp();
-            return new SessionModel.Action(type, direction, timestamp, controller.Transform.position);
+            return new SessionModel.Action(type, direction, timestamp, playerTransform.position);
         }
 
         public string ExtractID(Transform transform)
@@ -74,7 +74,7 @@ namespace ENA.Metrics
 
             Model = new SessionModel(profile.LoggedProfile?.UserID ?? -1, mapID);
             RegisterNextObjective();
-            lastPosition = controller.Transform.position;
+            lastPosition = playerTransform.position;
 
             micelioWeb.OpenSession("Activity Started!", DevGroupID, mapID.ToString());
 
@@ -89,7 +89,7 @@ namespace ENA.Metrics
             var timestamp = Time.time;
             objectID = ExtractID(gameObject.transform);
 
-            var collisionModel = new SessionModel.Collision(objectID, timestamp, controller.Transform.position);
+            var collisionModel = new SessionModel.Collision(objectID, timestamp, playerTransform.position);
             Model.Register(collisionModel);
 
             micelioWeb.Register(MetricsUtility.GenerateCollisionActivity(collisionModel, currentObjective));
@@ -143,7 +143,7 @@ namespace ENA.Metrics
         {
             if (currentObjective == null) return;
 
-            Vector3 currentPosition = controller.Transform.position;
+            Vector3 currentPosition = playerTransform.position;
             Vector3 currentDirection = currentPosition - lastPosition;
 
             var direction = Direction.DetermineDirection(Vector3.right, currentDirection);
