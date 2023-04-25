@@ -1394,7 +1394,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6876278178495000669}
   - component: {fileID: 7031119511894961288}
-  - component: {fileID: 6256239172346171319}
   m_Layer: 5
   m_Name: '[UI] Tracker'
   m_TagString: Untagged
@@ -1435,19 +1434,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6256239172346171319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199107938757680629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 782afab6e2d014509bd6c0cfee8ac2a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  annotationLabel: {fileID: 1191346359494110237}
 --- !u!1 &1630159405660603697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,11 +2102,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsProfile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   minimap: {fileID: 8400000, guid: 4ba9f8aa5bb577e4bbfe287c99696c33, type: 2}
-  playerController: {fileID: 0}
   tracker: {fileID: 0}
   pauseMenuDisplay: {fileID: 7247237685060491322}
   trackerDisplay: {fileID: 8708664450940102783}
   fullMapDisplay: {fileID: 1199107938757680629}
+  <GameplayIsPaused>k__BackingField: {fileID: 11400000, guid: f83a6ab1c4d084d5390c67ebc56168c3,
+    type: 2}
   onPause:
     m_PersistentCalls:
       m_Calls: []

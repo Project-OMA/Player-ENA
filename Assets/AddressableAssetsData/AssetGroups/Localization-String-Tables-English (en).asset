@@ -23,18 +23,21 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46fbd0ccc63994c388a5a99745d0b131
     m_Address: Text-To-Speech_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d8a5a6fe660244d7b41f77d62d4109e
     m_Address: Object List_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 8d941e778e2844ec0a1b5bccf3530e4d, type: 2}
   m_SchemaSet:

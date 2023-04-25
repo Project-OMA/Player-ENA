@@ -173,7 +173,7 @@ namespace ENA.Services
                 case RequestType.GET:
                     return UnityWebRequest.Get(path);
                 case RequestType.POST:
-                    return UnityWebRequest.Post(path, requestData);
+                    return UnityWebRequest.PostWwwForm(path, requestData);
                 case RequestType.PUT:
                     return UnityWebRequest.Put(path, requestData);
                 case RequestType.DELETE:

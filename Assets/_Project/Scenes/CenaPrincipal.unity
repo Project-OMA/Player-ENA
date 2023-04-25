@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17279908, g: 0.21591845, b: 0.29786745, a: 1}
+  m_IndirectSpecularColor: {r: 0.16003796, g: 0.19977127, b: 0.27869916, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e55e08ceeb7198408fcfc7200f846e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 114210643935155877}
+  playerTransform: {fileID: 4856322248418733}
+  playerOffset: {x: 0, y: 1, z: 0}
   startingPoint: {fileID: 7461104876474046322}
   objectiveList: {fileID: 11400000, guid: 3f727779a4bf7441e9ffd575aa82e3ba, type: 2}
   mapParent: {fileID: 21002960}
@@ -979,7 +980,7 @@ MonoBehaviour:
     objectives: []
   enableAPI: 0
   devMode: 0
-  controller: {fileID: 114210643935155877}
+  playerTransform: {fileID: 4856322248418733}
   objectiveList: {fileID: 11400000, guid: 3f727779a4bf7441e9ffd575aa82e3ba, type: 2}
   profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   speaker: {fileID: 196943515}
@@ -2151,6 +2152,7 @@ MonoBehaviour:
   rotationTracker: {fileID: 3462760765990866682}
   collisionTracker: {fileID: 6629728589713021810}
   pathManager: {fileID: 1054888015885233807}
+  isPausedFlag: {fileID: 11400000, guid: f83a6ab1c4d084d5390c67ebc56168c3, type: 2}
 --- !u!114 &114373707579075259
 MonoBehaviour:
   m_ObjectHideFlags: 0
