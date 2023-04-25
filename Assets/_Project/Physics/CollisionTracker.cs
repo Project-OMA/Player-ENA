@@ -8,36 +8,34 @@ namespace ENA.Physics
     public class CollisionTracker: MonoBehaviour
     {
         #region Variables
-        [SerializeField] Transform target;
         [SerializeField] ObjectiveList objectiveList;
         #endregion
         #region Properties
-        public Transform Target => target;
+        [field: SerializeField] public Transform Target {get; private set;}
         #endregion
         #region Events
         public Event<GameObject> OnHitFloor, OnHitObstacle;
         public Event<ObjectiveComponent> OnHitObjective;
         #endregion
         #region MonoBehaviour Lifecycle
-        private void OnControllerColliderHit(ControllerColliderHit col)
-        {
-            GameObject collidedObject = col.gameObject;
-
-            if (collidedObject.TryGetComponentInParent(out FloorComponent floor)) {
-                HitFloor(floor);
-            } else if (collidedObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
-                HitObjective(objective);
-            } else if (collidedObject.TryGetComponentInParent(out CollidableProp prop)) {
-                HitProp(prop);
-            } else {
-                OnHitObstacle.Invoke(collidedObject);
-            }
-        }
         #endregion
         #region Methods
+        public void HandleCollision(GameObject gameObject)
+        {
+            if (gameObject.TryGetComponentInParent(out FloorComponent floor)) {
+                HitFloor(floor);
+            } else if (gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
+                HitObjective(objective);
+            } else if (gameObject.TryGetComponentInParent(out CollidableProp prop)) {
+                HitProp(prop);
+            } else {
+                OnHitObstacle.Invoke(gameObject);
+            }
+        }
+
         private void HitFloor(FloorComponent floor)
         {
-            target = floor.Target;
+            Target = floor.Target;
             OnHitFloor.Invoke(floor.gameObject);
         }
 

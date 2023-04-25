@@ -5,6 +5,7 @@ using ENA.Metrics;
 using ENA.Persistency;
 using ENA.Player;
 using ENA.Services;
+using ENA.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,6 @@ namespace ENA.UI
         #region Variables
         [SerializeField] SettingsProfile settingsProfile;
         [SerializeField] RenderTexture minimap;
-        [SerializeField] PlayerController playerController;
         [SerializeField] SessionTracker tracker;
         [Header("Displays")]
         [SerializeField] PauseMenuDisplay pauseMenuDisplay;
@@ -24,7 +24,7 @@ namespace ENA.UI
         [SerializeField] GameObject fullMapDisplay;
         #endregion
         #region Properties
-        public bool GameplayIsPaused => !playerController.enabled;
+        [field: SerializeField] public GameFlag GameplayIsPaused {get; private set;}
         #endregion
         #region Events
         [SerializeField] UnityEvent onPause;
@@ -59,14 +59,14 @@ namespace ENA.UI
         public void ResumeGameplay()
         {
             manager.Pop(pauseMenuDisplay);
-            playerController.enabled = true;
+            GameplayIsPaused.Set(true);
             onResume?.Invoke();
         }
 
         public void PauseGameplay()
         {
             manager.Push(pauseMenuDisplay);
-            playerController.enabled = false;
+            GameplayIsPaused.Set(false);
             onPause?.Invoke();
         }
 
@@ -94,7 +94,7 @@ namespace ENA.UI
 
         public void TogglePause()
         {
-            if (GameplayIsPaused) ResumeGameplay();
+            if (GameplayIsPaused.Value) ResumeGameplay();
             else PauseGameplay();
         }
         #endregion

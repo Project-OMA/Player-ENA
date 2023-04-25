@@ -24,8 +24,14 @@ namespace ENA.Input
         [SerializeField] CollisionTracker collisionTracker;
         [Header("References")]
         [SerializeField] PathManager pathManager;
+        [SerializeField] GameFlag isPausedFlag;
         #endregion
         #region MonoBehaviour Lifecycle
+        private void OnControllerColliderHit(ControllerColliderHit col)
+        {
+            GameObject collidedObject = col.gameObject;
+            collisionTracker.HandleCollision(collidedObject);
+        }
         /// <summary>
         /// This function is called when the MonoBehaviour will be destroyed.
         /// </summary>
@@ -35,6 +41,7 @@ namespace ENA.Input
             collisionTracker.OnHitFloor -= playerComponent.PlaySoundStep;
             collisionTracker.OnHitObstacle -= WalkBack;
             collisionTracker.OnHitObjective -= WalkBack;
+            isPausedFlag.OnChangeValue -= SetActive;
         }
         /// <summary>
         /// This function is called when the behaviour becomes disabled or inactive.
@@ -62,6 +69,7 @@ namespace ENA.Input
             collisionTracker.OnHitFloor += playerComponent.PlaySoundStep;
             collisionTracker.OnHitObstacle += WalkBack;
             collisionTracker.OnHitObjective += WalkBack;
+            isPausedFlag.OnChangeValue += SetActive;
 
             yield return new WaitForSeconds(0.5f);
 
@@ -80,10 +88,9 @@ namespace ENA.Input
         }
         #endregion
         #region Methods
-        public void SetDirection(float angle)
+        public void SetActive(bool value)
         {
-            Transform.localEulerAngles = new Vector3(Transform.localEulerAngles.x, angle, Transform.localEulerAngles.z);
-            rotationTracker.RotateBy(angle);
+            this.enabled = value;
         }
 
         public void ToggleControls()
