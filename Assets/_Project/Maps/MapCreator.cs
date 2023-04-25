@@ -33,7 +33,8 @@ namespace ENA.Maps
         #endregion
         #region Variables
         [Header("References")]
-        [SerializeField] PlayerController playerController;
+        [SerializeField] Transform playerTransform;
+        [SerializeField] Vector3 playerOffset;
         [SerializeField] ObjectiveComponent startingPoint;
         [SerializeField] ObjectiveList objectiveList;
         [SerializeField] Transform mapParent;
@@ -128,7 +129,7 @@ namespace ENA.Maps
                     return;
             }
 
-            playerController.Transform.parent.position = GridPositionFor(column, line);
+            playerTransform.position = GridPositionFor(column, line) + playerOffset;
         }
 
         private Vector3 GridPositionFor(int column, int line)
@@ -218,14 +219,13 @@ namespace ENA.Maps
 
         public void PrepareObjectiveList()
         {
-            var position = playerController.Transform.parent.position;
-            objectiveList.Sort(item => Vector3.Distance(position, item.transform.position));
+            objectiveList.Sort(item => Vector3.Distance(playerTransform.position, item.transform.position));
             objectiveList.Add(startingPoint);
         }
 
         private void SetPlayerDirection(float angleDegrees)
         {
-            playerController.SetDirection(angleDegrees);
+            playerTransform.localEulerAngles = new Vector3(playerTransform.localEulerAngles.x, angleDegrees, playerTransform.localEulerAngles.z);
         }
 
         public void SpawnRoomBounds()
