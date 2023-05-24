@@ -13,8 +13,8 @@ namespace ENA.Metrics
     public class SessionTracker: MonoBehaviour
     {
         #region Constants
-        private const string AppToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjY4ODc3MDAsInN1YiI6IjBhMGFmODdmLTIzN2EtNDFhMC1hZjFjLTFiNjNhNDM2NDk5MiJ9.My-vLE7J9ftI-UFewaHSDeEiIb1ym2_gaWOZKWM-cic";
-        private const string DevGroupID = "93196";
+        private const string AppToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTE3ODYwODAsInN1YiI6ImE1NjVmOTZiLTUyODYtNDU0My04NDM2LTI2MGNhYzYzNTQ3ZiJ9.Ku4YSdVl69ynPjXRCuir0gtvVV6buobtSuoui1SK59Y";
+        private const string DevGroupID = "51799";
         #endregion
         #region Variables
         [field: SerializeField] public SessionModel Model {get; private set;}
@@ -57,7 +57,7 @@ namespace ENA.Metrics
         public string ExtractID(Transform transform)
         {
             if (transform.TryGetComponent(out CollidableProp prop)) {
-                return prop.LocalizedName.GetLocalizedString();
+                return prop.LocalizedName?.GetLocalizedString() ?? "";
             } else {
                 return "No ID";
             }
@@ -111,8 +111,6 @@ namespace ENA.Metrics
 
         public void RegisterObjective(GameObject gameObject)
         {
-            // Update Entity Timestamp
-
             var objectiveID = ExtractID(gameObject.transform);
 
             currentObjective = new SessionModel.Objective(objectiveID, GetCurrentTimestamp());
@@ -137,11 +135,11 @@ namespace ENA.Metrics
             #if ENABLE_LOG
             Debug.Log($"{actionModel.Timestamp} | Player turned {actionModel.Direction} @ {actionModel.Position}.");
             #endif
-        } 
+        }
 
         public void RegisterStep()
         {
-            if (currentObjective == null) return;
+            if (currentObjective == null) RegisterNextObjective();
 
             Vector3 currentPosition = playerTransform.position;
             Vector3 currentDirection = currentPosition - lastPosition;
