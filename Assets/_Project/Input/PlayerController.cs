@@ -33,6 +33,15 @@ namespace ENA.Input
             collisionTracker.HandleCollision(collidedObject);
         }
         /// <summary>
+        /// OnTriggerEnter is called when the Collider other enters the trigger.
+        /// </summary>
+        /// <param name="other">The other Collider involved in this collision.</param>
+        void OnTriggerEnter(Collider other)
+        {
+            GameObject collidedObject = other.gameObject;
+            collisionTracker.HandleTrigger(collidedObject);
+        }
+        /// <summary>
         /// This function is called when the MonoBehaviour will be destroyed.
         /// </summary>
         void OnDestroy()
@@ -90,12 +99,12 @@ namespace ENA.Input
         #region Methods
         public void SetActive(bool value)
         {
-            this.enabled = value;
+            enabled = value;
         }
 
         public void ToggleControls()
         {
-            this.enabled = !this.enabled;
+            enabled = !enabled;
         }
 
         private void WalkBack(GameObject gameObject)
