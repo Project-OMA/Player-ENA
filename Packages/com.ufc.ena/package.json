@@ -1,0 +1,14 @@
+{
+    "name": "com.ufc.ena",
+    "displayName": "Espaço Navegável - ENA",
+    "version": "1.0.0-pre.1",
+    "unity": "2022.3",
+    "description": "Pacote criado para armazenar toda a lógica de negócio da aplicação Espaço Navegável - ENA",
+    "dependencies": {},
+    "author": {
+      "name": "Martônio Júnior",
+      "url": "https://github.com/martoniojunior"
+    },
+    "license": "N/A",
+    "type": "tool"
+  }

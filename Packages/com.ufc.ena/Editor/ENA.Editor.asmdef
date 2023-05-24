@@ -1,0 +1,18 @@
+{
+    "name": "ENA.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cba1c526c72114e0990b98fa0a446d4a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
