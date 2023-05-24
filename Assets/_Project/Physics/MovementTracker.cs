@@ -13,6 +13,7 @@ namespace ENA.Physics
         [SerializeField] float stepDistance = 1;
         Vector3 startingSpot, targetSpot;
         WaitForSeconds cooldownYield;
+        [SerializeField] InputActionReference moveForward, moveBackward;
         [Header("References")]
         [SerializeField] MovementComponent movement;
         #endregion
@@ -23,6 +24,22 @@ namespace ENA.Physics
         public Event OnBeginWalking;
         #endregion
         #region MonoBehaviour Lifecycle
+        /// <summary>
+        /// This function is called when the behaviour becomes disabled or inactive.
+        /// </summary>
+        void OnDisable()
+        {
+            moveForward.action.Disable();
+            moveBackward.action.Disable();
+        }
+        /// <summary>
+        /// This function is called when the object becomes enabled and active.
+        /// </summary>
+        void OnEnable()
+        {
+            moveForward.action.Enable();
+            moveBackward.action.Enable();
+        }
         /// <summary>
         /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
         /// </summary>
@@ -53,11 +70,9 @@ namespace ENA.Physics
         {
             if (!CanPerformMove) return;
 
-            var keyboard = Keyboard.current;
-
-            if (keyboard.upArrowKey.wasPressedThisFrame) {
+            if (moveForward.action.WasPressedThisFrame()) {
                 WalkForward();
-            } else if (keyboard.downArrowKey.wasPressedThisFrame) {
+            } else if (moveBackward.action.WasPressedThisFrame()) {
                 WalkBackward();
             }
         }

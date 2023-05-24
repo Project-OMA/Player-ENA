@@ -19,9 +19,7 @@ namespace ENA.Goals
         #region Variables
         [SerializeField] ObjectiveList objectiveList;
         [SerializeField] SpeakerComponent speaker;
-        [SerializeField] InputAction hintInput;
-        #endregion
-        #region Properties
+        [SerializeField] InputActionReference hintInput;
         #endregion
         #region Events
         public Event<bool> FoundObjective;
@@ -29,11 +27,25 @@ namespace ENA.Goals
         #endregion
         #region MonoBehaviour Lifecycle
         /// <summary>
+        /// This function is called when the behaviour becomes disabled or inactive.
+        /// </summary>
+        void OnDisable()
+        {
+            hintInput.action.Disable();
+        }
+        /// <summary>
+        /// This function is called when the object becomes enabled and active.
+        /// </summary>
+        void OnEnable()
+        {
+            hintInput.action.Enable();
+        }
+        /// <summary>
         /// Awake is called when the script instance is being loaded.
         /// </summary>
         void Awake()
         {
-            hintInput.started += SpeakObjectiveHint;
+            hintInput.action.started += SpeakObjectiveHint;
             objectiveList.OnClearObjective += ClearedObjective;
             objectiveList.OnClearAllObjectives += FinishedMission;
         }
@@ -42,7 +54,7 @@ namespace ENA.Goals
         /// </summary>
         void OnDestroy()
         {
-            hintInput.started -= SpeakObjectiveHint;
+            hintInput.action.started -= SpeakObjectiveHint;
             objectiveList.OnClearObjective -= ClearedObjective;
             objectiveList.OnClearAllObjectives -= FinishedMission;
         }
@@ -50,13 +62,14 @@ namespace ENA.Goals
         #region Methods
         private void ClearedObjective(ObjectiveComponent objective)
         {
+            SpeakNextObjective(objective);
             FoundObjective.Invoke(objectiveList.ClearedAllObjectives);
         }
 
         public string ExtractObjectiveName(ObjectiveComponent objective)
         {
             if (objective.TryGetComponent<CollidableProp>(out var prop))
-                return prop.LocalizedName.GetLocalizedString();
+                return prop.LocalizedName?.GetLocalizedString();
             else
                 return objective.name;
         }
@@ -71,7 +84,7 @@ namespace ENA.Goals
             var objectiveNames = objectiveList.Select(ExtractObjectiveName).ToList();
             speaker.SpeakIntro(objectiveNames);
 
-            objectiveList.NextObjective.PlaySound();
+            objectiveList.NextObjective.PlaySoundDelayed(WaitingTimeForAudio);
         }
 
         public void SpeakObjectiveHint(InputAction.CallbackContext context)
@@ -96,12 +109,6 @@ namespace ENA.Goals
             }
 
             speaker.SpeakObjectiveFound(currentObjective, nextObjective);
-        }
-
-        private void SwitchAudioSources(ObjectiveComponent objective)
-        {
-            objective.StopSound();
-            objectiveList.NextObjective.PlaySoundDelayed(WaitingTimeForAudio);
         }
         #endregion
     }

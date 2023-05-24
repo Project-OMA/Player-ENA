@@ -12,16 +12,31 @@ namespace ENA.Physics
         #region Variables
         [SerializeField] RotationComponent component;
         Quaternion targetRotation = Quaternion.identity;
+        [SerializeField] InputActionReference turnLeft, turnRight;
         [Header("References")]
         [SerializeField] GyroCamera gyro;
         [SerializeField] SettingsProfile profile;
-        #endregion
-        #region Properties
         #endregion
         #region Events
         public Event<bool> OnTurn;
         #endregion
         #region MonoBehaviour Lifecycle
+        /// <summary>
+        /// This function is called when the behaviour becomes disabled or inactive.
+        /// </summary>
+        void OnDisable()
+        {
+            turnLeft.action.Disable();
+            turnRight.action.Disable();
+        }
+        /// <summary>
+        /// This function is called when the object becomes enabled and active.
+        /// </summary>
+        void OnEnable()
+        {
+            turnLeft.action.Enable();
+            turnRight.action.Enable();
+        }
         /// <summary>
         /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
         /// </summary>
@@ -53,11 +68,9 @@ namespace ENA.Physics
                 return;
             }
 
-            var keyboard = Keyboard.current;
-
-            if (keyboard.leftArrowKey.wasPressedThisFrame) {
+            if (turnLeft.action.WasPressedThisFrame()) {
                 RotateLeft();
-            } else if (keyboard.rightArrowKey.wasPressedThisFrame) {
+            } else if (turnRight.action.WasPressedThisFrame()) {
                 RotateRight();
             }
         }
