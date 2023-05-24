@@ -12,8 +12,7 @@ using System.Text;
 
 public class Micelio
 {
- 
-    private string _defaultURL = "https://achernar.eic.cefet-rj.br/micelio/api";
+    private string _defaultURL = "https://cursa.eic.cefet-rj.br/micelio/api";
     private string _token;
     private string _device_id;
     private bool _is_dev;
