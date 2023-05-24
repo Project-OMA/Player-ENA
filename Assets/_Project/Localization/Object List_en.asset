@@ -262,6 +262,70 @@ MonoBehaviour:
     m_Localized: an open door
     m_Metadata:
       m_Items: []
+  - m_Id: 91949042932637696
+    m_Localized: attention marker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949572580958208
+    m_Localized: carpet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949690034053120
+    m_Localized: cement floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949750574637056
+    m_Localized: ceramic floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950046424064000
+    m_Localized: direction marker
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950016371875840
+    m_Localized: cobblestone floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950258748121088
+    m_Localized: glass floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950339324895232
+    m_Localized: grass floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950397999013888
+    m_Localized: leaf floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950447458246656
+    m_Localized: metal floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950512457375744
+    m_Localized: paving stone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950594644762624
+    m_Localized: sand floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950695945592832
+    m_Localized: snow floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950816867377152
+    m_Localized: stone floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91951120862142464
+    m_Localized: water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91951860309549056
+    m_Localized: wood floor
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -259,6 +259,70 @@ MonoBehaviour:
     m_Key: MapBorder
     m_Metadata:
       m_Items: []
+  - m_Id: 91949042932637696
+    m_Key: AttentionMarkerFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949572580958208
+    m_Key: CarpetFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949690034053120
+    m_Key: CementFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949750574637056
+    m_Key: CeramicsFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950016371875840
+    m_Key: CobblestoneFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950046424064000
+    m_Key: DirectionMarkerFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950258748121088
+    m_Key: GlassFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950339324895232
+    m_Key: GrassFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950397999013888
+    m_Key: LeafFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950447458246656
+    m_Key: MetalFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950512457375744
+    m_Key: PavingStoneFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950594644762624
+    m_Key: SandFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950695945592832
+    m_Key: SnowFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950816867377152
+    m_Key: StoneFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91951120862142464
+    m_Key: WaterFloor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91951860309549056
+    m_Key: WoodFloor
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -262,6 +262,70 @@ MonoBehaviour:
     m_Localized: a porta aberta
     m_Metadata:
       m_Items: []
+  - m_Id: 91949042932637696
+    m_Localized: "piso t\xE1til de aten\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949572580958208
+    m_Localized: carpete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949690034053120
+    m_Localized: piso de cimento
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91949750574637056
+    m_Localized: "piso de cer\xE2mica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950016371875840
+    m_Localized: piso de pedregulhos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950046424064000
+    m_Localized: "piso t\xE1til de dire\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950258748121088
+    m_Localized: piso de vidro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950339324895232
+    m_Localized: piso de grama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950397999013888
+    m_Localized: piso de folhas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950447458246656
+    m_Localized: "piso met\xE1lico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950512457375744
+    m_Localized: asfalto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950594644762624
+    m_Localized: piso de areia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950695945592832
+    m_Localized: piso de neve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91950816867377152
+    m_Localized: piso de pedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91951120862142464
+    m_Localized: "\xE1gua"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91951860309549056
+    m_Localized: piso de madeira
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
