@@ -43,6 +43,7 @@ namespace ENA.Accessibility
         public void SpeakIntro(List<string> objectives)
         {
             string text = "";
+            objectives.RemoveAt(objectives.Count - 1);
             foreach(var objective in objectives) text += $" {objective},";
 
             Speak(IntroMessage.GetLocalizedString(text));
@@ -65,9 +66,9 @@ namespace ENA.Accessibility
         public static void Speak(string text, bool canBeInterrupted = false)
         {
             UAP_AccessibilityManager.Say(text, canBeInterrupted);
-            #if ENABLE_LOG
+            // #if ENABLE_LOG
             Debug.Log("Speaker: "+text);
-            #endif
+            // #endif
         }
         #endregion
     }
