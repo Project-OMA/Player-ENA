@@ -49,19 +49,18 @@ namespace ENA.Maps
         [SerializeField] Vector2 canvasSize;
         [SerializeField] Vector2 tileSize;
         [SerializeField] Vector2Int matrixSize;
-        #endregion
-        #region Events
-        [Header("Events")]
-        public Event OnLoadedMap;
         [Header("Debugging")]
         [SerializeField] bool testing;
         [SerializeField] TextAsset testMapFile;
         #endregion
+        #region Events
+        [Header("Events")]
+        public Event OnLoadedMap;
+        #endregion
         #region MonoBehaviour Lifecycle
         void Start()
         {
-            string rawData = "";
-
+            string rawData;
             if (!testing) {
                 var mapPath = PlayerPrefs.GetString(LocalCache.LoadedMapKey);
                 if (File.Exists(mapPath))
@@ -130,6 +129,7 @@ namespace ENA.Maps
             }
 
             playerTransform.position = GridPositionFor(column, line) + playerOffset;
+            startingPoint.transform.position = playerTransform.position;
         }
 
         private Vector3 GridPositionFor(int column, int line)
@@ -170,7 +170,6 @@ namespace ENA.Maps
                 prefab = spawn.Prefab;
                 tileRotation = spawn.Rotation;
             }
-
 
             tileDestination = GridPositionFor(c, l);
             if (category == MapCategory.Ceiling) {
