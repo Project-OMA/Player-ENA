@@ -16,7 +16,7 @@ namespace ENA.Maps
         public struct IDComparer: IEqualityComparer<MapData>
         {
             #region Static Variables
-            public static IDComparer New => new IDComparer();
+            public static IDComparer New => new();
             #endregion
             #region IEqualityComparer Implementation
             public bool Equals(MapData x, MapData y)
@@ -32,15 +32,13 @@ namespace ENA.Maps
         }
         #endregion
         #region Variables
-        [SerializeField] uint mapID;
         [SerializeField] string folderPath;
-        [SerializeField] string mapName;
         Sprite sprite;
         #endregion
         #region Properties
         public string FilePath => folderPath+MapFileName;
-        public uint ID => mapID;
-        public string Name => mapName;
+        [field: SerializeField] public uint ID {get; private set;}
+        [field: SerializeField] public string Name {get; private set;}
         public Sprite Sprite {
             get {
                 if (sprite == null) sprite = GenerateSprite();
@@ -55,8 +53,8 @@ namespace ENA.Maps
         #region Constructors
         public MapData(uint id, string mapName, string folderPath)
         {
-            this.mapID = id;
-            this.mapName = mapName;
+            ID = id;
+            Name = mapName;
             this.folderPath = folderPath;
         }
         #endregion
@@ -69,7 +67,7 @@ namespace ENA.Maps
             Debug.Log($"{imagePath}");
             #endif
 
-            Texture2D texture = new Texture2D(1,1);
+            Texture2D texture = new(1,1);
             texture.LoadImage(imagePath);
             return texture.ToSprite();
         }

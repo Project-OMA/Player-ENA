@@ -17,14 +17,10 @@ namespace ENA.Physics
         public Event<GameObject> OnHitFloor, OnHitObstacle;
         public Event<ObjectiveComponent> OnHitObjective;
         #endregion
-        #region MonoBehaviour Lifecycle
-        #endregion
         #region Methods
         public void HandleCollision(GameObject gameObject)
         {
-            if (gameObject.TryGetComponentInParent(out FloorComponent floor)) {
-                HitFloor(floor);
-            } else if (gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
+            if (gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
                 HitObjective(objective);
             } else if (gameObject.TryGetComponentInParent(out CollidableProp prop)) {
                 HitProp(prop);
@@ -33,7 +29,14 @@ namespace ENA.Physics
             }
         }
 
-        private void HitFloor(FloorComponent floor)
+        public void HandleTrigger(GameObject gameObject)
+        {
+            if (!gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) return;
+
+            objectiveList.Check(objective);
+        }
+
+        public void HitFloor(FloorComponent floor)
         {
             Target = floor.Target;
             OnHitFloor.Invoke(floor.gameObject);

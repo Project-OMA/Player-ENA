@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace ENA.Services
 {
-    public partial class LocalCache: MapService.DataSource
+    public partial class LocalCache: MapService.IDataSource
     {
         #region Constants
         public const string MapsFolder = "resources/maps/";
@@ -40,15 +40,6 @@ namespace ENA.Services
             return Task.FromResult(list.ToArray());
         }
         #endregion
-        #region Methods
-        private void VerifyMapsFolder()
-        {
-            var fullPath = MapsFullPath;
-            if (!Directory.Exists(fullPath)) {
-                Directory.CreateDirectory(fullPath);
-            }
-        }
-        #endregion
         #region Static Methods
         public static MapData CreateMap(uint id, string mapName)
         {
@@ -62,7 +53,15 @@ namespace ENA.Services
 
         public static void SetCurrentMap(MapData map)
         {
-            PlayerPrefs.SetString(LocalCache.LoadedMapKey, map.FilePath);
+            PlayerPrefs.SetString(LoadedMapKey, map.FilePath);
+        }
+
+        private static void VerifyMapsFolder()
+        {
+            var fullPath = MapsFullPath;
+            if (!Directory.Exists(fullPath)) {
+                Directory.CreateDirectory(fullPath);
+            }
         }
         #endregion
     }

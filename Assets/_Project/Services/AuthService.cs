@@ -14,39 +14,33 @@ namespace ENA.Services
         }
         #endregion
         #region Variables
-        ENAProfile loggedProfile;
         CredentialManager credentialManager;
         #endregion
         #region Properties
-        public ENAProfile Profile => loggedProfile;
-        #endregion
-        #region Constructors
-        public AuthService()
-        {
-
-        }
+        [field: SerializeField] public ENAProfile Profile {get; private set;}
         #endregion
         #region Methods
         public bool IsLogged()
         {
-            return loggedProfile != null;
+            return Profile != null;
         }
 
         public Task<bool> Logout()
         {
-            loggedProfile = null;
+            Profile = null;
             return Task.FromResult(true);
         }
 
         public async Task<ENAProfile> LoginWith(string login, string password)
         {
-            loggedProfile = await credentialManager.ValidateCredentials(login, password);
-            return loggedProfile;
+            Profile = await credentialManager.ValidateCredentials(login, password);
+            return Profile;
         }
 
-        public Task<ENAProfile> LoginWith(string loginToken)
+        public async Task<ENAProfile> LoginWith(string loginToken)
         {
-            return credentialManager.ValidateToken(loginToken);
+            Profile = await credentialManager.ValidateToken(loginToken);
+            return Profile;
         }
 
         public void SetCredentialManager(CredentialManager manager)

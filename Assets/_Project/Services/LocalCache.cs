@@ -31,9 +31,8 @@ namespace ENA.Services
             string path = LogsFullPath+$"/{sessionTag}_Log.txt";
 
             VerifyLogsFolder();
-            using (var fileWriter = new StreamWriter(path, true)) {
-                await fileWriter.WriteAsync(contents);
-            }
+            using var fileWriter = new StreamWriter(path, true);
+            await fileWriter.WriteAsync(contents);
 
             #if ENABLE_LOG
             Debug.Log($"Saved Log to Path: {path}");
@@ -53,7 +52,7 @@ namespace ENA.Services
             #endif
         }
 
-        public static void VerifyLogsFolder()
+        private static void VerifyLogsFolder()
         {
             var logsPath = LogsFullPath;
             if (!Directory.Exists(logsPath)) {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ENA.Services
 {
-    public class DataPath
+    public static class DataPath
     {
         #region Static Properties
         public static string Default => GameDataFolder();

@@ -11,10 +11,6 @@ namespace ENA.Physics
         [field: SerializeField] public float MoveSpeed {get; private set;}
         [field: SerializeField] public float SnapPosition {get; private set;}
         #endregion
-        #region Static Properties
-        #endregion
-        #region Events
-        #endregion
         #region MonoBehaviour Lifecycle
         /// <summary>
         /// Reset is called when the user hits the Reset button in the Inspector's
@@ -35,10 +31,6 @@ namespace ENA.Physics
         {
             controller.MoveTowards(target, Mathf.Max(deltaDistance, SnapPosition));
         }
-        #endregion
-        #region Operators
-        #endregion
-        #region Static Methods
         #endregion
     }
 }

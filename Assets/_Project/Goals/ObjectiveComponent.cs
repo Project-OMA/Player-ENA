@@ -7,21 +7,12 @@ namespace ENA.Goals
     {
         #region Variables
         [SerializeField] CollidableProp propComponent;
-        [SerializeField] AudioSource loopingSource;
-        #endregion
-        #region Properties
-        #endregion
-        #region Static Properties
-        #endregion
-        #region Events
+        [SerializeField] AudioSource loopingSource = null;
         #endregion
         #region MonoBehaviour Lifecycle
-        /// <summary>
-        /// Awake is called when the script instance is being loaded.
-        /// </summary>
         void Awake()
         {
-            
+            if (loopingSource == null) CaptureAudioSource();
         }
         /// <summary>
         /// Reset is called when the user hits the Reset button in the Inspector's
@@ -30,10 +21,19 @@ namespace ENA.Goals
         void Reset()
         {
             TryGetComponent(out propComponent);
-            GetComponentInChildren<ResonanceAudioSource>()?.TryGetComponent(out loopingSource);
+            CaptureAudioSource();
         }
         #endregion
         #region Methods
+        private void CaptureAudioSource()
+        {
+            if (gameObject.TryGetComponentInChildren(out ResonanceAudioSource source)) {
+                source.TryGetComponent(out loopingSource);
+            } else {
+                TryGetComponent(out loopingSource);
+            }
+        }
+
         public void PlayCollisionSound()
         {
             propComponent?.CollisionAudioSource.RequestPlay();
@@ -43,7 +43,7 @@ namespace ENA.Goals
         {
             loopingSource?.Play();
         }
-        
+
         public void PlaySoundDelayed(float time)
         {
             loopingSource?.PlayDelayed(time);
@@ -53,10 +53,6 @@ namespace ENA.Goals
         {
             loopingSource?.Stop();
         }
-        #endregion
-        #region Operators
-        #endregion
-        #region Static Methods
         #endregion
     }
 }

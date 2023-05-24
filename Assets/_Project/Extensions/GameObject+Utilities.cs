@@ -41,5 +41,11 @@ namespace ENA
             component = self.GetComponentInParent<T>();
             return component != null;
         }
+
+        public static bool TryGetComponentInChildren<T>(this GameObject self, out T component)
+        {
+            component = self.GetComponentInChildren<T>();
+            return component != null;
+        }
     }
 }

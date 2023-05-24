@@ -1,3 +1,4 @@
+using ENA.Physics;
 using UnityEngine;
 
 namespace ENA.Player
@@ -6,12 +7,6 @@ namespace ENA.Player
     {
         #region Variables
         [SerializeField] Soundboard playerSoundboard;
-        #endregion
-        #region Properties
-        #endregion
-        #region Static Properties
-        #endregion
-        #region Events
         #endregion
         #region MonoBehaviour Lifecycle
         /// <summary>
@@ -36,14 +31,10 @@ namespace ENA.Player
         public void PlaySoundStep(GameObject collidedObject)
         {
             playerSoundboard.Play("step");
-            if (collidedObject.TryGetComponent(out AudioSource source)) {
-                source.Play();
+            if (collidedObject.TryGetComponent(out CollidableProp component)) {
+                component.CollisionAudioSource?.Play();
             }
         }
-        #endregion
-        #region Operators
-        #endregion
-        #region Static Methods
         #endregion
     }
 }

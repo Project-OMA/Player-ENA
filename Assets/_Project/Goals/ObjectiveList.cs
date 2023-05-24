@@ -12,8 +12,8 @@ namespace ENA.Goals
     public class ObjectiveList: ScriptableObject, ICollection<ObjectiveComponent>
     {
         #region Variables
-        [SerializeField] List<ObjectiveComponent> current = new List<ObjectiveComponent>();
-        [SerializeField] List<ObjectiveComponent> cleared = new List<ObjectiveComponent>();
+        [SerializeField] List<ObjectiveComponent> current = new();
+        [SerializeField] List<ObjectiveComponent> cleared = new();
         #endregion
         #region Properties
         public int AmountCleared => cleared.Count;
@@ -26,8 +26,6 @@ namespace ENA.Goals
         [Header("Events")]
         public Event<ObjectiveComponent> OnClearObjective;
         public Event OnClearAllObjectives;
-        #endregion
-        #region ScriptableObject Lifecycle
         #endregion
         #region Methods
         public void Check(ObjectiveComponent objective)
@@ -42,8 +40,14 @@ namespace ENA.Goals
             cleared.Add(objective);
             current.Remove(objective);
             OnClearObjective.Invoke(objective);
+            objective.StopSound();
 
-            if (AmountLeft == 0) OnClearAllObjectives.Invoke();
+            if (AmountLeft <= 0) {
+                OnClearAllObjectives.Invoke();
+                return;
+            }
+
+            NextObjective.PlaySound();
         }
 
         public void Reset()
@@ -96,10 +100,6 @@ namespace ENA.Goals
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        #endregion
-        #region Operators
-        #endregion
-        #region Static Methods
         #endregion
     }
 }

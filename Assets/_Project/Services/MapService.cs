@@ -11,20 +11,14 @@ namespace ENA.Services
     public class MapService: IService
     {
         #region Interfaces
-        public interface DataSource
+        public interface IDataSource
         {
             public Task<MapData[]> FetchMapsFor(string userToken);
         }
         #endregion
         #region Variables
-        DataSource dataSource;
-        LocalCache localCache;
-        #endregion
-        #region Constructors
-        public MapService()
-        {
-            localCache = new LocalCache();
-        }
+        IDataSource dataSource;
+        readonly LocalCache localCache = new();
         #endregion
         #region Methods
         public async Task<MapData[]> FetchMaps(ENAProfile profile)
@@ -34,6 +28,16 @@ namespace ENA.Services
             var mapList = results.SelectMany(result => result).Distinct(MapData.IDComparer.New).ToList();
             ValidateMaps(mapList);
             return mapList.ToArray();
+        }
+
+        public void SetDataSource(IDataSource source)
+        {
+            dataSource = source;
+        }
+
+        public Task<bool> UploadMap()
+        {
+            throw new System.NotImplementedException();
         }
 
         private void ValidateMaps(List<MapData> mapList)
@@ -47,16 +51,6 @@ namespace ENA.Services
                     mapList.RemoveAt(i);
                 }
             }
-        }
-
-        public void SetDataSource(DataSource source)
-        {
-            dataSource = source;
-        }
-        
-        public Task<bool> UploadMap()
-        {
-            throw new System.NotImplementedException();
         }
         #endregion
         #region Static Methods

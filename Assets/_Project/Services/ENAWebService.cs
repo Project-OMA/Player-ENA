@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace ENA.Services
 {
-    public class ENAWebService: MapService.DataSource, AuthService.CredentialManager
+    public class ENAWebService: MapService.IDataSource, AuthService.CredentialManager
     {
         #region Constants
         public const string ENAServicePath = "https://localhost:7073/api";
@@ -48,7 +48,7 @@ namespace ENA.Services
                 await Validate(map, data);
                 maps.Add(map);
             }
-            
+
             return maps.ToArray();
         }
         #endregion
@@ -73,27 +73,27 @@ namespace ENA.Services
 
         private async Task<bool> Download(string url, string destination)
         {
-            using (var response = await apiService.Get(url).Send()) {
-                var handler = response.Handler;
-                if (string.IsNullOrEmpty(handler.text)) {
-                    return false;
-                } else {
-                    await handler.WriteToFile(destination);
-                    return true;
-                }
+            using var response = await apiService.Get(url).Send();
+            var handler = response.Handler;
+
+            if (string.IsNullOrEmpty(handler.text)) {
+                return false;
+            } else {
+                await handler.WriteToFile(destination);
+                return true;
             }
         }
 
         private async Task<bool> DownloadImage(string url, string destination)
         {
-            using (var response = await apiService.Image(url).Send()) {
-                var imageHandler = response.Handler.ToImage();
-                if (imageHandler?.texture == null) {
-                    return false;
-                } else {
-                    await imageHandler.WriteToFile(destination);
-                    return true;
-                }
+            using var response = await apiService.Image(url).Send();
+            var imageHandler = response.Handler.ToImage();
+
+            if (imageHandler?.texture == null) {
+                return false;
+            } else {
+                await imageHandler.WriteToFile(destination);
+                return true;
             }
         }
 
@@ -126,12 +126,11 @@ namespace ENA.Services
         [MenuItem("ENA/Services/Connection Test")]
         public static async void TryRequestGet()
         {
-            var testAPI = "https://api.quotable.io";
-            var testRequest = "/random";
-            
-            using (var response = await WebService.HTTPGet(testAPI+testRequest).Send()) {
-                Debug.Log(response.Handler.text);
-            }
+            const string testAPI = "https://api.quotable.io";
+            const string testRequest = "/random";
+
+            using var response = await WebService.HTTPGet(testAPI + testRequest).Send();
+            Debug.Log(response.Handler.text);
         }
         #endif
         #endregion

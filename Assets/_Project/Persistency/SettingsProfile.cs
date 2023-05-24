@@ -93,5 +93,5 @@ namespace ENA.Persistency
             VREnabled = value;
         }
         #endregion
-    }   
+    }
 }
