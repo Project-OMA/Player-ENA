@@ -49,10 +49,10 @@ namespace ENA.UI
 
         public async void ReturnToMainMenu()
         {
+            tracker.ClearSession();
             manager.Pop(pauseMenuDisplay);
             onQuit?.Invoke();
             await SaveSession();
-            tracker.ClearSession();
             SceneManager.LoadSceneAsync(BuildIndex.MainMenu);
         }
 
@@ -74,7 +74,7 @@ namespace ENA.UI
         {
             var userProfile = settingsProfile.LoggedProfile;
             var recordingTime = DateTime.Now;
-            var logContents = LogBuilder.MakeLog(userProfile, recordingTime, tracker.Model);
+            var logContents = LogBuilder.MakeLog(tracker.Model);
 
             ShowTracker(recordingTime);
             LocalCache.SaveTracker(recordingTime, userProfile, minimap);
