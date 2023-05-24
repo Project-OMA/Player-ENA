@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: UFC
-  productName: "Espa\xE7o Naveg\xE1vel - ENA"
+  productName: "Espa\xE7o Naveg\xE1vel - ENA (VR)"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -132,7 +132,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.3.0
+  bundleVersion: Alpha-6
   preloadedAssets:
   - {fileID: 11400000, guid: 5f9625bb12f3a40edbffdc2218b92beb, type: 2}
   - {fileID: 0}
@@ -177,12 +177,12 @@ PlayerSettings:
     Standalone: com.ufc.espaconavegavel-ena
     iPhone: com.UFC.Espa--o-Naveg--vel---ENA
   buildNumber:
-    Standalone: 0
-    iPhone: 0
+    Standalone: 7
+    iPhone: 7
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 29
+  AndroidBundleVersionCode: 8
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
@@ -866,7 +866,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     : MOBILE_INPUT
-    Android: CROSS_PLATFORM_INPUT;MOBILE_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL
+    Android: BUILD_TYPE_METAQUEST;BUILD_PLATFORM_ANDROID;BUILD_ARCH_ANDROID;BUILD_BACKEND_IL2CPP;CROSS_PLATFORM_INPUT;MOBILE_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL
     Standalone: CROSS_PLATFORM_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL
     Windows Store Apps: MOBILE_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL
     iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
