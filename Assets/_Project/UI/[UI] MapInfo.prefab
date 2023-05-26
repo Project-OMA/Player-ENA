@@ -257,8 +257,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name of the Map
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a2c6c768f4fc04cdabefc0c7460d7069, type: 2}
-  m_sharedMaterial: {fileID: -1893815422411575521, guid: a2c6c768f4fc04cdabefc0c7460d7069,
+  m_fontAsset: {fileID: 11400000, guid: c96f0fd6cda214e1ca9859216f38ea52, type: 2}
+  m_sharedMaterial: {fileID: -1893815422411575521, guid: c96f0fd6cda214e1ca9859216f38ea52,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_text: Description for this map so that more people can understand what's going
     on
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a2c6c768f4fc04cdabefc0c7460d7069, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c5f0ebcff3f194ba595e6acff4f4d245, type: 2}
   m_sharedMaterial: {fileID: -1893815422411575521, guid: a2c6c768f4fc04cdabefc0c7460d7069,
     type: 2}
   m_fontSharedMaterials: []
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_margin: {x: 4, y: 4, z: 4, w: 4}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2776468600994121526
@@ -644,7 +644,7 @@ RectTransform:
   - {fileID: 2776468599122192125}
   - {fileID: 2776468600109452853}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -916,6 +916,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2776468601174620925}
     m_Modifications:
     - target: {fileID: 1112257466037050322, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
@@ -1038,7 +1039,19 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4281479730
       objectReference: {fileID: 0}
+    - target: {fileID: 8029919520798274049, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
+        type: 3}
+      propertyPath: m_Text
+      value: Voltar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1112257466149435336, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6768223910364426882}
   m_SourcePrefab: {fileID: 100100000, guid: 7a6cf6c1f2a9749c89ecbafef1779e16, type: 3}
 --- !u!224 &3019794660536609039 stripped
 RectTransform:
@@ -1109,6 +1122,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2776468601174620925}
     m_Modifications:
     - target: {fileID: 1112257466037050322, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
@@ -1237,6 +1251,13 @@ PrefabInstance:
       value: Iniciar Atividade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1112257466149435336, guid: 7a6cf6c1f2a9749c89ecbafef1779e16,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1534616280702433746}
   m_SourcePrefab: {fileID: 100100000, guid: 7a6cf6c1f2a9749c89ecbafef1779e16, type: 3}
 --- !u!1 &3019794661403440857 stripped
 GameObject:
@@ -1307,6 +1328,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2776468600994121527}
     m_Modifications:
     - target: {fileID: 2264398400126907748, guid: 5c5f7a2b0baad40229823035905ae29c,
@@ -1420,6 +1442,9 @@ PrefabInstance:
       value: Dark Panel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c5f7a2b0baad40229823035905ae29c, type: 3}
 --- !u!224 &2776468599122192125 stripped
 RectTransform:

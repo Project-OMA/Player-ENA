@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 114652379721571401, guid: 383d5c33006324f63acc273fbf898714,
@@ -97,6 +98,25 @@ PrefabInstance:
     - {fileID: 2409076296069125435, guid: 383d5c33006324f63acc273fbf898714, type: 3}
     - {fileID: 4209390586775924324, guid: 383d5c33006324f63acc273fbf898714, type: 3}
     - {fileID: 6415287496036377482, guid: 383d5c33006324f63acc273fbf898714, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 114652379721571404, guid: 383d5c33006324f63acc273fbf898714,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4489565225233142296}
+    - targetCorrespondingSourceObject: {fileID: 114652379721571404, guid: 383d5c33006324f63acc273fbf898714,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 113307295895976282}
+    - targetCorrespondingSourceObject: {fileID: 114652379721571404, guid: 383d5c33006324f63acc273fbf898714,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2453376138266855388}
+    - targetCorrespondingSourceObject: {fileID: 114652379721571404, guid: 383d5c33006324f63acc273fbf898714,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3364132495683337745}
   m_SourcePrefab: {fileID: 100100000, guid: 383d5c33006324f63acc273fbf898714, type: 3}
 --- !u!1 &5929927092892975491 stripped
 GameObject:
@@ -106,6 +126,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!120 &4489565225233142296
 LineRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,16 +214,20 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
+  m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+  m_ApplyActiveColorSpace: 0
 --- !u!114 &113307295895976282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5929927092892975491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17fddc3149f544ec3b85d70ec2b11300, type: 3}
+  m_Script: {fileID: 11500000, guid: 15a150166ed024df7a89ee96871f40af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   propComponent: {fileID: 113307295895976282}

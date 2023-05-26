@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Guardrail
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5403070174060260051, guid: 3633cd127474542828585afede3242e6, type: 3}
+  Prefab: {fileID: 5403070174060260051, guid: 98e315c579d1e42a5be536c6c6d73ff7, type: 3}

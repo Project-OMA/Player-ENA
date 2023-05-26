@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 114652379721571401}
   - component: {fileID: 374698572045423766}
   - component: {fileID: 2409076296069125435}
-  - component: {fileID: 6415287496036377482}
   m_Layer: 0
   m_Name: Floor Object
   m_TagString: floor
@@ -45,7 +44,7 @@ AudioSource:
   m_GameObject: {fileID: 114652379721571404}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: d41352e76a28b4d62b56a784ef365a3a,
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 114652379721571404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dc82b0804b584fcb988990826956297, type: 3}
+  m_Script: {fileID: 11500000, guid: 33a2474a47e154210b5952eba539234a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnPlayerCollision:
@@ -186,19 +185,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
---- !u!114 &6415287496036377482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114652379721571404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a700c76cbc7a42d49691b124b56fd09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Target>k__BackingField: {fileID: 0}
 --- !u!1 &8160821852205353941
 GameObject:
   m_ObjectHideFlags: 0
