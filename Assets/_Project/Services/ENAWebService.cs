@@ -56,7 +56,7 @@ namespace ENA.Services
         public Task<ENAProfile> ValidateCredentials(string login, string password)
         {
             string profileName = login;
-            var loggedProfile = new ENAProfile(profileName);
+            var loggedProfile = new ENAProfile(profileName, profileName.GetHashCode());
             return Task.FromResult(loggedProfile);
         }
 
