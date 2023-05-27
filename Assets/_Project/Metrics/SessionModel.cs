@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using ENA.Utilities;
 
 namespace ENA.Metrics
 {
@@ -10,14 +9,15 @@ namespace ENA.Metrics
     public partial class SessionModel
     {
         #region Variables
-        [field: SerializeField] public int UserID {get; private set;}
-        [field: SerializeField] public int MapID {get; private set;}
-        [field: SerializeField] public DateTime SessionDate {get; private set;}
-        [field: SerializeField] public bool ClearedMap {get; private set;}
+        [SerializeField] private int UserID;
+        [SerializeField] private int MapID;
+        [SerializeField] private DateTime SessionDate;
+        [SerializeField] private bool ClearedMap;
         [SerializeField] List<Objective> objectives;
         #endregion
         #region Properties
-        public int NumberOfCollisions => (from objective in objectives select objective.NumberOfCollisions).Sum();
+        [SerializeField] private int NumberOfCollisions;
+        [SerializeField] private int NumberOfActions;
         public int NumberOfRotations => (from objective in objectives select objective.NumberOfRotations).Sum();
         public int NumberOfSteps => (from objective in objectives select objective.NumberOfSteps).Sum();
         public Objective[] Objectives => objectives.ToArray();
@@ -30,7 +30,7 @@ namespace ENA.Metrics
             MapID = mapID;
             SessionDate = DateTime.Now;
             ClearedMap = false;
-            objectives = new List<Objective>();
+            objectives = new();
         }
         #endregion
         #region Methods
@@ -47,13 +47,17 @@ namespace ENA.Metrics
         public void Register(Collision collision)
         {
             if (objectives.Count == 0) return;
+
             objectives.Last().Collisions.Add(collision);
+            NumberOfCollisions++;
         }
 
         public void Register(Action action)
         {
             if (objectives.Count == 0) return;
+
             objectives.Last().Actions.Add(action);
+            NumberOfActions++;
         }
         #endregion
     }
