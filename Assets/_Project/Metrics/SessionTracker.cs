@@ -39,7 +39,7 @@ namespace ENA.Metrics
         #region Methods
         public void CloseSession()
         {
-            speaker.SpeakActivityResults(Model.ClearedMap);
+            speaker.SpeakActivityResults(objectiveList.ClearedAllObjectives);
             micelioWeb.Disable();
         }
 
