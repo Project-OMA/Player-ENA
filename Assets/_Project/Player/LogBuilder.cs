@@ -56,9 +56,7 @@ namespace ENA.Player
 
         public static string MakeLog(SessionModel model)
         {
-            // JSON
-            string jsonModel = JsonUtility.ToJson(model);
-            return jsonModel;
+            return JsonUtility.ToJson(model);
             
             // YAML
             // var yaml = new YAMLBuilder();
