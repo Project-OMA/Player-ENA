@@ -15,14 +15,14 @@ using ENA.Props;
 
     [System.Serializable]
     class Wall {
-        public int type;
+        public string type;
         public int[] start;
         public int[] end;
     }
 
     [System.Serializable]
     class Floor {
-        public int type;
+        public string type;
         public int[] start;
         public int[] end;
     }
@@ -30,40 +30,41 @@ using ENA.Props;
     [System.Serializable]
     class DoorAndWindow {
         public int[] pos;
-        public int type;
+        public string type;
     }
 
     [System.Serializable]
     class Furniture {
         public int[] pos;
-        public int type;
+        public string type;
     }
 
     [System.Serializable]
     class Utensil {
         public int[] pos;
-        public int type;
+        public string type;
     }
 
     [System.Serializable]
     class Electronic {
         public int[] pos;
-        public int type;
+        public string type;
     }
 
     [System.Serializable]
     class Goal {
         public int[] pos;
-        public int type;
+        public string type;
     }
 
     [System.Serializable]
     class Person {
         public int[] pos;
-        public int type;
+        public string type;
     }
 
-    class Layers {
+[System.Serializable]
+class Layers {
         public List<Wall> walls;
         public List<Floor> floors;
         public List<DoorAndWindow> door_and_windows;
@@ -81,21 +82,45 @@ using ENA.Props;
         //  Create a Map object from the JSON string
         public static Map CreateFromJSON(string jsonString)
         {
-            return JsonUtility.FromJson<Map>(jsonString);
+        Debug.Log(jsonString);
+        return JsonUtility.FromJson<Map>(jsonString);
         }
-        void printMap(){
-            print("Walls: ");
-            foreach (Wall wall in walls)
+ 
+        public void printMap(){
+        Debug.Log("printMap");
+            foreach (Wall wall in this.layers.walls)
             {
-                print(wall.type);
-                print(wall.start[0]);
-                print(wall.start[1]);
-                print(wall.end[0]);
-                print(wall.end[1]);
+            Debug.Log(wall.type);
+            Debug.Log(wall.start[0]);
+            Debug.Log(wall.start[1]);
+            Debug.Log(wall.end[0]);
+            Debug.Log(wall.end[1]);
             }
 
         }
+
+    public void CreateBoxMeshes()
+    {
+        foreach (Wall wall in this.layers.walls)
+        {
+            Vector3 start = new Vector3(wall.start[0], 0, wall.start[1]);
+            Vector3 end = new Vector3(wall.end[0]+1, 0, wall.end[1]+1);
+            Vector3 center = start;
+            Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 2f, Mathf.Abs(end.z - start.z));
+
+            GameObject box = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            box.transform.position = center;
+            box.transform.localScale = size;
+
+            // Set appropriate material or color for the box
+
+            // Optionally, attach the box to a parent object for better organization
+            // box.transform.parent = transform;
+        }
     }
+
+
+}
 
     public class MapCreatorJson : MonoBehaviour
     {
@@ -130,11 +155,12 @@ using ENA.Props;
                 rawData = testMapFile.text;
             //}
 
-            objectiveController.RemoveAll();
+            //objectiveController.RemoveAll();
             
             // Parse the JSON string into a Map object
             Map map = Map.CreateFromJSON(rawData);
-
+        //Debug.Log(rawData);
+        map.CreateBoxMeshes();
             //BuildMap(map);
 
         }
