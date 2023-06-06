@@ -103,13 +103,15 @@ class Layers {
     {
         foreach (Wall wall in this.layers.walls)
         {
-            Vector3 start = new Vector3(wall.start[0], 0, wall.start[1]);
-            Vector3 end = new Vector3(wall.end[0]+1, 0, wall.end[1]+1);
-            Vector3 center = start;
+            Vector3 start = new Vector3(wall.start[0], 0, -wall.start[1]);
+            Vector3 end = new Vector3(wall.end[0]+1, 0, -wall.end[1]+1);
+            Vector3 center = (end - start) / 2;
             Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 2f, Mathf.Abs(end.z - start.z));
 
             GameObject box = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            box.transform.position = center;
+            box.transform.position = start;
+            box.transform.position += center;
+
             box.transform.localScale = size;
 
             // Set appropriate material or color for the box
