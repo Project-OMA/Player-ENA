@@ -10,9 +10,6 @@ namespace ENA.Physics
         #region Variables
         [SerializeField] ObjectiveList objectiveList;
         #endregion
-        #region Properties
-        [field: SerializeField] public Transform Target {get; private set;}
-        #endregion
         #region Events
         public Event<GameObject> OnHitFloor, OnHitObstacle;
         public Event<ObjectiveComponent> OnHitObjective;
@@ -31,14 +28,14 @@ namespace ENA.Physics
 
         public void HandleTrigger(GameObject gameObject)
         {
-            if (!gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) return;
-
-            objectiveList.Check(objective);
+            if (gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
+                objectiveList.Check(objective);
+            }
         }
 
-        public void HitFloor(FloorComponent floor)
+        public void HitFloor(CollidableProp floor)
         {
-            Target = floor.Target;
+            floor.CollisionAudioSource.RequestPlay();
             OnHitFloor.Invoke(floor.gameObject);
         }
 
