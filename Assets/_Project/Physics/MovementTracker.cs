@@ -1,6 +1,4 @@
 using UnityEngine;
-using ENA.Utilities;
-using Event = ENA.Utilities.Event;
 using UnityEngine.InputSystem;
 using System.Collections;
 

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using ENA.Goals;
-using ENA.Persistency;
 using ENA.Physics;
-using ENA.Player;
 using ENA.Utilities;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-namespace ENA.Input
+namespace ENA.Character
 {
     [RequireComponent(typeof(PlayerComponent), typeof(CollisionTracker))]
     [RequireComponent(typeof(MovementTracker), typeof(RotationTracker))]

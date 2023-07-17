@@ -1,7 +1,8 @@
-using ENA.Physics;
+using ENA.Audio;
+using ENA.Maps;
 using UnityEngine;
 
-namespace ENA.Player
+namespace ENA.Character
 {
     public partial class PlayerComponent: MonoBehaviour
     {
@@ -21,16 +22,12 @@ namespace ENA.Player
         #region Methods
         public void BeepDirection(bool turnedRight)
         {
-            if (turnedRight) {
-                playerSoundboard.Play("beepRight");
-            } else {
-                playerSoundboard.Play("beepLeft");
-            }
+            playerSoundboard.Play(turnedRight ? Soundboard.BEEP_RIGHT : Soundboard.BEEP_LEFT);
         }
 
         public void PlaySoundStep(GameObject collidedObject)
         {
-            playerSoundboard.Play("step");
+            playerSoundboard.Play(Soundboard.STEP);
             if (collidedObject.TryGetComponent(out CollidableProp component)) {
                 component.CollisionAudioSource?.Play();
             }

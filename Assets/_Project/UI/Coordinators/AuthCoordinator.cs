@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using ENA.Input;
-using ENA.Persistency;
 using ENA.Services;
 using TMPro;
 using UnityEngine;
@@ -28,15 +27,15 @@ namespace ENA.UI
         #region Methods
         public void AskForAuthentication(Action<ENAProfile> completion)
         {
-            if (!authService.IsLogged()) {
-                StartCoroutine(RequestAuthentication(completion));
-            }
+            if (authService.IsLogged()) return;
+
+            StartCoroutine(RequestAuthentication(completion));
         }
 
         public void Authenticate()
         {
-            var credentials = authDisplay.GetCredentials();
-            Validate(credentials.login, credentials.password);
+            var (login, password) = authDisplay.GetCredentials();
+            Validate(login, password);
         }
 
         private string GetLoginKey()
@@ -52,10 +51,10 @@ namespace ENA.UI
 
         private async void Validate(string login, string password)
         {
-            var user = await authService.LoginWith(login, password);
             if (await authService.LoginWith(login, password) is ENAProfile loggedUser) {
                 profile.LoggedProfile = loggedUser;
             }
+
             manager.Pop(authDisplay);
         }
         #endregion

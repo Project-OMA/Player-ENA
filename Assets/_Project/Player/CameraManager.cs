@@ -1,9 +1,8 @@
 using ENA.Input;
-using ENA.Persistency;
+using ENA.Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace ENA.Player
+namespace ENA.Character
 {
     public class CameraManager: ExtendedMonoBehaviour
     {

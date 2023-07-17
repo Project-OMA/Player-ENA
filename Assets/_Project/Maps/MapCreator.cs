@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using UnityEngine;
-using ENA.Input;
 using ENA.Goals;
-using UnityEngine.Serialization;
 using ENA.Utilities;
 using ENA.Services;
-using Event = ENA.Utilities.Event;
-using ENA.Props;
 using UnityEngine.Localization.Settings;
 
 namespace ENA.Maps
