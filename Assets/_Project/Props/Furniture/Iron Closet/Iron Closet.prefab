@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1296884805446503314}
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: 46e2406d597f43e498322a545c329207,
@@ -83,14 +84,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 954fe9600769ace418966d86205ff749, type: 2}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46e2406d597f43e498322a545c329207, type: 3}
+--- !u!4 &8917846748876738595 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 46e2406d597f43e498322a545c329207,
+    type: 3}
+  m_PrefabInstance: {fileID: 4519426616445778745}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4673578309836916398
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5204186573730161141, guid: 094965268427e448ba74352c1f6ebbe6,
+        type: 3}
+      propertyPath: <Prop>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 69526c5396e6e4da09c1a993373d3eea,
+        type: 2}
     - target: {fileID: 5204186573730161141, guid: 094965268427e448ba74352c1f6ebbe6,
         type: 3}
       propertyPath: <LocalizedName>k__BackingField.m_TableEntryReference.m_KeyId
@@ -192,6 +209,13 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5846964714750430524, guid: 094965268427e448ba74352c1f6ebbe6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8917846748876738595}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 094965268427e448ba74352c1f6ebbe6, type: 3}
 --- !u!4 &1296884805446503314 stripped
 Transform:

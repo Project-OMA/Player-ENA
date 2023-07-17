@@ -119,6 +119,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5204186573730161141, guid: 094965268427e448ba74352c1f6ebbe6,
         type: 3}
+      propertyPath: <Prop>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: c1cbb266d458b448ea374c8ff3351fb9,
+        type: 2}
+    - target: {fileID: 5204186573730161141, guid: 094965268427e448ba74352c1f6ebbe6,
+        type: 3}
       propertyPath: <LocalizedName>k__BackingField.m_TableEntryReference.m_KeyId
       value: 741262483456
       objectReference: {fileID: 0}

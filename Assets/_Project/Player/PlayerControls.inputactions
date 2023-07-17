@@ -177,17 +177,6 @@
                 },
                 {
                     "name": "",
-                    "id": "5eee5429-36b0-43fa-a81b-cd33512a0c31",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "72728cc0-ea01-4924-9ca5-6fe7146e2d14",
                     "path": "<OculusTouchController>/triggerPressed",
                     "interactions": "",
