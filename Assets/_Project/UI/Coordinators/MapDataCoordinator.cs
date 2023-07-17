@@ -63,8 +63,7 @@ namespace ENA.UI
 
         public async void SyncData(ENAProfile profile)
         {
-            var data = await GetMapsFor(profile);
-            loadedData = data;
+            loadedData = await GetMapsFor(profile);
             Sync(loadedData, mapList);
         }
         #endregion
