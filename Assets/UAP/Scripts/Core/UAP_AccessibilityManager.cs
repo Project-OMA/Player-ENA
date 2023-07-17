@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 using System.Globalization;
 using UnityEngine.InputSystem;
 using ENA.Utilities;
+using ENA;
 
 /// <summary>This is the main object to handle all the accessibility in an app. Please use the premade Accessibility Manager prefab.</summary>
 [AddComponentMenu("Accessibility/Core/UAP Manager")]
@@ -276,7 +277,7 @@ public class UAP_AccessibilityManager : MonoBehaviour
 	/// <value>Maximum delay for a second tap to occur to still trigger a double tap.
 	/// This value also influences the delay in which Explore By Touch is triggered,
 	/// so do not raise this value arbitrarily.</value>
-	private const float m_DoubleTapTime = 0.2f; // in seconds
+	private const float m_DoubleTapTime = 0.75f; // in seconds
 	bool m_DoubleTapFoundThisFrame = false;
 
 	// Magic Tap (Two Finger Double Tap) Detection
@@ -2922,7 +2923,7 @@ public class UAP_AccessibilityManager : MonoBehaviour
 		int touchCount = GetTouchCount();
 
 		// This will work on touch as well
-		if (Mouse.current.leftButton.wasPressedThisFrame && touchCount == 1)
+		if (Input.GetMouseButtonDown(0) && touchCount == 1)
 		{
 			if (Time.unscaledTime < m_DoubleTap_LastTapTime + m_DoubleTapTime)
 			{
