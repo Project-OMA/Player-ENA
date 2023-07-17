@@ -16,7 +16,7 @@ namespace ENA.Physics
         /// <param name="other">The other Collider involved in this collision.</param>
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.TryGetComponentInParent(out FloorComponent floor)) {
+            if (other.gameObject.TryGetComponentInParent(out CollidableProp floor)) {
                 collisionTracker.HitFloor(floor);
             }
         }
