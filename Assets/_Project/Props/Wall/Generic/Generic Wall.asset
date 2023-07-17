@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Generic Wall
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3850083348288263265, guid: 3fd57af25d3914c78bcb91ff48e89f46, type: 3}
+  id: 
+  prefab: {fileID: 3850083348288263265, guid: 3fd57af25d3914c78bcb91ff48e89f46, type: 3}

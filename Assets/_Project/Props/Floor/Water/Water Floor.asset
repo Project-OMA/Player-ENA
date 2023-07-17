@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Water Floor
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1459461323673532638, guid: 1a965db21093e43a9b2141d7c46460ac, type: 3}
+  id: 
+  prefab: {fileID: 1459461323673532638, guid: 1a965db21093e43a9b2141d7c46460ac, type: 3}

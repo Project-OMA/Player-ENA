@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Microwave
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3087556597866196643, guid: a44630b1388774792820d499f4cccfc0, type: 3}
+  id: 
+  prefab: {fileID: 3087556597866196643, guid: a44630b1388774792820d499f4cccfc0, type: 3}

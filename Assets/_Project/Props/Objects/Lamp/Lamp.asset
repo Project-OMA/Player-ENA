@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Lamp
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4451507179964276386, guid: 1e7466c420bff460895ed774f83bd1c6, type: 3}
+  id: 
+  prefab: {fileID: 4451507179964276386, guid: 1e7466c420bff460895ed774f83bd1c6, type: 3}

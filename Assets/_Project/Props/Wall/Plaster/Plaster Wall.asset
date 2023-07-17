@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Plaster Wall
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 167642970479956915, guid: 9a90433c1a49640edade32385893cde9, type: 3}
+  id: 
+  prefab: {fileID: 167642970479956915, guid: 9a90433c1a49640edade32385893cde9, type: 3}

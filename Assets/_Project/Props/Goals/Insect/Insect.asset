@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Insect
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 7231281280712725471, guid: 28b090f3405324d4d899ea602b5df820, type: 3}
+  id: 
+  prefab: {fileID: 7231281280712725471, guid: 28b090f3405324d4d899ea602b5df820, type: 3}

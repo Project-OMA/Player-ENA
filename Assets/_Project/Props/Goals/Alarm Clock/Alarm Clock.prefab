@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2052091639211810221
+--- !u!1 &7833014038619590136
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5099152183127309574}
-  - component: {fileID: 3293220493641729849}
-  - component: {fileID: 7100469617068946405}
+  - component: {fileID: 2701857476532697653}
+  - component: {fileID: 3209220391728156276}
   m_Layer: 0
-  m_Name: ResonanceAudioSource
+  m_Name: Looping Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5099152183127309574
+--- !u!4 &2701857476532697653
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052091639211810221}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_GameObject: {fileID: 7833014038619590136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8430716493483524257}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &3293220493641729849
+--- !u!82 &3209220391728156276
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052091639211810221}
+  m_GameObject: {fileID: 7833014038619590136}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7d64f9b1ce787af49b9aaf4a3ff9f5df, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -130,29 +128,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &7100469617068946405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052091639211810221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bypassRoomEffects: 0
-  directivityAlpha: 0
-  directivitySharpness: 1
-  listenerDirectivityAlpha: 0
-  listenerDirectivitySharpness: 1
-  gainDb: -15.5
-  nearFieldEffectEnabled: 1
-  nearFieldEffectGain: 1
-  occlusionEnabled: 1
-  occlusionIntensity: 0.75
-  quality: 2
 --- !u!1001 &2789063794645860641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,11 +146,6 @@ PrefabInstance:
       propertyPath: <LocalizedName>k__BackingField.m_TableReference.m_TableCollectionName
       value: GUID:644f6e3b1578040bfb6b0236fb79594f
       objectReference: {fileID: 0}
-    - target: {fileID: 2453376138266855388, guid: 995e7149126c44153a9ca8b795ba4163,
-        type: 3}
-      propertyPath: loopingSource
-      value: 
-      objectReference: {fileID: 3293220493641729849}
     - target: {fileID: 2494174791412405786, guid: 995e7149126c44153a9ca8b795ba4163,
         type: 3}
       propertyPath: m_IsActive
@@ -261,11 +231,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5929927092892975488, guid: 995e7149126c44153a9ca8b795ba4163,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5099152183127309574}
+      addedObject: {fileID: 8922951569698968738}
     - targetCorrespondingSourceObject: {fileID: 5929927092892975488, guid: 995e7149126c44153a9ca8b795ba4163,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8922951569698968738}
+      addedObject: {fileID: 2701857476532697653}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 995e7149126c44153a9ca8b795ba4163, type: 3}
 --- !u!4 &8430716493483524257 stripped

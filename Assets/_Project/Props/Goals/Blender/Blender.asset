@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Blender
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 8938035707962803904, guid: aebabe91da11845c1936bd1e41b1f08f, type: 3}
+  id: 
+  prefab: {fileID: 8938035707962803904, guid: aebabe91da11845c1936bd1e41b1f08f, type: 3}

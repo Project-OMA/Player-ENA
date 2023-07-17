@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Singles Bed
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1781514893853317757, guid: c996d4b8f5a5a4556a525e3182d070b0, type: 3}
+  id: 
+  prefab: {fileID: 1781514893853317757, guid: c996d4b8f5a5a4556a525e3182d070b0, type: 3}

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Glass Wall
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 2749839362315629173, guid: 5158f52f78661420da2083ba5b4ef589, type: 3}
+  id: 
+  prefab: {fileID: 2749839362315629173, guid: 5158f52f78661420da2083ba5b4ef589, type: 3}

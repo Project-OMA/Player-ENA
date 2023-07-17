@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ENA.Props
+namespace ENA.Maps
 {
     [AddComponentMenu("ENA/Move Door")]
     public class MoveDoorComponent: MonoBehaviour

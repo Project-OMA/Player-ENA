@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Sink
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 3596282492119000934, guid: 4ee4571f27c634f43994b1769756d113, type: 3}
+  id: 
+  prefab: {fileID: 3596282492119000934, guid: 4ee4571f27c634f43994b1769756d113, type: 3}

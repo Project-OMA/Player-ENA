@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Guitar
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 986618891232597220, guid: 254836ec1602741519c5b298b784b7f8, type: 3}
+  id: 
+  prefab: {fileID: 986618891232597220, guid: 254836ec1602741519c5b298b784b7f8, type: 3}

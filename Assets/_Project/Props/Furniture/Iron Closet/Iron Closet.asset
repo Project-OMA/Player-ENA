@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Iron Closet
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1296884805446503313, guid: 32b76d7a725bf4c6990a4538ae81ffa9, type: 3}
+  id: 
+  prefab: {fileID: 1296884805446503313, guid: 32b76d7a725bf4c6990a4538ae81ffa9, type: 3}

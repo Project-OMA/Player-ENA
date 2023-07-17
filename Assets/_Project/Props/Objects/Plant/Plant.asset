@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Plant
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 614192866147402654, guid: 4c4a07ac540cc448685f2f37c6db52c9, type: 3}
+  id: 
+  prefab: {fileID: 614192866147402654, guid: 4c4a07ac540cc448685f2f37c6db52c9, type: 3}

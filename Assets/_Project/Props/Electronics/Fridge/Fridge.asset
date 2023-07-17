@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Fridge
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5461497507696423873, guid: 4ede3ac6b41de4a43a4f0a1be1c1958e, type: 3}
+  id: 
+  prefab: {fileID: 5461497507696423873, guid: 4ede3ac6b41de4a43a4f0a1be1c1958e, type: 3}

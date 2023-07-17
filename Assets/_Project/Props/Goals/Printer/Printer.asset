@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Printer
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 2092828549116896121, guid: c066d28507e2d4162a79452b358ff28e, type: 3}
+  id: 
+  prefab: {fileID: 2092828549116896121, guid: c066d28507e2d4162a79452b358ff28e, type: 3}

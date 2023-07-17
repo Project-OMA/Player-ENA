@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Stone Floor
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 2978059999166152507, guid: 433a10a4164c04fafae98f85a91f4ca6, type: 3}
+  id: 
+  prefab: {fileID: 2978059999166152507, guid: 433a10a4164c04fafae98f85a91f4ca6, type: 3}

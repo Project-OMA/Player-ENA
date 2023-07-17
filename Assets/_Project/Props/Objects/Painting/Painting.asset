@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Painting
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 2388440964790131365, guid: ac7c6a901e8dc4e55b5c5dc063833fe3, type: 3}
+  id: 
+  prefab: {fileID: 2388440964790131365, guid: ac7c6a901e8dc4e55b5c5dc063833fe3, type: 3}
