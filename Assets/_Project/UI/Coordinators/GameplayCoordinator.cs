@@ -71,7 +71,7 @@ namespace ENA.UI
         {
             var userProfile = settingsProfile.LoggedProfile;
             var recordingTime = DateTime.Now;
-            var logContents = LogBuilder.MakeLog(tracker.Model);
+            var logContents = JsonUtility.ToJson(tracker.Model);
 
             ShowTracker(recordingTime);
             LocalCache.SaveTracker(recordingTime, userProfile, minimap);
