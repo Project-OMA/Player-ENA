@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Piano
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3533599399936
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2140886161760977254, guid: 2dc28aea7347b4e0b97394fef62e8a0b, type: 3}
+  references:
+    version: 2
+    RefIds: []

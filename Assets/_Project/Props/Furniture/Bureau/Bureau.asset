@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Bureau
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2789345320960
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 670634345375796578, guid: 6cd2ad17a4b164d49a4c7af1e0c32cf0, type: 3}
+  references:
+    version: 2
+    RefIds: []

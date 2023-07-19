@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Printer
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2613746589696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2092828549116896121, guid: c066d28507e2d4162a79452b358ff28e, type: 3}
+  references:
+    version: 2
+    RefIds: []

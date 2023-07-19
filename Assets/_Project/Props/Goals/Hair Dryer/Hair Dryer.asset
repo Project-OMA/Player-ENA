@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Hair Dryer
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2460138594304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 6356013912975215118, guid: 618ed07dcd3f748538ca7f6a360959c5, type: 3}
+  references:
+    version: 2
+    RefIds: []

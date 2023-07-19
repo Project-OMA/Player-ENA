@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Cone
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3574980403200
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2183518532731446251, guid: 7dc3a56c013944a8ea43b195e1120257, type: 3}
+  references:
+    version: 2
+    RefIds: []

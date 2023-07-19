@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Cement Floor
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 91949690034053120
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 127199212029757759, guid: d62265c1cd43d40c2a90c47bb143077e, type: 3}
+  references:
+    version: 2
+    RefIds: []

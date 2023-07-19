@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Bird
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2433852891136
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 96914034101366051, guid: 5967c2541c59641be87ed9656ece532e, type: 3}
+  references:
+    version: 2
+    RefIds: []

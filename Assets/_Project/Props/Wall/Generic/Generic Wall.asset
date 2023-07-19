@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Generic Wall
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3385129426944
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 3850083348288263265, guid: 3fd57af25d3914c78bcb91ff48e89f46, type: 3}
+  references:
+    version: 2
+    RefIds: []

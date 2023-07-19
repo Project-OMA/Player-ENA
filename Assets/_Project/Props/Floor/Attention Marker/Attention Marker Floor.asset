@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Attention Marker Floor
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 91949042932637696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2439287608502440879, guid: acdef58f089924326a6ce3de42360cc6, type: 3}
+  references:
+    version: 2
+    RefIds: []

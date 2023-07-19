@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Closed Door
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 970619609088
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 5545908066189887980, guid: acbcf022ea91b4c0198fee2c182c6ace, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Sofa
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3189897158656
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2310739041357348492, guid: 056c6d67c2e324e74a4ea7ba72550c06, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Washing Machine
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 755141435392
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 8768196289996661160, guid: 8affb68bd21c0489a9ddfad1ad191c6a, type: 3}
+  references:
+    version: 2
+    RefIds: []

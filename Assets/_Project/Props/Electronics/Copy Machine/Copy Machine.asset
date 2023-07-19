@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Copy Machine
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 817183580160
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 6274120867596522739, guid: 25458a3f92bfc4a8d86741362e0d1029, type: 3}
+  references:
+    version: 2
+    RefIds: []

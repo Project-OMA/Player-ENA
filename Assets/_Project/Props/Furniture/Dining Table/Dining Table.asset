@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Dining Table
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2735003918336
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 7267862865418054409, guid: 0b39742ded28b4c00a4df7ff0efd098a, type: 3}
+  references:
+    version: 2
+    RefIds: []

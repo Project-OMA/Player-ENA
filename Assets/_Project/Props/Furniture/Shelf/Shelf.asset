@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Shelf
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2772635213824
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 7479525971244486953, guid: 6c8024fe0556344398b20de84d4b69d4, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Open Door
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 951199981568
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 8798082026684848442, guid: 978859e6780f44e7e9aa7dd99f4f8f1c, type: 3}
+  references:
+    version: 2
+    RefIds: []

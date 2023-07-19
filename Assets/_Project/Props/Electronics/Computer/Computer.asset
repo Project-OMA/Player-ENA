@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Computer
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 791640268800
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2209306839078808977, guid: ab311cc2c9c8f4df38a058701f8264d8, type: 3}
+  references:
+    version: 2
+    RefIds: []

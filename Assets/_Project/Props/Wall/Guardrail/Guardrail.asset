@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Guardrail
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3362601820160
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 5403070174060260051, guid: 98e315c579d1e42a5be536c6c6d73ff7, type: 3}
+  references:
+    version: 2
+    RefIds: []

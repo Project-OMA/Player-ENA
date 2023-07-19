@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Tea Kettle
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 1013921603584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 6885468438987566647, guid: 8802f062cced04d99b820e535cedd63a, type: 3}
+  references:
+    version: 2
+    RefIds: []

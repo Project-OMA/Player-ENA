@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Stove
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 741262483456
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2188728434022128598, guid: 463b1d74818b34d7cb803c80529aa4a7, type: 3}
+  references:
+    version: 2
+    RefIds: []

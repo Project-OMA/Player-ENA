@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Microwave
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 716620947456
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 3087556597866196643, guid: a44630b1388774792820d499f4cccfc0, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Plastic Wall
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3450543792128
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 4868375697806378573, guid: fa7aaad3e2dee4ab0981367ed2b51785, type: 3}
+  references:
+    version: 2
+    RefIds: []

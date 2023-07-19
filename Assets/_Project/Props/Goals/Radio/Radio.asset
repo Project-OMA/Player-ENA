@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Radio
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 2445395615744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 3271287163872998242, guid: 2cf06f94822c940899bc3b6b6c98d124, type: 3}
+  references:
+    version: 2
+    RefIds: []

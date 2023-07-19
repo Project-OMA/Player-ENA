@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Brick Wall
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3301964767232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 3277392593068743639, guid: bc682a8b8de3b4758bcb9f5d1e6952a8, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Painting
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3559662804992
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2388440964790131365, guid: ac7c6a901e8dc4e55b5c5dc063833fe3, type: 3}
+  references:
+    version: 2
+    RefIds: []

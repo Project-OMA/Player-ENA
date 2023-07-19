@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Glass Window
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 291939278848
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 954290333338399893, guid: cbb304a6ccf2d48cd888092532c9e9e4, type: 3}
+  references:
+    version: 2
+    RefIds: []

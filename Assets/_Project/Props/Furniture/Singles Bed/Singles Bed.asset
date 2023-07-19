@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Singles Bed
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3113414025216
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 1781514893853317757, guid: c996d4b8f5a5a4556a525e3182d070b0, type: 3}
+  references:
+    version: 2
+    RefIds: []

@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Leaf Floor
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 91950397999013888
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 2776140670514373322, guid: 7cc84961ab3d94c34989db914ef79668, type: 3}
+  references:
+    version: 2
+    RefIds: []

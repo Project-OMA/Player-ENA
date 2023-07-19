@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Cobblestone Floor
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 91950016371875840
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 7229510560425073324, guid: 90310d58eee4f4094bde6d065d1b2262, type: 3}
+  references:
+    version: 2
+    RefIds: []

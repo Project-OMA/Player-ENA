@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Stairs
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3222499483648
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 5509416799282935169, guid: 6da3259370b14450bb8ab23e3f41c1a0, type: 3}
+  references:
+    version: 2
+    RefIds: []

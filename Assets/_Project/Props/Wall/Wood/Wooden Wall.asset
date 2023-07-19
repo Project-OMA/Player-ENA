@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Wooden Wall
   m_EditorClassIdentifier: 
   id: 
+  propName:
+    m_TableReference:
+      m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f
+    m_TableEntryReference:
+      m_KeyId: 3336681021440
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   prefab: {fileID: 1801037848887797428, guid: 6662c8b3068134c60b8d56daa01995ac, type: 3}
+  references:
+    version: 2
+    RefIds: []
