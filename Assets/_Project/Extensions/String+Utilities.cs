@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace ENA
 {
     public static partial class StringExtensions

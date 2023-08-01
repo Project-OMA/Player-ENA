@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace ENA.Input
+namespace ENA.Player
 {
     public class GyroCamera: ExtendedMonoBehaviour
     {

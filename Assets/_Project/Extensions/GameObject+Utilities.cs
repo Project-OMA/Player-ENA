@@ -1,0 +1,51 @@
+using UnityEngine;
+
+namespace ENA
+{
+    public static partial class GameObjectExtensions
+    {
+        public static GameObject Instance(this GameObject self)
+        {
+            return GameObject.Instantiate(self);
+        }
+
+        public static GameObject Instance(this GameObject self, Vector3 position)
+        {
+            return GameObject.Instantiate(self, position, self.transform.rotation);
+        }
+
+        public static GameObject Instance(this GameObject self, Vector3 position, Quaternion rotation)
+        {
+            return GameObject.Instantiate(self, position, rotation);
+        }
+
+        public static GameObject Instance(this GameObject self, Vector3 position, Quaternion rotation, Vector3 scale)
+        {
+            var gameObj = GameObject.Instantiate(self, position, rotation);
+            gameObj.transform.localScale = scale;
+            return gameObj;
+        }
+
+        public static void SetParent(this GameObject self, Transform transform, bool keepGlobalState = false)
+        {
+            self.transform.SetParent(transform, keepGlobalState);
+        }
+
+        public static void ToggleActive(this GameObject self)
+        {
+            self.SetActive(!self.activeSelf);
+        }
+
+        public static bool TryGetComponentInParent<T>(this GameObject self, out T component)
+        {
+            component = self.GetComponentInParent<T>();
+            return component != null;
+        }
+
+        public static bool TryGetComponentInChildren<T>(this GameObject self, out T component)
+        {
+            component = self.GetComponentInChildren<T>();
+            return component != null;
+        }
+    }
+}

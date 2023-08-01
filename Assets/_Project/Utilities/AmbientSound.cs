@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
  
-public class AmbientSound : MonoBehaviour 
+public class AmbientSound : MonoBehaviour
 {
     [SerializeField]
     private AudioSource audioSource;

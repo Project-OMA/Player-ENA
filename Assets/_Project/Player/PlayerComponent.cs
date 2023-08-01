@@ -2,7 +2,7 @@ using ENA.Audio;
 using ENA.Maps;
 using UnityEngine;
 
-namespace ENA.Character
+namespace ENA.Player
 {
     public partial class PlayerComponent: MonoBehaviour
     {

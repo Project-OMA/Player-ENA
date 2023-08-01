@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using ENA.Goals;
-using ENA.Physics;
-using ENA.Utilities;
 using UnityEngine;
 
-namespace ENA.Character
+namespace ENA.Player
 {
     [RequireComponent(typeof(PlayerComponent), typeof(CollisionTracker))]
     [RequireComponent(typeof(MovementTracker), typeof(RotationTracker))]
@@ -21,20 +19,12 @@ namespace ENA.Character
         [SerializeField] GameFlag isPausedFlag;
         #endregion
         #region MonoBehaviour Lifecycle
-        private void OnControllerColliderHit(ControllerColliderHit col)
-        {
-            GameObject collidedObject = col.gameObject;
-            collisionTracker.HandleCollision(collidedObject);
-        }
+        private void OnControllerColliderHit(ControllerColliderHit col) => collisionTracker.HandleCollision(col.gameObject);
         /// <summary>
         /// OnTriggerEnter is called when the Collider other enters the trigger.
         /// </summary>
         /// <param name="other">The other Collider involved in this collision.</param>
-        void OnTriggerEnter(Collider other)
-        {
-            GameObject collidedObject = other.gameObject;
-            collisionTracker.HandleTrigger(collidedObject);
-        }
+        void OnTriggerEnter(Collider other) => collisionTracker.HandleTrigger(other.gameObject);
         /// <summary>
         /// This function is called when the MonoBehaviour will be destroyed.
         /// </summary>
@@ -91,25 +81,13 @@ namespace ENA.Character
         }
         #endregion
         #region Methods
-        public void SetActive(bool value)
-        {
-            enabled = value;
-        }
+        public void SetActive(bool value) => enabled = value;
 
-        public void ToggleControls()
-        {
-            enabled = !enabled;
-        }
+        public void ToggleControls() => enabled = !enabled;
 
-        private void WalkBack(GameObject gameObject)
-        {
-            movementTracker.RevertWalk();
-        }
+        private void WalkBack(GameObject gameObject) => movementTracker.RevertWalk();
 
-        private void WalkBack(ObjectiveComponent objective)
-        {
-            movementTracker.RevertWalk();
-        }
+        private void WalkBack(ObjectiveComponent objective) => movementTracker.RevertWalk();
         #endregion
     }
 }
