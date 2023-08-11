@@ -150,8 +150,29 @@ class Map
             //GameObject floorPiece = GameObject.CreatePrimitive(PrimitiveType.Plane);
             // since it is a plane, we divide the size by 10
             //size /= 10; // We are no using the plane anymore, because it has 10 by 190 faces while the cube has 6
-            GameObject floorPiece = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            
+
+            // Create a Mesh with 4 vertices and 2 triangles which share the same vertices
+            Mesh mesh = new Mesh();
+
+            // Assign the vertices
+            mesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(0.5f, 0, 0.5f), new Vector3(0.5f, 0, -0.5f) };
+            // Assign the triangles
+            mesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+
+            // Assign the UVs
+            mesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+
+            GameObject floorPiece = new GameObject();
+            // add the mesh renderer
+            MeshRenderer meshRenderer = floorPiece.AddComponent<MeshRenderer>();        
+            // Assign the mesh to the MeshFilter
+            MeshFilter meshFilter = floorPiece.AddComponent<MeshFilter>();
+            meshFilter.mesh = mesh;
+
+            // plane collider
+            MeshCollider meshCollider = floorPiece.AddComponent<MeshCollider>();
+            meshCollider.sharedMesh = mesh;
+
             floorPiece.transform.position = start;
             floorPiece.transform.position += center;
             floorPiece.transform.localScale = size;
