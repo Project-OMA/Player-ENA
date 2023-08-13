@@ -330,6 +330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9df15f3bb489f4fb1102d4d0124d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultFloor: {fileID: 2439287608502440879, guid: acdef58f089924326a6ce3de42360cc6,
+    type: 3}
+  defaultCeiling: {fileID: 1953051814590918, guid: eaaad70601efe4475968b5e884e55527,
+    type: 3}
+  invisibleWall: {fileID: 3850083348288263265, guid: 3fd57af25d3914c78bcb91ff48e89f46,
+    type: 3}
   testMapFile: {fileID: 4900000, guid: 0722d5702eec70b41ad7a9e9048bb1ab, type: 3}
   theme: {fileID: 11400000, guid: 9b7f2c197a6f5434c99fb79913e62234, type: 2}
 --- !u!4 &1486238233
