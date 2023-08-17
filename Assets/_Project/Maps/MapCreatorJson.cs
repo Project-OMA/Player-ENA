@@ -193,6 +193,29 @@ namespace ENA.Maps
 
                 // make the box a child of the parent
                 newInstance.transform.parent = floorParent.transform;
+
+
+                // print all news instances children
+                // fix the uv
+                // since the wall is a cube, we need to fix the uv
+                // the mesh is in the "[Reference] Cube" child
+                var child = newInstance.transform.GetChild(0).gameObject;
+                Debug.Log(child);
+
+                var mesh = child.GetComponent<MeshFilter>().mesh;
+                Debug.Log(mesh);
+                var newUV = new Vector2[mesh.uv.Length];
+                
+                // the uv is a 2d array, so we need to iterate over it
+                for (
+                    var i = 0;
+                    i < mesh.uv.Length;
+                    i++
+                ) {
+                    newUV[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.y);
+                }
+
+                mesh.uv = newUV;
             }
         }
 
@@ -220,8 +243,8 @@ namespace ENA.Maps
 
         private void InstanceWallTile(string code, int[] startArr, int[] endArr)
         {
-            Vector3 start = new Vector3(startArr[0], 0, -startArr[1]);
-            Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
+            Vector3 start = new Vector3(startArr[0], 1, -startArr[1]);
+            Vector3 end = new Vector3(endArr[0] + 1, 1, -endArr[1] - 1);
             Vector3 center = (end - start) / 2;
             Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 1, Mathf.Abs(end.z - start.z));
             GameObject wallPiece = null;
@@ -252,6 +275,29 @@ namespace ENA.Maps
 
                 // make the box a child of the parent
                 newInstance.transform.parent = wallsParent.transform;
+
+                // print all news instances children
+                // fix the uv
+                // since the wall is a cube, we need to fix the uv
+                // the mesh is in the "[Reference] Cube" child
+                var child = newInstance.transform.GetChild(0).gameObject;
+                Debug.Log(child);
+
+                var mesh = child.GetComponent<MeshFilter>().mesh;
+                Debug.Log(mesh);
+                var newUV = new Vector2[mesh.uv.Length];
+                
+                // the uv is a 2d array, so we need to iterate over it
+                for (
+                    var i = 0;
+                    i < mesh.uv.Length;
+                    i++
+                ) {
+                    newUV[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.y);
+                }
+
+                mesh.uv = newUV;
+
             }
         }
 
