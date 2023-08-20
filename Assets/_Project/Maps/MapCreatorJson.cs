@@ -194,28 +194,43 @@ namespace ENA.Maps
                 // make the box a child of the parent
                 newInstance.transform.parent = floorParent.transform;
 
+                // get the first child the newInstance
 
-                // print all news instances children
-                // fix the uv
-                // since the wall is a cube, we need to fix the uv
-                // the mesh is in the "[Reference] Cube" child
-                var child = newInstance.transform.GetChild(0).gameObject;
-                Debug.Log(child);
+                var child = newInstance.transform.GetChild(0);
 
-                var mesh = child.GetComponent<MeshFilter>().mesh;
-                Debug.Log(mesh);
-                var newUV = new Vector2[mesh.uv.Length];
-                
-                // the uv is a 2d array, so we need to iterate over it
-                for (
-                    var i = 0;
-                    i < mesh.uv.Length;
-                    i++
-                ) {
-                    newUV[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.y);
+                Mesh mesh = new Mesh();
+
+                // Assign the vertices
+                mesh.vertices = new Vector3[] { new Vector3(-0.5f, 1, -0.5f), new Vector3(-0.5f, 1, 0.5f), new Vector3(0.5f, 1, 0.5f), new Vector3(0.5f, 1, -0.5f) };
+                // Assign the triangles
+                mesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+
+                // Assign the UVs
+                var newUvs = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+                // scale down the UVs by the same factor as the parent object
+                for (int i = 0; i < newUvs.Length; i++)
+                {
+                    newUvs[i] = new Vector2(newUvs[i].x * size.x, newUvs[i].y * size.z);
                 }
+                // scale up by 2
+                float scale = .5f;
+                for (int i = 0; i < newUvs.Length; i++)
+                {
+                    newUvs[i] = new Vector2(newUvs[i].x * scale, newUvs[i].y * scale);
+                }
+                mesh.uv = newUvs;
 
-                mesh.uv = newUV;
+                // replace the newInstance mesh with the new mesh
+                child.GetComponent<MeshRenderer>().material = floorPiece.transform.GetChild(0).GetComponent<Renderer>().sharedMaterial;
+
+                // mesh filter
+                child.GetComponent<MeshFilter>().mesh = mesh;
+                
+                // add mesh collider
+                MeshCollider meshCollider = child.gameObject.AddComponent<MeshCollider>();
+                meshCollider.sharedMesh = mesh;
+
+
             }
         }
 
@@ -273,117 +288,16 @@ namespace ENA.Maps
                 // change the name
                 newInstance.name = System.String.Format("Wall: {0} - start: {1},  end:{2}", code, start.ToString(), end.ToString());
 
-                // make the box a child of the parent
-                newInstance.transform.parent = wallsParent.transform;
-
                 // print all news instances children
                 // fix the uv
-                // since the wall is a cube, we need to fix the uv
-                // the mesh is in the "[Reference] Cube" child
-                var child = newInstance.transform.GetChild(0).gameObject;
-                Debug.Log(child);
+                // the mesh is the default cube mesh
+                // get the first child the newInstance
 
-                var mesh = child.GetComponent<MeshFilter>().mesh;
-                Debug.Log(mesh);
-                var newUV = new Vector2[mesh.uv.Length];
-                
-                // the uv is a 2d array, so we need to iterate over it
-                for (
-                    var i = 0;
-                    i < mesh.uv.Length;
-                    i++
-                ) {
-                    newUV[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.y);
-                }
-
-                mesh.uv = newUV;
-
-            }
-        }
-
-        private void CreateBoxMeshes()
-        {
-            GameObject wallsParent = new GameObject("Walls");
-            //foreach (Wall wall in this.layers.walls)
-            for (int i = 0; i < this.map.layers.walls.Count; i++)
-            {
-
-                Wall wall = this.map.layers.walls[i];
-
-                Vector3 start = new Vector3(wall.start[0], 1, -wall.start[1]);
-                Vector3 end = new Vector3(wall.end[0] + 1, 1, -wall.end[1] - 1);
-                Vector3 center = (end - start) / 2;
-                Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 2f, Mathf.Abs(end.z - start.z));
-
-                GameObject wallPiece = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                wallPiece.transform.position = start;
-                wallPiece.transform.position += center;
-                wallPiece.transform.localScale = size;
-                // change the name
-                wallPiece.name = System.String.Format("{0} - start: {1},  end:{2}", i, start.ToString(), end.ToString());
-                // Set appropriate material or color for the box
-
-                wallPiece.GetComponent<Renderer>().material.color = Color.red;
-
-                // Optionally, attach the box to a parent object for better organization
-                // box.transform.parent = transform;
+                var child = newInstance.transform.GetChild(0);
 
                 // make the box a child of the parent
-                wallPiece.transform.parent = wallsParent.transform;
+                newInstance.transform.parent = wallsParent.transform;
             }
-
-            GameObject floorParent = new GameObject("Floor");
-
-            //foreach (Floor floor in this.layers.floors)
-            for (int i = 0; i < this.map.layers.floors.Count; i++)
-            {
-                Floor floor = this.map.layers.floors[i];
-                Vector3 start = new Vector3(floor.start[0], 0, -floor.start[1]);
-                Vector3 end = new Vector3(floor.end[0] + 1, 0, -floor.end[1] - 1);
-                Vector3 center = (end - start) / 2;
-                Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 1, Mathf.Abs(end.z - start.z));
-
-                //GameObject floorPiece = GameObject.CreatePrimitive(PrimitiveType.Plane);
-                // since it is a plane, we divide the size by 10
-                //size /= 10; // We are no using the plane anymore, because it has 10 by 190 faces while the cube has 6
-
-                // Create a Mesh with 4 vertices and 2 triangles which share the same vertices
-                Mesh mesh = new Mesh();
-
-                // Assign the vertices
-                mesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(0.5f, 0, 0.5f), new Vector3(0.5f, 0, -0.5f) };
-                // Assign the triangles
-                mesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
-
-                // Assign the UVs
-                mesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
-
-                GameObject floorPiece = new GameObject();
-                // add the mesh renderer
-                MeshRenderer meshRenderer = floorPiece.AddComponent<MeshRenderer>();
-                // Assign the mesh to the MeshFilter
-                MeshFilter meshFilter = floorPiece.AddComponent<MeshFilter>();
-                meshFilter.mesh = mesh;
-
-                // plane collider
-                MeshCollider meshCollider = floorPiece.AddComponent<MeshCollider>();
-                meshCollider.sharedMesh = mesh;
-
-                floorPiece.transform.position = start;
-                floorPiece.transform.position += center;
-                floorPiece.transform.localScale = size;
-                // change the name
-                floorPiece.name = System.String.Format("{0} - start: {1},  end:{2}", i, start.ToString(), end.ToString()); ;
-                // Set appropriate material or color for the box
-                floorPiece.GetComponent<Renderer>().material.color = Color.blue;
-                // Optionally, attach the box to a parent object for better organization
-                // box.transform.parent = transform;
-
-                // make the box a child of the parent
-                floorPiece.transform.parent = floorParent.transform;
-            }
-
-            GameObject ceilingParent = new GameObject("Cealing");
         }
 
         private void InstanciateFloors()
