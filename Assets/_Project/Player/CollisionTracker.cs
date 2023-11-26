@@ -27,6 +27,7 @@ namespace ENA.Player
 
         public void HandleTrigger(GameObject gameObject)
         {
+            // Check if button was pressed
             if (gameObject.TryGetComponentInParent(out ObjectiveComponent objective)) {
                 objectiveList.Check(objective);
             }
@@ -40,9 +41,12 @@ namespace ENA.Player
 
         private void HitObjective(ObjectiveComponent objective)
         {
-            objectiveList.Check(objective);
             objective.PlayCollisionSound();
-            OnHitObjective.Invoke(objective);
+            if (objectiveList.Check(objective)) {
+                OnHitObjective.Invoke(objective);
+            } else {
+                OnHitObstacle.Invoke(objective.gameObject);
+            }
         }
 
         private void HitProp(CollidableProp prop)

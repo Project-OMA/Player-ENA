@@ -44,8 +44,7 @@ AudioSource:
   m_GameObject: {fileID: 114652379721571404}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -92,7 +91,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -172,19 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bbced0d556c41ab959b4c8b5116894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <LocalizedName>k__BackingField:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  <Prop>k__BackingField: {fileID: 0}
   <CollisionAudioSource>k__BackingField: {fileID: 114652379721571401}
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &8160821852205353941
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,13 @@ namespace ENA.Goals
     {
         #region Variables
         [SerializeField] CollidableProp propComponent;
-        [SerializeField] AudioSource loopingSource = null;
+        [SerializeField] AudioSource loopingSource;
         #endregion
         #region MonoBehaviour Lifecycle
         void Awake()
         {
             if (loopingSource == null) CaptureAudioSource();
+            if (propComponent != null) name = propComponent.Prop.Name;
         }
         /// <summary>
         /// Reset is called when the user hits the Reset button in the Inspector's
@@ -36,27 +37,27 @@ namespace ENA.Goals
 
         public string ExtractObjectiveName()
         {
-            return transform.ExtractPropID(name);
+            return transform.ExtractProp(out Prop prop) ? prop.Name : "Objective";
         }
 
         public void PlayCollisionSound()
         {
-            propComponent?.CollisionAudioSource.RequestPlay();
+            if (propComponent != null) propComponent.CollisionAudioSource.RequestPlay();
         }
 
         public void PlaySound()
         {
-            loopingSource?.Play();
+            if (loopingSource != null) loopingSource.Play();
         }
 
         public void PlaySoundDelayed(float time)
         {
-            loopingSource?.PlayDelayed(time);
+            if (loopingSource != null) loopingSource.PlayDelayed(time);
         }
 
         public void StopSound()
         {
-            loopingSource?.Stop();
+            if (loopingSource != null) loopingSource.Stop();
         }
         #endregion
     }

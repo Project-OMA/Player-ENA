@@ -8,7 +8,7 @@ using Event = ENA.Event;
 namespace ENA.Goals
 {
     [CreateAssetMenu(fileName = "New List", menuName = "ENA/Objective List")]
-    public class ObjectiveList: ScriptableObject, ICollection<ObjectiveComponent>
+    public partial class ObjectiveList: ScriptableObject, ICollection<ObjectiveComponent>
     {
         #region Variables
         [SerializeField] List<ObjectiveComponent> current = new();
@@ -29,11 +29,12 @@ namespace ENA.Goals
         #region Methods
         public List<string> AllObjectiveNames() => current.ConvertAll(e => e.name);
 
-        public void Check(ObjectiveComponent objective)
+        public bool Check(ObjectiveComponent objective)
         {
-            if (objective != NextObjective) return;
+            if (objective != NextObjective) return false;
 
             Mark(objective);
+            return true;
         }
 
         private void Mark(ObjectiveComponent objective)

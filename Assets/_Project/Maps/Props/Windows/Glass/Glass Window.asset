@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c2800080e444d58b3eccdf2e1dd265, type: 3}
   m_Name: Glass Window
   m_EditorClassIdentifier: 
-  id: 
+  id: GlassWindow
   propName:
     m_TableReference:
       m_TableCollectionName: GUID:644f6e3b1578040bfb6b0236fb79594f

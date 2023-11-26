@@ -4,7 +4,7 @@ using ENA.Maps;
 using UnityEngine;
 using UnityEngine.Localization;
 
-namespace ENA.Accessibility
+namespace ENA.Audio
 {
     [AddComponentMenu("ENA/Accessibility/Speaker")]
     public class SpeakerComponent: MonoBehaviour

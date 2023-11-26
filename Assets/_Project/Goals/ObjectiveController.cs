@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ENA.Audio;
 
 namespace ENA.Goals
 {
@@ -6,6 +7,7 @@ namespace ENA.Goals
     {
         #region Variables
         [SerializeField] ObjectiveList objectiveList;
+        [SerializeField] SpeakerComponent speaker;
         #endregion
         #region Events
         public Event StartedMission;
@@ -33,7 +35,8 @@ namespace ENA.Goals
         #region Methods
         private void ClearedObjective(ObjectiveComponent objective)
         {
-            FoundObjective.Invoke(objectiveList.ClearedAllObjectives); // speaker.SpeakObjectiveFound(objective, objectiveList);
+            speaker.SpeakObjectiveFound(objective, objectiveList);
+            FoundObjective.Invoke(objectiveList.ClearedAllObjectives);
         }
 
         private void FinishedMission()
@@ -43,7 +46,7 @@ namespace ENA.Goals
 
         public void StateMission()
         {
-            StartedMission.Invoke(); // speaker.SpeakIntro(objectiveList);
+            StartedMission.Invoke();
         }
         #endregion
     }

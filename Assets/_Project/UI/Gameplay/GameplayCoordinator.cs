@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using ENA.Provenance;
 using ENA.Services;
-using ENA;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -28,25 +27,39 @@ namespace ENA.UI
         [SerializeField] UnityEvent onResume;
         [SerializeField] UnityEvent onQuit;
         #endregion
+        #region MonoBehaviour Lifecycle
+        void OnDestroy()
+        {
+            UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(PauseGameplay);
+		    UAP_AccessibilityManager.UnregisterOnBackCallback(ResumeGameplay);
+            SetAccessibilityActive(true);
+        }
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
+        void Start()
+        {
+            UAP_AccessibilityManager.RegisterOnPauseToggledCallback(PauseGameplay);
+            UAP_AccessibilityManager.RegisterOnBackCallback(ResumeGameplay);
+            GameplayIsPaused.Set(false);
+            SetAccessibilityActive(true);
+        }
+        #endregion
         #region UICoordinator Implementation
         public override void Setup()
         {
             pauseMenuDisplay.gameObject.SetActive(false);
-
-            UAP_AccessibilityManager.RegisterOnPauseToggledCallback(PauseGameplay);
-            UAP_AccessibilityManager.RegisterOnBackCallback(ResumeGameplay);
         }
         #endregion
         #region Methods
-        public void OnDestroy()
+        public void SetAccessibilityActive(bool value)
         {
-            UAP_AccessibilityManager.UnregisterOnPauseToggledCallback(PauseGameplay);
-		    UAP_AccessibilityManager.UnregisterOnBackCallback(ResumeGameplay);
+            UAP_AccessibilityManager.PauseAccessibility(!value);
         }
 
         public async void ReturnToMainMenu()
         {
-            tracker.ClearSession();
             manager.Pop(pauseMenuDisplay);
             onQuit?.Invoke();
             await SaveSession();
@@ -56,15 +69,18 @@ namespace ENA.UI
         public void ResumeGameplay()
         {
             manager.Pop(pauseMenuDisplay);
-            GameplayIsPaused.Set(true);
+            GameplayIsPaused.Set(false);
             onResume?.Invoke();
+            SetAccessibilityActive(false);
         }
 
         public void PauseGameplay()
         {
+            SetAccessibilityActive(true);
             manager.Push(pauseMenuDisplay);
-            GameplayIsPaused.Set(false);
+            GameplayIsPaused.Set(true);
             onPause?.Invoke();
+            UAP_AccessibilityManager.SelectElement(pauseMenuDisplay.StartLocation);
         }
 
         public async Task SaveSession()

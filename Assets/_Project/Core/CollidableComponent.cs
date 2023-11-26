@@ -18,7 +18,7 @@ namespace ENA
         /// <param name="other">The Collision data associated with this collision.</param>
         void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.tag == "Player") {
+            if (other.gameObject.CompareTag("Player")) {
                 InvokeCollision();
             }
         }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace ENA.UI
 {
-    public partial class HintTracker: MonoBehaviour
+    public partial class ButtonInput: MonoBehaviour
     {
         #region Variables
         [SerializeField] InputActionReference hintInput;

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4973883477652662}
   - component: {fileID: 11475380}
+  - component: {fileID: 9050136926414108298}
   m_Layer: 0
   m_Name: Accessibility Manager
   m_TagString: Untagged
@@ -83,6 +84,85 @@ MonoBehaviour:
   m_DebugOutputLabel: {fileID: 11450450}
   m_AllowVoiceOverGlobal: 1
   m_DetectVoiceOverAtRuntime: 1
+--- !u!114 &9050136926414108298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: e9d428dffc9f4402bb58e7df121d12e5,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11475380}
+        m_TargetAssemblyTypeName: UAP_AccessibilityManager, Assembly-CSharp
+        m_MethodName: ToggleAccessibility
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78fd8733-6809-49ce-b6f1-2958290061e3
+    m_ActionName: UI/ToggleScreenReader[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fa75f8e7-d047-4ad1-bf82-f9e2c0661d9e
+    m_ActionName: UI/Pause[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e3a533ff-de90-4778-b917-01c8764753e0
+    m_ActionName: UI/Move
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bef322ba-b134-4ed8-9837-6b610a15ad22
+    m_ActionName: UI/Interact
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a0aad0d-a6dc-4d72-a5f1-b9126333f129
+    m_ActionName: Gameplay/Hint[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 12ea1223-b654-4f5a-bf7f-95d627892513
+    m_ActionName: Gameplay/Move Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a59a9b3a-d57a-4462-9d72-e20120f2e67e
+    m_ActionName: Gameplay/Move Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0014a990-531a-407a-bccd-8e3199412eb2
+    m_ActionName: Gameplay/Turn Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47f7b9d9-febf-4a85-8af0-3f24fd85a9b1
+    m_ActionName: Gameplay/Turn Right[/Keyboard/rightArrow]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &136924
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +591,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1000
   m_TargetDisplay: 0

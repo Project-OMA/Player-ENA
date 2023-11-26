@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// Class that manages the ResonanceAudioDemo scene.
 public class ResonanceAudioDemoManager : MonoBehaviour {
@@ -40,12 +39,12 @@ public class ResonanceAudioDemoManager : MonoBehaviour {
     // Update the state of the cube.
     cube.SetGazedAt(cubeHit);
     if (cubeHit) {
-      // if((Input.touchCount == 0 && Mouse.current.leftButton.wasPressedThisFrame) ||    // LMB for desktop.
-      //    (Input.touchCount > 0 && Input.GetTouch(0).tapCount > 1 &&   // Double-tap for mobile.
-      //     Input.GetTouch(0).phase == TouchPhase.Began)) {
-      //   // Teleport the cube to its next location.
-      //   cube.TeleportRandomly();
-      // }
+      if((Input.touchCount == 0 && Input.GetMouseButtonDown(0)) ||    // LMB for desktop.
+         (Input.touchCount > 0 && Input.GetTouch(0).tapCount > 1 &&   // Double-tap for mobile.
+          Input.GetTouch(0).phase == TouchPhase.Began)) {
+        // Teleport the cube to its next location.
+        cube.TeleportRandomly();
+      }
     }
   }
 }

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Washing Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 100464, guid: c52be40176bdb8c4398a99cc17a9e5fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400462, guid: c52be40176bdb8c4398a99cc17a9e5fc, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -125,6 +125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Glass Window
       objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: e8d50745f0e89104793264e76da114d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: e8d50745f0e89104793264e76da114d5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -207,6 +211,10 @@ PrefabInstance:
     - target: {fileID: 100018, guid: e8d50745f0e89104793264e76da114d5, type: 3}
       propertyPath: m_Name
       value: Glass Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: e8d50745f0e89104793264e76da114d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: e8d50745f0e89104793264e76da114d5, type: 3}
       propertyPath: m_RootOrder

@@ -8,7 +8,7 @@ ElementDisabled	Disabled	Deaktiviert	désactivé	Desactivado	Desativado
 Element_Button	Button	Schaltfläche	Bouton	Botón	Botão
 Element_Slider	Slider	Regler	Glissière	deslizador	Controle deslizante
 Element_Toggle	Toggle	Checkbox	Basculer	Palanca	Caixa de seleção
-Element_TextEdit	Text Edit Field	Texteingabefeld	Modifier le texte Champ	El campo de edición de texto    Campo de Texto
+Element_TextEdit	Text Edit Field	Texteingabefeld	Modifier le texte Champ	El campo de edición de texto	Campo de Texto
 Element_Dropdown	Dropdown List	Aufklappbare Liste	La liste déroulante	La lista desplegable	Combo box
 Checkbox_Checked	checked	angewählt	vérifié	comprobado	marcado
 Checkbox_NotChecked	not checked	nicht angewählt	pas vérifié	Sin revisar	não selecionado
@@ -20,7 +20,7 @@ Keyboard_ShowingSymbols	showing symbols	zeige Symbole an	montrant des symboles	m
 Keyboard_Letters	Letters	Buchstaben	Des lettres	Letras Letras
 Keyboard_Numbers	Numbers	Zahlen	Nombres	Números Números
 Keyboard_Symbols	Symbols	Symbole	symboles	símbolos	símbolos
-Keyboard_NumbersAndSymbols	Numbers and symbols	Zahlen und Symbole	Les nombres et les symboles	Números y símbolos	Números y símbolos
+Keyboard_NumbersAndSymbols	Numbers and symbols	Zahlen und Symbole	Les nombres et les symboles	Números y símbolos	Números e Símbolos
 Keyboard_ShowingLanguage	Keyboard language	Tastatur Sprache	Langue du clavier	idioma del teclado	Idioma do teclado
 Keyboard_Hidden	Keyboard hidden	Tastatur geschlossen	clavier caché	teclado escondido	teclado escondido
 Keyboard_Showing	Showing keyboard	Tastatur wird angezeigt	clavier Affichage	que muestra el teclado	Exibindo teclado

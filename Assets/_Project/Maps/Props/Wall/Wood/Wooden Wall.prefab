@@ -8,6 +8,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169602346653011709, guid: 7541e9694f5ac4ea0923736123710e9b,
+        type: 3}
+      propertyPath: <Prop>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f818123c91d104b489cad5d535ecee93,
+        type: 2}
     - target: {fileID: 2430089414631383700, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -18,6 +24,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5246251f6845142a4bd413a17ee7e9c0, type: 2}
+    - target: {fileID: 2462795157548765354, guid: 7541e9694f5ac4ea0923736123710e9b,
+        type: 3}
+      propertyPath: <Prop>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f818123c91d104b489cad5d535ecee93,
+        type: 2}
     - target: {fileID: 2462795157548765354, guid: 7541e9694f5ac4ea0923736123710e9b,
         type: 3}
       propertyPath: <LocalizedName>k__BackingField.m_TableEntryReference.m_KeyId

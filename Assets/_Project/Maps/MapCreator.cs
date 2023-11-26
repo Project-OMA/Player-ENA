@@ -107,34 +107,34 @@ namespace ENA.Maps
 
         void BuildAmbients(List<XmlNode> ambientNodes)
         {
-           foreach (var node in ambientNodes)
-           {
-                var top = node.GetValue("top").AsFloat();
-                var left = node.GetValue("left").AsFloat();
-                var width = node.GetValue("width").AsFloat();
-                var height = node.GetValue("height").AsFloat();
+        //    foreach (var node in ambientNodes)
+        //    {
+        //         var top = node.GetValue("top").AsFloat();
+        //         var left = node.GetValue("left").AsFloat();
+        //         var width = node.GetValue("width").AsFloat();
+        //         var height = node.GetValue("height").AsFloat();
 
-                var sound = node.GetValue("sound");
+        //         var sound = node.GetValue("sound");
 
-                Debug.Log($"Sound file: {sound}");
+        //         Debug.Log($"Sound file: {sound}");
 
-                var text = node.InnerText;
+        //         var text = node.InnerText;
 
-                var ambientPosition = new Vector3((left+width/2),1,(top+height/2));
+        //         var ambientPosition = new Vector3((left+width/2),1,(top+height/2));
 
-                var newInstance = Instantiate(ambientPrefab, ambientPosition, Quaternion.Euler(Vector3.zero));
-                newInstance.SetParent(mapParent, true);
+        //         var newInstance = Instantiate(ambientPrefab, ambientPosition, Quaternion.Euler(Vector3.zero));
+        //         newInstance.SetParent(mapParent, true);
 
-                newInstance.transform.localScale = new Vector3(width, 1, height);
+        //         newInstance.transform.localScale = new Vector3(width, 1, height);
 
-                var audioSource = newInstance.GetComponent<AudioSource>();
+        //         var audioSource = newInstance.GetComponent<AudioSource>();
 
-                Debug.Log($"audioSource: {audioSource}");
+        //         Debug.Log($"audioSource: {audioSource}");
 
-                audioSource.clip = Resources.Load(sound) as AudioClip;
+        //         audioSource.clip = Resources.Load(sound) as AudioClip;
 
-                Debug.Log($"audioSource.clip: {audioSource.clip}");
-           }
+        //         Debug.Log($"audioSource.clip: {audioSource.clip}");
+        //    }
         }
 
         private void DefinePlayerPosition(string inputCode, int column, int line)

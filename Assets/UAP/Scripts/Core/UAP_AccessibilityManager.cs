@@ -13,7 +13,6 @@ using UnityEngine.SceneManagement;
 using System.Globalization;
 using UnityEngine.InputSystem;
 using ENA;
-using ENA;
 
 /// <summary>This is the main object to handle all the accessibility in an app. Please use the premade Accessibility Manager prefab.</summary>
 [AddComponentMenu("Accessibility/Core/UAP Manager")]

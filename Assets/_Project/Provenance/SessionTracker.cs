@@ -1,4 +1,5 @@
 using ENA.Goals;
+using ENA.Maps;
 using ENA.Services;
 using UnityEngine;
 using Event = ENA.Event;
@@ -64,15 +65,22 @@ namespace ENA.Provenance
 
         public void RegisterCollision(GameObject gameObject)
         {
-            string objectID;
             var timestamp = Time.time;
-            objectID = gameObject.transform.ExtractPropID();
+            string objectID, objectName;
+
+            if (gameObject.transform.ExtractProp(out Prop prop)) {
+                objectID = prop.ID;
+                objectName = prop.Name;
+            } else {
+                objectID = "No ID";
+                objectName = gameObject.name;
+            }
 
             var collisionModel = new Collision(objectID, timestamp, playerTransform.position);
             Model.Register(collisionModel);
 
             micelioWeb.Register(collisionModel.GenerateActivity(Model.CurrentObjective));
-            OnCollision.Invoke(objectID); //speaker.SpeakCollision(objectID);
+            OnCollision.Invoke(objectName); //speaker.SpeakCollision(objectName);
 
             #if ENABLE_LOG
             Debug.Log($"{collisionModel.Timestamp} | Collided with {collisionModel.ObjectID} @ {collisionModel.Position}");

@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// First-person player controller for Resonance Audio demo scenes.
 [RequireComponent(typeof(CharacterController))]
@@ -46,7 +45,7 @@ public class DemoPlayerController : MonoBehaviour {
 
   void LateUpdate() {
 #if UNITY_EDITOR
-    if (Mouse.current.leftButton.wasPressedThisFrame) {
+    if (Input.GetMouseButtonDown(0)) {
       SetCursorLock(true);
     } else if (Input.GetKeyDown(KeyCode.Escape)) {
       SetCursorLock(false);
@@ -55,11 +54,11 @@ public class DemoPlayerController : MonoBehaviour {
     // Update the rotation.
     float mouseX = Input.GetAxis("Mouse X");
     float mouseY = -Input.GetAxis("Mouse Y");
-    // if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
-    //   // Note that multi-touch control is not supported on mobile devices.
-    //   mouseX = 0.0f;
-    //   mouseY = 0.0f;
-    // }
+    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+      // Note that multi-touch control is not supported on mobile devices.
+      mouseX = 0.0f;
+      mouseY = 0.0f;
+    }
     rotationX += sensitivity * mouseY;
     rotationY += sensitivity * mouseX;
     rotationX = Mathf.Clamp(rotationX, -clampAngleDegrees, clampAngleDegrees);

@@ -9,6 +9,7 @@ namespace ENA
         [Header("Trails")]
         [SerializeField] TrailRenderer[] trailModels;
         int counter;
+        bool hasSpawnedTrail;
         #endregion
         #region Methods
         public void NewPath(GameObject attach)
@@ -18,7 +19,7 @@ namespace ENA
 
         public void NewPath(GameObject attach, out TrailRenderer trailRenderer)
         {
-            currentTrail?.transform.SetParent(null);
+            if (hasSpawnedTrail) currentTrail.transform.SetParent(null);
 
             Transform attachTransform = attach.transform;
             currentTrail = Instantiate(trailModels[counter], attachTransform);
@@ -29,6 +30,7 @@ namespace ENA
             counter = (counter + 1) % trailModels.Length;
 
             trailRenderer = currentTrail;
+            hasSpawnedTrail = true;
         }
         #endregion
     }
