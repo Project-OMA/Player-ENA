@@ -32,6 +32,7 @@ namespace ENA.Maps
         [SerializeField] Vector3 playerOffset;
         [SerializeField] ObjectiveComponent startingPoint;
         [SerializeField] ObjectiveList objectiveList;
+        [SerializeField] SettingsProfile profile;
         [SerializeField] Transform mapParent;
         [SerializeField] Camera trackerCamera;
         private string[,,] mapMatrix;
@@ -247,7 +248,7 @@ namespace ENA.Maps
         public void PrepareObjectiveList()
         {
             objectiveList.Sort(item => Vector3.Distance(playerTransform.position, item.transform.position));
-            objectiveList.Add(startingPoint);
+            if (profile.AddStartingPoint) objectiveList.Add(startingPoint);
         }
 
         private void SetPlayerDirection(float angleDegrees)

@@ -10,6 +10,7 @@ namespace ENA.Services
         #region Variables
         public ENAProfile LoggedProfile {get; set;}
         [Header("Gameplay Settings")]
+        public bool AddStartingPoint;
         public bool ElementsDisappearEnabled;
         public bool GyroEnabled;
         public bool MinimapEnabled;

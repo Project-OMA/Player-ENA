@@ -184,6 +184,7 @@ MonoBehaviour:
   playerOffset: {x: 0, y: 1, z: 0}
   startingPoint: {fileID: 7461104876474046322}
   objectiveList: {fileID: 11400000, guid: 843bebc1324894a878042de8877f883c, type: 2}
+  profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   mapParent: {fileID: 21002960}
   trackerCamera: {fileID: 1128984731}
   defaultFloor: {fileID: 2978059999166152507, guid: 433a10a4164c04fafae98f85a91f4ca6,
@@ -198,7 +199,7 @@ MonoBehaviour:
   canvasSize: {x: 0, y: 0}
   tileSize: {x: 0, y: 0}
   matrixSize: {x: 0, y: 0}
-  testing: 1
+  testing: 0
   testMapFile: {fileID: 4900000, guid: 52bb204e1f93149c9adac4409d988d0d, type: 3}
   OnLoadedMap:
     unityEvent:
