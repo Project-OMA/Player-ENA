@@ -240,9 +240,7 @@ namespace ENA.Maps
 
         public void PlaceTrackerCamera()
         {
-            const float xFactor = 10/6f;
-
-            trackerCamera.orthographicSize = Mathf.Max(matrixSize.x * xFactor, matrixSize.y)*TileSizeToUnit/5;
+            trackerCamera.orthographicSize = Mathf.Min(matrixSize.x, matrixSize.y) * TileSizeToUnit;
             trackerCamera.transform.position = new Vector3(matrixSize.x*TileSizeToUnit/2,CeilingHeight*2,matrixSize.y*TileSizeToUnit/2);
         }
 
