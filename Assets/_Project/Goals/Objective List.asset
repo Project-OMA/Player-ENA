@@ -12,12 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6339ff5192e3f4b479af34896afac4fa, type: 3}
   m_Name: Objective List
   m_EditorClassIdentifier: 
-  current: []
-  cleared: []
+  current:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cleared:
+  - {fileID: 0}
   OnClearObjective:
     unityEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 11400000}
+          m_TargetAssemblyTypeName: ENA.Goals.ObjectiveList, Assembly-CSharp
+          m_MethodName: HandleObjectState
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: ENA.Services.SettingsProfile, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnClearAllObjectives:
     unityEvent:
       m_PersistentCalls:

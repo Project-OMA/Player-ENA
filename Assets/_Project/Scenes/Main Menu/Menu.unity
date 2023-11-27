@@ -1174,7 +1174,7 @@ MonoBehaviour:
   profile: {fileID: 11400000, guid: 1e17591df00384726812e8136a3a3c25, type: 2}
   authDisplay: {fileID: 1434911146}
   signupPanel: {fileID: 0}
-  guestMode: 0
+  guestMode: 1
 --- !u!114 &1914273465
 MonoBehaviour:
   m_ObjectHideFlags: 0
