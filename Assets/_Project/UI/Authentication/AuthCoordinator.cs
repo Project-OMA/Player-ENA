@@ -16,6 +16,8 @@ namespace ENA.UI
         [Header("Panels")]
         [SerializeField] AuthDisplay authDisplay;
         [SerializeField] UIPanel signupPanel;
+        [Header("Debug")]
+        [SerializeField] bool guestMode;
         #endregion
         #region UICoordinator Implementation
         public override void Setup()
@@ -52,8 +54,13 @@ namespace ENA.UI
         public WaitUntil WaitForLogin;
         IEnumerator RequestAuthentication(Action<ENAProfile> completion)
         {
-            manager.Push(authDisplay);
-            yield return WaitForLogin;
+            if (guestMode) {
+                Validate("Convidado", "guest");
+            } else {
+                manager.Push(authDisplay);
+                yield return WaitForLogin;
+            }
+
             completion?.Invoke(authService.Profile);
         }
         #endregion
