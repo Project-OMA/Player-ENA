@@ -92,6 +92,11 @@ namespace ENA.Services
         {
             VREnabled = value;
         }
+
+        public void SetAddStartingPoint(bool value)
+        {
+            AddStartingPoint = value;
+        }
         #endregion
     }
 }

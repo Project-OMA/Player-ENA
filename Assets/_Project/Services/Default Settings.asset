@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Default Settings
   m_EditorClassIdentifier: 
   AddStartingPoint: 1
-  ElementsDisappearEnabled: 1
+  ElementsDisappearEnabled: 0
   GyroEnabled: 0
   MinimapEnabled: 1
   VREnabled: 0
-  VibrationEnabled: 1
+  VibrationEnabled: 0
