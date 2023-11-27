@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d206ce3356a17460d951dea50bd11992, type: 3}
-  m_Name: Default
+  m_Name: Default Settings
   m_EditorClassIdentifier: 
-  ElementsDisappearEnabled: 0
-  GyroEnabled: 0
-  MinimapEnabled: 0
-  VREnabled: 0
+  ElementsDisappearEnabled: 1
+  GyroEnabled: 1
+  MinimapEnabled: 1
+  VREnabled: 1
   VibrationEnabled: 0
