@@ -50,9 +50,17 @@ namespace ENA.Provenance
 
         public void OpenSession()
         {
-            const int mapID = -1;
+            OpenSession(profile.LoggedProfile, LocalCache.GetLoadedMap());
+        }
 
-            Model = new SessionModel(profile.LoggedProfile?.UserID ?? -1, mapID);
+        public void OpenSession(ENAProfile profile, MapData map)
+        {
+            OpenSession(profile?.UserID ?? -1, (int)map.ID);
+        }
+
+        public void OpenSession(int userID, int mapID)
+        {
+            Model = new SessionModel(userID, mapID);
             RegisterNextObjective();
             lastPosition = playerTransform.position;
 
@@ -98,8 +106,9 @@ namespace ENA.Provenance
 
         public void RegisterObjective(GameObject gameObject)
         {
-            var objectiveID = gameObject.transform.ExtractPropID();
-            var objective = new Objective(objectiveID, "");
+            if (!gameObject.transform.ExtractProp(out Prop prop)) return;
+
+            var objective = new Objective(prop.ID, prop.Name);
             Model.Register(objective);
 
             #if ENABLE_LOG

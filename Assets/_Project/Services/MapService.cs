@@ -37,7 +37,7 @@ namespace ENA.Services
 
         public Task<bool> UploadMap()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         private void ValidateMaps(List<MapData> mapList)
@@ -56,7 +56,7 @@ namespace ENA.Services
         #region Static Methods
         public static bool SaveMaps(MapData[] maps, string targetFile)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
         #endregion
     }

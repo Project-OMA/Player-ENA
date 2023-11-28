@@ -41,14 +41,21 @@ namespace ENA.Services
         }
         #endregion
         #region Static Methods
-        public static MapData CreateMap(uint id, string mapName)
-        {
-            return new MapData(id, mapName, MapsFullPath+id+"--"+mapName+"/");
-        }
+        public static MapData CreateMap(uint id, string mapName) => new(id, mapName, MapsFullPath + id + "--" + mapName + "/");
 
         public static MapData GetLoadedMap()
         {
-            throw new System.NotImplementedException();
+            var mapPath = PlayerPrefs.GetString(LoadedMapKey);
+
+            if (!string.IsNullOrEmpty(mapPath)) {
+                var mapData = mapPath.Replace(MapsFullPath, string.Empty).Replace("--", "#").Split('#');
+                var mapID = Convert.ToUInt32(mapData[0]);
+                var mapName = mapData[1];
+
+                return new MapData(mapID, mapName, mapPath);
+            }
+
+            return null;
         }
 
         public static void SetCurrentMap(MapData map)

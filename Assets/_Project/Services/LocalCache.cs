@@ -25,7 +25,7 @@ namespace ENA.Services
         public static async Task SaveLog(DateTime recordingTime, ENAProfile profile, string contents)
         {
             string sessionTag = GenerateSessionTag(recordingTime, profile);
-            string path = LogsFullPath+$"/{sessionTag}_Log.txt";
+            string path = LogsFullPath+$"/{sessionTag}_Log.json";
 
             VerifyLogsFolder();
             using var fileWriter = new StreamWriter(path, true);
