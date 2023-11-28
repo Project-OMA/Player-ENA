@@ -200,7 +200,7 @@ MonoBehaviour:
   tileSize: {x: 0, y: 0}
   matrixSize: {x: 0, y: 0}
   testing: 0
-  testMapFile: {fileID: 4900000, guid: 52bb204e1f93149c9adac4409d988d0d, type: 3}
+  testMapFile: {fileID: 4900000, guid: f70d086a220804c81b73a17fb033fd73, type: 3}
   OnLoadedMap:
     unityEvent:
       m_PersistentCalls:

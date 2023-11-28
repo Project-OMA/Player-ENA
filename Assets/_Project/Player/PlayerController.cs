@@ -34,7 +34,7 @@ namespace ENA.Player
             collisionTracker.OnHitFloor -= playerComponent.PlaySoundStep;
             collisionTracker.OnHitObstacle -= WalkBack;
             collisionTracker.OnHitObjective -= WalkBack;
-            isPausedFlag.OnChangeValue -= SetActive;
+            isPausedFlag.OnChangeValue -= SetInactive;
         }
         /// <summary>
         /// This function is called when the behaviour becomes disabled or inactive.
@@ -62,7 +62,7 @@ namespace ENA.Player
             collisionTracker.OnHitFloor += playerComponent.PlaySoundStep;
             collisionTracker.OnHitObstacle += WalkBack;
             collisionTracker.OnHitObjective += WalkBack;
-            isPausedFlag.OnChangeValue += SetActive;
+            isPausedFlag.OnChangeValue += SetInactive;
 
             yield return new WaitForSeconds(0.5f);
 
@@ -81,7 +81,7 @@ namespace ENA.Player
         }
         #endregion
         #region Methods
-        public void SetActive(bool value) => enabled = value;
+        public void SetInactive(bool value) => enabled = !value;
 
         public void ToggleControls() => enabled = !enabled;
 

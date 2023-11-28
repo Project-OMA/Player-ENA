@@ -172,6 +172,9 @@ namespace ENA.Maps
             newInstance.transform.SetParent(mapParent, true);
             if (category == MapCategory.Interactive && newInstance.TryGetComponent(out ObjectiveComponent objective)) {
                 objectiveList.Add(objective);
+                if (!profile.ObjectiveZoneEnabled) {
+                    objective.Zone.gameObject.SetActive(false);
+                }
             }
         }
 

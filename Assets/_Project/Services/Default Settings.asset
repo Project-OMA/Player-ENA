@@ -16,5 +16,6 @@ MonoBehaviour:
   ElementsDisappearEnabled: 0
   GyroEnabled: 0
   MinimapEnabled: 1
+  ObjectiveZoneEnabled: 1
   VREnabled: 0
   VibrationEnabled: 0

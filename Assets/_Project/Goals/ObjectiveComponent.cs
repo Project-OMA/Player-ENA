@@ -8,6 +8,7 @@ namespace ENA.Goals
         #region Variables
         [SerializeField] CollidableProp propComponent;
         [SerializeField] AudioSource loopingSource;
+        public GameObject Zone;
         #endregion
         #region MonoBehaviour Lifecycle
         void Awake()

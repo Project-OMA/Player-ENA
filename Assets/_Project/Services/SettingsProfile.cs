@@ -15,6 +15,7 @@ namespace ENA.Services
         public bool ElementsDisappearEnabled;
         public bool GyroEnabled;
         public bool MinimapEnabled;
+        public bool ObjectiveZoneEnabled;
         public bool VREnabled;
         public bool VibrationEnabled;
         #endregion
@@ -97,6 +98,11 @@ namespace ENA.Services
         public void SetAddStartingPoint(bool value)
         {
             AddStartingPoint = value;
+        }
+
+        public void SetObjectiveZone(bool value)
+        {
+            ObjectiveZoneEnabled = value;
         }
         #endregion
     }
