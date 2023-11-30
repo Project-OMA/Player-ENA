@@ -28,18 +28,22 @@ namespace ENA.Services
 
         public void Load()
         {
+            GetBool(nameof(AddStartingPoint), out AddStartingPoint);
             GetBool(nameof(ElementsDisappearEnabled), out ElementsDisappearEnabled);
             GetBool(nameof(GyroEnabled), out GyroEnabled);
             GetBool(nameof(MinimapEnabled), out MinimapEnabled);
+            GetBool(nameof(ObjectiveZoneEnabled), out ObjectiveZoneEnabled);
             GetBool(nameof(VREnabled), out VREnabled);
             GetBool(nameof(VibrationEnabled), out VibrationEnabled);
         }
 
         public void Reset()
         {
+            ResetKey(nameof(AddStartingPoint), out AddStartingPoint);
             ResetKey(nameof(ElementsDisappearEnabled), out ElementsDisappearEnabled);
             ResetKey(nameof(GyroEnabled), out GyroEnabled);
             ResetKey(nameof(MinimapEnabled), out MinimapEnabled);
+            ResetKey(nameof(ObjectiveZoneEnabled), out ObjectiveZoneEnabled);
             ResetKey(nameof(VREnabled), out VREnabled);
             ResetKey(nameof(VibrationEnabled), out VibrationEnabled);
         }
@@ -52,9 +56,11 @@ namespace ENA.Services
 
         public void Save()
         {
+            SetBool(nameof(AddStartingPoint), in AddStartingPoint);
             SetBool(nameof(ElementsDisappearEnabled), in ElementsDisappearEnabled);
             SetBool(nameof(GyroEnabled), in GyroEnabled);
             SetBool(nameof(MinimapEnabled), in MinimapEnabled);
+            SetBool(nameof(ObjectiveZoneEnabled), in ObjectiveZoneEnabled);
             SetBool(nameof(VREnabled), in VREnabled);
             SetBool(nameof(VibrationEnabled), in VibrationEnabled);
         }

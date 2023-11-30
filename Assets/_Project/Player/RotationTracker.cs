@@ -84,7 +84,13 @@ namespace ENA.Player
 
             if (directionGyro == directionPlayer) return;
 
-            RotateBy(gyroAngle - playerAngle);
+            var deltaAngle = gyroAngle - playerAngle;
+
+            if (deltaAngle > 0) {
+                RotateRight();
+            } else {
+                RotateLeft();
+            }
         }
 
         public void RotateLeft()

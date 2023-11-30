@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AddStartingPoint: 1
   ElementsDisappearEnabled: 0
-  GyroEnabled: 0
+  GyroEnabled: 1
   MinimapEnabled: 1
-  ObjectiveZoneEnabled: 1
+  ObjectiveZoneEnabled: 0
   VREnabled: 0
   VibrationEnabled: 0
