@@ -110,3 +110,21 @@ Para testes diretamente no editor, copie os mapas para o diretório:
 ```
 AppData\LocalLow\UFC\Espaço Navegável - ENA\resources\maps
 ```
+## Pasta Logs
+
+Na pasta **Logs** estão armazenados os arquivos gerados a cada sessão de jogo.
+
+Ela contém:
+
+- **Uma imagem**: representa graficamente o percurso realizado pelo jogador durante a partida.
+- **Um arquivo JSON**: contém informações detalhadas da sessão, como tempo de jogo, número de colisões, mapa utilizado e outros dados relevantes.
+
+> **Observação:** Os logs são gerados apenas para partidas em que todos os objetivos do jogo são concluídos.
+
+### Localização da pasta
+
+Os arquivos podem ser encontrados no seguinte caminho:
+
+```
+AppData\LocalLow\UFC\Espaço Navegável - ENA\logs
+```
